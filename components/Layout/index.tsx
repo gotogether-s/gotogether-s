@@ -1,11 +1,14 @@
+import { Container } from '@mui/system'
 import Nav from '../Nav'
 import style from './Layout.module.scss'
 
 const Layout = ({ children }: any) => {
   return (
     <>
-      <Nav />
-      <div>{children}</div>
+      <Container maxWidth="sm" className={style.container}>
+        <Nav />
+        <div>{children}</div>
+      </Container>
     </>
   )
 }
