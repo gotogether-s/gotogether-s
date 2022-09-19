@@ -1,12 +1,33 @@
 import Link from 'next/link'
+import MenuIcon from '@mui/icons-material/Menu'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import SearchIcon from '@mui/icons-material/Search'
 import style from './Nav.module.scss'
 
 const Nav = () => {
   return (
-    <nav>
-      <Link href="/mypage/favorite">
-        <a>찜</a>
+    <nav className={style.nav}>
+      <Link href="#">
+        <a>
+          <MenuIcon sx={{ fontSize: 30 }} />
+        </a>
       </Link>
+      <Link href="/">
+        <a>로고</a>
+      </Link>
+      <div className={style['flex-wrapper']}>
+        <Link href="/mypage/favorite">
+          <a className={style['flex-wrapper-favorite']}>
+            <FavoriteBorderIcon sx={{ fontSize: 20 }} />
+            <div>찜</div>
+          </a>
+        </Link>
+        <Link href="#">
+          <a>
+            <SearchIcon sx={{ fontSize: 35 }} />
+          </a>
+        </Link>
+      </div>
     </nav>
   )
 }
