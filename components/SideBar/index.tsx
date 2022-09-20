@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText'
 import MenuIcon from '@mui/icons-material/Menu'
 import Drawer from '@mui/material/Drawer'
 import Backdrop from '@mui/material/Backdrop'
+import { MENU_LIST } from '../../data/menu'
 import style from './SideBar.module.scss'
 
 const SideBar = () => {
@@ -41,15 +42,10 @@ const SideBar = () => {
         </Box>
       </div>
       <List>
-        {[
-          '내 정보',
-          '주문/예약 확인 및 취소',
-          '카테고리',
-          '여행지 추천 다시 받기',
-        ].map((menu, index) => (
+        {MENU_LIST.map((menuLists, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton>
-              <ListItemText primary={menu} />
+              <ListItemText primary={menuLists.menu} />
             </ListItemButton>
           </ListItem>
         ))}
