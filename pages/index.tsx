@@ -1,10 +1,11 @@
 import HeadInfo from '../components/HeadInfo'
+import Main from '../components/Main'
 
 const Home = () => {
   return (
     <>
       <HeadInfo title="고투게더 홈페이지" />
-      Home
+      <Main />
     </>
   )
 }
