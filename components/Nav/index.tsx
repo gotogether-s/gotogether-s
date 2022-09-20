@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import MenuIcon from '@mui/icons-material/Menu'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import SearchIcon from '@mui/icons-material/Search'
 import style from './Nav.module.scss'
+import SideBar from '../SideBar'
 
 const Nav = () => {
   return (
     <nav className={style.nav}>
       <Link href="#">
         <a>
-          <MenuIcon sx={{ fontSize: 30 }} />
+          <SideBar />
         </a>
       </Link>
       <Link href="/">
