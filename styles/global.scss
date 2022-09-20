@@ -6,4 +6,8 @@ body {
   width: 414px;
   position: relative;
   margin: 0 auto;
+  // temporary style code to have the same font design as MUI
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
 }
