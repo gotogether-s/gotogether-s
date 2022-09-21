@@ -12,9 +12,9 @@ import { categorySubMenuOpen } from '../../../../../store/categoryMenuSlice'
 import style from './Category.module.scss'
 
 const Category = () => {
-  const [categoryMenuOpen, setSubMenuOpen] = useState(false)
-  const clickSubMenu = () => {
-    setSubMenuOpen(!categoryMenuOpen)
+  const [categoryOpen, setCategoryOpen] = useState(false)
+  const toggleCategoryMenu = () => {
+    setCategoryOpen(!categoryOpen)
   }
 
   const categoryMenus = useSelector((state) => {
@@ -26,16 +26,16 @@ const Category = () => {
   return (
     <List disablePadding>
       <ListItem disablePadding>
-        <ListItemButton onClick={clickSubMenu}>
+        <ListItemButton onClick={toggleCategoryMenu}>
           <ListItemText primary="카테고리" />
-          {categoryMenuOpen ? (
+          {categoryOpen ? (
             <ExpandLess sx={{ fontSize: 25 }} />
           ) : (
             <ExpandMore sx={{ fontSize: 25 }} />
           )}
         </ListItemButton>
       </ListItem>
-      <Collapse in={categoryMenuOpen} timeout="auto" unmountOnExit>
+      <Collapse in={categoryOpen} timeout="auto" unmountOnExit>
         <List>
           {categoryMenus.map((categoryMenu: any, index: number) => (
             <Fragment key={index}>
