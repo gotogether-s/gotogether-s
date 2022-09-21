@@ -1,6 +1,6 @@
 import { useState, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { click } from '../../store/categoryMenuSlice'
+import { open } from '../../store/categoryMenuSlice'
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -84,7 +84,7 @@ const SideBar = () => {
                     <ListItemButton
                       sx={{ pl: 4 }}
                       onClick={() => {
-                        dispatch(click(index))
+                        dispatch(open(index))
                       }}
                     >
                       <ListItemText primary={categoryMenu.label} />
