@@ -1,7 +1,8 @@
 import React from 'react'
-import SwiperBanner from '../SwiperBanner'
 import style from './Main.module.scss'
+import SwiperBanner from '../SwiperBanner'
 import Category from '../Category'
+import RecommendTouristDestination from '../RecommendTouristDestination'
 
 function Main() {
   return (
@@ -9,7 +10,7 @@ function Main() {
       <SwiperBanner />
       <div className={style.container}>
         <Category />
-        <div>recommend-product</div>
+        <RecommendTouristDestination />
         <div>realtime-favorite-product</div>
         <div>nation-recommend-prodcut</div>
         <div>group-recommend-product</div>

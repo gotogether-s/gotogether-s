@@ -5,15 +5,15 @@
 }
 .category {
   display: flex;
-}
-.categoryName {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 0.6rem;
-}
-.bundle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 1.2rem;
+  .bundle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1.2rem;
+    .categoryName {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 0.6rem;
+    }
+  }
 }
