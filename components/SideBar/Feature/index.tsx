@@ -5,8 +5,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import style from './Feature.module.scss'
 import Menu from './Menu'
+import style from './Feature.module.scss'
 
 const Feature = () => {
   return (

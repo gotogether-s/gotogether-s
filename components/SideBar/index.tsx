@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import Drawer from '@mui/material/Drawer'
 import Backdrop from '@mui/material/Backdrop'
 import Feature from './Feature'
+import { useState } from 'react'
 import style from './SideBar.module.scss'
 
 const SideBar = () => {

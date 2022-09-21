@@ -1,6 +1,3 @@
-import { useState, Fragment } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { categorySubMenuOpen } from '../../../../../store/categoryMenuSlice'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -9,6 +6,9 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse'
 import AddIcon from '@mui/icons-material/Add'
+import { useState, Fragment } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { categorySubMenuOpen } from '../../../../../store/categoryMenuSlice'
 import style from './Category.module.scss'
 
 const Category = () => {
