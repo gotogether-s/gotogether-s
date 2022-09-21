@@ -17,8 +17,8 @@ function Main() {
         <UserRecommend />
         <RecommendTouristDestination />
         <GroupRecommend />
-        <CultureTripRecommend />
         <GolfTravelRecommend />
+        <CultureTripRecommend />
       </div>
     </>
   )

@@ -12,6 +12,12 @@ function index() {
         <div className={style.main}>그룹별 여행 추천</div>
         <div className={style.more}>더보기</div>
       </div>
+      <div className={style.group}>
+        <span className={style.selectGroup}>5070끼리</span>
+        <span className={style.selectGroup}>2040끼리</span>
+        <span className={style.selectGroup}>남자끼리</span>
+        <span className={style.selectGroup}>여자끼리</span>
+      </div>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         <SwiperSlide>
           <img
