@@ -7,13 +7,13 @@ import style from './SideBar.module.scss'
 
 const SideBar = () => {
   const [sideBarOpen, setSideBarOpen] = useState(false)
-  const clickSideBarMenu = () => {
+  const toggleSideBar = () => {
     setSideBarOpen(!sideBarOpen)
   }
 
   return (
     <>
-      <MenuIcon sx={{ fontSize: 30 }} onClick={clickSideBarMenu} />
+      <MenuIcon sx={{ fontSize: 30 }} onClick={toggleSideBar} />
       <Drawer
         PaperProps={{
           sx: {
@@ -32,7 +32,7 @@ const SideBar = () => {
       </Drawer>
       <Backdrop
         open={sideBarOpen}
-        onClick={clickSideBarMenu}
+        onClick={toggleSideBar}
         sx={{ position: 'absolute' }}
       />
     </>
