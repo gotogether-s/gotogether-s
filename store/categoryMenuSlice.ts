@@ -23,6 +23,7 @@ const initialState: categoryMenuState = [
     label: '그룹별 여행',
     open: false,
     subMenus: [
+      { label: '전체', href: '#' },
       { label: '5070끼리', href: '#' },
       { label: '2040끼리', href: '#' },
       { label: '남자끼리', href: '#' },
@@ -35,6 +36,7 @@ const initialState: categoryMenuState = [
     label: '테마별 여행',
     open: false,
     subMenus: [
+      { label: '전체', href: '#' },
       { label: '문화탐방', href: '#' },
       { label: '골프여행', href: '#' },
       { label: '휴양지', href: '#' },
