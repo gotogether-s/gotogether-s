@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const mainMenuSlice = createSlice({
+type mainMenuState = {
+  label: string
+}[]
+
+const mainMenuSlice: mainMenuState = createSlice({
   name: 'mainMenuSlice',
   initialState: [
     {
