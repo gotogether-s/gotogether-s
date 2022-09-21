@@ -20,7 +20,7 @@ const Feature = () => {
           <ArrowForwardIosIcon />
         </ListItem>
       </List>
-      <List className={style['box-wrapper']}>
+      <div className={style['box-wrapper']}>
         <Box className={style['status-box']}>
           <div>주문(예약)건</div>
           <div>-</div>
@@ -29,7 +29,7 @@ const Feature = () => {
           <div>찜하기</div>
           <div>-</div>
         </Box>
-      </List>
+      </div>
       <Menu />
     </Box>
   )
