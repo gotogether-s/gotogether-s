@@ -6,6 +6,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse'
 import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import { useState, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleCategorySubMenu } from '/store/categoryMenuSlice'
@@ -47,7 +48,11 @@ const Category = () => {
                   }}
                 >
                   <ListItemText primary={categoryMenu.label} />
-                  <AddIcon />
+                  {categoryMenu.open ? (
+                    <RemoveIcon sx={{ fontSize: 15 }} />
+                  ) : (
+                    <AddIcon sx={{ fontSize: 15 }} />
+                  )}
                 </ListItemButton>
               </ListItem>
               {categoryMenu.subMenus.map((subMenu: any, index: number) => (
