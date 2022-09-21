@@ -2,8 +2,11 @@ import React from 'react'
 import style from './Main.module.scss'
 import SwiperBanner from './SwiperBanner'
 import Category from './Category'
+import UserRecommend from './UserRecommend'
 import RecommendTouristDestination from './RecommendTouristDestination'
 import GroupRecommend from './GroupRecommend'
+import CultureTripRecommend from './CultureTripRecommend'
+import GolfTravelRecommend from './GolfTravelRecommend'
 
 function Main() {
   return (
@@ -11,11 +14,11 @@ function Main() {
       <SwiperBanner />
       <div className={style.container}>
         <Category />
+        <UserRecommend />
         <RecommendTouristDestination />
         <GroupRecommend />
-        <div>nation-recommend-prodcut</div>
-        <div>group-recommend-product</div>
-        <div>theme-recommend-product</div>
+        <CultureTripRecommend />
+        <GolfTravelRecommend />
       </div>
     </>
   )
