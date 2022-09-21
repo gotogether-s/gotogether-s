@@ -24,7 +24,7 @@ const Category = () => {
   const dispatch = useDispatch()
 
   return (
-    <>
+    <List disablePadding>
       <ListItem disablePadding>
         <ListItemButton onClick={clickSubMenu}>
           <ListItemText primary="카테고리" />
@@ -66,7 +66,7 @@ const Category = () => {
           ))}
         </List>
       </Collapse>
-    </>
+    </List>
   )
 }
 
