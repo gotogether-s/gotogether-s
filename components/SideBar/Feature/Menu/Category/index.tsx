@@ -8,7 +8,7 @@ import Collapse from '@mui/material/Collapse'
 import AddIcon from '@mui/icons-material/Add'
 import { useState, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleCategorySubMenu } from '../../../../../store/categoryMenuSlice'
+import { toggleCategorySubMenu } from '/store/categoryMenuSlice'
 import style from './Category.module.scss'
 
 const Category = () => {
