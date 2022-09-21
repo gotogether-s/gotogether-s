@@ -1,0 +1,19 @@
+.main {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.category {
+  display: flex;
+}
+.categoryName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.6rem;
+}
+.bundle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1.2rem;
+}
