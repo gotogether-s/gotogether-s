@@ -52,6 +52,7 @@ const categroyMenuSlice = createSlice({
   initialState: initialState,
   reducers: {
     categorySubMenuOpen: (state, action) => {
+      state.map((s) => (s.open = false))
       state[action.payload].open = !state[action.payload].open
     },
   },
