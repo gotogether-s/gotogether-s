@@ -19,12 +19,13 @@ const Nav = () => {
         <Link href="/mypage/favorite">
           <a className={style['flex-wrapper-favorite']}>
             <FavoriteBorderIcon sx={{ fontSize: 20 }} />
-            <div>찜</div>
+            <div>찜 목록</div>
           </a>
         </Link>
         <Link href="#">
           <a>
-            <SearchIcon sx={{ fontSize: 35 }} />
+            <SearchIcon sx={{ fontSize: 25 }} />
+            <div>검색</div>
           </a>
         </Link>
       </div>
