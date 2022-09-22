@@ -9,7 +9,7 @@ const Layout = ({ children }: any) => {
   return (
     <>
       <Container maxWidth="sm" className={style.container}>
-        {asPath !== 'search' && <Nav />}
+        {asPath !== '/search' && <Nav />}
         <div>{children}</div>
       </Container>
     </>
