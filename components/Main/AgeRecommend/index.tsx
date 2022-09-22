@@ -3,21 +3,41 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './GroupRecommend.module.scss'
+import style from './AgeRecommend.module.scss'
 
 function index() {
   return (
     <>
       <div className={style.mainAndMore}>
-        <div className={style.main}>그룹별 여행 추천</div>
+        <div className={style.main}>연령대별 여행 추천</div>
         <div className={style.more}>더보기</div>
       </div>
-      <div className={style.group}>
-        <span className={style.selectGroup}>5070끼리</span>
-        <span className={style.selectGroup}>2040끼리</span>
-        <span className={style.selectGroup}>남자끼리</span>
-        <span className={style.selectGroup}>여자끼리</span>
-      </div>
+      <Swiper slidesPerView={6} className={style.group}>
+        <SwiperSlide>
+          <span className={style.selectGroup}>전체</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>10대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>20대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>30대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>40대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>50대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>60대</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span className={style.selectGroup}>70대</span>
+        </SwiperSlide>
+      </Swiper>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         <SwiperSlide>
           <img

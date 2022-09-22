@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './RecommendTouristDestination.module.scss'
+import style from './TouristDestinationRecommend.module.scss'
 
 function index() {
   return (

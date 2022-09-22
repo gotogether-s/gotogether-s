@@ -17,39 +17,6 @@
     text-align: center;
   }
 }
-.group {
-  margin-bottom: 1.5rem;
-  .selectGroup {
-    width: 100%;
-    text-align: center;
-    background-color: #fff;
-    color: #878788;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 700;
-    border: solid 1px #878788;
-    border-radius: 2rem;
-    padding-top: 0.8rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 0.6rem;
-    margin-right: 1rem;
-    &:hover {
-      width: 100%;
-      text-align: center;
-      background-color: #878788;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 2rem;
-      padding-top: 0.8rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      padding-bottom: 0.6rem;
-      margin-right: 1rem;
-    }
-  }
-}
 .nation {
   width: 100%;
   background-color: #466ff5;

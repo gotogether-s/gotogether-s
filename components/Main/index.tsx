@@ -1,24 +1,30 @@
 import React from 'react'
 import style from './Main.module.scss'
+import TopButton from '../TopButton'
 import SwiperBanner from './SwiperBanner'
 import Category from './Category'
 import UserRecommend from './UserRecommend'
-import RecommendTouristDestination from './RecommendTouristDestination'
-import GroupRecommend from './GroupRecommend'
-import CultureTripRecommend from './CultureTripRecommend'
+import TouristDestinationRecommend from './TouristDestinationRecommend'
+import AgeRecommend from './AgeRecommend'
+import TypeRecommend from './TypeRecommend'
 import GolfTravelRecommend from './GolfTravelRecommend'
+import CultureTripRecommend from './CultureTripRecommend'
+import VacationSpotRecommend from './VacationSpotRecommend'
 
 function Main() {
   return (
     <>
+      <TopButton />
       <SwiperBanner />
       <div className={style.container}>
         <Category />
         <UserRecommend />
-        <RecommendTouristDestination />
-        <GroupRecommend />
+        <TouristDestinationRecommend />
+        <AgeRecommend />
+        <TypeRecommend />
         <GolfTravelRecommend />
         <CultureTripRecommend />
+        <VacationSpotRecommend />
       </div>
     </>
   )
