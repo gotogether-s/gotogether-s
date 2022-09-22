@@ -22,7 +22,7 @@ const Nav = () => {
             <div>찜 목록</div>
           </a>
         </Link>
-        <Link href="#">
+        <Link href="/search">
           <a>
             <SearchIcon sx={{ fontSize: 25 }} />
             <div>검색</div>
