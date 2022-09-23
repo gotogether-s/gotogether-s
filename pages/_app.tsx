@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import '../styles/reset.css'
 import '../styles/swiperOverride.scss'
 import '../styles/global.scss'
-import '../styles/override.scss'
+import '../styles/muiOverride.scss'
 import theme from '../styles/theme'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
