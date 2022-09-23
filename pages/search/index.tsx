@@ -4,15 +4,21 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import InputAdornment from '@mui/material/InputAdornment'
 import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import CloseIcon from '@mui/icons-material/Close'
 import { add } from '/store/searchHistorySlice'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import style from './Search.module.scss'
 
 const Search = () => {
   const router = useRouter()
   const dispatch = useDispatch()
+
+  const searchHistory = useSelector((state) => {
+    return state.searchHistory
+  })
 
   const [searchText, setSearchText] = useState('')
   const [displaySearchResult, setDisplaySearchResult] = useState(false)
@@ -30,6 +36,7 @@ const Search = () => {
 
   const clearInput = () => {
     setSearchText('')
+    setDisplaySearchResult(false)
   }
 
   return (
@@ -45,6 +52,7 @@ const Search = () => {
           <OutlinedInput
             placeholder="상품을 검색해주세요"
             value={searchText}
+            autoFocus={true}
             onChange={getInputValue}
             onKeyDown={searchProduct}
             endAdornment={
@@ -68,7 +76,18 @@ const Search = () => {
         </FormControl>
       </div>
       {!displaySearchResult ? (
-        <div className={style['label']}>최근 검색어</div>
+        <>
+          <div className={style['label']}>최근 검색어</div>
+          {searchHistory.map((list: string, index: number) => (
+            <div className={style['search-history']} key={index}>
+              <div className={style['flex-wrapper']}>
+                <AccessTimeIcon />
+                <p key={index}>{list}</p>
+              </div>
+              <CloseIcon />
+            </div>
+          ))}
+        </>
       ) : (
         <div className={style['label']}>상품 검색결과</div>
       )}
