@@ -1,0 +1,33 @@
+.mainAndMore {
+  margin-top: 5rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5rem;
+  margin-bottom: 1.2rem;
+  .main {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .more {
+    color: #99aff9;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+.category {
+  display: flex;
+}
+.categoryName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.6rem;
+}
+.bundle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 1.2rem;
+}
