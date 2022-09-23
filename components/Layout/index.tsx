@@ -19,7 +19,13 @@ const Layout = ({ children }: any) => {
     <>
       <Container maxWidth="sm" className={style.container}>
         {!pageWithoutNavbar.includes(currentPath) && <Nav />}
-        <div>{children}</div>
+        <div
+          style={{
+            padding: !pageWithoutNavbar.includes(currentPath) ? 0 : '2rem',
+          }}
+        >
+          {children}
+        </div>
       </Container>
     </>
   )
