@@ -1,0 +1,31 @@
+.main {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.category {
+  display: flex;
+  .bundle1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+    .categoryName {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 0.6rem;
+    }
+  }
+  .bundle2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0.6rem;
+    .categoryName {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 0.6rem;
+    }
+  }
+}
