@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store from '../store'
@@ -7,12 +7,7 @@ import '../styles/reset.css'
 import '../styles/swiperOverride.scss'
 import '../styles/global.scss'
 import '../styles/override.scss'
-
-const theme = createTheme({
-  typography: {
-    htmlFontSize: 10,
-  },
-})
+import theme from '../styles/theme'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
