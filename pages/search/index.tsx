@@ -7,9 +7,11 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { add } from '/store/searchHistorySlice'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 import style from './Search.module.scss'
 
 const Search = () => {
+  const router = useRouter()
   const dispatch = useDispatch()
 
   const [searchText, setSearchText] = useState('')
@@ -33,7 +35,12 @@ const Search = () => {
   return (
     <>
       <div className={style['search-container']}>
-        <ArrowBackIosNewIcon />
+        <ArrowBackIosNewIcon
+          className={style['clickable-icon']}
+          onClick={() => {
+            router.push('/')
+          }}
+        />
         <FormControl sx={{ width: '100%' }} size="small">
           <OutlinedInput
             placeholder="상품을 검색해주세요"
