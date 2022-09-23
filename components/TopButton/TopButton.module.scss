@@ -1,6 +1,20 @@
-.button {
+.buttonBackground {
+  width: 5rem;
+  height: 5rem;
+  color: #fff;
   position: fixed;
   bottom: 5%;
   right: 25%;
   z-index: 2;
+  cursor: pointer;
+  .button {
+    width: 5rem;
+    height: 5rem;
+    color: #878788;
+    position: fixed;
+    bottom: 5%;
+    right: 25%;
+    z-index: 2;
+    cursor: pointer;
+  }
 }

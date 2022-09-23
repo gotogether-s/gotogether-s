@@ -12,7 +12,7 @@ function index() {
         <div className={style.main}>유형별 여행 추천</div>
         <div className={style.more}>더보기</div>
       </div>
-      <Swiper spaceBetween={0} slidesPerView={3} className={style.group}>
+      <Swiper spaceBetween={-10} slidesPerView={3} className={style.group}>
         <SwiperSlide className={style.groupSize2}>
           <span className={style.selectGroup}>전체</span>
         </SwiperSlide>
