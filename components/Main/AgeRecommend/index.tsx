@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import Link from 'next/link'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -10,7 +11,9 @@ function index() {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>연령대별 여행 추천</div>
-        <div className={style.more}>더보기</div>
+        <Link href="/productlist/age" className={style.more}>
+          더보기
+        </Link>
       </div>
       <Swiper slidesPerView={6} className={style.group}>
         <SwiperSlide>
@@ -43,8 +46,7 @@ function index() {
           <img
             src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
             alt="img"
-            width="100%"
-            height="100%"
+            className={style.img}
           />
           <span className={style.nation}>방콕</span>
           <div className={style.title}>GOLFTEI 파인 허스트 CC</div>
@@ -59,8 +61,7 @@ function index() {
           <img
             src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
             alt="img"
-            width="100%"
-            height="100%"
+            className={style.img}
           />
           <span className={style.nation}>방콕</span>
           <div className={style.title}>GOLFTEI 파인 허스트 CC</div>
@@ -74,8 +75,7 @@ function index() {
           <img
             src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
             alt="img"
-            width="100%"
-            height="100%"
+            className={style.img}
           />
           <span className={style.nation}>방콕</span>
           <div className={style.title}>GOLFTEI 파인 허스트 CC</div>
