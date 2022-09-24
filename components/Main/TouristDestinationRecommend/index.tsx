@@ -11,7 +11,7 @@ function index() {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>추천여행지</div>
-        <Link href="/productlist" className={style.more}>
+        <Link href="/productlist/nation" className={style.more}>
           더보기
         </Link>
       </div>
