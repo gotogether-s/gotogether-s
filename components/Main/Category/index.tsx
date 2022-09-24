@@ -20,7 +20,7 @@ function index() {
         </div>
         <div className={style.bundle2}>
           <img width={40} height={40} src="./logo.png" alt="" />
-          <div className={style.categoryName}>그룹별여행</div>
+          <div className={style.categoryName}>유형별여행</div>
         </div>
         <div className={style.bundle2}>
           <img width={40} height={40} src="./logo.png" alt="" />
