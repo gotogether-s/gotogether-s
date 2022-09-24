@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import Link from 'next/link'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -10,7 +11,9 @@ function index() {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>추천여행지</div>
-        <div className={style.more}>더보기</div>
+        <Link href="/productlist" className={style.more}>
+          더보기
+        </Link>
       </div>
       <Swiper spaceBetween={10} slidesPerView={1.5}>
         <SwiperSlide>
