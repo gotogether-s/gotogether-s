@@ -1,0 +1,33 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.clickable-icon:hover {
+  cursor: pointer;
+}
+
+.label {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-history {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #ddd;
+  .flex-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.no-result {
+  margin-top: 2rem;
+}
