@@ -16,6 +16,11 @@ const SignIn = () => {
     setFormValues({ ...formValues, [name]: value })
   }
 
+  const removeInputSpaces = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value.trim() })
+  }
+
   return (
     <>
       <NavBar link="/" title="로그인" />
@@ -29,6 +34,7 @@ const SignIn = () => {
             value={formValues.email}
             sx={{ width: '100%' }}
             onChange={handleInputChange}
+            onBlur={removeInputSpaces}
           />
         </div>
         <div className={style['input-wrapper']}>
@@ -40,6 +46,7 @@ const SignIn = () => {
             value={formValues.password}
             sx={{ width: '100%' }}
             onChange={handleInputChange}
+            onBlur={removeInputSpaces}
           />
         </div>
         <div className={style['button-wrapper']}>
