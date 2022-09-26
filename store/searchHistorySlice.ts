@@ -6,11 +6,13 @@ const searchHistorySlice = createSlice({
   reducers: {
     add: (state, action) => {
       state.push(action.payload)
-      state.forEach((s) => console.log(s))
+    },
+    remove: (state, action) => {
+      state.splice(action.payload, 1)
     },
   },
 })
 
 export default searchHistorySlice
 
-export const { add } = searchHistorySlice.actions
+export const { add, remove } = searchHistorySlice.actions

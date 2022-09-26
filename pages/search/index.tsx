@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CloseIcon from '@mui/icons-material/Close'
-import { add } from '/store/searchHistorySlice'
+import { add, remove } from '/store/searchHistorySlice'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
@@ -84,7 +84,10 @@ const Search = () => {
                 <AccessTimeIcon />
                 <p key={index}>{list}</p>
               </div>
-              <CloseIcon />
+              <CloseIcon
+                className={style['clickable-icon']}
+                onClick={() => dispatch(remove(index))}
+              />
             </div>
           ))}
         </>
