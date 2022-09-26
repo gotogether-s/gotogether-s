@@ -89,7 +89,10 @@ const Search = () => {
           ))}
         </>
       ) : (
-        <div className={style['label']}>상품 검색결과</div>
+        <>
+          <div className={style['label']}>상품 검색결과 0</div>
+          <p className={style['no-result']}>상품 검색 결과가 없습니다.</p>
+        </>
       )}
     </>
   )
