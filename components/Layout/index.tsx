@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import MainNav from '../MainNav'
 import style from './Layout.module.scss'
 
-type ALLOWED_PATH = '/search' | '/signin'
-const pageWithoutNavbar: ALLOWED_PATH[] = ['/search', '/signin']
+type ALLOWED_PATH = '/search' | '/signin' | '/signup'
+const pageWithoutNavbar: ALLOWED_PATH[] = ['/search', '/signin', '/signup']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
