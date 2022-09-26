@@ -5,6 +5,12 @@
   }
 }
 
+.flex-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .button-wrapper {
   margin-bottom: 2rem;
   text-align: center;

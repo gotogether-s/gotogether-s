@@ -34,12 +34,17 @@ const SignUp = () => {
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이메일</div>
-          <TextField
-            name="email"
-            size="small"
-            placeholder="이메일을 입력해주세요"
-            sx={{ width: '100%' }}
-          />
+          <div className={style['flex-wrapper']}>
+            <TextField
+              name="email"
+              size="small"
+              placeholder="이메일을 입력해주세요"
+              sx={{ width: '70%' }}
+            />
+            <Button variant="contained" sx={{ width: '30%' }}>
+              중복확인
+            </Button>
+          </div>
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>비밀번호</div>
