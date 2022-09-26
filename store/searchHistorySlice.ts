@@ -5,7 +5,7 @@ const searchHistorySlice = createSlice({
   initialState: [],
   reducers: {
     add: (state, action) => {
-      state.push(action.payload)
+      state.unshift(action.payload)
     },
     remove: (state, action) => {
       state.splice(action.payload, 1)
