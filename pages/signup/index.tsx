@@ -65,7 +65,7 @@ const SignUp = () => {
           />
         </div>
         <div className={style['button-wrapper']}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" sx={{ width: '100%' }}>
             회원가입
           </Button>
         </div>

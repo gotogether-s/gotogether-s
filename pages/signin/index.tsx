@@ -80,7 +80,7 @@ const SignIn = () => {
           </p>
         </div>
         <div className={style['button-wrapper']}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" sx={{ width: '100%' }}>
             로그인
           </Button>
         </div>
