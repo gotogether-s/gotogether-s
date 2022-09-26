@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import style from './SignIn.module.scss'
 import NavBar from '../../components/NavBar'
+import Link from 'next/link'
 import { useState } from 'react'
 
 const SignIn = () => {
@@ -83,7 +84,11 @@ const SignIn = () => {
             로그인
           </Button>
         </div>
-        <div className={style['signup-text']}>회원가입</div>
+        <div className={style['signup-link-wrapper']}>
+          <Link href="/signup">
+            <a>회원가입</a>
+          </Link>
+        </div>
       </form>
     </>
   )
