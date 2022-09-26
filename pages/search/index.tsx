@@ -7,7 +7,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CloseIcon from '@mui/icons-material/Close'
 import { add, remove } from '/store/searchHistorySlice'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import style from './Search.module.scss'
@@ -27,10 +27,13 @@ const Search = () => {
     setSearchText(e.target.value)
   }
 
-  const searchProduct = (e) => {
+  const searchProductOrclearInput = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
       dispatch(add(searchText))
       setDisplaySearchResult(true)
+    }
+    if (e.key === 'Backspace' && e.target.value === '') {
+      clearInput()
     }
   }
 
@@ -54,14 +57,14 @@ const Search = () => {
             value={searchText}
             autoFocus={true}
             onChange={getInputValue}
-            onKeyDown={searchProduct}
+            onKeyDown={searchProductOrclearInput}
             endAdornment={
               <InputAdornment position="end">
                 {!displaySearchResult ? (
                   <SearchIcon
                     sx={{ fontSize: 25 }}
                     className={style['clickable-icon']}
-                    onClick={searchProduct}
+                    onClick={searchProductOrclearInput}
                   />
                 ) : (
                   <HighlightOffIcon
