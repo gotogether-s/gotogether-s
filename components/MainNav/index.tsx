@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import SearchIcon from '@mui/icons-material/Search'
-import style from './Nav.module.scss'
 import SideBar from '../SideBar'
+import style from './MainNav.module.scss'
 
-const Nav = () => {
+const MainNav = () => {
   return (
     <nav className={style.nav}>
       <Link href="#">
@@ -33,4 +33,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default MainNav
