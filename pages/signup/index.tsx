@@ -31,6 +31,14 @@ const SignUp = () => {
     setSignUpValues({ ...signUpValues, [name]: value })
   }
 
+  const removeInputSpaces = (e) => {
+    const { name, value } = e.target
+    setSignUpValues({
+      ...signUpValues,
+      [name]: value.trim().replace(/\s/g, ''),
+    })
+  }
+
   return (
     <>
       <NavBar link="/" title="회원가입" />
@@ -58,6 +66,7 @@ const SignUp = () => {
               sx={{ width: '70%' }}
               value={signUpValues.email}
               onChange={handleSignUpValuesChange}
+              onBlur={removeInputSpaces}
             />
             <Button variant="contained" sx={{ width: '30%' }}>
               중복확인
@@ -73,6 +82,7 @@ const SignUp = () => {
             sx={{ width: '100%' }}
             value={signUpValues.passwordInitial}
             onChange={handleSignUpValuesChange}
+            onBlur={removeInputSpaces}
           />
         </div>
         <div className={style['input-wrapper']}>
@@ -84,6 +94,7 @@ const SignUp = () => {
             sx={{ width: '100%' }}
             value={signUpValues.passwordConfirm}
             onChange={handleSignUpValuesChange}
+            onBlur={removeInputSpaces}
           />
         </div>
         <div className={style['button-wrapper']}>
