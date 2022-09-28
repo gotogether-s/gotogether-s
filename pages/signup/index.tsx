@@ -9,10 +9,26 @@ import NavBar from '../../components/NavBar'
 import style from './SignUp.module.scss'
 
 const SignUp = () => {
-  const [dateOfBirth, setDateOfBirth] = useState<Dayjs | null>(dayjs())
+  const [calendarValue, setCalendarValue] = useState<Dayjs | null>(dayjs())
 
-  const handleDobChange = (newValue: Dayjs | null) => {
-    setDateOfBirth(newValue)
+  const handleCalendarValueChange = (newCalendarValue: Dayjs | null) => {
+    setCalendarValue(newCalendarValue)
+    setSignUpValues({
+      ...signUpValues,
+      dateOfBirth: newCalendarValue.format('YYYY/MM/DD'),
+    })
+  }
+
+  const [signUpValues, setSignUpValues] = useState({
+    dateOfBirth: '',
+    email: '',
+    passwordInitial: '',
+    passwordConfirm: '',
+  })
+
+  const handleSignUpValuesChange = (e) => {
+    const { name, value } = e.target
+    setSignUpValues({ ...signUpValues, [name]: value })
   }
 
   return (
@@ -24,8 +40,8 @@ const SignUp = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <MobileDatePicker
               inputFormat="YYYY/MM/DD"
-              value={dateOfBirth}
-              onChange={handleDobChange}
+              value={calendarValue}
+              onChange={handleCalendarValueChange}
               renderInput={(params) => (
                 <TextField size="small" sx={{ width: '100%' }} {...params} />
               )}
@@ -40,6 +56,8 @@ const SignUp = () => {
               size="small"
               placeholder="이메일을 입력해주세요"
               sx={{ width: '70%' }}
+              value={signUpValues.email}
+              onChange={handleSignUpValuesChange}
             />
             <Button variant="contained" sx={{ width: '30%' }}>
               중복확인
@@ -49,19 +67,23 @@ const SignUp = () => {
         <div className={style['input-wrapper']}>
           <div className={style['label']}>비밀번호</div>
           <TextField
-            name="password"
+            name="passwordInitial"
             size="small"
             placeholder="비밀번호를 입력해주세요"
             sx={{ width: '100%' }}
+            value={signUpValues.passwordInitial}
+            onChange={handleSignUpValuesChange}
           />
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>비밀번호 확인</div>
           <TextField
-            name="password"
+            name="passwordConfirm"
             size="small"
             placeholder="비밀번호를 다시 입력해주세요"
             sx={{ width: '100%' }}
+            value={signUpValues.passwordConfirm}
+            onChange={handleSignUpValuesChange}
           />
         </div>
         <div className={style['button-wrapper']}>
