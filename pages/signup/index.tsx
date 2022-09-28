@@ -3,13 +3,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import TextField from '@mui/material/TextField'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '@mui/material/Button'
 import NavBar from '../../components/NavBar'
 import style from './SignUp.module.scss'
 
 const SignUp = () => {
-  const [calendarValue, setCalendarValue] = useState<Dayjs | null>(dayjs())
+  const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
 
   const handleCalendarValueChange = (newCalendarValue: Dayjs | null) => {
     setCalendarValue(newCalendarValue)
@@ -39,10 +39,38 @@ const SignUp = () => {
     })
   }
 
+  const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
+
+  const requestSignUp = (e) => {
+    e.preventDefault()
+    setSignUpValuesErrors(validateSignUp(signUpValues))
+  }
+
+  const validateSignUp = (signUpValues) => {
+    const errors = {}
+    if (!signUpValues.dateOfBirth) {
+      errors.dateOfBirth = '생년월일을 입력해주세요!'
+    }
+    if (!signUpValues.email) {
+      errors.email = '이메일을 입력해주세요!'
+    }
+    if (!signUpValues.passwordInitial) {
+      errors.passwordInitial = '비밀번호를 입력해주세요!'
+    }
+    if (!signUpValues.passwordConfirm) {
+      errors.passwordConfirm = '비밀번호를 다시 입력해주세요!'
+    }
+    return errors
+  }
+
+  useEffect(() => {
+    console.log(signUpValues)
+  }, [signUpValues])
+
   return (
     <>
       <NavBar link="/" title="회원가입" />
-      <form>
+      <form onSubmit={requestSignUp}>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>생년월일</div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -51,10 +79,23 @@ const SignUp = () => {
               value={calendarValue}
               onChange={handleCalendarValueChange}
               renderInput={(params) => (
-                <TextField size="small" sx={{ width: '100%' }} {...params} />
+                <TextField
+                  size="small"
+                  placeholder="YYYY/MM/DD"
+                  sx={{ width: '100%' }}
+                  {...params}
+                />
               )}
             />
           </LocalizationProvider>
+          <p
+            style={{
+              visibility: signUpValuesErrors.dateOfBirth ? 'visible' : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {signUpValuesErrors.dateOfBirth}
+          </p>
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이메일</div>
@@ -72,6 +113,14 @@ const SignUp = () => {
               중복확인
             </Button>
           </div>
+          <p
+            style={{
+              visibility: signUpValuesErrors.email ? 'visible' : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {signUpValuesErrors.email}
+          </p>
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>비밀번호</div>
@@ -84,6 +133,16 @@ const SignUp = () => {
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
           />
+          <p
+            style={{
+              visibility: signUpValuesErrors.passwordInitial
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {signUpValuesErrors.passwordInitial}
+          </p>
         </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>비밀번호 확인</div>
@@ -96,6 +155,16 @@ const SignUp = () => {
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
           />
+          <p
+            style={{
+              visibility: signUpValuesErrors.passwordConfirm
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {signUpValuesErrors.passwordConfirm}
+          </p>
         </div>
         <div className={style['button-wrapper']}>
           <Button variant="contained" type="submit" sx={{ width: '100%' }}>
