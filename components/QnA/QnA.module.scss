@@ -1,0 +1,16 @@
+.qna-wrapper {
+  text-align: center;
+  .question-wrapper {
+    background-color: #dcdcdc;
+    padding: 4rem 0;
+    .order {
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+  .answer-wrapper {
+    background-color: #f1f1f1;
+  }
+}
