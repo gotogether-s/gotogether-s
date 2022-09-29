@@ -15,10 +15,16 @@ const Layout = ({ children }: any) => {
     if (asPath !== currentPath) setCurrentPath(asPath as ALLOWED_PATH)
   }, [asPath, currentPath])
 
+  const displayMainNav = () => {
+    if (currentPath && !pageWithoutNavbar.includes(currentPath)) {
+      return <MainNav />
+    }
+  }
+
   return (
     <>
       <Container maxWidth="sm" className={style.container}>
-        {!pageWithoutNavbar.includes(currentPath) && <MainNav />}
+        {displayMainNav()}
         <div
           style={{
             padding: !pageWithoutNavbar.includes(currentPath) ? 0 : '2rem',
