@@ -7,12 +7,9 @@ function index() {
     return state.detailToReservation
   })
   const reservation = () => {
-    console.log('예약 눌렀을 때')
     console.log(detailToReservation)
   }
-  const wish = () => {
-    console.log('찜하기 눌렀을  떄')
-  }
+  const wish = () => {}
 
   return (
     <footer className={style.footer}>

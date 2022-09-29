@@ -1,47 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Link from 'next/link'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './AgeRecommend.module.scss'
+import style from './ProductlistSlide.module.scss'
 
-function index() {
+function index({ spaceBetween, slidesPerView, api }: any) {
   return (
     <>
-      <div className={style.mainAndMore}>
-        <div className={style.main}>연령대별 여행 추천</div>
-        <Link href="/productlist/age" className={style.more}>
-          더보기
-        </Link>
-      </div>
-      <Swiper slidesPerView={6} className={style.group}>
-        <SwiperSlide>
-          <span className={style.selectGroup}>전체</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>10대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>20대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>30대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>40대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>50대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>60대</span>
-        </SwiperSlide>
-        <SwiperSlide>
-          <span className={style.selectGroup}>70대</span>
-        </SwiperSlide>
-      </Swiper>
-      <Swiper spaceBetween={10} slidesPerView={2.2}>
+      <Swiper spaceBetween={spaceBetween} slidesPerView={slidesPerView}>
         <SwiperSlide>
           <img
             src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
