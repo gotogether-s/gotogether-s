@@ -10,7 +10,7 @@ const SignIn = () => {
     email: '',
     password: '',
   })
-  const [formErrors, setFormErrors] = useState({})
+  const [signInValuesErrors, setSignInValuesErrors] = useState({})
 
   const handleSignInValuesChange = (e) => {
     const { name, value } = e.target
@@ -35,7 +35,7 @@ const SignIn = () => {
 
   const requestSignIn = (e) => {
     e.preventDefault()
-    setFormErrors(validateSignIn(signInValues))
+    setSignInValuesErrors(validateSignIn(signInValues))
   }
 
   useEffect(() => {
@@ -58,10 +58,12 @@ const SignIn = () => {
             onBlur={removeInputSpaces}
           />
           <p
-            style={{ visibility: formErrors.email ? 'visible' : 'hidden' }}
+            style={{
+              visibility: signInValuesErrors.email ? 'visible' : 'hidden',
+            }}
             className={style['error-message']}
           >
-            {formErrors.email}
+            {signInValuesErrors.email}
           </p>
         </div>
         <div className={style['input-wrapper']}>
@@ -76,10 +78,12 @@ const SignIn = () => {
             onBlur={removeInputSpaces}
           />
           <p
-            style={{ visibility: formErrors.password ? 'visible' : 'hidden' }}
+            style={{
+              visibility: signInValuesErrors.password ? 'visible' : 'hidden',
+            }}
             className={style['error-message']}
           >
-            {formErrors.password}
+            {signInValuesErrors.password}
           </p>
         </div>
         <div className={style['button-wrapper']}>
