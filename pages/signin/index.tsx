@@ -3,30 +3,36 @@ import Button from '@mui/material/Button'
 import style from './SignIn.module.scss'
 import NavBar from '../../components/NavBar'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
-  const initialValue = {
+  const [signInValues, setSignInValues] = useState({
     email: '',
     password: '',
-  }
-  const [formValues, setFormValues] = useState(initialValue)
-  const [formErrors, setFormErrors] = useState({})
+  })
+  const [signInValuesErrors, setSignInValuesErrors] = useState({})
 
-  const handleInputChange = (e) => {
+  const handleSignInValuesChange = (e) => {
     const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value })
+    setSignInValues({ ...signInValues, [name]: value })
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value.trim() })
+    setSignInValues({
+      ...signInValues,
+      [name]: value.trim().replace(/\s/g, ''),
+    })
   }
 
   const validateSignIn = (values) => {
     const errors = {}
     if (!values.email) {
       errors.email = '이메일을 입력해주세요!'
+    } else if (!regex.test(signInValues.email)) {
+      errors.email = '올바른 이메일 형식이 아닙니다!'
     }
     if (!values.password) {
       errors.password = '비밀번호를 입력해주세요!'
@@ -34,31 +40,33 @@ const SignIn = () => {
     return errors
   }
 
-  const RequestSignIn = (e) => {
+  const requestSignIn = (e) => {
     e.preventDefault()
-    setFormErrors(validateSignIn(formValues))
+    setSignInValuesErrors(validateSignIn(signInValues))
   }
 
   return (
     <>
       <NavBar link="/" title="로그인" />
-      <form onSubmit={RequestSignIn}>
+      <form onSubmit={requestSignIn}>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이메일</div>
           <TextField
             name="email"
             size="small"
             placeholder="이메일을 입력해주세요"
-            value={formValues.email}
+            value={signInValues.email}
             sx={{ width: '100%' }}
-            onChange={handleInputChange}
+            onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
           <p
-            style={{ visibility: formErrors.email ? 'visible' : 'hidden' }}
+            style={{
+              visibility: signInValuesErrors.email ? 'visible' : 'hidden',
+            }}
             className={style['error-message']}
           >
-            {formErrors.email}
+            {signInValuesErrors.email}
           </p>
         </div>
         <div className={style['input-wrapper']}>
@@ -67,16 +75,18 @@ const SignIn = () => {
             name="password"
             size="small"
             placeholder="비밀번호를 입력해주세요"
-            value={formValues.password}
+            value={signInValues.password}
             sx={{ width: '100%' }}
-            onChange={handleInputChange}
+            onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
           <p
-            style={{ visibility: formErrors.password ? 'visible' : 'hidden' }}
+            style={{
+              visibility: signInValuesErrors.password ? 'visible' : 'hidden',
+            }}
             className={style['error-message']}
           >
-            {formErrors.password}
+            {signInValuesErrors.password}
           </p>
         </div>
         <div className={style['button-wrapper']}>
