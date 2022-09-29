@@ -12,7 +12,7 @@ const SignIn = () => {
   })
   const [formErrors, setFormErrors] = useState({})
 
-  const handleInputChange = (e) => {
+  const handleSignInValuesChange = (e) => {
     const { name, value } = e.target
     setSignInValues({ ...signInValues, [name]: value })
   }
@@ -54,7 +54,7 @@ const SignIn = () => {
             placeholder="이메일을 입력해주세요"
             value={signInValues.email}
             sx={{ width: '100%' }}
-            onChange={handleInputChange}
+            onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
           <p
@@ -72,7 +72,7 @@ const SignIn = () => {
             placeholder="비밀번호를 입력해주세요"
             value={signInValues.password}
             sx={{ width: '100%' }}
-            onChange={handleInputChange}
+            onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
           <p
