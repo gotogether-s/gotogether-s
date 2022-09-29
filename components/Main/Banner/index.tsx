@@ -4,7 +4,7 @@ import { Pagination, Autoplay } from 'swiper'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './SwiperBanner.module.scss'
+import style from './Banner.module.scss'
 
 function index() {
   return (
