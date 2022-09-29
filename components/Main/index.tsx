@@ -22,7 +22,7 @@ function Main() {
         <Category />
         {username !== '' ? (
           <Recommend
-            name={username + '을 위한 추천 상품'}
+            name={username + '님을 위한 추천 상품'}
             link="user"
             spaceBetween={10}
             slidesPerView={2.2}
