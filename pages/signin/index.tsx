@@ -33,7 +33,7 @@ const SignIn = () => {
     return errors
   }
 
-  const RequestSignIn = (e) => {
+  const requestSignIn = (e) => {
     e.preventDefault()
     setFormErrors(validateSignIn(signInValues))
   }
@@ -45,7 +45,7 @@ const SignIn = () => {
   return (
     <>
       <NavBar link="/" title="로그인" />
-      <form onSubmit={RequestSignIn}>
+      <form onSubmit={requestSignIn}>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이메일</div>
           <TextField
