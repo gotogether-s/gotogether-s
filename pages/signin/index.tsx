@@ -3,24 +3,23 @@ import Button from '@mui/material/Button'
 import style from './SignIn.module.scss'
 import NavBar from '../../components/NavBar'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const SignIn = () => {
-  const initialValue = {
+  const [signInValues, setSignInValues] = useState({
     email: '',
     password: '',
-  }
-  const [formValues, setFormValues] = useState(initialValue)
+  })
   const [formErrors, setFormErrors] = useState({})
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value })
+    setSignInValues({ ...signInValues, [name]: value })
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value.trim() })
+    setSignInValues({ ...signInValues, [name]: value.trim() })
   }
 
   const validateSignIn = (values) => {
@@ -36,8 +35,12 @@ const SignIn = () => {
 
   const RequestSignIn = (e) => {
     e.preventDefault()
-    setFormErrors(validateSignIn(formValues))
+    setFormErrors(validateSignIn(signInValues))
   }
+
+  useEffect(() => {
+    console.log(signInValues)
+  }, [signInValues])
 
   return (
     <>
@@ -49,7 +52,7 @@ const SignIn = () => {
             name="email"
             size="small"
             placeholder="이메일을 입력해주세요"
-            value={formValues.email}
+            value={signInValues.email}
             sx={{ width: '100%' }}
             onChange={handleInputChange}
             onBlur={removeInputSpaces}
@@ -67,7 +70,7 @@ const SignIn = () => {
             name="password"
             size="small"
             placeholder="비밀번호를 입력해주세요"
-            value={formValues.password}
+            value={signInValues.password}
             sx={{ width: '100%' }}
             onChange={handleInputChange}
             onBlur={removeInputSpaces}
