@@ -3,10 +3,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import TextField from '@mui/material/TextField'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '@mui/material/Button'
 import NavBar from '../../components/NavBar'
 import style from './SignUp.module.scss'
+
+const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
@@ -53,6 +55,8 @@ const SignUp = () => {
     }
     if (!signUpValues.email) {
       errors.email = '이메일을 입력해주세요!'
+    } else if (!regex.test(signUpValues.email)) {
+      errors.email = '올바른 이메일 형식이 아닙니다!'
     }
     if (!signUpValues.passwordInitial) {
       errors.passwordInitial = '비밀번호를 입력해주세요!'
@@ -63,9 +67,19 @@ const SignUp = () => {
     return errors
   }
 
-  useEffect(() => {
-    console.log(signUpValues)
-  }, [signUpValues])
+  const checkDuplicateEmail = () => {
+    setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+  }
+
+  const validateDuplicateEmail = (signUpValues) => {
+    const errors = {}
+    if (!signUpValues.email) {
+      errors.email = '이메일을 입력해주세요!'
+    } else if (!regex.test(signUpValues.email)) {
+      errors.email = '올바른 이메일 형식이 아닙니다!'
+    }
+    return errors
+  }
 
   return (
     <>
@@ -109,7 +123,11 @@ const SignUp = () => {
               onChange={handleSignUpValuesChange}
               onBlur={removeInputSpaces}
             />
-            <Button variant="contained" sx={{ width: '30%' }}>
+            <Button
+              variant="contained"
+              sx={{ width: '30%' }}
+              onClick={checkDuplicateEmail}
+            >
               중복확인
             </Button>
           </div>
