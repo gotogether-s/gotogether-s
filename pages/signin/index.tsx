@@ -19,7 +19,10 @@ const SignIn = () => {
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    setSignInValues({ ...signInValues, [name]: value.trim() })
+    setSignInValues({
+      ...signInValues,
+      [name]: value.trim().replace(/\s/g, ''),
+    })
   }
 
   const validateSignIn = (values) => {
