@@ -12,16 +12,16 @@ const QnA = () => {
 
   return (
     <>
-      {qnaLists.map((qnaList, index) => (
-        <div key={index} className={style['qna-wrapper']}>
+      {qnaLists.map((qnaList, qnaListindex) => (
+        <div key={qnaListindex} className={style['qna-wrapper']}>
           <Box className={style['question-wrapper']}>
-            <div className={style['order']}>{index + 1} of 5</div>
+            <div className={style['order']}>{qnaListindex + 1} of 5</div>
             <h2>{qnaList.question}</h2>
           </Box>
           <Box className={style['answer-wrapper']}>
             <List sx={{ padding: 0 }}>
-              {qnaList.answers.map((answer, index) => (
-                <ListItemButton key={index}>
+              {qnaList.answers.map((answer, answerIndex) => (
+                <ListItemButton key={answerIndex}>
                   <ListItemText primary={answer} sx={{ textAlign: 'center' }} />
                 </ListItemButton>
               ))}
