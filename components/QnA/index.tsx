@@ -22,10 +22,7 @@ const QnA = () => {
             <List sx={{ padding: 0 }}>
               {qnaList.answers.map((answer, index) => (
                 <ListItemButton key={index}>
-                  <ListItemText
-                    primary={answer.label}
-                    sx={{ textAlign: 'center' }}
-                  />
+                  <ListItemText primary={answer} sx={{ textAlign: 'center' }} />
                 </ListItemButton>
               ))}
             </List>
