@@ -2,17 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [
   {
-    open: false,
     question: '함께 여행하고 싶은 연령대 그룹은?',
-    answers: [
-      { label: '10대' },
-      { label: '20대' },
-      { label: '30대' },
-      { label: '40대' },
-      { label: '50대' },
-      { label: '60대' },
-      { label: '70대 이상' },
-    ],
+    answers: ['10대', '20대', '30대', '40대', '50대', '60대', '70대 이상'],
   },
 ]
 
