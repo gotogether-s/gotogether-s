@@ -35,10 +35,15 @@ const QnA = () => {
     })
   }
 
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
+
   const goToNextSurvey = () => {
     if (surveyNumber === 5) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
-    if (!userSurveyResult[key]) return
+    if (!userSurveyResult[key]) {
+      setDisplayErrorMessage(true)
+      return
+    }
     setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
@@ -79,6 +84,14 @@ const QnA = () => {
       <Button variant="outlined" sx={{ width: '100%' }}>
         Skip
       </Button>
+      <p
+        style={{
+          visibility: displayErrorMessage ? 'visible' : 'hidden',
+        }}
+        className={style['error-message']}
+      >
+        다음 질문으로 넘어가기 위해 대답을 선택해주세요!
+      </p>
     </>
   )
 }
