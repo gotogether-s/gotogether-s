@@ -67,18 +67,18 @@ const QnA = () => {
               ))}
             </List>
           </Box>
-          <Button
-            variant="contained"
-            sx={{ width: '100%', marginBottom: '1rem' }}
-            onClick={goToNextSurvey}
-          >
-            다음
-          </Button>
-          <Button variant="outlined" sx={{ width: '100%' }}>
-            Skip
-          </Button>
         </div>
       ))}
+      <Button
+        variant="contained"
+        sx={{ width: '100%', marginBottom: '1rem' }}
+        onClick={goToNextSurvey}
+      >
+        다음
+      </Button>
+      <Button variant="outlined" sx={{ width: '100%' }}>
+        Skip
+      </Button>
     </>
   )
 }
