@@ -37,6 +37,8 @@ const QnA = () => {
 
   const goToNextSurvey = () => {
     if (surveyNumber === 5) return
+    const key = Object.keys(userSurveyResult)[surveyNumber - 1]
+    if (!userSurveyResult[key]) return
     setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
