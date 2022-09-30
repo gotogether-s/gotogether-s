@@ -3,6 +3,13 @@ import style from './Category.module.scss'
 import Link from 'next/link'
 
 function index() {
+  const props = {
+    all: 'all',
+    nation: 'nation',
+    age: 'age',
+    type: 'type',
+    theme: 'theme',
+  }
   return (
     <>
       <div className={style.main}>카테고리</div>

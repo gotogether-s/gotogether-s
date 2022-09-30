@@ -1,0 +1,11 @@
+.selectBox_group {
+  display: flex;
+  margin: 1.4rem;
+  flex-wrap: wrap;
+  .selectBox {
+    height: 4rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    font-weight: 700;
+  }
+}

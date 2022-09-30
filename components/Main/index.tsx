@@ -43,6 +43,7 @@ function Main() {
           link="nation"
           spaceBetween={10}
           slidesPerView={1.5}
+          api="nation"
         />
         <Recommend
           name="연령대별 여행 추천"
