@@ -3,6 +3,7 @@ import mainMenuSlice from './mainMenuSlice'
 import categoryMenuSlice from './categoryMenuSlice'
 import searchHistorySlice from './searchHistorySlice'
 import detailToReservationSlice from './detailToReservationSlice'
+import viewProductListSlice from './viewProductListSlice'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     categoryMenu: categoryMenuSlice.reducer,
     searchHistory: searchHistorySlice.reducer,
     detailToReservation: detailToReservationSlice.reducer,
+    viewProductList: viewProductListSlice.reducer,
   },
 })
 

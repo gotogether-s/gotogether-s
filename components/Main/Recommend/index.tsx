@@ -7,11 +7,12 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 type recommendProps = {
+  title: string
   name: string
-  link: string
+  api: string
   spaceBetween: number
   slidesPerView: number
-  api: string
+  apiAddress: string
 }
 
 function index(props: recommendProps) {
@@ -23,21 +24,21 @@ function index(props: recommendProps) {
 
   return (
     <>
-      <TilteAndEtc name={props.name} link={props.link} />
+      <TilteAndEtc name={props.name} api={props.api} title={props.title} />
       {props.api == 'ages' ? (
-        <SelectButton spaceBetween={10} slidesPerView={6} api="age" />
+        <SelectButton spaceBetween={10} slidesPerView={6} api="ages" />
       ) : (
         ''
       )}
       {props.api == 'companion' ? (
-        <SelectButton spaceBetween={10} slidesPerView={3} api="type" />
+        <SelectButton spaceBetween={10} slidesPerView={3} api="companion" />
       ) : (
         ''
       )}
       <ProductlistSlide
         spaceBetween={props.spaceBetween}
         slidesPerView={props.slidesPerView}
-        api={props.api}
+        apiAddress={props.apiAddress}
       />
     </>
   )

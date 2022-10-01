@@ -8,7 +8,7 @@ import style from './ProductlistSlide.module.scss'
 type slideProps = {
   spaceBetween: number
   slidesPerView: number
-  api: string
+  apiAddress: string
 }
 
 function index(props: slideProps) {
