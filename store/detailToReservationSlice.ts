@@ -1,13 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+type initialStateType = {
+  departure: string
+  etc1: string | null
+  etc2: string | null
+  etc3: string | null
+}
+
+const initialState: initialStateType = {
+  departure: '',
+  etc1: '',
+  etc2: '',
+  etc3: '',
+}
+
 const detailToReservationSlice = createSlice({
   name: 'detailToReservationSlice',
-  initialState: {
-    departure: '',
-    etc1: '',
-    etc2: '',
-    etc3: '',
-  },
+  initialState,
   reducers: {
     info: (state, action) => {
       state.departure = action.payload.departure

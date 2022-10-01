@@ -1,10 +1,15 @@
 import React from 'react'
 import style from './CategoryName.module.scss'
 
-function index(name: any) {
+type propsType = {
+  name: string
+  api: string
+}
+
+function index(props: propsType) {
   return (
     <>
-      <div className={style.category}>{name}</div>
+      <div className={style.category}>{props.name}</div>
       <div className={style.line} />
     </>
   )
