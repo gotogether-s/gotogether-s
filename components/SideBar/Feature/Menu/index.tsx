@@ -1,9 +1,6 @@
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import Category from './Category'
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import { useSelector } from 'react-redux'
+import Category from './Category'
 import style from './Menu.module.scss'
 
 const Menu = () => {

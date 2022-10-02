@@ -1,15 +1,17 @@
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import Collapse from '@mui/material/Collapse'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { useState, Fragment } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+} from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
 import { toggleCategorySubMenu } from 'store/categoryMenuSlice'
+import { useState, Fragment } from 'react'
 import style from './Category.module.scss'
 
 const Category = () => {
