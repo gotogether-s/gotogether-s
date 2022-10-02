@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import style from './SignIn.module.scss'
-import NavBar from '../../components/NavBar'
+import NavBar from 'components/NavBar'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
