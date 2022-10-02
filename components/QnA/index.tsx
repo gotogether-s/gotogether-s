@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText'
 import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import style from './QnA.module.scss'
 
 const QnA = () => {
@@ -63,10 +63,6 @@ const QnA = () => {
   const skipSurvey = () => {
     router.push('/signin')
   }
-
-  useEffect(() => {
-    console.log(userSurveyResult)
-  }, [userSurveyResult])
 
   return (
     <>
