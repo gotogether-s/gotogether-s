@@ -1,8 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import Drawer from '@mui/material/Drawer'
-import Backdrop from '@mui/material/Backdrop'
-import Feature from './Feature'
+import { Drawer, Backdrop } from '@mui/material'
 import { useState } from 'react'
+import Feature from './Feature'
 import style from './SideBar.module.scss'
 
 const SideBar = () => {
