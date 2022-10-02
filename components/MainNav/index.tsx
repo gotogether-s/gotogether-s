@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import SearchIcon from '@mui/icons-material/Search'
-import SideBar from '../SideBar'
+import SideBar from 'components/SideBar'
 import style from './MainNav.module.scss'
 
 const MainNav = () => {
