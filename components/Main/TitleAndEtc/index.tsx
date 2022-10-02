@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
-import { view } from '../../../store/viewProductListSlice'
+import { view } from 'store/viewProductListSlice'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -26,7 +26,7 @@ function index(props: titleProps) {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>{props.title}</div>
-        <Link href={`/productlist`} className={style.more}>
+        <Link href="/productlist" className={style.more}>
           <a onClick={() => viewList(props)}>더보기</a>
         </Link>
       </div>

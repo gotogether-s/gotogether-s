@@ -3,9 +3,6 @@ import TilteAndEtc from '../TitleAndEtc'
 import SelectButton from '../SelectButton'
 import ProductlistSlide from '../ProductlistSlide'
 
-import 'swiper/css'
-import 'swiper/css/pagination'
-
 type recommendProps = {
   title: string
   name: string
