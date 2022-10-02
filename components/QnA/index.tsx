@@ -39,8 +39,10 @@ const QnA = () => {
   }
 
   const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
+  const [lastSurvey, setLastSurvey] = useState(false)
 
   const goToNextSurvey = () => {
+    if (surveyNumber === 4) setLastSurvey(true)
     if (surveyNumber === 5) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
@@ -86,10 +88,24 @@ const QnA = () => {
       ))}
       <Button
         variant="contained"
-        sx={{ width: '100%', marginBottom: '1rem' }}
+        sx={{
+          width: '100%',
+          marginBottom: '1rem',
+          display: lastSurvey ? 'none' : 'block',
+        }}
         onClick={goToNextSurvey}
       >
         다음
+      </Button>
+      <Button
+        variant="contained"
+        sx={{
+          width: '100%',
+          marginBottom: '1rem',
+          display: lastSurvey ? 'block' : 'none',
+        }}
+      >
+        완료
       </Button>
       <Button variant="outlined" sx={{ width: '100%' }}>
         Skip
