@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 function index() {
   const viewProductList = useSelector((state: any) => {
-    return state.viewProductList
+    return state.persistedReducer.viewProductList
   })
   return (
     <>

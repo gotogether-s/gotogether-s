@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import style from './Category.module.scss'
 import Link from 'next/link'
-import { view } from '../../../store/viewProductListSlice'
+import { view } from 'store/viewProductListSlice'
 import { useDispatch } from 'react-redux'
 
 function index() {

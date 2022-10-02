@@ -1,10 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit'
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit'
 import mainMenuSlice from './mainMenuSlice'
 import categoryMenuSlice from './categoryMenuSlice'
 import searchHistorySlice from './searchHistorySlice'
 import surveyQnaLists from './surveyQnaListsSlice'
 import detailToReservationSlice from './detailToReservationSlice'
 import viewProductListSlice from './viewProductListSlice'
+import storage from 'redux-persist/lib/storage'
+import { persistStore, persistReducer } from 'redux-persist'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+export const rootReducer = combineReducers({
+  detailToReservation: detailToReservationSlice.reducer,
+  viewProductList: viewProductListSlice.reducer,
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
   reducer: {
@@ -12,9 +30,12 @@ const store = configureStore({
     categoryMenu: categoryMenuSlice.reducer,
     searchHistory: searchHistorySlice.reducer,
     surveyQnaLists: surveyQnaLists.reducer,
-    detailToReservation: detailToReservationSlice.reducer,
-    viewProductList: viewProductListSlice.reducer,
+    persistedReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 })
 
+export const persistor = persistStore(store)
 export default store
