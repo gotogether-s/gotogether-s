@@ -3,6 +3,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Button from '@mui/material/Button'
+import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import style from './QnA.module.scss'
@@ -51,6 +52,16 @@ const QnA = () => {
     setSelectedAnswer(null)
     setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
+  }
+
+  const router = useRouter()
+
+  const completeSurvey = () => {
+    router.push('/signin')
+  }
+
+  const skipSurvey = () => {
+    router.push('/signin')
   }
 
   useEffect(() => {
@@ -103,10 +114,11 @@ const QnA = () => {
           marginBottom: '1rem',
           display: lastSurvey ? 'block' : 'none',
         }}
+        onClick={completeSurvey}
       >
         완료
       </Button>
-      <Button variant="outlined" sx={{ width: '100%' }}>
+      <Button variant="outlined" sx={{ width: '100%' }} onClick={skipSurvey}>
         Skip
       </Button>
       <p
