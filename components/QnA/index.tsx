@@ -18,6 +18,8 @@ const QnA = () => {
 
   const [surveyNumber, setSurveyNumber] = useState(1)
 
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+
   const getQnaLists = useSelector((state) => {
     return state.surveyQnaLists
   })
@@ -26,13 +28,14 @@ const QnA = () => {
     getQnaLists.slice(surveyNumber - 1, surveyNumber),
   )
 
-  const getUserAnswer = (e, userSurveyResultIndex) => {
+  const getUserAnswer = (e, userSurveyResultIndex, answerIndex) => {
     const key = Object.keys(userSurveyResult)[userSurveyResultIndex]
     const value = e.target.textContent
     setUserSurveyResult({
       ...userSurveyResult,
       [key]: value,
     })
+    setSelectedAnswer(answerIndex)
   }
 
   const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
@@ -44,6 +47,7 @@ const QnA = () => {
       setDisplayErrorMessage(true)
       return
     }
+    setSelectedAnswer(null)
     setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
@@ -65,7 +69,13 @@ const QnA = () => {
               {qnaList.answers.map((answer, answerIndex) => (
                 <ListItemButton
                   key={answerIndex}
-                  onClick={() => getUserAnswer(event, surveyNumber - 1)}
+                  sx={{
+                    backgroundColor:
+                      answerIndex === selectedAnswer && '#bcbcbc',
+                  }}
+                  onClick={() =>
+                    getUserAnswer(event, surveyNumber - 1, answerIndex)
+                  }
                 >
                   <ListItemText primary={answer} sx={{ textAlign: 'center' }} />
                 </ListItemButton>
