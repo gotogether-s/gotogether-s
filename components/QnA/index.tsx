@@ -40,8 +40,9 @@ const QnA = () => {
   }
 
   const goToNextSurvey = () => {
-    if (surveyNumber === 4) setLastSurvey(true)
-    if (surveyNumber === 5) return
+    if (surveyNumber === Object.keys(userSurveyResult).length - 1)
+      setLastSurvey(true)
+    if (surveyNumber === Object.keys(userSurveyResult).length) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
       setDisplayErrorMessage(true)
