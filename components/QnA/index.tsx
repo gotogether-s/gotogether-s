@@ -17,8 +17,9 @@ const QnA = () => {
   })
 
   const [surveyNumber, setSurveyNumber] = useState(1)
-
   const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
+  const [lastSurvey, setLastSurvey] = useState(false)
 
   const getQnaLists = useSelector((state) => {
     return state.surveyQnaLists
@@ -37,9 +38,6 @@ const QnA = () => {
     })
     setSelectedAnswer(answerIndex)
   }
-
-  const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
-  const [lastSurvey, setLastSurvey] = useState(false)
 
   const goToNextSurvey = () => {
     if (surveyNumber === 4) setLastSurvey(true)
