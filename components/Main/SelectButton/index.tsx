@@ -12,7 +12,7 @@ type selectProps = {
 }
 
 function index(props: selectProps) {
-  const age: string[] = [
+  const ages: string[] = [
     '전체',
     '10대',
     '20대',
@@ -38,8 +38,8 @@ function index(props: selectProps) {
         slidesPerView={props.slidesPerView}
         className={style.group}
       >
-        {props.api == 'age'
-          ? age.map((age: string, index: number) => (
+        {props.api == 'ages'
+          ? ages.map((age: string, index: number) => (
               <SwiperSlide key={index} className={style.selectAge}>
                 <span className={style.selectGroup}>{age}</span>
               </SwiperSlide>

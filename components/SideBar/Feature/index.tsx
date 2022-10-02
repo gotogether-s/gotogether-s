@@ -1,10 +1,12 @@
-import Box from '@mui/material/Box'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
-import Avatar from '@mui/material/Avatar'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
+import {
+  Box,
+  ListItemAvatar,
+  Avatar,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material'
 import Menu from './Menu'
 import style from './Feature.module.scss'
 
