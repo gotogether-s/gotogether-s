@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import style from './Main.module.scss'
-import TopButton from '../TopButton'
 import Banner from './Banner'
 import Category from './Category'
 import Recommend from './Recommend'
