@@ -1,8 +1,8 @@
 import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import MainNav from 'components/MainNav'
-import TopButton from 'components/TopButton'
+import MainNav from '@components/MainNav'
+import TopButton from '@components/TopButton'
 import style from './Layout.module.scss'
 
 type ALLOWED_PATH = '/search' | '/signin' | '/signup' | '/survey'

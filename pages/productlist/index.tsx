@@ -1,4 +1,4 @@
-import ProductLists from 'components/ProductLists'
+import ProductLists from '@components/ProductLists'
 
 function index() {
   return (
