@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import style from './Deperture.module.scss'
 import NextArea from '../NextArea'
-import { info } from 'store/detailToReservationSlice'
+import { info } from '@store/detailToReservationSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 function index() {

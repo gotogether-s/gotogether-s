@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
-import { view } from 'store/viewProductListSlice'
+import { view } from '@store/viewProductListSlice'
 
 import 'swiper/css'
 import 'swiper/css/pagination'

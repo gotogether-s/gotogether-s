@@ -9,8 +9,29 @@ import searchHistorySlice from './searchHistorySlice'
 import surveyQnaLists from './surveyQnaListsSlice'
 import detailToReservationSlice from './detailToReservationSlice'
 import viewProductListSlice from './viewProductListSlice'
-import storage from 'redux-persist/lib/storage'
+import searchAgesSlice from './searchAgesSlice'
+import searchCompanionsSlice from './searchCompanionsSlice'
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 import { persistStore, persistReducer } from 'redux-persist'
+
+const createNoopStorage = () => {
+  return {
+    getItem(_key: any) {
+      return Promise.resolve(null)
+    },
+    setItem(_key: any, value: any) {
+      return Promise.resolve(value)
+    },
+    removeItem(_key: any) {
+      return Promise.resolve()
+    },
+  }
+}
+
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage()
 
 const persistConfig = {
   key: 'root',
@@ -30,6 +51,8 @@ const store = configureStore({
     categoryMenu: categoryMenuSlice.reducer,
     searchHistory: searchHistorySlice.reducer,
     surveyQnaLists: surveyQnaLists.reducer,
+    searchAges: searchAgesSlice.reducer,
+    searchCompanions: searchCompanionsSlice.reducer,
     persistedReducer,
   },
   middleware: getDefaultMiddleware({

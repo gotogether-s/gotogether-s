@@ -17,9 +17,8 @@
       padding-top: 0.8rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
-      padding-bottom: 0.6rem;
+      padding-bottom: 0.7rem;
       &:hover {
-        width: 100%;
         text-align: center;
         background-color: #878788;
         color: #fff;
@@ -29,8 +28,21 @@
         padding-top: 0.8rem;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
-        padding-bottom: 0.6rem;
+        padding-bottom: 0.7rem;
       }
+    }
+    .choice {
+      text-align: center;
+      background-color: #878788;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 2rem;
+      padding-top: 0.9rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-bottom: 0.8rem;
+      pointer-events: none;
     }
   }
   .selectcompanion {
@@ -47,9 +59,9 @@
       padding-top: 0.8rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
-      padding-bottom: 0.6rem;
+      padding-bottom: 0.7rem;
+      .choice,
       &:hover {
-        width: 100%;
         text-align: center;
         background-color: #878788;
         color: #fff;
@@ -59,8 +71,21 @@
         padding-top: 0.8rem;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
-        padding-bottom: 0.6rem;
+        padding-bottom: 0.7rem;
       }
+    }
+    .choice {
+      text-align: center;
+      background-color: #878788;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 2rem;
+      padding-top: 0.9rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-bottom: 0.8rem;
+      pointer-events: none;
     }
   }
 }
