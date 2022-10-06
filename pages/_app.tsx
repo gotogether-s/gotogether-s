@@ -10,6 +10,12 @@ import 'styles/global.scss'
 import 'styles/muiOverride.scss'
 import 'styles/swiperOverride.scss'
 
+declare global {
+  interface Window {
+    Kakao: any
+  }
+}
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
