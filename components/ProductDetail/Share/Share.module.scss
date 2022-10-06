@@ -1,0 +1,13 @@
+.share {
+  height: 5rem;
+  margin-top: 2rem;
+  border: solid 0.1rem #000;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 5rem;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #e1d8d8;
+  }
+}

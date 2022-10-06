@@ -9,9 +9,11 @@ function index() {
 
   return (
     <>
-      <Fab className={button.buttonBackground} onClick={() => upToTop()}>
-        <KeyboardArrowUpIcon className={button.button} />
-      </Fab>
+      <div className={button.fix}>
+        <Fab className={button.buttonBackground} onClick={() => upToTop()}>
+          <KeyboardArrowUpIcon className={button.button} />
+        </Fab>
+      </div>
     </>
   )
 }
