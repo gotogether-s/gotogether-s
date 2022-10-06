@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Summary.module.scss'
 import NextArea from '../NextArea'
-import ShareLink from '../ShareLink'
+import Share from '../Share'
 
 function index() {
   return (
@@ -22,7 +22,7 @@ function index() {
           터키항공 인천-카타니아 왕복(이스탄불경유)
         </div>
       </div>
-      <ShareLink />
+      <Share />
       <NextArea />
     </>
   )
