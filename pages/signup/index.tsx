@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { TextField, Button } from '@mui/material'
 import { useState } from 'react'
-import NavBar from 'components/NavBar'
+import NavBar from '@components/NavBar'
 import style from './SignUp.module.scss'
 
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/

@@ -1,5 +1,5 @@
-import NavBar from 'components/NavBar'
-import QnA from 'components/QnA'
+import NavBar from '@components/NavBar'
+import QnA from '@components/QnA'
 import style from './Survey.module.scss'
 
 const Survey = () => {

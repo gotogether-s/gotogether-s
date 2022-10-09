@@ -1,7 +1,7 @@
 import { TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import Link from 'next/link'
-import NavBar from 'components/NavBar'
+import NavBar from '@components/NavBar'
 import style from './SignIn.module.scss'
 
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
