@@ -49,16 +49,16 @@ const Layout = ({ children }: any) => {
 
   return (
     <>
-      <Container maxWidth="sm" className={style.container}>
+      <Container
+        maxWidth="sm"
+        className={style.container}
+        style={{
+          padding: '0 1.6rem',
+        }}
+      >
         {displayMainNav()}
         {displayTopButton()}
-        <div
-          style={{
-            padding: !pageWithoutNavbar.includes(currentPath) ? 0 : '2rem',
-          }}
-        >
-          {children}
-        </div>
+        <div>{children}</div>
       </Container>
     </>
   )
