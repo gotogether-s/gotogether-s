@@ -10,7 +10,7 @@ import {
   Collapse,
 } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleCategorySubMenu } from 'store/categoryMenuSlice'
+import { toggleCategorySubMenu } from '@store/categoryMenuSlice'
 import { useState, Fragment } from 'react'
 import style from './Category.module.scss'
 

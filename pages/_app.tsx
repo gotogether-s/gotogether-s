@@ -1,14 +1,14 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from '@mui/material/styles'
-import theme from 'styles/theme'
+import theme from '@styles/theme'
 import { Provider } from 'react-redux'
 import store, { persistor } from 'store'
 import { PersistGate } from 'redux-persist/integration/react'
-import Layout from 'components/Layout'
-import 'styles/reset.css'
-import 'styles/global.scss'
-import 'styles/muiOverride.scss'
-import 'styles/swiperOverride.scss'
+import Layout from '@components/Layout'
+import '@styles/reset.css'
+import '@styles/global.scss'
+import '@styles/muiOverride.scss'
+import '@styles/swiperOverride.scss'
 
 declare global {
   interface Window {

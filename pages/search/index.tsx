@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { FormControl, OutlinedInput, InputAdornment } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, remove } from 'store/searchHistorySlice'
+import { add, remove } from '@store/searchHistorySlice'
 import { useState } from 'react'
 import style from './Search.module.scss'
 
