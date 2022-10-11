@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { Dayjs } from 'dayjs'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -66,8 +67,26 @@ const SignUp = () => {
     return errors
   }
 
-  const checkDuplicateEmail = () => {
-    setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+  const checkDuplicateEmail = async () => {
+    const duplicateValidation = validateDuplicateEmail(signUpValues)
+
+    if (duplicateValidation.email) {
+      setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+      return
+    }
+
+    const email = { email: signUpValues.email }
+
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/members/validation`,
+        email,
+      )
+      setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   const validateDuplicateEmail = (signUpValues) => {
