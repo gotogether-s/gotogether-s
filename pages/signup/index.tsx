@@ -28,8 +28,13 @@ const SignUp = () => {
     passwordConfirm: '',
   })
 
+  const [duplicateEmailIsDone, setDuplicateEmailIsDone] = useState(false)
+
   const handleSignUpValuesChange = (e) => {
     const { name, value } = e.target
+    if (name === 'email') {
+      setDuplicateEmailIsDone(false)
+    }
     setSignUpValues({ ...signUpValues, [name]: value })
   }
 
@@ -43,7 +48,12 @@ const SignUp = () => {
 
   const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
 
-  const validateSignUp = (signUpValues, requestDuplicateEmail, response) => {
+  const validateSignUp = (
+    signUpValues,
+    requestDuplicateEmail,
+    response,
+    duplicateEmailIsDone,
+  ) => {
     const errors = {}
     if (requestDuplicateEmail) {
       if (!signUpValues.email) {
@@ -66,6 +76,8 @@ const SignUp = () => {
       errors.email = '이메일을 입력해주세요!'
     } else if (!regex.test(signUpValues.email)) {
       errors.email = '올바른 이메일 형식이 아닙니다!'
+    } else if (!duplicateEmailIsDone) {
+      errors.email = '이메일 중복확인을 완료해주세요!'
     }
     if (!signUpValues.passwordInitial) {
       errors.passwordInitial = '비밀번호를 입력해주세요!'
@@ -98,6 +110,7 @@ const SignUp = () => {
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignUpValuesErrors(validateSignUp(signUpValues, true, 200))
+        setDuplicateEmailIsDone(true)
       } else if (res.data.statusCode === 400) {
         setSignUpValuesErrors(validateSignUp(signUpValues, true, 400))
       }
@@ -112,7 +125,9 @@ const SignUp = () => {
     const signUpValidation = validateSignUp(signUpValues)
 
     if (Object.keys(signUpValidation).length !== 0) {
-      setSignUpValuesErrors(validateSignUp(signUpValues))
+      setSignUpValuesErrors(
+        validateSignUp(signUpValues, null, null, duplicateEmailIsDone),
+      )
       return
     }
   }
