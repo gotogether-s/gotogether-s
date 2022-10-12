@@ -67,6 +67,8 @@ const SignUp = () => {
     return errors
   }
 
+  const [duplicateEmailMessage, setDuplicateEmailMessage] = useState('')
+
   const checkDuplicateEmail = async () => {
     const duplicateValidation = validateDuplicateEmail(signUpValues)
     if (duplicateValidation.email) {
@@ -80,9 +82,14 @@ const SignUp = () => {
         email,
       )
       setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
-      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        setDuplicateEmailMessage('사용할수있는 이메일입니다!')
+      } else if (res.data.statusCode === 400) {
+        setDuplicateEmailMessage('이미 사용중인 이메일입니다!')
+      }
     } catch (e) {
       console.log('e: ', e)
+      setDuplicateEmailMessage('다른 이메일 주소를 사용해주세요!')
     }
   }
 
@@ -153,6 +160,18 @@ const SignUp = () => {
             className={style['error-message']}
           >
             {signUpValuesErrors.email}
+          </p>
+          <p
+            style={{
+              visibility: duplicateEmailMessage ? 'visible' : 'hidden',
+            }}
+            className={
+              duplicateEmailMessage === '사용할수있는 이메일입니다!'
+                ? style['success-message']
+                : style['error-message']
+            }
+          >
+            {duplicateEmailMessage}
           </p>
         </div>
         <div className={style['input-wrapper']}>
