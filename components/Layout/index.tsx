@@ -13,35 +13,26 @@ const pageWithoutNavbar: ALLOWED_PATH[] = [
   '/survey',
 ]
 
-type TOPBUTTON_PATH = '/' | '/product-list' | '/product-detail'
-const pageWithTopButton: TOPBUTTON_PATH[] = [
-  '/',
-  '/product-list',
-  '/product-detail',
-]
-
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
   const [currentPath, setCurrentPath] = useState<ALLOWED_PATH | null>(null)
-  const [currentPathTopButton, setCurrentPathTopButton] =
-    useState<TOPBUTTON_PATH | null>(null)
+  const listExp: RegExp = new RegExp(`/product-list/\?(.*)`)
+  const detailExp: RegExp = new RegExp(`/product-detail/\?(.*)`)
 
   useEffect(() => {
     if (asPath !== currentPath) setCurrentPath(asPath as ALLOWED_PATH)
-
-    if (asPath !== currentPathTopButton)
-      setCurrentPathTopButton(asPath as TOPBUTTON_PATH)
-  }, [asPath, currentPath, currentPathTopButton])
+  }, [asPath, currentPath])
 
   const displayMainNav = () => {
     if (currentPath && !pageWithoutNavbar.includes(currentPath)) {
       return <MainNav />
     }
   }
+
   const displayTopButton = () => {
     if (
-      currentPathTopButton &&
-      pageWithTopButton.includes(currentPathTopButton)
+      asPath &&
+      (asPath === '/' || listExp.test(asPath) || detailExp.test(asPath))
     ) {
       return <TopButton />
     }
