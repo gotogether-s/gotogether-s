@@ -43,14 +43,6 @@ const SignUp = () => {
 
   const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
 
-  const requestSignUp = (e) => {
-    e.preventDefault()
-    const signUpValidation = validateSignUp(signUpValues)
-    if (signUpValues.passwordInitial !== signUpValues.passwordConfirm) {
-      setSignUpValuesErrors(validateSignUp(signUpValues))
-    }
-  }
-
   const validateSignUp = (signUpValues, requestDuplicateEmail, response) => {
     const errors = {}
     if (requestDuplicateEmail) {
@@ -108,6 +100,14 @@ const SignUp = () => {
     } catch (e) {
       console.log('e: ', e)
       setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
+    }
+  }
+
+  const requestSignUp = (e) => {
+    e.preventDefault()
+    const signUpValidation = validateSignUp(signUpValues)
+    if (signUpValues.passwordInitial !== signUpValues.passwordConfirm) {
+      setSignUpValuesErrors(validateSignUp(signUpValues))
     }
   }
 
