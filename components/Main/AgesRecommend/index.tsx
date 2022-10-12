@@ -1,17 +1,47 @@
-import React, { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './ProductlistSlide.module.scss'
+import style from './AgesRecommend.module.scss'
 
-type slideProps = {
-  apiAddress: string
-}
+function index() {
+  const ages: string[] = [
+    '전체',
+    '10대',
+    '20대',
+    '30대',
+    '40대',
+    '50대',
+    '60대',
+    '70대 이상',
+  ]
 
-function index(props: slideProps) {
+  const [ageValue, setAgeValue] = useState<String>('전체')
+
+  const searchAge = (e: String) => {
+    setAgeValue(e)
+  }
   return (
     <>
+      <Swiper spaceBetween={10} slidesPerView={3} className={style.group}>
+        {ages.map((age: string, index: number) => (
+          <SwiperSlide key={index} className={style.selectAge}>
+            {ageValue === age ? (
+              <span className={style.choice} onClick={() => searchAge(age)}>
+                {age}
+              </span>
+            ) : (
+              <span
+                className={style.selectGroup}
+                onClick={() => searchAge(age)}
+              >
+                {age}
+              </span>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         <SwiperSlide>
           <img

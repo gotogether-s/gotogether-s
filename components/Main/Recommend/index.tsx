@@ -1,42 +1,29 @@
-import React, { useEffect, useState } from 'react'
 import TilteAndEtc from '../TitleAndEtc'
-import SelectButton from '../SelectButton'
-import ProductlistSlide from '../ProductlistSlide'
+import CustomRecommend from '../CustomRecommend'
+import ContinentsRecommend from '../ContinentsRecommend'
+import AgesRecommend from '../AgesRecommend'
+import CompanionReccomend from '../CompanionReccomend'
+import GolfRecommend from '../GolfRecommend'
+import CultureRecommend from '../CultureRecommend'
+import HealingReccomend from '../HealingReccomend'
 
 type recommendProps = {
   title: string
   name: string
   api: string
-  spaceBetween: number
-  slidesPerView: number
-  apiAddress: string
 }
 
 function index(props: recommendProps) {
-  const [selectButton, setSelectButton] = useState<Boolean>(false)
-
-  useEffect(() => {
-    if (props.api == 'ages' || props.api == 'companion') setSelectButton(true)
-  }, [selectButton])
-
   return (
     <>
       <TilteAndEtc name={props.name} api={props.api} title={props.title} />
-      {props.api == 'ages' ? (
-        <SelectButton spaceBetween={10} slidesPerView={6} api="ages" />
-      ) : (
-        ''
-      )}
-      {props.api == 'companion' ? (
-        <SelectButton spaceBetween={10} slidesPerView={3} api="companion" />
-      ) : (
-        ''
-      )}
-      <ProductlistSlide
-        spaceBetween={props.spaceBetween}
-        slidesPerView={props.slidesPerView}
-        apiAddress={props.apiAddress}
-      />
+      {props.api == 'custom' ? <CustomRecommend /> : ''}
+      {props.api == 'continents' ? <ContinentsRecommend /> : ''}
+      {props.api == 'ages' ? <AgesRecommend /> : ''}
+      {props.api == 'companion' ? <CompanionReccomend /> : ''}
+      {props.api == 'golf' ? <GolfRecommend /> : ''}
+      {props.api == 'culture' ? <CultureRecommend /> : ''}
+      {props.api == 'healing' ? <HealingReccomend /> : ''}
     </>
   )
 }
