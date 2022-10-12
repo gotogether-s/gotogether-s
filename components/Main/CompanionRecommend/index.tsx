@@ -1,17 +1,52 @@
-import React, { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './ProductlistSlide.module.scss'
+import style from './CompanionRecommend.module.scss'
 
-type slideProps = {
-  apiAddress: string
-}
+function index() {
+  const companion: string[] = [
+    '전체',
+    '남자끼리',
+    '여자끼리',
+    '나홀로 여행',
+    '친구나 동료',
+    '연인이나 부부',
+    '자녀를 동반하는 가족',
+  ]
 
-function index(props: slideProps) {
+  const [companionValue, setCompanionValue] = useState<String>('전체')
+
+  const searchCompanion = (e: String) => {
+    setCompanionValue(e)
+  }
+
   return (
     <>
+      <Swiper spaceBetween={10} slidesPerView={3} className={style.group}>
+        {companion.map((companion: string, index: number) => (
+          <SwiperSlide key={index} className={style.selectcompanion}>
+            {companionValue === companion ? (
+              <label
+                className={style.choice}
+                defaultValue={companion}
+                onClick={() => searchCompanion(companion)}
+              >
+                {companion}
+              </label>
+            ) : (
+              <label
+                className={style.selectGroup}
+                defaultValue={companion}
+                onClick={() => searchCompanion(companion)}
+              >
+                {companion}
+              </label>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         <SwiperSlide>
           <img
