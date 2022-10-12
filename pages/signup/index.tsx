@@ -69,14 +69,11 @@ const SignUp = () => {
 
   const checkDuplicateEmail = async () => {
     const duplicateValidation = validateDuplicateEmail(signUpValues)
-
     if (duplicateValidation.email) {
       setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
       return
     }
-
     const email = { email: signUpValues.email }
-
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/members/validation`,
