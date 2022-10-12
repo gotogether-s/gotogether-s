@@ -13,11 +13,11 @@ const pageWithoutNavbar: ALLOWED_PATH[] = [
   '/survey',
 ]
 
-type TOPBUTTON_PATH = '/' | '/productlist' | '/productdetail'
+type TOPBUTTON_PATH = '/' | '/product-list' | '/product-detail'
 const pageWithTopButton: TOPBUTTON_PATH[] = [
   '/',
-  '/productlist',
-  '/productdetail',
+  '/product-list',
+  '/product-detail',
 ]
 
 const Layout = ({ children }: any) => {
