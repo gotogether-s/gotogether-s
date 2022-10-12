@@ -51,8 +51,22 @@ const SignUp = () => {
     }
   }
 
-  const validateSignUp = (signUpValues) => {
+  const validateSignUp = (signUpValues, checkDuplicateEmail, response) => {
     const errors = {}
+    if (checkDuplicateEmail) {
+      if (!signUpValues.email) {
+        errors.email = '이메일을 입력해주세요!'
+      } else if (!regex.test(signUpValues.email)) {
+        errors.email = '올바른 이메일 형식이 아닙니다!'
+      } else if (response === 200) {
+        errors.email = '사용할수있는 이메일입니다!'
+      } else if (response === 400) {
+        errors.email = '이미 사용중인 이메일입니다!'
+      } else if (response === 'failed') {
+        errors.email = '이메일 중복검사 요청에 실패했습니다!'
+      }
+      return errors
+    }
     if (!signUpValues.dateOfBirth) {
       errors.dateOfBirth = '생년월일을 입력해주세요!'
     }
@@ -73,12 +87,10 @@ const SignUp = () => {
     return errors
   }
 
-  const [duplicateEmailMessage, setDuplicateEmailMessage] = useState('')
-
   const checkDuplicateEmail = async () => {
-    const duplicateValidation = validateDuplicateEmail(signUpValues)
+    const duplicateValidation = validateSignUp(signUpValues, true)
     if (duplicateValidation.email) {
-      setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+      setSignUpValuesErrors(validateSignUp(signUpValues, true))
       return
     }
     const email = { email: signUpValues.email }
@@ -87,26 +99,16 @@ const SignUp = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/members/validation`,
         email,
       )
-      setSignUpValuesErrors(validateDuplicateEmail(signUpValues))
+      console.log('res: ', res)
       if (res.data.statusCode === 200) {
-        setDuplicateEmailMessage('사용할수있는 이메일입니다!')
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 200))
       } else if (res.data.statusCode === 400) {
-        setDuplicateEmailMessage('이미 사용중인 이메일입니다!')
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 400))
       }
     } catch (e) {
       console.log('e: ', e)
-      setDuplicateEmailMessage('다른 이메일 주소를 사용해주세요!')
+      setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
     }
-  }
-
-  const validateDuplicateEmail = (signUpValues) => {
-    const errors = {}
-    if (!signUpValues.email) {
-      errors.email = '이메일을 입력해주세요!'
-    } else if (!regex.test(signUpValues.email)) {
-      errors.email = '올바른 이메일 형식이 아닙니다!'
-    }
-    return errors
   }
 
   return (
@@ -163,21 +165,13 @@ const SignUp = () => {
             style={{
               visibility: signUpValuesErrors.email ? 'visible' : 'hidden',
             }}
-            className={style['error-message']}
-          >
-            {signUpValuesErrors.email}
-          </p>
-          <p
-            style={{
-              visibility: duplicateEmailMessage ? 'visible' : 'hidden',
-            }}
             className={
-              duplicateEmailMessage === '사용할수있는 이메일입니다!'
-                ? style['success-message']
-                : style['error-message']
+              signUpValuesErrors.email !== '사용할수있는 이메일입니다!'
+                ? style['error-message']
+                : style['success-message']
             }
           >
-            {duplicateEmailMessage}
+            {signUpValuesErrors.email}
           </p>
         </div>
         <div className={style['input-wrapper']}>
