@@ -2,10 +2,10 @@ import TilteAndEtc from '../TitleAndEtc'
 import CustomRecommend from '../CustomRecommend'
 import ContinentsRecommend from '../ContinentsRecommend'
 import AgesRecommend from '../AgesRecommend'
-import CompanionReccomend from '../CompanionReccomend'
+import CompanionRecommend from '../CompanionRecommend'
 import GolfRecommend from '../GolfRecommend'
 import CultureRecommend from '../CultureRecommend'
-import HealingReccomend from '../HealingReccomend'
+import HealingRecommend from '../HealingRecommend'
 
 type recommendProps = {
   title: string
@@ -20,10 +20,10 @@ function index(props: recommendProps) {
       {props.api == 'custom' ? <CustomRecommend /> : ''}
       {props.api == 'continents' ? <ContinentsRecommend /> : ''}
       {props.api == 'ages' ? <AgesRecommend /> : ''}
-      {props.api == 'companion' ? <CompanionReccomend /> : ''}
+      {props.api == 'companion' ? <CompanionRecommend /> : ''}
       {props.api == 'golf' ? <GolfRecommend /> : ''}
       {props.api == 'culture' ? <CultureRecommend /> : ''}
-      {props.api == 'healing' ? <HealingReccomend /> : ''}
+      {props.api == 'healing' ? <HealingRecommend /> : ''}
     </>
   )
 }
