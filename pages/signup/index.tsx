@@ -48,12 +48,7 @@ const SignUp = () => {
 
   const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
 
-  const validateSignUp = (
-    signUpValues,
-    requestDuplicateEmail,
-    response,
-    duplicateEmailIsDone,
-  ) => {
+  const validateSignUp = (signUpValues, requestDuplicateEmail, response) => {
     const errors = {}
     if (requestDuplicateEmail) {
       if (!signUpValues.email) {
@@ -125,9 +120,7 @@ const SignUp = () => {
     const signUpValidation = validateSignUp(signUpValues)
 
     if (Object.keys(signUpValidation).length !== 0) {
-      setSignUpValuesErrors(
-        validateSignUp(signUpValues, null, null, duplicateEmailIsDone),
-      )
+      setSignUpValuesErrors(validateSignUp(signUpValues))
       return
     }
   }
