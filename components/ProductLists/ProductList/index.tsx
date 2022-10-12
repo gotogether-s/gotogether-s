@@ -4,7 +4,15 @@ import style from './ProductList.module.scss'
 function index() {
   return (
     <>
-      <div className={style.productTotal}>00개 상품</div>
+      <div className={style.totalFilter}>
+        <div className={style.productTotal}>총 00개 상품</div>
+        <select className={style.selectBox}>
+          <option value="">기본순</option>
+          <option value="">높은 가격순</option>
+          <option value="">낮은 가격순</option>
+        </select>
+      </div>
+      <div className={style.line} />
       <div className={style.productLists}>
         <div className={style.productList}>
           <img

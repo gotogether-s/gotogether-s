@@ -8,12 +8,6 @@ type props = {
 function index({ api }: props) {
   return (
     <div className={style.selectBox_group}>
-      <select className={style.selectBox}>
-        <option value="">전체</option>
-        <option value="">가격 높은 순</option>
-        <option value="">가격 낮은 순</option>
-      </select>
-
       {api == 'all' || api == 'continents' ? (
         <select className={style.selectBox}>
           <option value="상관 없음">국가전체</option>
@@ -78,6 +72,7 @@ function index({ api }: props) {
       ) : (
         <></>
       )}
+      <div className={style.line} />
     </div>
   )
 }
