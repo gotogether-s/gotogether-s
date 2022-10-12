@@ -51,9 +51,9 @@ const SignUp = () => {
     }
   }
 
-  const validateSignUp = (signUpValues, checkDuplicateEmail, response) => {
+  const validateSignUp = (signUpValues, requestDuplicateEmail, response) => {
     const errors = {}
-    if (checkDuplicateEmail) {
+    if (requestDuplicateEmail) {
       if (!signUpValues.email) {
         errors.email = '이메일을 입력해주세요!'
       } else if (!regex.test(signUpValues.email)) {
@@ -87,7 +87,7 @@ const SignUp = () => {
     return errors
   }
 
-  const checkDuplicateEmail = async () => {
+  const requestDuplicateEmail = async () => {
     const duplicateValidation = validateSignUp(signUpValues, true)
     if (duplicateValidation.email) {
       setSignUpValuesErrors(validateSignUp(signUpValues, true))
@@ -156,7 +156,7 @@ const SignUp = () => {
             <Button
               variant="contained"
               sx={{ width: '30%' }}
-              onClick={checkDuplicateEmail}
+              onClick={requestDuplicateEmail}
             >
               중복확인
             </Button>
