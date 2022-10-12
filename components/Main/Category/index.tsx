@@ -40,7 +40,7 @@ function index() {
       <div className={style.main}>카테고리</div>
       <div className={style.category}>
         <div className={style.bundle1}>
-          <Link href="/product-list" className={style.more}>
+          <Link href={`/product-list/${propsAll.api}`} className={style.more}>
             <a onClick={() => viewList(propsAll)}>
               <img className={style.img} src="./logo.png" alt="" />
             </a>
@@ -48,7 +48,10 @@ function index() {
           <div className={style.categoryName}>전체</div>
         </div>
         <div className={style.bundle2}>
-          <Link href="/product-list" className={style.more}>
+          <Link
+            href={`/product-list/${propsContinents.api}`}
+            className={style.more}
+          >
             <a onClick={() => viewList(propsContinents)}>
               <img className={style.img} src="./logo.png" alt="" />
             </a>
@@ -56,7 +59,7 @@ function index() {
           <div className={style.categoryName}>국가별여행</div>
         </div>
         <div className={style.bundle2}>
-          <Link href="/product-list" className={style.more}>
+          <Link href={`/product-list/${propsAges.api}`} className={style.more}>
             <a onClick={() => viewList(propsAges)}>
               <img className={style.img} src="./logo.png" alt="" />
             </a>
@@ -64,7 +67,10 @@ function index() {
           <div className={style.categoryName}>연령대별여행</div>
         </div>
         <div className={style.bundle2}>
-          <Link href="/product-list" className={style.more}>
+          <Link
+            href={`/product-list/${propsCompanion.api}`}
+            className={style.more}
+          >
             <a onClick={() => viewList(propsCompanion)}>
               <img className={style.img} src="./logo.png" alt="" />
             </a>
@@ -72,7 +78,10 @@ function index() {
           <div className={style.categoryName}>유형별여행</div>
         </div>
         <div className={style.bundle2}>
-          <Link href="/product-list" className={style.more}>
+          <Link
+            href={`/product-list/${propsThemes.api}`}
+            className={style.more}
+          >
             <a onClick={() => viewList(propsThemes)}>
               <img className={style.img} src="./logo.png" alt="" />
             </a>

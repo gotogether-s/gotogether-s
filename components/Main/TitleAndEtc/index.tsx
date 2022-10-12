@@ -26,7 +26,7 @@ function index(props: titleProps) {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>{props.title}</div>
-        <Link href="/product-list" className={style.more}>
+        <Link href={`/product-list/${props.api}`} className={style.more}>
           <a onClick={() => viewList(props)}>더보기</a>
         </Link>
       </div>
