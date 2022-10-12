@@ -45,7 +45,10 @@ const SignUp = () => {
 
   const requestSignUp = (e) => {
     e.preventDefault()
-    setSignUpValuesErrors(validateSignUp(signUpValues))
+    const signUpValidation = validateSignUp(signUpValues)
+    if (signUpValues.passwordInitial !== signUpValues.passwordConfirm) {
+      setSignUpValuesErrors(validateSignUp(signUpValues))
+    }
   }
 
   const validateSignUp = (signUpValues) => {
@@ -63,6 +66,9 @@ const SignUp = () => {
     }
     if (!signUpValues.passwordConfirm) {
       errors.passwordConfirm = '비밀번호를 다시 입력해주세요!'
+    }
+    if (signUpValues.passwordInitial !== signUpValues.passwordConfirm) {
+      errors.passwordConfirm = '비밀번호가 일치하지 않습니다!'
     }
     return errors
   }
