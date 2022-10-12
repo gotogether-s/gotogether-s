@@ -115,6 +115,8 @@ const SignUp = () => {
     }
   }
 
+  const [signUpResponseMessage, setSignUpResponseMessage] = useState('')
+
   const requestSignUp = (e) => {
     e.preventDefault()
     const signUpValidation = validateSignUp(signUpValues)
@@ -237,6 +239,18 @@ const SignUp = () => {
             회원가입
           </Button>
         </div>
+        <p
+          className={
+            signUpResponseMessage !== '회원가입을 완료했습니다!'
+              ? style['error-message']
+              : style['success-message']
+          }
+          style={{
+            visibility: signUpResponseMessage !== '' ? 'visible' : 'hidden',
+          }}
+        >
+          {signUpResponseMessage}
+        </p>
       </form>
     </>
   )
