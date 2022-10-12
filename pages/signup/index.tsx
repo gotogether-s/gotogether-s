@@ -17,7 +17,7 @@ const SignUp = () => {
     setCalendarValue(newCalendarValue)
     setSignUpValues({
       ...signUpValues,
-      dateOfBirth: newCalendarValue.format('YYYY/MM/DD'),
+      dateOfBirth: newCalendarValue.format('YYYY-MM-DD'),
     })
   }
 
@@ -121,13 +121,37 @@ const SignUp = () => {
 
   const [signUpResponseMessage, setSignUpResponseMessage] = useState('')
 
-  const requestSignUp = (e) => {
+  const requestSignUp = async (e) => {
     e.preventDefault()
     const signUpValidation = validateSignUp(signUpValues)
 
     if (Object.keys(signUpValidation).length !== 0) {
       setSignUpValuesErrors(validateSignUp(signUpValues))
       return
+    }
+    setSignUpValuesErrors(validateSignUp(signUpValues))
+
+    const signUpData = {
+      name: signUpValues.name,
+      birth: signUpValues.dateOfBirth,
+      email: signUpValues.email,
+      password: signUpValues.passwordConfirm,
+    }
+
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/members`,
+        signUpData,
+      )
+      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        setSignUpResponseMessage('회원가입에 성공했습니다!')
+      } else if (res.data.statusCode === 400) {
+        setSignUpResponseMessage('회원가입에 실패했습니다!')
+      }
+    } catch (e) {
+      console.log('e: ', e)
+      setSignUpResponseMessage('회원가입에 실패했습니다!')
     }
   }
 
@@ -265,7 +289,7 @@ const SignUp = () => {
         </div>
         <p
           className={
-            signUpResponseMessage !== '회원가입을 완료했습니다!'
+            signUpResponseMessage !== '회원가입에 성공했습니다!'
               ? style['error-message']
               : style['success-message']
           }
