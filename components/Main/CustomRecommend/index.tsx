@@ -3,13 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './ProductlistSlide.module.scss'
+import style from './CustomRecommend.module.scss'
 
-type slideProps = {
-  apiAddress: string
-}
-
-function index(props: slideProps) {
+function index() {
   return (
     <>
       <Swiper spaceBetween={10} slidesPerView={2.2}>

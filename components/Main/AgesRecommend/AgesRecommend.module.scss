@@ -1,0 +1,124 @@
+.img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.nation {
+  width: 100%;
+  background-color: #466ff5;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 1rem;
+  padding-top: 0.5rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  padding-bottom: 0.3rem;
+}
+.title {
+  margin-top: 0.3rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.hashTags {
+  display: flex;
+  .hashTag {
+    color: #99aff9;
+    font-size: 1rem;
+  }
+}
+.price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+.group {
+  padding-top: 0.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  height: 2.5rem;
+  .selectAge {
+    width: auto !important;
+    .selectGroup {
+      text-align: center;
+      background-color: #fff;
+      color: #878788;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      border: solid 0.1rem #878788;
+      border-radius: 2rem;
+      padding-top: 0.8rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-bottom: 0.7rem;
+      &:hover {
+        text-align: center;
+        background-color: #878788;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        padding-top: 0.8rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 0.7rem;
+      }
+    }
+    .choice {
+      text-align: center;
+      background-color: #878788;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 2rem;
+      padding-top: 0.9rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-bottom: 0.8rem;
+      pointer-events: none;
+    }
+  }
+  .selectcompanion {
+    width: auto !important;
+    .selectGroup {
+      text-align: center;
+      background-color: #fff;
+      color: #878788;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      border: solid 0.1rem #878788;
+      border-radius: 2rem;
+      padding-top: 0.8rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-bottom: 0.7rem;
+      .choice,
+      &:hover {
+        text-align: center;
+        background-color: #878788;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        padding-top: 0.8rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 0.7rem;
+      }
+    }
+    .choice {
+      text-align: center;
+      background-color: #878788;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 2rem;
+      padding-top: 0.9rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-bottom: 0.8rem;
+      pointer-events: none;
+    }
+  }
+}
