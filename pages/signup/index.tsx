@@ -22,6 +22,7 @@ const SignUp = () => {
   }
 
   const [signUpValues, setSignUpValues] = useState({
+    name: '',
     dateOfBirth: '',
     email: '',
     passwordInitial: '',
@@ -63,6 +64,9 @@ const SignUp = () => {
         errors.email = '이메일 중복검사 요청에 실패했습니다!'
       }
       return errors
+    }
+    if (!signUpValues.name) {
+      errors.name = '이름을 입력해주세요!'
     }
     if (!signUpValues.dateOfBirth) {
       errors.dateOfBirth = '생년월일을 입력해주세요!'
@@ -131,6 +135,26 @@ const SignUp = () => {
     <>
       <NavBar link="/" title="회원가입" />
       <form onSubmit={requestSignUp}>
+        <div className={style['input-wrapper']}>
+          <div className={style['label']}>이름</div>
+          <TextField
+            name="name"
+            size="small"
+            placeholder="이름을 입력해주세요"
+            sx={{ width: '100%' }}
+            value={signUpValues.name}
+            onChange={handleSignUpValuesChange}
+            onBlur={removeInputSpaces}
+          />
+          <p
+            style={{
+              visibility: signUpValuesErrors.name ? 'visible' : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {signUpValuesErrors.name}
+          </p>
+        </div>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>생년월일</div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
