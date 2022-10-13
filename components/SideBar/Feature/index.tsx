@@ -1,3 +1,4 @@
+import axios from 'axios'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import {
   Box,
@@ -7,6 +8,7 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Menu from './Menu'
 import style from './Feature.module.scss'
@@ -21,19 +23,43 @@ const Feature = () => {
 
   return (
     <Box role="presentation">
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar />
-          </ListItemAvatar>
-          {isLogin ? (
-            <ListItemText primary="이름" secondary="이메일" />
-          ) : (
-            <ListItemText primary="로그인하기" />
-          )}
-          <ArrowForwardIosIcon />
-        </ListItem>
-      </List>
+      {isLogin ? (
+        <Link href="/myinfo">
+          <List
+            sx={{
+              '&:hover': {
+                cursor: 'pointer',
+              },
+            }}
+          >
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar />
+              </ListItemAvatar>
+              <ListItemText primary="이름" secondary="이메일" />
+              <ArrowForwardIosIcon />
+            </ListItem>
+          </List>
+        </Link>
+      ) : (
+        <Link href="/signin">
+          <List
+            sx={{
+              '&:hover': {
+                cursor: 'pointer',
+              },
+            }}
+          >
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar />
+              </ListItemAvatar>
+              <ListItemText primary="로그인하기" />
+              <ArrowForwardIosIcon />
+            </ListItem>
+          </List>
+        </Link>
+      )}
       <div className={style['box-wrapper']}>
         <Box className={style['status-box']}>
           <div>주문(예약)건</div>
