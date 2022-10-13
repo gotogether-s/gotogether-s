@@ -1,7 +1,4 @@
 import Link from 'next/link'
-import { useDispatch } from 'react-redux'
-import { view } from '@store/viewProductListSlice'
-
 import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './TitleAndEtc.module.scss'
@@ -10,24 +7,24 @@ type titleProps = {
   title: string
   name: string
   api: string
+  apiAddress: string
 }
 type Props = {
   name: string
   api: string
+  apiAddress: string
 }
 
 function index(props: titleProps) {
-  const dispatch = useDispatch()
-
-  const viewList = (props: Props) => {
-    dispatch(view(props))
-  }
   return (
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>{props.title}</div>
-        <Link href={`/product-list/${props.api}`} className={style.more}>
-          <a onClick={() => viewList(props)}>더보기</a>
+        <Link
+          href={`/product-list/${props.apiAddress}?category=&page=0&sort=`}
+          className={style.more}
+        >
+          <a>더보기</a>
         </Link>
       </div>
     </>

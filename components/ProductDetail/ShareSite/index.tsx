@@ -13,7 +13,7 @@ function index() {
   const currentUrl = window.location.href
 
   if (!window.Kakao.isInitialized()) {
-    window.Kakao.init('81b8b8b3ffdd255436d5d0aa9d08b9c6')
+    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_URL)
   }
 
   const shareKakao = () => {
