@@ -15,7 +15,7 @@ const QnA = () => {
 
   const [surveyNumber, setSurveyNumber] = useState(1)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
+  const [displayMessage, setDisplayMessage] = useState('')
   const [lastSurvey, setLastSurvey] = useState(false)
 
   const getQnaLists = useSelector((state) => {
@@ -42,9 +42,10 @@ const QnA = () => {
     if (surveyNumber === Object.keys(userSurveyResult).length) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
-      setDisplayErrorMessage(true)
+      setDisplayMessage('문항 선택 후 다음 질문으로 넘어가주세요!')
       return
     }
+    setDisplayMessage('')
     setSelectedAnswer(null)
     setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
@@ -53,11 +54,18 @@ const QnA = () => {
   const router = useRouter()
 
   const completeSurvey = () => {
+    requestSurveySubmit()
     router.push('/signin')
   }
 
   const skipSurvey = () => {
     router.push('/signin')
+  }
+
+  const requestSurveySubmit = () => {
+    setDisplayMessage(
+      '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
+    )
   }
 
   return (
@@ -115,11 +123,16 @@ const QnA = () => {
       </Button>
       <p
         style={{
-          visibility: displayErrorMessage ? 'visible' : 'hidden',
+          visibility: displayMessage ? 'visible' : 'hidden',
         }}
-        className={style['error-message']}
+        className={
+          displayMessage !==
+          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
+            ? style['error-message']
+            : style['success-message']
+        }
       >
-        문항 선택 후 다음 질문으로 넘어가주세요!
+        {displayMessage}
       </p>
     </>
   )
