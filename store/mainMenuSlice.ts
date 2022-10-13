@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 type mainMenuState = {
   label: string
+  link: string
 }[]
 
 const mainMenuSlice: mainMenuState = createSlice({
