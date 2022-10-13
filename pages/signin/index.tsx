@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { TextField, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Link from 'next/link'
 import NavBar from '@components/NavBar'
@@ -8,6 +9,8 @@ import style from './SignIn.module.scss'
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
+  const router = useRouter()
+
   const [signInValues, setSignInValues] = useState({
     email: '',
     password: '',
@@ -59,6 +62,9 @@ const SignIn = () => {
         setSignInResponseMessage(
           '로그인에 성공했습니다! 홈페이지로 이동합니다!',
         )
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
       } else if (res.data.statusCode === 400) {
         setSignInResponseMessage('로그인에 실패했습니다!')
       }
