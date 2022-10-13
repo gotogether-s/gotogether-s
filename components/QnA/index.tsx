@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
@@ -54,11 +55,40 @@ const QnA = () => {
 
   const router = useRouter()
 
-  const submitSurvey = () => {
-    setDisplayMessage(
-      '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
-    )
-    router.push('/signin')
+  const submitSurvey = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      console.log('accessToken:', accessToken)
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/members/curation`,
+        userSurveyResult,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        setDisplayMessage(
+          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
+        )
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
+      } else if (res.data.statusCode === 400) {
+        setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+        setTimeout(() => {
+          router.push('/survey')
+        }, 1000)
+      }
+    } catch (e) {
+      console.log('e: ', e)
+      setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+      setTimeout(() => {
+        router.push('/survey')
+      }, 1000)
+    }
   }
 
   const skipSurvey = () => {
