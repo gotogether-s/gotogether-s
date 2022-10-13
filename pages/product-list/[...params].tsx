@@ -73,7 +73,7 @@ function index({ data }: any) {
 
   const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortChange(e.target.value)
-    if ((router.query.params = 'all')) {
+    if (router.query.params == 'all') {
       router.push(
         `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${router.query.page}&sort=${e.target.value}`,
       )
@@ -206,12 +206,95 @@ function index({ data }: any) {
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        {title == 'all' || title == 'continents' ? (
+        {title == 'all' ? (
+          <>
+            <div
+              className="selectBoxArrow"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              {router.query.category1 == '' ? (
+                <input className="selectBox" value={continentChange} disabled />
+              ) : (
+                <input
+                  className="selectBox"
+                  value={router.query.category1}
+                  disabled
+                />
+              )}
+              <div className="arrowDown">
+                <KeyboardArrowDownIcon fontSize="small" />
+              </div>
+            </div>
+            <div
+              className="selectBoxArrow"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              {router.query.category2 == '' ? (
+                <input className="selectBox" value={ageChange} disabled />
+              ) : (
+                <input
+                  className="selectBox"
+                  value={router.query.category2}
+                  disabled
+                />
+              )}
+              <div className="arrowDown">
+                <KeyboardArrowDownIcon fontSize="small" />
+              </div>
+            </div>
+            <div
+              className="selectBoxArrow"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              {router.query.category3 == '' ? (
+                <input className="selectBox" value={companionChange} disabled />
+              ) : (
+                <input
+                  className="selectBox"
+                  value={router.query.category3}
+                  disabled
+                />
+              )}
+              <div className="arrowDown">
+                <KeyboardArrowDownIcon fontSize="small" />
+              </div>
+            </div>
+            <div
+              className="selectBoxArrow"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              {router.query.category4 == '' ? (
+                <input className="selectBox" value={themeChange} disabled />
+              ) : (
+                <input
+                  className="selectBox"
+                  value={router.query.category4}
+                  disabled
+                />
+              )}
+              <div className="arrowDown">
+                <KeyboardArrowDownIcon fontSize="small" />
+              </div>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+
+        {title == 'continents' ? (
           <div
             className="selectBoxArrow"
             onClick={() => setModalIsOpen(!modalIsOpen)}
           >
-            <input className="selectBox" value={continentChange} disabled />
+            {router.query.category == '' ? (
+              <input className="selectBox" value={continentChange} disabled />
+            ) : (
+              <input
+                className="selectBox"
+                value={router.query.category}
+                disabled
+              />
+            )}
             <div className="arrowDown">
               <KeyboardArrowDownIcon fontSize="small" />
             </div>
@@ -220,12 +303,20 @@ function index({ data }: any) {
           <></>
         )}
 
-        {title == 'all' || title == 'ages' ? (
+        {title == 'ages' ? (
           <div
             className="selectBoxArrow"
             onClick={() => setModalIsOpen(!modalIsOpen)}
           >
-            <input className="selectBox" value={ageChange} disabled />
+            {router.query.category == '' ? (
+              <input className="selectBox" value={ageChange} disabled />
+            ) : (
+              <input
+                className="selectBox"
+                value={router.query.category}
+                disabled
+              />
+            )}
             <div className="arrowDown">
               <KeyboardArrowDownIcon fontSize="small" />
             </div>
@@ -234,12 +325,20 @@ function index({ data }: any) {
           <></>
         )}
 
-        {title == 'all' || title == 'companion' ? (
+        {title == 'companion' ? (
           <div
             className="selectBoxArrow"
             onClick={() => setModalIsOpen(!modalIsOpen)}
           >
-            <input className="selectBox" value={companionChange} disabled />
+            {router.query.category == '' ? (
+              <input className="selectBox" value={companionChange} disabled />
+            ) : (
+              <input
+                className="selectBox"
+                value={router.query.category}
+                disabled
+              />
+            )}
             <div className="arrowDown">
               <KeyboardArrowDownIcon fontSize="small" />
             </div>
@@ -248,12 +347,20 @@ function index({ data }: any) {
           <></>
         )}
 
-        {title == 'all' || title == 'themes' ? (
+        {title == 'themes' ? (
           <div
             className="selectBoxArrow"
             onClick={() => setModalIsOpen(!modalIsOpen)}
           >
-            <input className="selectBox" value={themeChange} disabled />
+            {router.query.category == '' ? (
+              <input className="selectBox" value={themeChange} disabled />
+            ) : (
+              <input
+                className="selectBox"
+                value={router.query.category}
+                disabled
+              />
+            )}
             <div className="arrowDown">
               <KeyboardArrowDownIcon fontSize="small" />
             </div>

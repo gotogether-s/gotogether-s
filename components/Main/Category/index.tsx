@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import style from './Category.module.scss'
 import Link from 'next/link'
 
