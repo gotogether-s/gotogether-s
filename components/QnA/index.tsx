@@ -92,7 +92,7 @@ const QnA = () => {
   }
 
   const skipSurvey = () => {
-    router.push('/signin')
+    router.push('/')
   }
 
   return (
