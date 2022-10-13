@@ -12,8 +12,8 @@ const Menu = () => {
   return (
     <List>
       {mainMenus.map((mainMenu: any, index: number) => (
-        <Link href={mainMenu.link}>
-          <ListItem key={index} disablePadding>
+        <Link key={index} href={mainMenu.link}>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemText primary={mainMenu.label} />
             </ListItemButton>
