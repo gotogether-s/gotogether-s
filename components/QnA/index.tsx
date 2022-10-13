@@ -37,17 +37,18 @@ const QnA = () => {
   }
 
   const goToNextSurvey = () => {
-    if (surveyNumber === Object.keys(userSurveyResult).length - 1)
-      setLastSurvey(true)
-    if (surveyNumber === Object.keys(userSurveyResult).length) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
       setDisplayMessage('문항 선택 후 다음 질문으로 넘어가주세요!')
       return
     }
+    setSurveyNumber(surveyNumber + 1)
+    if (surveyNumber === Object.keys(userSurveyResult).length) return
+    if (surveyNumber === Object.keys(userSurveyResult).length - 1) {
+      setLastSurvey(true)
+    }
     setDisplayMessage('')
     setSelectedAnswer(null)
-    setSurveyNumber(surveyNumber + 1)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
 
