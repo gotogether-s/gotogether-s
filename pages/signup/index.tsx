@@ -131,12 +131,10 @@ const SignUp = () => {
   const requestSignUp = async (e) => {
     e.preventDefault()
     const signUpValidation = validateSignUp(signUpValues)
-
-    if (Object.keys(signUpValidation).length !== 0) {
-      setSignUpValuesErrors(validateSignUp(signUpValues))
-      return
-    }
     setSignUpValuesErrors(validateSignUp(signUpValues))
+    setSignUpResponseMessage('')
+
+    if (Object.keys(signUpValidation).length !== 0) return
 
     const signUpData = {
       name: signUpValues.name,
