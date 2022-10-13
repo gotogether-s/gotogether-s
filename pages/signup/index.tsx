@@ -151,10 +151,10 @@ const SignUp = () => {
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignUpResponseMessage(
-          '회원가입에 성공했습니다! 설문 페이지로 이동합니다!',
+          '회원가입에 성공했습니다! 로그인 페이지로 이동합니다!',
         )
         setTimeout(() => {
-          router.push('/survey')
+          router.push('/signin')
         }, 1000)
       } else if (res.data.statusCode === 400) {
         setSignUpResponseMessage('회원가입에 실패했습니다!')
