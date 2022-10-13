@@ -7,7 +7,7 @@ import style from './QnA.module.scss'
 const QnA = () => {
   const [userSurveyResult, setUserSurveyResult] = useState({
     ages: '',
-    gender: '',
+    genderGroup: '',
     companion: '',
     religion: '',
     theme: '',
