@@ -7,11 +7,7 @@ import style from './MainNav.module.scss'
 const MainNav = () => {
   return (
     <nav className={style.nav}>
-      <Link href="#">
-        <a>
-          <SideBar />
-        </a>
-      </Link>
+      <SideBar />
       <Link href="/">
         <a>로고</a>
       </Link>

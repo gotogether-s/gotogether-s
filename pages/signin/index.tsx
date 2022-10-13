@@ -62,6 +62,8 @@ const SignIn = () => {
         setSignInResponseMessage(
           '로그인에 성공했습니다! 홈페이지로 이동합니다!',
         )
+        const { accessToken } = res.data.data
+        window.localStorage.setItem('accessToken', accessToken)
         setTimeout(() => {
           router.push('/')
         }, 1000)
