@@ -1,4 +1,5 @@
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import Category from './Category'
 import style from './Menu.module.scss'
@@ -11,11 +12,13 @@ const Menu = () => {
   return (
     <List>
       {mainMenus.map((mainMenu: any, index: number) => (
-        <ListItem key={index} disablePadding>
-          <ListItemButton>
-            <ListItemText primary={mainMenu.label} />
-          </ListItemButton>
-        </ListItem>
+        <Link href={mainMenu.link}>
+          <ListItem key={index} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={mainMenu.label} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       ))}
       <Category />
     </List>
