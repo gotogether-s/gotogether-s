@@ -4,6 +4,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { TextField, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './SignUp.module.scss'
@@ -11,6 +12,8 @@ import style from './SignUp.module.scss'
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
+  const router = useRouter()
+
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
 
   const handleCalendarValueChange = (newCalendarValue: Dayjs | null) => {
@@ -149,7 +152,10 @@ const SignUp = () => {
       )
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
-        setSignUpResponseMessage('회원가입에 성공했습니다!')
+        setSignUpResponseMessage('회원가입에 성공했습니다! 로그인해주세요!')
+        setTimeout(() => {
+          router.push('/signin')
+        }, 1000)
       } else if (res.data.statusCode === 400) {
         setSignUpResponseMessage('회원가입에 실패했습니다!')
       }
@@ -293,7 +299,7 @@ const SignUp = () => {
         </div>
         <p
           className={
-            signUpResponseMessage !== '회원가입에 성공했습니다!'
+            signUpResponseMessage !== '회원가입에 성공했습니다! 로그인해주세요!'
               ? style['error-message']
               : style['success-message']
           }
