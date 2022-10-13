@@ -119,7 +119,11 @@ const QnA = () => {
       >
         완료
       </Button>
-      <Button variant="outlined" sx={{ width: '100%' }} onClick={skipSurvey}>
+      <Button
+        variant="outlined"
+        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
+        onClick={skipSurvey}
+      >
         나중에 하기
       </Button>
       <p
