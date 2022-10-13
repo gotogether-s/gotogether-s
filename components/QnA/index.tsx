@@ -111,7 +111,7 @@ const QnA = () => {
         완료
       </Button>
       <Button variant="outlined" sx={{ width: '100%' }} onClick={skipSurvey}>
-        Skip
+        나중에 하기
       </Button>
       <p
         style={{
