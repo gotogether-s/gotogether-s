@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import style from './ProductLists.module.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
@@ -8,7 +8,17 @@ function index() {
     return state.persistedReducer.viewProductList
   })
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-  const [sortChange, setSortChange] = useState<string>('id')
+  const [sortChange, setSortChange] = useState<string>('')
+  const [prevAgeChange, setPrevAgeChange] = useState<string>('상관 없음')
+  const [prevCompanionChange, setPrevCompanionChange] =
+    useState<string>('상관 없음')
+  const [prevThemeChange, setPrevThemeChange] = useState<string>('상관 없음')
+  const [prevContinentChange, setPrevContinentChange] =
+    useState<string>('전체상품')
+  const [isAgeChange, setIsAgeChange] = useState<boolean>(false)
+  const [isCompanionChange, setIsCompanionChange] = useState<boolean>(false)
+  const [isThemeChange, setIsThemeChange] = useState<boolean>(false)
+  const [isContinentChange, setIsContinentChange] = useState<boolean>(false)
   const [ageChange, setAgeChange] = useState<string>('상관 없음')
   const [companionChange, setCompanionChange] = useState<string>('상관 없음')
   const [themeChange, setThemeChange] = useState<string>('상관 없음')
@@ -60,23 +70,43 @@ function index() {
     '호주,뉴질랜드',
   ]
 
-  const closeModal = () => {
-    setModalIsOpen(!modalIsOpen)
-  }
   const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortChange(e.target.value)
   }
-  const changeContinent = (e: string) => {
-    setContinentChange(e)
+  const prevChangeContinent = (e: string) => {
+    setPrevContinentChange(e)
+    setIsContinentChange(true)
   }
-  const changeAge = (e: string) => {
-    setAgeChange(e)
+  const prevChangeAge = (e: string) => {
+    setPrevAgeChange(e)
+    setIsAgeChange(true)
   }
-  const changeTheme = (e: string) => {
-    setThemeChange(e)
+  const prevChangeTheme = (e: string) => {
+    setPrevThemeChange(e)
+    setIsThemeChange(true)
   }
-  const changeCompanion = (e: string) => {
-    setCompanionChange(e)
+  const prevChangeCompanion = (e: string) => {
+    setPrevCompanionChange(e)
+    setIsCompanionChange(true)
+  }
+
+  const closeModal = () => {
+    if (isContinentChange) {
+      setModalIsOpen(!modalIsOpen)
+      setContinentChange(prevContinentChange)
+    }
+    if (isAgeChange) {
+      setModalIsOpen(!modalIsOpen)
+      setAgeChange(prevAgeChange)
+    }
+    if (isCompanionChange) {
+      setModalIsOpen(!modalIsOpen)
+      setCompanionChange(prevCompanionChange)
+    }
+    if (isThemeChange) {
+      setThemeChange(prevThemeChange)
+      setModalIsOpen(!modalIsOpen)
+    } else setModalIsOpen(!modalIsOpen)
   }
   return (
     <>
@@ -164,9 +194,9 @@ function index() {
                       <span
                         key={index}
                         className={style.select}
-                        onClick={() => changeContinent(continent)}
+                        onClick={() => prevChangeContinent(continent)}
                       >
-                        {continentChange == continent ? (
+                        {prevContinentChange == continent ? (
                           <div className={style.selectName}>{continent}</div>
                         ) : (
                           <div className={style.name}>{continent}</div>
@@ -188,9 +218,9 @@ function index() {
                       <span
                         key={index}
                         className={style.select}
-                        onClick={() => changeAge(age)}
+                        onClick={() => prevChangeAge(age)}
                       >
-                        {ageChange == age ? (
+                        {prevAgeChange == age ? (
                           <div className={style.selectName}>{age}</div>
                         ) : (
                           <div className={style.name}>{age}</div>
@@ -213,9 +243,9 @@ function index() {
                       <span
                         key={index}
                         className={style.select}
-                        onClick={() => changeCompanion(companion)}
+                        onClick={() => prevChangeCompanion(companion)}
                       >
-                        {companionChange == companion ? (
+                        {prevCompanionChange == companion ? (
                           <div className={style.selectName}>{companion}</div>
                         ) : (
                           <div className={style.name}>{companion}</div>
@@ -238,9 +268,9 @@ function index() {
                       <span
                         key={index}
                         className={style.select}
-                        onClick={() => changeTheme(theme)}
+                        onClick={() => prevChangeTheme(theme)}
                       >
-                        {themeChange == theme ? (
+                        {prevThemeChange == theme ? (
                           <div className={style.selectName}>{theme}</div>
                         ) : (
                           <div className={style.name}>{theme}</div>
@@ -270,7 +300,7 @@ function index() {
           onChange={changeSort}
           value={sortChange}
         >
-          <option value="id">기본순</option>
+          <option value="">기본순</option>
           <option value="basicPrice">높은 가격순</option>
           <option value="basicPrice,desc">낮은 가격순</option>
         </select>
