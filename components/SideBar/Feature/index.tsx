@@ -1,17 +1,24 @@
-import axios from 'axios'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import {
-  Box,
-  ListItemAvatar,
-  Avatar,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material'
-import Link from 'next/link'
+import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
+import User from './User'
 import Menu from './Menu'
 import style from './Feature.module.scss'
+
+const loginUserProps = {
+  myInfoLink: '/myinfo',
+  primary: '이름',
+  secondary: '이메일',
+  myBookingLink: '/mybooking',
+  favoriteLink: '/favorite',
+}
+
+const logoutUserProps = {
+  myInfoLink: '/signin',
+  primary: '로그인해주세요',
+  secondary: null,
+  myBookingLink: '/signin',
+  favoriteLink: '/signin',
+}
 
 const Feature = () => {
   const [isLogin, setIsLogin] = useState(false)
@@ -23,53 +30,7 @@ const Feature = () => {
 
   return (
     <Box role="presentation">
-      {isLogin ? (
-        <Link href="/myinfo">
-          <List
-            sx={{
-              '&:hover': {
-                cursor: 'pointer',
-              },
-            }}
-          >
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="이름" secondary="이메일" />
-              <ArrowForwardIosIcon />
-            </ListItem>
-          </List>
-        </Link>
-      ) : (
-        <Link href="/signin">
-          <List
-            sx={{
-              '&:hover': {
-                cursor: 'pointer',
-              },
-            }}
-          >
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="로그인하기" />
-              <ArrowForwardIosIcon />
-            </ListItem>
-          </List>
-        </Link>
-      )}
-      <div className={style['box-wrapper']}>
-        <Box className={style['status-box']}>
-          <div>주문(예약)건</div>
-          <div>-</div>
-        </Box>
-        <Box className={style['status-box']}>
-          <div>찜하기</div>
-          <div>-</div>
-        </Box>
-      </div>
+      {isLogin ? <User {...loginUserProps} /> : <User {...logoutUserProps} />}
       <Menu />
     </Box>
   )
