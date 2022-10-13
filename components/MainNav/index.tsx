@@ -8,7 +8,7 @@ const MainNav = () => {
   return (
     <nav className={style.nav}>
       <SideBar />
-      <Link href="/">
+      <Link href="/" className={style['logo']}>
         <a>로고</a>
       </Link>
       <div className={style['flex-wrapper']}>
