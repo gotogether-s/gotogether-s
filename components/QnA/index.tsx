@@ -54,19 +54,15 @@ const QnA = () => {
 
   const router = useRouter()
 
-  const completeSurvey = () => {
-    requestSurveySubmit()
+  const submitSurvey = () => {
+    setDisplayMessage(
+      '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
+    )
     router.push('/signin')
   }
 
   const skipSurvey = () => {
     router.push('/signin')
-  }
-
-  const requestSurveySubmit = () => {
-    setDisplayMessage(
-      '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
-    )
   }
 
   return (
@@ -109,22 +105,22 @@ const QnA = () => {
         다음
       </Button>
       <Button
+        variant="outlined"
+        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
+        onClick={skipSurvey}
+      >
+        나중에 하기
+      </Button>
+      <Button
         variant="contained"
         sx={{
           width: '100%',
           marginBottom: '1rem',
           display: lastSurvey ? 'block' : 'none',
         }}
-        onClick={completeSurvey}
+        onClick={submitSurvey}
       >
         완료
-      </Button>
-      <Button
-        variant="outlined"
-        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
-        onClick={skipSurvey}
-      >
-        나중에 하기
       </Button>
       <p
         style={{
