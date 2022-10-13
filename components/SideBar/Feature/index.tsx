@@ -7,10 +7,18 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material'
+import { useState, useEffect } from 'react'
 import Menu from './Menu'
 import style from './Feature.module.scss'
 
 const Feature = () => {
+  const [isLogin, setIsLogin] = useState(false)
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && setIsLogin(true)
+  }, [])
+
   return (
     <Box role="presentation">
       <List>
@@ -18,7 +26,11 @@ const Feature = () => {
           <ListItemAvatar>
             <Avatar />
           </ListItemAvatar>
-          <ListItemText primary="로그인하기" />
+          {isLogin ? (
+            <ListItemText primary="이름" secondary="이메일" />
+          ) : (
+            <ListItemText primary="로그인하기" />
+          )}
           <ArrowForwardIosIcon />
         </ListItem>
       </List>
