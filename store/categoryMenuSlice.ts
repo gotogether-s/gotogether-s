@@ -23,6 +23,7 @@ const initialState: categoryMenuState = [
       { label: '일본', href: '#' },
       { label: '중국', href: '#' },
       { label: '중남미', href: '#' },
+      { label: '중앙아시아', href: '#' },
       { label: '코카서스', href: '#' },
       { label: '호주/뉴질랜드', href: '#' },
     ],
