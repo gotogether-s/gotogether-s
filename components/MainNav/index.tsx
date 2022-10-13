@@ -8,11 +8,11 @@ const MainNav = () => {
   return (
     <nav className={style.nav}>
       <SideBar />
-      <Link href="/">
+      <Link href="/" className={style['logo']}>
         <a>로고</a>
       </Link>
       <div className={style['flex-wrapper']}>
-        <Link href="/mypage/favorite">
+        <Link href="/favorite">
           <a className={style['flex-wrapper-favorite']}>
             <FavoriteBorderIcon sx={{ fontSize: 20 }} />
             <div>찜 목록</div>
