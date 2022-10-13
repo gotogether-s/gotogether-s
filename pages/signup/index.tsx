@@ -115,7 +115,11 @@ const SignUp = () => {
       }
     } catch (e) {
       console.log('e: ', e)
-      setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
+      if (e.response.status === 400) {
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 400))
+      } else {
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
+      }
     }
   }
 
