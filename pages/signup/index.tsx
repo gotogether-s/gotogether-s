@@ -152,9 +152,11 @@ const SignUp = () => {
       )
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
-        setSignUpResponseMessage('회원가입에 성공했습니다! 로그인해주세요!')
+        setSignUpResponseMessage(
+          '회원가입에 성공했습니다! 설문 페이지로 이동합니다!',
+        )
         setTimeout(() => {
-          router.push('/signin')
+          router.push('/survey')
         }, 1000)
       } else if (res.data.statusCode === 400) {
         setSignUpResponseMessage('회원가입에 실패했습니다!')
@@ -299,7 +301,8 @@ const SignUp = () => {
         </div>
         <p
           className={
-            signUpResponseMessage !== '회원가입에 성공했습니다! 로그인해주세요!'
+            signUpResponseMessage !==
+            '회원가입에 성공했습니다! 설문 페이지로 이동합니다!'
               ? style['error-message']
               : style['success-message']
           }
