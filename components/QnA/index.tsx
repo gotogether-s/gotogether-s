@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
@@ -7,7 +8,7 @@ import style from './QnA.module.scss'
 const QnA = () => {
   const [userSurveyResult, setUserSurveyResult] = useState({
     ages: '',
-    gender: '',
+    genderGroup: '',
     companion: '',
     religion: '',
     theme: '',
@@ -15,7 +16,7 @@ const QnA = () => {
 
   const [surveyNumber, setSurveyNumber] = useState(1)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [displayErrorMessage, setDisplayErrorMessage] = useState(false)
+  const [displayMessage, setDisplayMessage] = useState('')
   const [lastSurvey, setLastSurvey] = useState(false)
 
   const getQnaLists = useSelector((state) => {
@@ -37,27 +38,61 @@ const QnA = () => {
   }
 
   const goToNextSurvey = () => {
-    if (surveyNumber === Object.keys(userSurveyResult).length - 1)
-      setLastSurvey(true)
-    if (surveyNumber === Object.keys(userSurveyResult).length) return
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
-      setDisplayErrorMessage(true)
+      setDisplayMessage('문항 선택 후 다음 질문으로 넘어가주세요!')
       return
     }
-    setSelectedAnswer(null)
     setSurveyNumber(surveyNumber + 1)
+    if (surveyNumber === Object.keys(userSurveyResult).length) return
+    if (surveyNumber === Object.keys(userSurveyResult).length - 1) {
+      setLastSurvey(true)
+    }
+    setDisplayMessage('')
+    setSelectedAnswer(null)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
 
   const router = useRouter()
 
-  const completeSurvey = () => {
-    router.push('/signin')
+  const submitSurvey = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      console.log('accessToken:', accessToken)
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/members/curation`,
+        userSurveyResult,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        setDisplayMessage(
+          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
+        )
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
+      } else if (res.data.statusCode === 400) {
+        setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+        setTimeout(() => {
+          router.push('/survey')
+        }, 1000)
+      }
+    } catch (e) {
+      console.log('e: ', e)
+      setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+      setTimeout(() => {
+        router.push('/survey')
+      }, 1000)
+    }
   }
 
   const skipSurvey = () => {
-    router.push('/signin')
+    router.push('/')
   }
 
   return (
@@ -100,26 +135,35 @@ const QnA = () => {
         다음
       </Button>
       <Button
+        variant="outlined"
+        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
+        onClick={skipSurvey}
+      >
+        나중에 하기
+      </Button>
+      <Button
         variant="contained"
         sx={{
           width: '100%',
           marginBottom: '1rem',
           display: lastSurvey ? 'block' : 'none',
         }}
-        onClick={completeSurvey}
+        onClick={submitSurvey}
       >
         완료
       </Button>
-      <Button variant="outlined" sx={{ width: '100%' }} onClick={skipSurvey}>
-        Skip
-      </Button>
       <p
         style={{
-          visibility: displayErrorMessage ? 'visible' : 'hidden',
+          visibility: displayMessage ? 'visible' : 'hidden',
         }}
-        className={style['error-message']}
+        className={
+          displayMessage !==
+          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
+            ? style['error-message']
+            : style['success-message']
+        }
       >
-        다음 질문으로 넘어가기 위해 대답을 선택해주세요!
+        {displayMessage}
       </p>
     </>
   )

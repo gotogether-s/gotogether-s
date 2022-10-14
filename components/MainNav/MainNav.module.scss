@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .logo {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+  }
   .flex-wrapper {
     display: flex;
     align-items: center;
