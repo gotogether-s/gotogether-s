@@ -377,19 +377,20 @@ function index({ data }: any) {
                     <div className="sharePhrases">국가 선택</div>
                   </div>
                   <div className="middle">
-                    {continents.map((continent: string, index: number) => (
-                      <span
-                        key={index}
-                        className="select"
-                        onClick={() => prevChangeContinent(continent)}
-                      >
-                        {prevContinentChange == continent ? (
-                          <div className="selectName">{continent}</div>
-                        ) : (
-                          <div className="name">{continent}</div>
-                        )}
-                      </span>
-                    ))}
+                    {continents &&
+                      continents.map((continent: string, index: number) => (
+                        <span
+                          key={index}
+                          className="select"
+                          onClick={() => prevChangeContinent(continent)}
+                        >
+                          {prevContinentChange == continent ? (
+                            <div className="selectName">{continent}</div>
+                          ) : (
+                            <div className="name">{continent}</div>
+                          )}
+                        </span>
+                      ))}
                   </div>
                 </>
               ) : (
@@ -401,19 +402,20 @@ function index({ data }: any) {
                     <div className="sharePhrasesA">연령대 선택</div>
                   </div>
                   <div className="middle">
-                    {ages.map((age: string, index: number) => (
-                      <span
-                        key={index}
-                        className="select"
-                        onClick={() => prevChangeAge(age)}
-                      >
-                        {prevAgeChange == age ? (
-                          <div className="selectName">{age}</div>
-                        ) : (
-                          <div className="name">{age}</div>
-                        )}
-                      </span>
-                    ))}
+                    {ages &&
+                      ages.map((age: string, index: number) => (
+                        <span
+                          key={index}
+                          className="select"
+                          onClick={() => prevChangeAge(age)}
+                        >
+                          {prevAgeChange == age ? (
+                            <div className="selectName">{age}</div>
+                          ) : (
+                            <div className="name">{age}</div>
+                          )}
+                        </span>
+                      ))}
                   </div>
                 </>
               ) : (
@@ -425,19 +427,20 @@ function index({ data }: any) {
                     <div className="sharePhrases">유형 선택</div>
                   </div>
                   <div className="middle">
-                    {companions.map((companion: string, index: number) => (
-                      <span
-                        key={index}
-                        className="select"
-                        onClick={() => prevChangeCompanion(companion)}
-                      >
-                        {prevCompanionChange == companion ? (
-                          <div className="selectName">{companion}</div>
-                        ) : (
-                          <div className="name">{companion}</div>
-                        )}
-                      </span>
-                    ))}
+                    {companions &&
+                      companions.map((companion: string, index: number) => (
+                        <span
+                          key={index}
+                          className="select"
+                          onClick={() => prevChangeCompanion(companion)}
+                        >
+                          {prevCompanionChange == companion ? (
+                            <div className="selectName">{companion}</div>
+                          ) : (
+                            <div className="name">{companion}</div>
+                          )}
+                        </span>
+                      ))}
                   </div>
                 </>
               ) : (
@@ -449,19 +452,20 @@ function index({ data }: any) {
                     <div className="sharePhrases">테마 선택</div>
                   </div>
                   <div className="middle">
-                    {themes.map((theme: string, index: number) => (
-                      <span
-                        key={index}
-                        className="select"
-                        onClick={() => prevChangeTheme(theme)}
-                      >
-                        {prevThemeChange == theme ? (
-                          <div className="selectName">{theme}</div>
-                        ) : (
-                          <div className="name">{theme}</div>
-                        )}
-                      </span>
-                    ))}
+                    {themes &&
+                      themes.map((theme: string, index: number) => (
+                        <span
+                          key={index}
+                          className="select"
+                          onClick={() => prevChangeTheme(theme)}
+                        >
+                          {prevThemeChange == theme ? (
+                            <div className="selectName">{theme}</div>
+                          ) : (
+                            <div className="name">{theme}</div>
+                          )}
+                        </span>
+                      ))}
                   </div>
                 </>
               ) : (
@@ -489,32 +493,33 @@ function index({ data }: any) {
       <div className="totalFilterLine" />
 
       <div className="productLists">
-        {data.data.content.map(({ ...list }, index: number) => (
-          <div className="productList" key={index}>
-            <Link href={`/product-detail/${list.id}`}>
-              <img
-                src={list.thumbnail}
-                alt="img"
-                width="185px"
-                height="185px"
-                className="imgClick"
-              />
-            </Link>
-            <span className="nation">{list.country}</span>
-            <div className="title">{list.productName}</div>
-            <div className="hashTags">
-              <div className="hashTag">#{list.ages} &nbsp;</div>
-              <div className="hashTag">#{list.theme} &nbsp;</div>
-            </div>
-            {list.basicPrice == 0 ? (
-              <div className="price">가격 문의</div>
-            ) : (
-              <div className="price">
-                {list.basicPrice.toLocaleString('ko-KR')}원
+        {data &&
+          data.data.content.map(({ ...list }, index: number) => (
+            <div className="productList" key={index}>
+              <Link href={`/product-detail/${list.id}`}>
+                <img
+                  src={list.thumbnail}
+                  alt="img"
+                  width="185px"
+                  height="185px"
+                  className="imgClick"
+                />
+              </Link>
+              <span className="nation">{list.country}</span>
+              <div className="title">{list.productName}</div>
+              <div className="hashTags">
+                <div className="hashTag1">#{list.ages} &nbsp;</div>
+                <div className="hashTag2">#{list.theme} &nbsp;</div>
               </div>
-            )}
-          </div>
-        ))}
+              {list.basicPrice == 0 ? (
+                <div className="price">가격 문의</div>
+              ) : (
+                <div className="price">
+                  {list.basicPrice.toLocaleString('ko-KR')}원
+                </div>
+              )}
+            </div>
+          ))}
       </div>
     </>
   )

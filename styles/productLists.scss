@@ -109,8 +109,16 @@
     .hashTags {
       display: flex;
       width: 12rem;
-      .hashTag {
+      .hashTag1 {
         width: 6rem;
+        color: #99aff9;
+        font-size: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .hashTag2 {
+        width: 8rem;
         color: #99aff9;
         font-size: 1rem;
         overflow: hidden;
