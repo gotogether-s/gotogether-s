@@ -12,7 +12,15 @@ const SideBar = () => {
 
   return (
     <>
-      <MenuIcon sx={{ fontSize: 30 }} onClick={toggleSideBar} />
+      <MenuIcon
+        sx={{
+          fontSize: 30,
+          '&:hover': {
+            cursor: 'pointer',
+          },
+        }}
+        onClick={toggleSideBar}
+      />
       <Drawer
         PaperProps={{
           sx: {

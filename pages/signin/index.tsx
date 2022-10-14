@@ -1,4 +1,6 @@
+import axios from 'axios'
 import { TextField, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Link from 'next/link'
 import NavBar from '@components/NavBar'
@@ -7,11 +9,14 @@ import style from './SignIn.module.scss'
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
+  const router = useRouter()
+
   const [signInValues, setSignInValues] = useState({
     email: '',
     password: '',
   })
   const [signInValuesErrors, setSignInValuesErrors] = useState({})
+  const [signInResponseMessage, setSignInResponseMessage] = useState('')
 
   const handleSignInValuesChange = (e) => {
     const { name, value } = e.target
@@ -39,9 +44,36 @@ const SignIn = () => {
     return errors
   }
 
-  const requestSignIn = (e) => {
+  const requestSignIn = async (e) => {
     e.preventDefault()
+    const signInValidation = validateSignIn(signInValues)
     setSignInValuesErrors(validateSignIn(signInValues))
+    setSignInResponseMessage('')
+
+    if (Object.keys(signInValidation).length !== 0) return
+
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/login`,
+        signInValues,
+      )
+      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        setSignInResponseMessage(
+          '로그인에 성공했습니다! 홈페이지로 이동합니다!',
+        )
+        const { accessToken } = res.data.data
+        window.localStorage.setItem('accessToken', accessToken)
+        setTimeout(() => {
+          router.push('/')
+        }, 1000)
+      } else if (res.data.statusCode === 400) {
+        setSignInResponseMessage('로그인에 실패했습니다!')
+      }
+    } catch (e) {
+      console.log('e: ', e)
+      setSignInResponseMessage('로그인에 실패했습니다!')
+    }
   }
 
   return (
@@ -93,6 +125,19 @@ const SignIn = () => {
             로그인
           </Button>
         </div>
+        <p
+          className={
+            signInResponseMessage !==
+            '로그인에 성공했습니다! 홈페이지로 이동합니다!'
+              ? style['error-message']
+              : style['success-message']
+          }
+          style={{
+            visibility: signInResponseMessage !== '' ? 'visible' : 'hidden',
+          }}
+        >
+          {signInResponseMessage}
+        </p>
         <div className={style['signup-link-wrapper']}>
           <Link href="/signup">
             <a>회원가입</a>
