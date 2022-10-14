@@ -7,8 +7,18 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './HealingRecommend.module.scss'
 
+type data = {
+  id: string
+  thumbnail: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index() {
-  const [healing, setHealing] = useState(null)
+  const [healing, setHealing] = useState<[]>([])
   const healingRec = async () => {
     const res = await axios.get(
       encodeURI(
@@ -27,9 +37,9 @@ function index() {
     <>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         {healing &&
-          healing.map((heal: string, index: number) => (
+          healing.map(({ ...heal }: data, index: number) => (
             <SwiperSlide key={index}>
-              <Link href={`/product-detail/${heal.id}`}>
+              <Link href={`/product-details/${heal.id}`}>
                 <img src={heal.thumbnail} alt="img" className={style.img} />
               </Link>
               <span className={style.nation}>{heal.country}</span>

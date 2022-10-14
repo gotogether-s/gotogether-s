@@ -20,12 +20,21 @@ function index(props: titleProps) {
     <>
       <div className={style.mainAndMore}>
         <div className={style.main}>{props.title}</div>
-        <Link
-          href={`/product-list/${props.apiAddress}?category=&page=0&sort=`}
-          className={style.more}
-        >
-          <a>더보기</a>
-        </Link>
+        {props.apiAddress == 'custom' ? (
+          <Link
+            href={`/product-list/${props.apiAddress}?page=0&sort=`}
+            className={style.more}
+          >
+            <a>더보기</a>
+          </Link>
+        ) : (
+          <Link
+            href={`/product-list/${props.apiAddress}?category=&page=0&sort=`}
+            className={style.more}
+          >
+            <a>더보기</a>
+          </Link>
+        )}
       </div>
     </>
   )

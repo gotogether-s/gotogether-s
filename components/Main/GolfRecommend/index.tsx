@@ -7,8 +7,18 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './GolfRecommend.module.scss'
 
+type data = {
+  id: string
+  thumbnail: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index() {
-  const [golf, setGolf] = useState(null)
+  const [golf, setGolf] = useState<[]>([])
   const golfRec = async () => {
     const res = await axios.get(
       encodeURI(
@@ -27,9 +37,9 @@ function index() {
     <>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         {golf &&
-          golf.map((golf: string, index: number) => (
+          golf.map(({ ...golf }: data, index: number) => (
             <SwiperSlide key={index}>
-              <Link href={`/product-detail/${golf.id}`}>
+              <Link href={`/product-details/${golf.id}`}>
                 <img src={golf.thumbnail} alt="img" className={style.img} />
               </Link>
               <span className={style.nation}>{golf.country}</span>

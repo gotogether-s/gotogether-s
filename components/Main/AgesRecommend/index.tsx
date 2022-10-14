@@ -7,6 +7,16 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './AgesRecommend.module.scss'
 
+type data = {
+  id: string
+  thumbnail: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index() {
   const ages: string[] = [
     '전체',
@@ -21,7 +31,7 @@ function index() {
 
   const [ageValue, setAgeValue] = useState<String>('')
   const [selectAgeValue, setSelectAgeValue] = useState<String>('전체')
-  const [age, setAge] = useState(null)
+  const [age, setAge] = useState<[]>([])
 
   const ageRec = async () => {
     const res = await axios.get(
@@ -71,9 +81,9 @@ function index() {
           ))}
       </Swiper>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
-        {age.map((ages: string, index: number) => (
+        {age.map(({ ...ages }: data, index: number) => (
           <SwiperSlide key={index}>
-            <Link href={`/product-detail/${ages.id}`}>
+            <Link href={`/product-details/${ages.id}`}>
               <img src={ages.thumbnail} alt="img" className={style.img} />
             </Link>
             <span className={style.nation}>{ages.country}</span>
