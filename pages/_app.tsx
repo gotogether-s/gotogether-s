@@ -9,6 +9,7 @@ import '@styles/global.scss'
 import '@styles/muiOverride.scss'
 import '@styles/swiperOverride.scss'
 import '@styles/productLists.scss'
+import '@styles/productDetail.scss'
 
 declare global {
   interface Window {

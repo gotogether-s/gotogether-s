@@ -7,8 +7,18 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './CultureRecommend.module.scss'
 
+type data = {
+  id: string
+  thumbnail: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index() {
-  const [culture, setCulture] = useState(null)
+  const [culture, setCulture] = useState<[]>([])
   const cultureRec = async () => {
     const res = await axios.get(
       encodeURI(
@@ -27,9 +37,9 @@ function index() {
     <>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         {culture &&
-          culture.map((culture: string, index: number) => (
+          culture.map(({ ...culture }: data, index: number) => (
             <SwiperSlide key={index}>
-              <Link href={`/product-detail/${culture.id}`}>
+              <Link href={`/product-details/${culture.id}`}>
                 <img src={culture.thumbnail} alt="img" className={style.img} />
               </Link>
               <span className={style.nation}>{culture.country}</span>

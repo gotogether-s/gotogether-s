@@ -1,3 +1,4 @@
+import axios from 'axios'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
@@ -29,15 +30,32 @@ const Search = () => {
     if (e.key === 'Enter' || e.type === 'click') {
       dispatch(add(searchText))
       setDisplaySearchResult(true)
+      requestSearch()
     }
     if (e.key === 'Backspace' && e.target.value === '') {
       clearInput()
+      requestSearch()
     }
   }
 
   const clearInput = () => {
     setSearchText('')
     setDisplaySearchResult(false)
+  }
+
+  const requestSearch = async () => {
+    const keyword = {
+      keyword: searchText,
+    }
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/products/search`,
+        keyword,
+      )
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   return (

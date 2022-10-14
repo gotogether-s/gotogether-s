@@ -5,9 +5,22 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 
+type data = {
+  id: string
+  thumbnail: string
+  theme: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index({ data }: any) {
   const router = useRouter()
   const title: any = router.query.params
+
+  const [username, setUsername] = useState<string>('')
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
@@ -70,6 +83,28 @@ function index({ data }: any) {
     '코카서스',
     '호주,뉴질랜드',
   ]
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
+
+  const requestUserInfo = async (accessToken: string) => {
+    console.log(accessToken)
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/members/detail`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      const { name } = res.data.data
+      setUsername(name)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
 
   const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortChange(e.target.value)
@@ -188,8 +223,17 @@ function index({ data }: any) {
 
   return (
     <>
-      {title == 'custom' ? <div className="category">추천 상품</div> : <></>}
-      {title == 'custom' ? <div className="category">추천 상품</div> : <></>}
+      {title == 'custom' && username ? (
+        <div className="category">{username}님을 위한 추천 상품</div>
+      ) : (
+        <>
+          {title == 'custom' ? (
+            <div className="category">추천 상품</div>
+          ) : (
+            <></>
+          )}
+        </>
+      )}
       {title == 'all' ? <div className="category">전체</div> : <></>}
       {title == 'companion' ? (
         <div className="category">유형별 여행</div>
@@ -494,9 +538,9 @@ function index({ data }: any) {
 
       <div className="productLists">
         {data &&
-          data.data.content.map(({ ...list }, index: number) => (
+          data.data.content.map(({ ...list }: data, index: number) => (
             <div className="productList" key={index}>
-              <Link href={`/product-detail/${list.id}`}>
+              <Link href={`/product-details/${list.id}`}>
                 <img
                   src={list.thumbnail}
                   alt="img"
@@ -539,7 +583,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   }
 
   const response = await axios.get(encodeURI(API_URL))
-  const data = await response.data
+  const data = response.data
   return { props: { data } }
 }
 

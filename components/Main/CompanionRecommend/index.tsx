@@ -7,6 +7,16 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './CompanionRecommend.module.scss'
 
+type data = {
+  id: string
+  thumbnail: string
+  country: string
+  productName: string
+  ages: string
+  companion: string
+  basicPrice: number
+}
+
 function index() {
   const companion: string[] = [
     '전체',
@@ -21,7 +31,7 @@ function index() {
   const [companionValue, setCompanionValue] = useState<String>('')
   const [selectCompanionValue, setSelectCompanionValue] =
     useState<String>('전체')
-  const [companions, setCompanions] = useState(null)
+  const [companions, setCompanions] = useState<[]>([])
 
   const companionRec = async () => {
     const res = await axios.get(
@@ -52,31 +62,32 @@ function index() {
   return (
     <>
       <Swiper spaceBetween={10} slidesPerView={3} className={style.group}>
-        {companion.map((companion: string, index: number) => (
-          <SwiperSlide key={index} className={style.selectcompanion}>
-            {selectCompanionValue === companion ? (
-              <span
-                className={style.choice}
-                onClick={() => searchCompanion(companion)}
-              >
-                {companion}
-              </span>
-            ) : (
-              <span
-                className={style.selectGroup}
-                onClick={() => searchCompanion(companion)}
-              >
-                {companion}
-              </span>
-            )}
-          </SwiperSlide>
-        ))}
+        {companion &&
+          companion.map((companion: string, index: number) => (
+            <SwiperSlide key={index} className={style.selectcompanion}>
+              {selectCompanionValue === companion ? (
+                <span
+                  className={style.choice}
+                  onClick={() => searchCompanion(companion)}
+                >
+                  {companion}
+                </span>
+              ) : (
+                <span
+                  className={style.selectGroup}
+                  onClick={() => searchCompanion(companion)}
+                >
+                  {companion}
+                </span>
+              )}
+            </SwiperSlide>
+          ))}
       </Swiper>
       <Swiper spaceBetween={10} slidesPerView={2.2}>
         {companions &&
-          companions.map((companion: string, index: number) => (
+          companions.map(({ ...companion }: data, index: number) => (
             <SwiperSlide key={index}>
-              <Link href={`/product-detail/${companion.id}`}>
+              <Link href={`/product-details/${companion.id}`}>
                 <img
                   src={companion.thumbnail}
                   alt="img"
