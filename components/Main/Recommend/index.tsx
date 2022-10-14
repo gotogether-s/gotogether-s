@@ -11,12 +11,18 @@ type recommendProps = {
   title: string
   name: string
   api: string
+  apiAddress: string
 }
 
 function index(props: recommendProps) {
   return (
     <>
-      <TilteAndEtc name={props.name} api={props.api} title={props.title} />
+      <TilteAndEtc
+        name={props.name}
+        api={props.api}
+        title={props.title}
+        apiAddress={props.apiAddress}
+      />
       {props.api == 'custom' ? <CustomRecommend /> : ''}
       {props.api == 'continents' ? <ContinentsRecommend /> : ''}
       {props.api == 'ages' ? <AgesRecommend /> : ''}

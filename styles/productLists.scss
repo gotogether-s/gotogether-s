@@ -79,12 +79,17 @@
   .productList {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    .imgClick {
+      cursor: pointer;
+    }
     .nation {
-      width: 2rem;
+      width: auto;
       background-color: #466ff5;
       color: #fff;
       font-size: 1rem;
       text-align: center;
+      line-height: 1rem;
       border-radius: 1rem;
       padding-top: 0.5rem;
       padding-left: 0.8rem;
@@ -93,15 +98,32 @@
       margin-top: 0.5rem;
     }
     .title {
+      width: 18.5rem;
       margin-top: 0.3rem;
       font-weight: 700;
       font-size: 1.2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .hashTags {
       display: flex;
-      .hashTag {
+      width: 12rem;
+      .hashTag1 {
+        width: 6rem;
         color: #99aff9;
         font-size: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .hashTag2 {
+        width: 8rem;
+        color: #99aff9;
+        font-size: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
     .price {
@@ -181,7 +203,6 @@
       justify-content: flex-start;
       overflow-y: auto;
       margin-top: 3rem;
-      margin-left: 1rem;
       margin-right: 1rem;
       .select {
         width: 43%;

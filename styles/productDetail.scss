@@ -1,0 +1,259 @@
+.productDetail {
+  .thumbnail {
+    margin-top: 1rem;
+    .img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+  .basicInformation {
+    margin: 1rem 0;
+    .nation {
+      width: 100%;
+      background-color: #466ff5;
+      color: #fff;
+      font-size: 1.5rem;
+      text-align: center;
+      border-radius: 2rem;
+      padding-top: 0.5rem;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+      padding-bottom: 0.3rem;
+    }
+    .title {
+      margin-top: 0.3rem;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    .hashTags {
+      display: flex;
+      .hashTag {
+        color: #9b9595;
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+      }
+    }
+    .price {
+      color: #466ff5;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+    }
+  }
+  .nextArea {
+    background-color: #ddd;
+    height: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .departureDate {
+    margin-top: 1rem;
+    .departure {
+      color: #9b9595;
+    }
+    .selectDepartureDate {
+      margin-top: 1rem;
+      .select {
+        width: 100%;
+        height: 4rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  .titleContent {
+    display: flex;
+    margin: 1rem 0;
+    .title {
+      width: 15%;
+      color: #878787;
+      font-weight: 700;
+    }
+    .content {
+      width: 70%;
+      font-weight: 700;
+    }
+  }
+  .share {
+    height: 5rem;
+    margin-top: 2rem;
+    border: solid 0.1rem #000;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 5rem;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      background-color: #e1d8d8;
+    }
+  }
+  .shareContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    .shareModalBody {
+      position: absolute;
+      margin-bottom: 10rem;
+      width: 20rem;
+      height: 15rem;
+      padding: 4rem;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.2rem 0.3rem 0 #22242626;
+      .top {
+        margin-bottom: 1rem;
+        .sharePhrases {
+          position: absolute;
+          top: 1.5rem;
+          left: 1.5rem;
+          margin-bottom: 10rem;
+          font-weight: 700;
+        }
+        .closeButton {
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .middle {
+        height: 14rem;
+      }
+      .bottom {
+        display: flex;
+        width: 24rem;
+        height: 3.5rem;
+        margin-left: -2rem;
+        .input {
+          width: 80%;
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+        .button {
+          background-color: #fff;
+          border: 1px solid #22242626;
+          width: 25%;
+          cursor: pointer;
+          font-size: 1.4rem;
+          font-weight: 700;
+          &:hover {
+            background-color: #ebe9e9;
+          }
+        }
+      }
+    }
+  }
+
+  .FlexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .GridContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 4.8rem);
+      grid-column-gap: 0.8rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.6rem;
+    }
+    .site {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 6.56rem;
+      .siteName {
+        margin-top: -0.4rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .icon {
+        width: 4.8rem;
+        height: 4.8rem;
+        border-radius: 100%;
+        cursor: pointer;
+      }
+      .kakaoImg {
+        margin-top: 0.1rem;
+        width: 4.65rem;
+        height: 4.65rem;
+        border-radius: 100%;
+        cursor: pointer;
+      }
+      .kakao {
+        width: 6rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .naverImg {
+        margin-top: 0.15rem;
+        width: 4.65rem;
+        height: 4.65rem;
+        cursor: pointer;
+      }
+      .naver {
+        margin-top: -0.02rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .naverBandImg {
+        margin-top: 0.1rem;
+        border-radius: 100%;
+        width: 4.65rem;
+        height: 4.65rem;
+        cursor: pointer;
+      }
+      .naverBand {
+        margin-top: 0rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    width: 38.2rem;
+    bottom: 0%;
+    position: fixed;
+    .wish {
+      width: 30%;
+      height: 5rem;
+      font-weight: 700;
+      border-top: 0.2rem solid #000;
+      border-bottom: 0.2rem solid #000;
+      border-left: 0.2rem solid #000;
+      background-color: #ddd;
+      line-height: 5rem;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: #beb7b7;
+      }
+    }
+    .reservation {
+      width: 70%;
+      height: 5rem;
+      background-color: #fff;
+      border: 0.2rem solid #000;
+      font-weight: 700;
+      line-height: 5rem;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: #e1d8d8;
+      }
+    }
+  }
+}

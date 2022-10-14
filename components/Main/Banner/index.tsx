@@ -1,4 +1,7 @@
-import React, { useRef, useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import Link from 'next/link'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper'
 
@@ -7,6 +10,18 @@ import 'swiper/css/pagination'
 import style from './Banner.module.scss'
 
 function index() {
+  const [banner, setBanner] = useState(null)
+  const Banner = async () => {
+    const res = await axios.get(
+      encodeURI(process.env.NEXT_PUBLIC_API_URL + `/banner`),
+    )
+    setBanner(res.data)
+  }
+
+  useEffect(() => {
+    Banner()
+  }, [])
+  if (!banner) return <>배너를 준비중입니다...</>
   return (
     <>
       <Swiper
@@ -16,27 +31,19 @@ function index() {
         modules={[Pagination, Autoplay]}
         autoplay={{ delay: 5000 }}
       >
-        <SwiperSlide>
-          <img
-            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
-            alt="img"
-            className={style.img}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
-            alt="img"
-            className={style.img}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F996CEF385DF8757947DC1D"
-            alt="img"
-            className={style.img}
-          />
-        </SwiperSlide>
+        {banner.data.map((banners: string, index: number) => (
+          <SwiperSlide key={index}>
+            <Link href={banners.bannerUrl}>
+              <a>
+                <img
+                  src={banners.bannerImage}
+                  alt="img"
+                  className={style.img}
+                />
+              </a>
+            </Link>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   )
