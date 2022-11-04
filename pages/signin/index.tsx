@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useSignInMutation } from '@api/requestApi'
 import { useState } from 'react'
 import Link from 'next/link'
 import NavBar from '@components/NavBar'
@@ -10,6 +11,7 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
   const router = useRouter()
+  const [signIn] = useSignInMutation()
 
   const [signInValues, setSignInValues] = useState({
     email: '',
@@ -53,10 +55,9 @@ const SignIn = () => {
     if (Object.keys(signInValidation).length !== 0) return
 
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/login`,
-        signInValues,
-      )
+      const res = await signIn({
+        data: signInValues,
+      })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignInResponseMessage(
