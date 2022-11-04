@@ -13,7 +13,6 @@ function Main() {
   }, [])
 
   const requestUserInfo = async (accessToken: string) => {
-    console.log(accessToken)
     try {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/members/detail`,
