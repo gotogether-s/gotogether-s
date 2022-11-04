@@ -14,10 +14,13 @@ import {
 
 function index({ data }: any) {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-  const currentUrl = window.location.href
+  let currentUrl = ''
+  if (typeof window !== 'undefined') {
+    currentUrl = window.location.href
 
-  if (!window.Kakao.isInitialized()) {
-    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_URL)
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_URL)
+    }
   }
 
   const shareKakao = () => {
@@ -51,27 +54,30 @@ function index({ data }: any) {
   const closeModal = () => {
     setModalIsOpen(!modalIsOpen)
   }
-  const detailData = JSON.parse(data.data.info)
-  console.log(data, detailData)
+  const detailData = JSON.parse(data.info)
+
+  useEffect(() => {
+    detailData
+  }, [detailData])
 
   return (
     <div className="productDetail">
       <div className="thumbnail">
-        <img src={data.data.thumbnail} alt="img" className="img" />
+        <img src={data.thumbnail} alt="img" className="img" />
       </div>
 
       <div className="basicInformation">
-        <span className="nation">{data.data.country}</span>
-        <div className="title">{data.data.productName}</div>
+        <span className="nation">{data.country}</span>
+        <div className="title">{data.productName}</div>
         <div className="hashTags">
-          <div className="hashTag">#{data.data.ages} &nbsp;</div>
-          <div className="hashTag">#{data.data.companion} &nbsp;</div>
+          <div className="hashTag">#{data.ages} &nbsp;</div>
+          <div className="hashTag">#{data.companion} &nbsp;</div>
         </div>
-        {data.data.basicPrice == 0 ? (
+        {data.basicPrice == 0 ? (
           <div className="price">가격 문의</div>
         ) : (
           <div className="price">
-            {data.data.basicPrice.toLocaleString('ko-KR')}원
+            {data.basicPrice.toLocaleString('ko-KR')}원
           </div>
         )}
       </div>
@@ -82,25 +88,14 @@ function index({ data }: any) {
         <div className="selectDepartureDate">
           <select name="departure" className="select">
             <option value="">출발일 선택하기</option>
-            <option value="2022.10.01">10월1일</option>
-          </select>
-          <select name="etc1" className="select">
-            <option value="">객실 선택</option>
-            <option value="1인">1인</option>
-            <option value="2인">2인</option>
-            <option value="3인">3인</option>
-          </select>
-          <select name="etc2" className="select">
-            <option value="">객실 선택</option>
-            <option value="1인">1인</option>
-            <option value="2인">2인</option>
-            <option value="3인">3인</option>
-          </select>
-          <select name="etc3" className="select">
-            <option value="">객실 선택</option>
-            <option value="1인">1인</option>
-            <option value="2인">2인</option>
-            <option value="3인">3인</option>
+            {data.productOptionList.출발일 &&
+              data.productOptionList.출발일.map(
+                (data: string, index: number) => (
+                  <option key={index} value={data.value}>
+                    {data.value}
+                  </option>
+                ),
+              )}
           </select>
         </div>
       </div>
@@ -108,15 +103,15 @@ function index({ data }: any) {
 
       <div className="titleContent">
         <div className="title">지역</div>
-        <div className="content">{data.data.region}</div>
+        <div className="content">{data.region}</div>
       </div>
       <div className="titleContent">
         <div className="title">특징</div>
-        <div className="content">{data.data.points}</div>
+        <div className="content">{data.points}</div>
       </div>
       <div className="titleContent">
         <div className="title">항공</div>
-        <div className="content">{data.data.airport}</div>
+        <div className="content">{data.airport}</div>
       </div>
       <div className="share" onClick={() => setModalIsOpen(true)}>
         공유하기
@@ -208,6 +203,19 @@ function index({ data }: any) {
       )}
       <div className="nextArea" />
 
+      <div className="explicate">
+        {detailData &&
+          detailData.map((data: any, index: number) => (
+            <div key={index}>
+              {data.type === 'image' ? (
+                <img src={data.url} alt="img" width="100%" />
+              ) : (
+                <></>
+              )}
+            </div>
+          ))}
+      </div>
+
       <footer className="footer">
         <div className="wish">찜하기</div>
         <div className="reservation">예약하기</div>
@@ -222,7 +230,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const res = await axios.get(
     process.env.NEXT_PUBLIC_API_URL + `/product-details/${params.id}`,
   )
-  const data = await res.data
+  const data = await res.data.data
   return { props: { data } }
 }
 

@@ -22,7 +22,6 @@ function index() {
 
   const customRec = async () => {
     const accessToken = localStorage.getItem('accessToken')
-    console.log('accessToken', accessToken)
     if (accessToken) {
       const res = await axios.get(
         encodeURI(
@@ -43,7 +42,6 @@ function index() {
       )
       setCustoms(res.data.data.content)
     }
-    console.log('dd?', customs)
   }
 
   useEffect(() => {
