@@ -5,7 +5,15 @@ export const requestApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
   }),
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    signIn: builder.mutation({
+      query: ({ data }) => ({
+        url: '/login',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+  }),
 })
 
-export const {} = requestApi
+export const { useSignInMutation } = requestApi
