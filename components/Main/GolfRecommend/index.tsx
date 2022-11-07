@@ -35,7 +35,7 @@ function index() {
   if (!golf) return <>상품을 준비중입니다...</>
   return (
     <>
-      <Swiper spaceBetween={10} slidesPerView={2.2}>
+      <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
         {golf &&
           golf.map(({ ...golf }: data, index: number) => (
             <SwiperSlide key={index}>

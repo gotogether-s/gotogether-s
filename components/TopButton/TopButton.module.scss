@@ -1,15 +1,17 @@
 .fix {
   position: fixed;
   bottom: 17%;
-  margin-left: 30.8rem;
+  margin-left: 28.4rem;
   z-index: 2;
   .buttonBackground {
+    width: 4rem;
+    height: 4rem;
     background-color: #fff;
     position: absolute;
     cursor: pointer;
     .button {
-      width: 5rem;
-      height: 5rem;
+      width: 4rem;
+      height: 4rem;
       color: #878788;
     }
   }

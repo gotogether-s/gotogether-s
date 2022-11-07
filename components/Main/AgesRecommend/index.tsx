@@ -61,7 +61,7 @@ function index() {
   if (!age) return <>상품을 준비중입니다...</>
   return (
     <>
-      <Swiper spaceBetween={10} slidesPerView={3} className={style.group}>
+      <Swiper spaceBetween={8} slidesPerView={3} className={style.group}>
         {ages &&
           ages.map((age: string, index: number) => (
             <SwiperSlide key={index} className={style.selectAge}>
@@ -80,7 +80,7 @@ function index() {
             </SwiperSlide>
           ))}
       </Swiper>
-      <Swiper spaceBetween={10} slidesPerView={2.2}>
+      <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
         {age.map(({ ...ages }: data, index: number) => (
           <SwiperSlide key={index}>
             <Link href={`/product-details/${ages.id}`}>
