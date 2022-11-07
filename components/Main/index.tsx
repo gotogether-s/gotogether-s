@@ -6,6 +6,7 @@ import Category from './Category'
 import Recommend from './Recommend'
 import Bundary from './Bundary'
 import SemiBanner from './SemiBanner'
+import Footer from './Footer'
 
 function Main() {
   const [username, setUsername] = useState<string>('')
@@ -100,6 +101,8 @@ function Main() {
           api="healing"
           apiAddress="themes"
         />
+
+        <Footer />
       </div>
     </>
   )
