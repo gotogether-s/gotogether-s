@@ -8,8 +8,12 @@ import style from './ContinentsRecommend.module.scss'
 function index() {
   return (
     <>
-      <Swiper spaceBetween={10} slidesPerView={1.5}>
-        <SwiperSlide>
+      <Swiper
+        spaceBetween={8}
+        slidesPerView={1.5}
+        className="swiper-continent-all"
+      >
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=동남아시아&page=0&sort=`}
             className={style.more}
@@ -24,7 +28,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=괌,사이판,하와이&page=0&sort=`}
             className={style.more}
@@ -39,7 +43,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=호주,뉴질랜드&page=0&sort=`}
             className={style.more}
@@ -50,11 +54,12 @@ function index() {
                 alt="img"
                 className={style.img}
               />
+              <div className={style.explanation}>아름다운 섬</div>
               <div className={style.title}>호주,뉴질랜드</div>
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=인도,주변국&page=0&sort=`}
             className={style.more}
@@ -69,7 +74,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=중앙아시아&page=0&sort=`}
             className={style.more}
@@ -84,7 +89,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=동남아프리카&page=0&sort=`}
             className={style.more}
@@ -99,7 +104,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=북아프리카,중동&page=0&sort=`}
             className={style.more}
@@ -114,7 +119,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=코카서스&page=0&sort=`}
             className={style.more}
@@ -129,7 +134,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=유럽&page=0&sort=`}
             className={style.more}
@@ -144,7 +149,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=중남미&page=0&sort=`}
             className={style.more}
@@ -159,7 +164,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=북미&page=0&sort=`}
             className={style.more}
@@ -174,7 +179,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=대만&page=0&sort=`}
             className={style.more}
@@ -189,7 +194,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=중국&page=0&sort=`}
             className={style.more}
@@ -204,7 +209,7 @@ function index() {
             </a>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="swiper-continent">
           <Link
             href={`/product-list/continents?category=일본&page=0&sort=`}
             className={style.more}

@@ -13,7 +13,7 @@ type data = {
   country: string
   productName: string
   ages: string
-  companion: string
+  theme: string
   basicPrice: number
 }
 
@@ -51,7 +51,7 @@ function index() {
   if (!customs) return <>상품을 준비중입니다...</>
   return (
     <>
-      <Swiper spaceBetween={10} slidesPerView={2.2}>
+      <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
         {customs &&
           customs.map(({ ...custom }: data, index: number) => (
             <SwiperSlide key={index}>
@@ -62,7 +62,7 @@ function index() {
               <div className={style.title}>{custom.productName}</div>
               <div className={style.hashTags}>
                 <div className={style.hashTag1}>#{custom.ages} &nbsp;</div>
-                <div className={style.hashTag2}>#{custom.companion}&nbsp;</div>
+                <div className={style.hashTag2}>#{custom.theme}&nbsp;</div>
               </div>
               {custom.basicPrice == 0 ? (
                 <div className={style.price}>가격 문의</div>

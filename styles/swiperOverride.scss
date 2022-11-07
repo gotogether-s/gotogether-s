@@ -1,8 +1,27 @@
 .swiper-pagination {
-  width: 6rem !important;
-  height: auto !important;
-  bottom: 1.7% !important;
+  width: 5rem !important;
+  height: 2.5rem !important;
+  bottom: 2.1rem !important;
   left: auto !important;
-  right: 0% !important;
-  background-color: #989898 !important;
+  right: 1.7rem !important;
+  background-color: #000000 !important;
+  border-radius: 100px;
+  opacity: 0.5;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 2.5rem;
+}
+.swiper-banner {
+  margin: 0 -1.6rem !important;
+}
+.swiper-list {
+  height: 23rem !important;
+  margin-right: -1.6rem !important;
+}
+.swiper-continent-all {
+  margin-right: -1.6rem !important;
+}
+.swiper-continent {
+  width: 20rem !important;
+  height: 13.2rem !important;
 }

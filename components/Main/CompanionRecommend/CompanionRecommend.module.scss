@@ -1,22 +1,20 @@
 .img {
-  width: 16.7rem;
-  height: 11.1rem;
+  width: 15.2rem;
+  height: 15.2rem;
+  border-radius: 0.8rem;
   cursor: pointer;
 }
 .nation {
   width: 100%;
   background-color: #466ff5;
   color: #fff;
-  font-size: 1rem;
-  border-radius: 1rem;
-  padding-top: 0.5rem;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-  padding-bottom: 0.3rem;
+  font-size: 1.2rem;
+  border-radius: 2.7rem;
+  padding: 0.2rem 0.7rem;
+  line-height: 0.2rem;
 }
 .title {
-  width: 16rem;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   font-weight: 700;
   font-size: 1.2rem;
   text-overflow: ellipsis;
@@ -28,7 +26,7 @@
   width: 16rem;
   .hashTag1 {
     width: 6rem;
-    color: #99aff9;
+    color: #4581f8;
     font-size: 1rem;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -36,7 +34,7 @@
   }
   .hashTag2 {
     width: 8rem;
-    color: #99aff9;
+    color: #4581f8;
     font-size: 1rem;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -46,96 +44,59 @@
 .price {
   font-size: 1.2rem;
   font-weight: 700;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 .group {
-  padding-top: 0.4rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  height: 2.5rem;
-  .selectAge {
-    width: auto !important;
-    .selectGroup {
-      text-align: center;
-      background-color: #fff;
-      color: #878788;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 700;
-      border: solid 0.1rem #878788;
-      border-radius: 2rem;
-      padding-top: 0.8rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      padding-bottom: 0.7rem;
-      &:hover {
-        text-align: center;
-        background-color: #878788;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 700;
-        border-radius: 2rem;
-        padding-top: 0.8rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        padding-bottom: 0.7rem;
-      }
-    }
-    .choice {
-      text-align: center;
-      background-color: #878788;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 2rem;
-      padding-top: 0.9rem;
-      padding-left: 1.6rem;
-      padding-right: 1.6rem;
-      padding-bottom: 0.8rem;
-      // pointer-events: none;
-    }
-  }
+  width: 34rem;
+  margin-top: -1.6rem;
+  margin-bottom: 2rem;
+  height: 3.2rem;
   .selectcompanion {
     width: auto !important;
     .selectGroup {
+      width: 5.8rem;
+      height: 3.2rem;
       text-align: center;
+      line-height: 3.2rem;
       background-color: #fff;
-      color: #878788;
+      color: #8a8a8a;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      border: solid 0.1rem #878788;
-      border-radius: 2rem;
-      padding-top: 0.8rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      padding-bottom: 0.7rem;
-      .choice,
+      border: solid 0.1rem #cbcbcb;
+      border-radius: 1.6rem;
+      padding-top: 0.6rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-bottom: 0.6rem;
       &:hover {
+        line-height: 3.2rem;
         text-align: center;
-        background-color: #878788;
+        background-color: #4581f8;
         color: #fff;
-        font-size: 1rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        border-radius: 2rem;
-        padding-top: 0.8rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        padding-bottom: 0.7rem;
+        border-radius: 1.6rem;
+        padding-top: 0.6rem;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+        padding-bottom: 0.6rem;
       }
     }
     .choice {
+      line-height: 3.2rem;
       text-align: center;
-      background-color: #878788;
+      background-color: #4581f8;
+      border: solid 0.1rem #4581f8;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      border-radius: 2rem;
-      padding-top: 0.9rem;
+      border-radius: 1.6rem;
+      padding-top: 0.6rem;
       padding-left: 1.6rem;
       padding-right: 1.6rem;
-      padding-bottom: 0.8rem;
-      // pointer-events: none;
+      padding-bottom: 0.6rem;
+      pointer-events: none;
     }
   }
 }
