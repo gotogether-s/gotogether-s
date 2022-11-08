@@ -572,17 +572,25 @@ function index({ data }: any) {
                   <div className="middle">
                     {continents &&
                       continents.map((continent: string, index: number) => (
-                        <span
-                          key={index}
-                          className="select"
-                          onClick={() => prevChangeContinent(continent)}
-                        >
+                        <div>
                           {prevContinentChange == continent ? (
-                            <div className="selectName">{continent}</div>
+                            <span
+                              key={index}
+                              className="selected"
+                              onClick={() => prevChangeContinent(continent)}
+                            >
+                              <div className="selectName">{continent}</div>
+                            </span>
                           ) : (
-                            <div className="name">{continent}</div>
+                            <span
+                              key={index}
+                              className="select"
+                              onClick={() => prevChangeContinent(continent)}
+                            >
+                              <div className="name">{continent}</div>
+                            </span>
                           )}
-                        </span>
+                        </div>
                       ))}
                   </div>
                 </>
@@ -597,17 +605,25 @@ function index({ data }: any) {
                   <div className="middle">
                     {ages &&
                       ages.map((age: string, index: number) => (
-                        <span
-                          key={index}
-                          className="select"
-                          onClick={() => prevChangeAge(age)}
-                        >
+                        <div>
                           {prevAgeChange == age ? (
-                            <div className="selectName">{age}</div>
+                            <span
+                              key={index}
+                              className="selected"
+                              onClick={() => prevChangeAge(age)}
+                            >
+                              <div className="selectName">{age}</div>
+                            </span>
                           ) : (
-                            <div className="name">{age}</div>
+                            <span
+                              key={index}
+                              className="select"
+                              onClick={() => prevChangeAge(age)}
+                            >
+                              <div className="name">{age}</div>
+                            </span>
                           )}
-                        </span>
+                        </div>
                       ))}
                   </div>
                 </>
@@ -622,17 +638,25 @@ function index({ data }: any) {
                   <div className="middle">
                     {companions &&
                       companions.map((companion: string, index: number) => (
-                        <span
-                          key={index}
-                          className="select"
-                          onClick={() => prevChangeCompanion(companion)}
-                        >
+                        <div>
                           {prevCompanionChange == companion ? (
-                            <div className="selectName">{companion}</div>
+                            <span
+                              key={index}
+                              className="selected"
+                              onClick={() => prevChangeCompanion(companion)}
+                            >
+                              <div className="selectName">{companion}</div>
+                            </span>
                           ) : (
-                            <div className="name">{companion}</div>
+                            <span
+                              key={index}
+                              className="select"
+                              onClick={() => prevChangeCompanion(companion)}
+                            >
+                              <div className="name">{companion}</div>
+                            </span>
                           )}
-                        </span>
+                        </div>
                       ))}
                   </div>
                 </>
@@ -647,17 +671,25 @@ function index({ data }: any) {
                   <div className="middle">
                     {themes &&
                       themes.map((theme: string, index: number) => (
-                        <span
-                          key={index}
-                          className="select"
-                          onClick={() => prevChangeTheme(theme)}
-                        >
+                        <div>
                           {prevThemeChange == theme ? (
-                            <div className="selectName">{theme}</div>
+                            <span
+                              key={index}
+                              className="selected"
+                              onClick={() => prevChangeTheme(theme)}
+                            >
+                              <div className="selectName">{theme}</div>
+                            </span>
                           ) : (
-                            <div className="name">{theme}</div>
+                            <span
+                              key={index}
+                              className="select"
+                              onClick={() => prevChangeTheme(theme)}
+                            >
+                              <div className="name">{theme}</div>
+                            </span>
                           )}
-                        </span>
+                        </div>
                       ))}
                   </div>
                 </>
