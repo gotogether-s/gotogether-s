@@ -1,27 +1,24 @@
 .category {
   font-size: 2rem;
   font-weight: 700;
-  margin: 1.4rem 0;
+  margin: 1.4rem 0 0 0;
 }
 .categoryLine {
-  width: 100%;
-  height: 0.01rem;
-  background-color: #878788;
+  width: 35.8rem;
+  height: 0.2rem;
+  margin: 1.8rem -1.6rem 1rem -1.6rem;
+  background-color: #eaeaea;
 }
 
 .selectBox_group {
-  display: flex;
-  margin: 1.2rem 0;
-  flex-wrap: wrap;
   .selectBoxArrow {
     display: flex;
     align-items: center;
-    width: 8.2rem;
-    height: 4rem;
-    border: 0.01rem solid #878788;
-    border-radius: 2rem;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    width: 9.6rem;
+    height: 3.6rem;
+    border: 0.1rem solid #d3d3d3;
+    border-radius: 2.2rem;
+    margin-right: 0.8rem;
     cursor: pointer;
     .selectBox {
       position: relative;
@@ -29,79 +26,114 @@
       background-color: #fff;
       border: none;
       margin-left: 0.2rem;
-      color: #878788;
+      color: #939393;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-weight: 700;
+      font-weight: 500;
+      font-size: 1.4rem;
       margin-left: 0.5rem;
     }
     .arrowDown {
       position: absolute;
-      margin-left: 6rem;
-      margin-top: 0.3rem;
-      color: #878788;
+      margin-left: 7rem;
+      margin-top: 0.5rem;
+      color: #939393;
+    }
+  }
+  .selectedBoxArrow {
+    display: flex;
+    align-items: center;
+    width: 9.6rem;
+    height: 3.6rem;
+    border: 0.1rem solid #4581f8;
+    border-radius: 2.2rem;
+    margin-right: 0.8rem;
+    .selectedBox {
+      position: relative;
+      width: 6.5rem;
+      background-color: #fff;
+      border: none;
+      margin-left: 0.2rem;
+      color: #4581f8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin-left: 0.5rem;
+    }
+    .arrowDown {
+      position: absolute;
+      margin-left: 7rem;
+      margin-top: 0.5rem;
+      color: #4581f8;
     }
   }
 }
 .selectBoxLsine {
-  margin-top: 0.4rem;
-  margin-bottom: 0.6rem;
-  width: 100%;
-  height: 0.01rem;
-  background-color: #878788;
+  width: 35.8rem;
+  height: 0.2rem;
+  margin: 1rem -1.6rem 1rem -1.6rem;
+  background-color: #eaeaea;
 }
 
 .totalFilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   .productTotal {
-    color: #878788;
-    font-weight: 700;
+    color: #222222;
+    font-weight: 500;
+  }
+  .productCount {
+    font-weight: 500;
+    color: #4581f8;
   }
   .selectBox {
     height: 4rem;
-    font-weight: 700;
+    text-align: left;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 500;
   }
 }
 .totalFilterLine {
-  margin-bottom: 2rem;
-  width: 100%;
-  height: 0.01rem;
-  background-color: #878788;
+  width: 35.8rem;
+  height: 0.2rem;
+  margin: 1rem -1.6rem 2rem -1.6rem;
+  background-color: #eaeaea;
 }
 
 .productLists {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  width: 33.6rem;
   .productList {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-right: 0.8rem;
+    width: 16rem;
     .imgClick {
+      width: 16rem;
+      height: 16rem;
+      border-radius: 0.8rem;
       cursor: pointer;
     }
     .nation {
       width: auto;
-      background-color: #466ff5;
+      background-color: #4581f8;
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-align: center;
-      line-height: 1rem;
-      border-radius: 1rem;
-      padding-top: 0.5rem;
-      padding-left: 0.8rem;
-      padding-right: 0.8rem;
-      padding-bottom: 0.3rem;
-      margin-top: 0.5rem;
+      border-radius: 2.7rem;
+      padding: 0.2rem 0.7rem;
+      margin-top: 0.7rem;
     }
     .title {
-      width: 18.5rem;
-      margin-top: 0.3rem;
+      width: 16rem;
+      margin-top: 0.5rem;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -109,9 +141,10 @@
     .hashTags {
       display: flex;
       width: 12rem;
+      margin-top: 0.2rem;
       .hashTag1 {
         width: 6rem;
-        color: #99aff9;
+        color: #4581f8;
         font-size: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -119,7 +152,7 @@
       }
       .hashTag2 {
         width: 8rem;
-        color: #99aff9;
+        color: #4581f8;
         font-size: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -127,10 +160,10 @@
       }
     }
     .price {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-top: 0.5rem;
-      margin-bottom: 3rem;
+      margin-top: 0.7rem;
+      margin-bottom: 2.1rem;
     }
   }
 }
@@ -169,26 +202,24 @@
   .modalBody {
     position: absolute;
     bottom: 0;
-    width: 41.4rem;
-    height: 90%;
+    width: 35.9rem;
+    height: calc(100% - 5.2rem);
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
-    text-align: center;
     background-color: #fff;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+    border-top-left-radius: 2.4rem;
+    border-top-right-radius: 2.4rem;
     box-shadow: 0 0.2rem 0.3rem 0 #22242626;
     animation: fadeInUp 0.2s;
-    margin-bottom: 5rem;
     .top {
-      margin-top: 3rem;
+      margin-top: 3.6rem;
+      margin-left: 1.6rem;
       .sharePhrases {
-        width: 15rem;
-        font-size: 2rem;
+        font-size: 1.9rem;
         font-weight: 700;
       }
       .sharePhrasesA {
@@ -200,56 +231,49 @@
     .middle {
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
       overflow-y: auto;
-      margin-top: 3rem;
-      margin-right: 1rem;
+      margin: 2.4rem 1.6rem 0 1.6rem;
+      justify-content: space-between;
       .select {
-        width: 43%;
-        height: 4.5rem;
-        border: 0.2rem solid #898988;
-        margin-left: 2rem;
-        margin-bottom: 1rem;
+        width: 15.8rem;
+        height: 4.8rem;
+        border: 0.1rem solid #d2d2d2;
+        border-radius: 0.8rem;
+        margin-bottom: 1.2rem;
         display: flex;
-        &:hover {
-          color: red;
-          cursor: pointer;
-        }
         .selectName {
           margin-left: 1rem;
           cursor: pointer;
           display: block;
           text-align: center;
-          line-height: 4.5rem;
-          font-weight: 700;
-          color: red;
+          line-height: 4.8rem;
+          font-weight: 500;
+          color: #4581f8;
         }
         .name {
           margin-left: 1rem;
           cursor: pointer;
           display: block;
           text-align: center;
-          line-height: 4.5rem;
-          font-weight: 700;
+          line-height: 4.8rem;
+          font-weight: 500;
         }
       }
     }
     .bottom {
       position: fixed;
       bottom: 0;
-      width: 41.5rem;
-      background-color: #fff;
+      width: 36rem;
+      background-color: #4581f8;
+      border-radius: 0.6rem;
       .result {
-        height: 5rem;
-        border: solid 0.1rem #000;
+        height: 4.8rem;
+        color: #fff;
         font-weight: 700;
-        font-size: 1.8rem;
-        line-height: 5rem;
+        font-size: 1.6rem;
+        line-height: 4.8rem;
         text-align: center;
         cursor: pointer;
-        &:hover {
-          background-color: #e1d8d8;
-        }
       }
     }
   }

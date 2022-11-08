@@ -4,6 +4,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 type data = {
   id: string
@@ -24,18 +28,18 @@ function index({ data }: any) {
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
-  const [ageChange, setAgeChange] = useState<string>('전체상품')
-  const [companionChange, setCompanionChange] = useState<string>('전체상품')
-  const [themeChange, setThemeChange] = useState<string>('전체상품')
-  const [continentChange, setContinentChange] = useState<string>('전체상품')
+  const [ageChange, setAgeChange] = useState<string>('연령대')
+  const [companionChange, setCompanionChange] = useState<string>('여행 유형')
+  const [themeChange, setThemeChange] = useState<string>('여행 테마')
+  const [continentChange, setContinentChange] = useState<string>('여행 국가')
   const [sortChange, setSortChange] = useState<string>('')
 
-  const [prevAgeChange, setPrevAgeChange] = useState<string>('전체상품')
+  const [prevAgeChange, setPrevAgeChange] = useState<string>('연령대')
   const [prevCompanionChange, setPrevCompanionChange] =
-    useState<string>('전체상품')
-  const [prevThemeChange, setPrevThemeChange] = useState<string>('전체상품')
+    useState<string>('여행 유형')
+  const [prevThemeChange, setPrevThemeChange] = useState<string>('여행 테마')
   const [prevContinentChange, setPrevContinentChange] =
-    useState<string>('전체상품')
+    useState<string>('여행 국가')
 
   const ages: string[] = [
     '전체상품',
@@ -154,16 +158,36 @@ function index({ data }: any) {
       let com = prevCompanionChange
       let the = prevThemeChange
 
-      if (prevContinentChange == '전체상품') {
+      if (
+        prevContinentChange == '전체상품' ||
+        prevContinentChange == '여행 국가' ||
+        prevContinentChange == ''
+      ) {
+        setContinentChange('여행 국가')
         con = ''
       }
-      if (prevAgeChange == '전체상품') {
+      if (
+        prevAgeChange == '전체상품' ||
+        prevAgeChange == '연령대' ||
+        prevAgeChange == ''
+      ) {
+        setAgeChange('연령대')
         age = ''
       }
-      if (prevCompanionChange == '전체상품') {
+      if (
+        prevCompanionChange == '전체상품' ||
+        prevCompanionChange == '여행 유형' ||
+        prevCompanionChange == ''
+      ) {
+        setCompanionChange('여행 유형')
         com = ''
       }
-      if (prevThemeChange == '전체상품') {
+      if (
+        prevThemeChange == '전체상품' ||
+        prevThemeChange == '여행 테마' ||
+        prevThemeChange == ''
+      ) {
+        setThemeChange('여행 테마')
         the = ''
       }
       router.push(
@@ -173,7 +197,12 @@ function index({ data }: any) {
     if (title == 'continents') {
       setContinentChange(prevContinentChange)
       setPrevContinentChange(prevContinentChange)
-      if (prevContinentChange == '전체상품') {
+      if (
+        prevContinentChange == '전체상품' ||
+        prevContinentChange == '여행 국가' ||
+        prevContinentChange == ''
+      ) {
+        setContinentChange('여행 국가')
         router.push(
           `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
         )
@@ -185,7 +214,12 @@ function index({ data }: any) {
     if (title == 'ages') {
       setAgeChange(prevAgeChange)
       setPrevAgeChange(prevAgeChange)
-      if (prevAgeChange == '전체상품') {
+      if (
+        prevAgeChange == '전체상품' ||
+        prevAgeChange == '연령대' ||
+        prevAgeChange == ''
+      ) {
+        setAgeChange('연령대')
         router.push(
           `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
         )
@@ -197,7 +231,12 @@ function index({ data }: any) {
     if (title == 'companion') {
       setCompanionChange(prevCompanionChange)
       setPrevCompanionChange(prevCompanionChange)
-      if (prevCompanionChange == '전체상품') {
+      if (
+        prevCompanionChange == '전체상품' ||
+        prevCompanionChange == '여행 유형' ||
+        prevCompanionChange == ''
+      ) {
+        setCompanionChange('여행 유형')
         router.push(
           `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
         )
@@ -209,7 +248,12 @@ function index({ data }: any) {
     if (title == 'themes') {
       setThemeChange(prevThemeChange)
       setPrevThemeChange(prevThemeChange)
-      if (prevThemeChange == '전체상품') {
+      if (
+        prevThemeChange == '전체상품' ||
+        prevThemeChange == '여행 테마' ||
+        prevThemeChange == ''
+      ) {
+        setThemeChange('여행 테마')
         router.push(
           `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
         )
@@ -250,164 +294,269 @@ function index({ data }: any) {
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        {title == 'all' ? (
-          <>
-            <div
-              className="selectBoxArrow"
-              onClick={() => setModalIsOpen(!modalIsOpen)}
-            >
-              {router.query.category1 == '' ? (
-                <input className="selectBox" value={continentChange} disabled />
-              ) : (
-                <input
-                  className="selectBox"
-                  value={router.query.category1}
-                  disabled
-                />
-              )}
-              <div className="arrowDown">
-                <KeyboardArrowDownIcon fontSize="small" />
-              </div>
-            </div>
-            <div
-              className="selectBoxArrow"
-              onClick={() => setModalIsOpen(!modalIsOpen)}
-            >
-              {router.query.category2 == '' ? (
-                <input className="selectBox" value={ageChange} disabled />
-              ) : (
-                <input
-                  className="selectBox"
-                  value={router.query.category2}
-                  disabled
-                />
-              )}
-              <div className="arrowDown">
-                <KeyboardArrowDownIcon fontSize="small" />
-              </div>
-            </div>
-            <div
-              className="selectBoxArrow"
-              onClick={() => setModalIsOpen(!modalIsOpen)}
-            >
-              {router.query.category3 == '' ? (
-                <input className="selectBox" value={companionChange} disabled />
-              ) : (
-                <input
-                  className="selectBox"
-                  value={router.query.category3}
-                  disabled
-                />
-              )}
-              <div className="arrowDown">
-                <KeyboardArrowDownIcon fontSize="small" />
-              </div>
-            </div>
-            <div
-              className="selectBoxArrow"
-              onClick={() => setModalIsOpen(!modalIsOpen)}
-            >
-              {router.query.category4 == '' ? (
-                <input className="selectBox" value={themeChange} disabled />
-              ) : (
-                <input
-                  className="selectBox"
-                  value={router.query.category4}
-                  disabled
-                />
-              )}
-              <div className="arrowDown">
-                <KeyboardArrowDownIcon fontSize="small" />
-              </div>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
+        <Swiper slidesPerView={3.1}>
+          {title == 'all' ? (
+            <>
+              <SwiperSlide>
+                <div>
+                  {router.query.category1 == '' ? (
+                    <div
+                      className="selectBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectBox"
+                        value={continentChange}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="selectedBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectedBox"
+                        value={router.query.category1}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide>
+                <div>
+                  {router.query.category2 == '' ? (
+                    <div
+                      className="selectBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input className="selectBox" value={ageChange} disabled />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="selectedBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectedBox"
+                        value={router.query.category2}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide>
+                <div>
+                  {router.query.category3 == '' ? (
+                    <div
+                      className="selectBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectBox"
+                        value={companionChange}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="selectedBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectedBox"
+                        value={router.query.category3}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+
+              <SwiperSlide>
+                <div>
+                  {router.query.category4 == '' ? (
+                    <div
+                      className="selectBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectBox"
+                        value={themeChange}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className="selectedBoxArrow"
+                      onClick={() => setModalIsOpen(!modalIsOpen)}
+                    >
+                      <input
+                        className="selectedBox"
+                        value={router.query.category4}
+                        disabled
+                      />
+                      <div className="arrowDown">
+                        <KeyboardArrowDownIcon fontSize="small" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+            </>
+          ) : (
+            <></>
+          )}
+        </Swiper>
 
         {title == 'continents' ? (
-          <div
-            className="selectBoxArrow"
-            onClick={() => setModalIsOpen(!modalIsOpen)}
-          >
+          <div>
             {router.query.category == '' ? (
-              <input className="selectBox" value={continentChange} disabled />
+              <div
+                className="selectBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input className="selectBox" value={continentChange} disabled />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             ) : (
-              <input
-                className="selectBox"
-                value={router.query.category}
-                disabled
-              />
+              <div
+                className="selectedBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input
+                  className="selectedBox"
+                  value={router.query.category}
+                  disabled
+                />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             )}
-            <div className="arrowDown">
-              <KeyboardArrowDownIcon fontSize="small" />
-            </div>
           </div>
         ) : (
           <></>
         )}
 
         {title == 'ages' ? (
-          <div
-            className="selectBoxArrow"
-            onClick={() => setModalIsOpen(!modalIsOpen)}
-          >
+          <div>
             {router.query.category == '' ? (
-              <input className="selectBox" value={ageChange} disabled />
+              <div
+                className="selectBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input className="selectBox" value={ageChange} disabled />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             ) : (
-              <input
-                className="selectBox"
-                value={router.query.category}
-                disabled
-              />
+              <div
+                className="selectedBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input
+                  className="selectedBox"
+                  value={router.query.category}
+                  disabled
+                />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             )}
-            <div className="arrowDown">
-              <KeyboardArrowDownIcon fontSize="small" />
-            </div>
           </div>
         ) : (
           <></>
         )}
 
         {title == 'companion' ? (
-          <div
-            className="selectBoxArrow"
-            onClick={() => setModalIsOpen(!modalIsOpen)}
-          >
+          <div>
             {router.query.category == '' ? (
-              <input className="selectBox" value={companionChange} disabled />
+              <div
+                className="selectBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input className="selectBox" value={companionChange} disabled />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             ) : (
-              <input
-                className="selectBox"
-                value={router.query.category}
-                disabled
-              />
+              <div
+                className="selectedBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input
+                  className="selectedBox"
+                  value={router.query.category}
+                  disabled
+                />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             )}
-            <div className="arrowDown">
-              <KeyboardArrowDownIcon fontSize="small" />
-            </div>
           </div>
         ) : (
           <></>
         )}
 
         {title == 'themes' ? (
-          <div
-            className="selectBoxArrow"
-            onClick={() => setModalIsOpen(!modalIsOpen)}
-          >
+          <div>
             {router.query.category == '' ? (
-              <input className="selectBox" value={themeChange} disabled />
+              <div
+                className="selectBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input className="selectBox" value={themeChange} disabled />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             ) : (
-              <input
-                className="selectBox"
-                value={router.query.category}
-                disabled
-              />
+              <div
+                className="selectedBoxArrow"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <input
+                  className="selectedBox"
+                  value={router.query.category}
+                  disabled
+                />
+                <div className="arrowDown">
+                  <KeyboardArrowDownIcon fontSize="small" />
+                </div>
+              </div>
             )}
-            <div className="arrowDown">
-              <KeyboardArrowDownIcon fontSize="small" />
-            </div>
           </div>
         ) : (
           <></>
@@ -527,7 +676,11 @@ function index({ data }: any) {
       </div>
 
       <div className="totalFilter">
-        <div className="productTotal">총 {data.data.totalElements}개 상품</div>
+        <div className="productTotal">
+          총 상품
+          <span className="productCount">&nbsp;{data.data.totalElements}</span>
+          개
+        </div>
         <select className="selectBox" onChange={changeSort} value={sortChange}>
           <option value="">기본순</option>
           <option value="basicPrice,desc">높은 가격순</option>
@@ -541,13 +694,7 @@ function index({ data }: any) {
           data.data.content.map(({ ...list }: data, index: number) => (
             <div className="productList" key={index}>
               <Link href={`/product-details/${list.id}`}>
-                <img
-                  src={list.thumbnail}
-                  alt="img"
-                  width="185px"
-                  height="185px"
-                  className="imgClick"
-                />
+                <img src={list.thumbnail} alt="img" className="imgClick" />
               </Link>
               <span className="nation">{list.country}</span>
               <div className="title">{list.productName}</div>

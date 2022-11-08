@@ -26,7 +26,7 @@ function index() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="/">
+          <Link href="/product-list/continents?category=괌,사이판,하와이&page=0&sort=">
             <a>
               <img src="./banner2.png" alt="img" className={style.img} />
             </a>
