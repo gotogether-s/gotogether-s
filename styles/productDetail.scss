@@ -1,65 +1,106 @@
 .productDetail {
   .thumbnail {
-    margin-top: 1rem;
     .img {
-      width: 100%;
-      height: 100%;
+      margin: 0 -1.7rem 1rem -1.7rem;
+      width: 36rem;
+      height: 36rem;
       cursor: pointer;
     }
   }
   .basicInformation {
-    margin: 1rem 0;
+    margin: 1.977rem 0 0 0;
     .nation {
-      width: 100%;
-      background-color: #466ff5;
+      width: auto;
+      background-color: #4581f8;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       text-align: center;
-      border-radius: 2rem;
-      padding-top: 0.5rem;
-      padding-left: 0.8rem;
-      padding-right: 0.8rem;
-      padding-bottom: 0.3rem;
+      border-radius: 2.7rem;
+      padding: 0.5rem 1rem;
     }
     .title {
-      margin-top: 0.3rem;
+      margin-top: 0.8rem;
       font-weight: 700;
       font-size: 2rem;
     }
     .hashTags {
       display: flex;
+      margin-top: 0.8rem;
       .hashTag {
-        color: #9b9595;
-        font-size: 1.5rem;
-        margin-top: 0.5rem;
+        color: #919191;
+        font-size: 1.6rem;
       }
     }
     .price {
       color: #466ff5;
       font-size: 2rem;
       font-weight: 700;
-      margin-top: 1.5rem;
+      margin-top: 0.8rem;
     }
   }
+  .line {
+    width: 35.8rem;
+    height: 0.2rem;
+    margin: 1.8rem -1.6rem 1rem -1.6rem;
+    background-color: #eaeaea;
+  }
   .nextArea {
-    background-color: #ddd;
-    height: 1.5rem;
-    margin-top: 2rem;
+    width: 35.8rem;
+    height: 1.6rem;
+    margin: 2rem -1.6rem;
+    background-color: #f2f4fa;
+  }
+
+  .wish_reser {
+    display: flex;
+    align-items: center;
+    margin-top: 1.6rem;
+    .wish {
+      width: 7.5rem;
+      height: 4.8rem;
+      font-weight: 500;
+      color: #ffffff;
+      background-color: #4581f8;
+      border-radius: 0.6rem;
+      line-height: 4.8rem;
+      text-align: center;
+      margin-right: 0.8rem;
+      cursor: pointer;
+    }
+    .reservation {
+      width: 24.5rem;
+      height: 4.8rem;
+      color: #4581f8;
+      background-color: #fff;
+      border: 0.1rem solid #4581f8;
+      border-radius: 0.6rem;
+      font-weight: 700;
+      line-height: 5rem;
+      text-align: center;
+      cursor: pointer;
+    }
   }
 
   .departureDate {
-    margin-top: 1rem;
+    margin-top: 3.1rem;
     .departure {
-      color: #9b9595;
+      color: #242424;
+      font-size: 1.4rem;
     }
     .selectDepartureDate {
-      margin-top: 1rem;
+      margin-top: 1.2rem;
       .select {
         width: 100%;
-        height: 4rem;
-        margin-bottom: 0.5rem;
+        height: 4.8rem;
+        border-radius: 0.6rem;
+        border-color: #d2d2d2;
       }
     }
+  }
+  .inforTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2rem 0 1.6rem 0;
   }
   .titleContent {
     display: flex;
@@ -75,17 +116,16 @@
     }
   }
   .share {
-    height: 5rem;
+    color: #4581f8;
+    height: 4.8rem;
     margin-top: 2rem;
-    border: solid 0.1rem #000;
-    font-weight: 700;
-    font-size: 1.8rem;
-    line-height: 5rem;
+    border: 0.1rem solid #4581f8;
+    border-radius: 0.6rem;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 4.8rem;
     text-align: center;
     cursor: pointer;
-    &:hover {
-      background-color: #e1d8d8;
-    }
   }
   .shareContainer {
     position: fixed;
@@ -142,7 +182,7 @@
         }
         .button {
           background-color: #fff;
-          border: 1px solid #22242626;
+          border: 0.1rem solid #22242626;
           width: 25%;
           cursor: pointer;
           font-size: 1.4rem;
@@ -222,44 +262,49 @@
     }
   }
   .explicate {
-    padding-top: 2rem;
     padding-bottom: 2rem;
-    width: 38rem;
+    width: 36rem;
     height: auto;
   }
-  .footer {
+  .more {
+    position: relative;
+    bottom: 7.6rem;
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 38.2rem;
-    bottom: 0%;
-    position: fixed;
-    .wish {
-      width: 30%;
-      height: 5rem;
-      font-weight: 700;
-      border-top: 0.2rem solid #000;
-      border-bottom: 0.2rem solid #000;
-      border-left: 0.2rem solid #000;
-      background-color: #ddd;
-      line-height: 5rem;
-      text-align: center;
-      cursor: pointer;
-      &:hover {
-        background-color: #beb7b7;
-      }
+    cursor: pointer;
+    height: 4.8rem;
+    background-color: #fff;
+    border: 0.1rem solid #4581f8;
+    border-radius: 0.8rem;
+    &:before {
+      content: '';
+      position: absolute;
+      margin: 0 -1.7rem 1rem -1.7rem;
+      left: 0;
+      display: block;
+      width: 36rem;
+      top: 3.6rem;
+      height: 3rem;
+      background: linear-gradient(
+        rgba(255, 255, 255, 0.01),
+        rgba(255, 255, 255, 0.8) 66%,
+        rgba(255, 255, 255, 0.9) 83%,
+        rgba(255, 255, 255, 0.98) 98%,
+        #fff
+      );
     }
-    .reservation {
-      width: 70%;
-      height: 5rem;
-      background-color: #fff;
-      border: 0.2rem solid #000;
-      font-weight: 700;
-      line-height: 5rem;
-      text-align: center;
-      cursor: pointer;
-      &:hover {
-        background-color: #e1d8d8;
-      }
+    .pharse {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #4581f8;
+      margin-right: 0.5rem;
     }
+  }
+  .introNextArea {
+    width: 35.8rem;
+    height: 1.6rem;
+    margin: -6rem -1.6rem 0 -1.6rem;
+    background-color: #f2f4fa;
   }
 }
