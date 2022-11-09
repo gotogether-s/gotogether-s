@@ -11,6 +11,8 @@ import {
   LineShareButton,
   LineIcon,
 } from 'react-share'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 function index({ data }: any) {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
@@ -56,9 +58,20 @@ function index({ data }: any) {
   }
   const detailData = JSON.parse(data.info)
 
+  const [showMore, setShowMore] = useState<boolean>(false)
+  const [visible, setVisible] = useState<string>('hidden')
+  const [maxHeight, setMaxHeight] = useState<string>('40rem')
+
   useEffect(() => {
-    detailData
-  }, [detailData])
+    if (showMore) {
+      setVisible('visible')
+      setMaxHeight('100%')
+    } else {
+      setVisible('hidden')
+      setMaxHeight('40rem')
+      window.scrollTo(0, 1000)
+    }
+  }, [showMore, visible, maxHeight])
 
   return (
     <div className="productDetail">
@@ -81,7 +94,12 @@ function index({ data }: any) {
           </div>
         )}
       </div>
-      <div className="nextArea" />
+      <div className="line"></div>
+
+      <footer className="wish_reser">
+        <div className="wish">찜하기</div>
+        <div className="reservation">예약하기</div>
+      </footer>
 
       <div className="departureDate">
         <div className="departure">출발일 (필수)</div>
@@ -101,6 +119,8 @@ function index({ data }: any) {
       </div>
       <div className="nextArea" />
 
+      <div className="inforTitle">여행 정보</div>
+      <div className="line"></div>
       <div className="titleContent">
         <div className="title">지역</div>
         <div className="content">{data.region}</div>
@@ -203,23 +223,43 @@ function index({ data }: any) {
       )}
       <div className="nextArea" />
 
-      <div className="explicate">
-        {detailData &&
-          detailData.map((data: any, index: number) => (
-            <div key={index}>
-              {data.type === 'image' ? (
-                <img src={data.url} alt="img" width="100%" />
-              ) : (
-                <></>
-              )}
-            </div>
-          ))}
+      <div className="inforTitle">여행 소개</div>
+      <div
+        style={{
+          overflow: `${visible}`,
+          maxHeight: `${maxHeight}`,
+          margin: '0 -1.7rem 1rem -1.7rem',
+          width: '36rem',
+        }}
+      >
+        <div className="explicate">
+          {detailData &&
+            detailData.map((data: any, index: number) => (
+              <div key={index}>
+                {data.type === 'image' ? (
+                  <img src={data.url} alt="img" width="100%" />
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
+        </div>
       </div>
-
-      <footer className="footer">
-        <div className="wish">찜하기</div>
-        <div className="reservation">예약하기</div>
-      </footer>
+      {showMore ? (
+        <div className="more" onClick={() => setShowMore(!showMore)}>
+          <div className="pharse">접기</div>
+          <KeyboardArrowUpIcon fontSize="small" style={{ color: '#4581f8' }} />
+        </div>
+      ) : (
+        <div className="more" onClick={() => setShowMore(!showMore)}>
+          <div className="pharse">더보기</div>
+          <KeyboardArrowDownIcon
+            fontSize="small"
+            style={{ color: '#4581f8' }}
+          />
+        </div>
+      )}
+      <div className="introNextArea" />
     </div>
   )
 }
