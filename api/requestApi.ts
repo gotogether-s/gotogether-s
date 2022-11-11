@@ -37,6 +37,15 @@ export const requestApi = createApi({
         },
       }),
     }),
+    membersDetail: builder.mutation({
+      query: ({ accessToken }) => ({
+        url: '/members/detail',
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
   }),
 })
 
@@ -45,4 +54,5 @@ export const {
   useSignUpMutation,
   useValidateEmailMutation,
   useCurationSurveyMutation,
+  useMembersDetailMutation,
 } = requestApi
