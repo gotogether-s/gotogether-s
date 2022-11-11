@@ -27,6 +27,16 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
+    curationSurvey: builder.mutation({
+      query: ({ data, accessToken }) => ({
+        url: '/members/curation',
+        method: 'POST',
+        body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
   }),
 })
 
@@ -34,4 +44,5 @@ export const {
   useSignInMutation,
   useSignUpMutation,
   useValidateEmailMutation,
+  useCurationSurveyMutation,
 } = requestApi
