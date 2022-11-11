@@ -1,15 +1,48 @@
+import { useMembersDetailMutation } from '@api/requestApi'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { close } from '@store/sideBarStatusSlice'
+import Link from 'next/link'
 import Category from './Category'
 import style from './Menu.module.scss'
 
 const Menu = () => {
+  const [membersDetail] = useMembersDetailMutation()
+
   const mainMenus = useSelector((state) => {
     return state.mainMenu
   })
   const dispatch = useDispatch()
+
+  const [statusCode, setStatusCode] = useState(null)
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
+
+  const requestUserInfo = async (accessToken) => {
+    console.log(accessToken)
+    try {
+      const res = await membersDetail({
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+      const { statusCode } = res.data
+      setStatusCode(statusCode)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  const clickLogoutMenu = () => {
+    dispatch(close())
+  }
+
+  const clickSignupMenu = () => {
+    dispatch(close())
+  }
 
   return (
     <>
@@ -25,6 +58,23 @@ const Menu = () => {
         ))}
       </List>
       <Category />
+      {statusCode ? (
+        <List onClick={clickLogoutMenu} sx={{ padding: '0' }}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="로그아웃" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      ) : (
+        <List onClick={clickSignupMenu} sx={{ padding: '0' }}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="회원가입" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      )}
     </>
   )
 }
