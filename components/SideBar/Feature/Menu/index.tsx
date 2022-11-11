@@ -12,18 +12,20 @@ const Menu = () => {
   const dispatch = useDispatch()
 
   return (
-    <List onClick={() => dispatch(close())}>
-      {mainMenus.map((mainMenu: any, index: number) => (
-        <Link key={index} href={mainMenu.link}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary={mainMenu.label} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      ))}
+    <>
+      <List onClick={() => dispatch(close())} sx={{ padding: '0' }}>
+        {mainMenus.map((mainMenu: any, index: number) => (
+          <Link key={index} href={mainMenu.link}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary={mainMenu.label} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
+      </List>
       <Category />
-    </List>
+    </>
   )
 }
 
