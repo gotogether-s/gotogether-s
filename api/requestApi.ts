@@ -46,6 +46,12 @@ export const requestApi = createApi({
         },
       }),
     }),
+    productsSearch: builder.mutation({
+      query: (searchText) => ({
+        url: `/products/search?keyword=${searchText}`,
+        method: 'GET',
+      }),
+    }),
   }),
 })
 
@@ -55,4 +61,5 @@ export const {
   useValidateEmailMutation,
   useCurationSurveyMutation,
   useMembersDetailMutation,
+  useProductsSearchMutation,
 } = requestApi
