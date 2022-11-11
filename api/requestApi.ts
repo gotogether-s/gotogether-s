@@ -13,7 +13,25 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
+    signUp: builder.mutation({
+      query: ({ data }) => ({
+        url: '/members',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    validateEmail: builder.mutation({
+      query: ({ data }) => ({
+        url: '/members/validation',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
-export const { useSignInMutation } = requestApi
+export const {
+  useSignInMutation,
+  useSignUpMutation,
+  useValidateEmailMutation,
+} = requestApi
