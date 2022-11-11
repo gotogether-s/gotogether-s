@@ -33,11 +33,7 @@ function Main() {
   }
 
   return (
-    <div
-      style={{
-        padding: '0 1.6rem',
-      }}
-    >
+    <>
       <Banner />
       <div className={style.container}>
         <Category />
@@ -108,7 +104,7 @@ function Main() {
 
         <Footer />
       </div>
-    </div>
+    </>
   )
 }
 
