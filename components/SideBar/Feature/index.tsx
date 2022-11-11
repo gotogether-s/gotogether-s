@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { useMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import User from './User'
@@ -6,6 +6,7 @@ import Menu from './Menu'
 import style from './Feature.module.scss'
 
 const Feature = () => {
+  const [membersDetail] = useMembersDetailMutation()
   const [isLogin, setIsLogin] = useState(false)
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -34,14 +35,9 @@ const Feature = () => {
   const requestUserInfo = async (accessToken) => {
     console.log(accessToken)
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/members/detail`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
+      const res = await membersDetail({
+        accessToken: accessToken,
+      })
       console.log('res: ', res)
       const { name, email } = res.data.data
       setUserName(name)

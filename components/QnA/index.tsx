@@ -1,11 +1,13 @@
-import axios from 'axios'
 import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
+import { useCurationSurveyMutation } from '@api/requestApi'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import style from './QnA.module.scss'
 
 const QnA = () => {
+  const [curationSurvey] = useCurationSurveyMutation()
+
   const [userSurveyResult, setUserSurveyResult] = useState({
     ages: '',
     genderGroup: '',
@@ -59,15 +61,10 @@ const QnA = () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
       console.log('accessToken:', accessToken)
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/members/curation`,
-        userSurveyResult,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
+      const res = await curationSurvey({
+        data: userSurveyResult,
+        accessToken: accessToken,
+      })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setDisplayMessage(

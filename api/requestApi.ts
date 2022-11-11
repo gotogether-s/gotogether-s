@@ -13,7 +13,53 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
+    signUp: builder.mutation({
+      query: ({ data }) => ({
+        url: '/members',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    validateEmail: builder.mutation({
+      query: ({ data }) => ({
+        url: '/members/validation',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    curationSurvey: builder.mutation({
+      query: ({ data, accessToken }) => ({
+        url: '/members/curation',
+        method: 'POST',
+        body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
+    membersDetail: builder.mutation({
+      query: ({ accessToken }) => ({
+        url: '/members/detail',
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
+    productsSearch: builder.mutation({
+      query: (searchText) => ({
+        url: `/products/search?keyword=${searchText}`,
+        method: 'GET',
+      }),
+    }),
   }),
 })
 
-export const { useSignInMutation } = requestApi
+export const {
+  useSignInMutation,
+  useSignUpMutation,
+  useValidateEmailMutation,
+  useCurationSurveyMutation,
+  useMembersDetailMutation,
+  useProductsSearchMutation,
+} = requestApi

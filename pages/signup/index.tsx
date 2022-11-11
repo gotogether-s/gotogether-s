@@ -1,10 +1,10 @@
-import axios from 'axios'
 import { Dayjs } from 'dayjs'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useSignUpMutation, useValidateEmailMutation } from '@api/requestApi'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './SignUp.module.scss'
@@ -13,6 +13,8 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
   const router = useRouter()
+  const [signUp] = useSignUpMutation()
+  const [validateEmail] = useValidateEmailMutation()
 
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
 
@@ -105,10 +107,9 @@ const SignUp = () => {
     }
     const email = { email: signUpValues.email }
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/members/validation`,
-        email,
-      )
+      const res = await validateEmail({
+        data: email,
+      })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignUpValuesErrors(validateSignUp(signUpValues, true, 200))
@@ -144,10 +145,9 @@ const SignUp = () => {
     }
 
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/members`,
-        signUpData,
-      )
+      const res = await signUp({
+        data: signUpData,
+      })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignUpResponseMessage(
