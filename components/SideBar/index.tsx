@@ -1,14 +1,16 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import { Drawer, Backdrop } from '@mui/material'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { click } from '@store/sideBarStatusSlice'
 import Feature from './Feature'
 import style from './SideBar.module.scss'
 
 const SideBar = () => {
-  const [sideBarOpen, setSideBarOpen] = useState(false)
-  const toggleSideBar = () => {
-    setSideBarOpen(!sideBarOpen)
-  }
+  const sideBarOpen = useSelector((state) => {
+    return state.sideBarStatus.sideBarOpen
+  })
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -19,7 +21,7 @@ const SideBar = () => {
             cursor: 'pointer',
           },
         }}
-        onClick={toggleSideBar}
+        onClick={() => dispatch(click())}
       />
       <Drawer
         PaperProps={{
@@ -28,19 +30,21 @@ const SideBar = () => {
             position: 'absolute',
             height: '100%',
             border: '1px solid #ddd',
-            transition: 'none !important',
+            // transition: 'none !important',
           },
         }}
         variant="persistent"
         anchor="left"
+        transitionDuration={{ enter: 500, exit: 400 }}
         open={sideBarOpen}
       >
         <Feature />
       </Drawer>
       <Backdrop
         open={sideBarOpen}
-        onClick={toggleSideBar}
+        onClick={() => dispatch(click())}
         sx={{ position: 'absolute' }}
+        transitionDuration={{ enter: 500, exit: 400 }}
       />
     </>
   )

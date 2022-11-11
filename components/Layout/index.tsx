@@ -40,16 +40,10 @@ const Layout = ({ children }: any) => {
 
   return (
     <>
-      <Container
-        maxWidth="sm"
-        className={style.container}
-        style={{
-          padding: '0 1.6rem',
-        }}
-      >
+      <Container maxWidth="sm" className={style['layout-container']}>
         {displayMainNav()}
         {displayTopButton()}
-        <div>{children}</div>
+        <div className={style['layout-body-container']}>{children}</div>
       </Container>
     </>
   )

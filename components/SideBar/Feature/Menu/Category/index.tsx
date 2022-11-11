@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleCategorySubMenu } from '@store/categoryMenuSlice'
+import { close } from '@store/sideBarStatusSlice'
 import { useState, Fragment } from 'react'
 import style from './Category.module.scss'
 
@@ -64,7 +65,10 @@ const Category = () => {
                   unmountOnExit
                   key={index}
                 >
-                  <ListItemButton sx={{ pl: 6 }}>
+                  <ListItemButton
+                    sx={{ pl: 6 }}
+                    onClick={() => dispatch(close())}
+                  >
                     <ListItemText primary={subMenu.label} />
                   </ListItemButton>
                 </Collapse>
