@@ -52,6 +52,15 @@ export const requestApi = createApi({
         method: 'GET',
       }),
     }),
+    logout: builder.mutation({
+      query: ({ accessToken }) => ({
+        url: '/logout',
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
   }),
 })
 
@@ -62,4 +71,5 @@ export const {
   useCurationSurveyMutation,
   useMembersDetailMutation,
   useProductsSearchMutation,
+  useLogoutMutation,
 } = requestApi
