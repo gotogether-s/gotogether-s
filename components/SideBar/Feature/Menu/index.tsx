@@ -1,14 +1,18 @@
-import { useMembersDetailMutation } from '@api/requestApi'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useMembersDetailMutation, useLogoutMutation } from '@api/requestApi'
+import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import { close } from '@store/sideBarStatusSlice'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Category from './Category'
 import style from './Menu.module.scss'
 
 const Menu = () => {
   const [membersDetail] = useMembersDetailMutation()
+  const [logout] = useLogoutMutation()
+
+  const router = useRouter()
 
   const mainMenus = useSelector((state) => {
     return state.mainMenu
@@ -38,6 +42,23 @@ const Menu = () => {
 
   const clickLogoutMenu = () => {
     dispatch(close())
+    requestLogout()
+  }
+
+  const requestLogout = async (e) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      console.log('accessToken:', accessToken)
+      const res = await logout({
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+      if (res.data.statusCode === 200) {
+        router.push('/')
+      }
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   const clickSignupMenu = () => {
