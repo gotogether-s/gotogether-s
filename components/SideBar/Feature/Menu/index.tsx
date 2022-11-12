@@ -63,6 +63,7 @@ const Menu = () => {
 
   const clickSignupMenu = () => {
     dispatch(close())
+    router.push('/signup')
   }
 
   return (
