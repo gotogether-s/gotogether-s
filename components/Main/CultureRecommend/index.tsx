@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import { useCultureRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -19,14 +19,15 @@ type data = {
 
 function index() {
   const [culture, setCulture] = useState<[]>([])
+  const [cultureRecommend]: any = useCultureRecommendMutation()
+
   const cultureRec = async () => {
-    const res = await axios.get(
-      encodeURI(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/product-list/themes?category=문화탐방&page=0&sort=`,
-      ),
-    )
-    setCulture(res.data.data.content)
+    try {
+      const res = await cultureRecommend()
+      setCulture(res.data.data.content)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   useEffect(() => {
