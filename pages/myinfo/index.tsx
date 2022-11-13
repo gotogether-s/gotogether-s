@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemText, Typography } from '@mui/material'
+import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
 import { useMembersDetailMutation } from '@api/requestApi'
 import { useState, useEffect } from 'react'
 import style from './MyInfo.module.scss'
@@ -80,6 +80,14 @@ const MyInfo = () => {
           </ListItem>
         </List>
       ))}
+      <Button
+        variant="contained"
+        sx={{
+          width: '100%',
+        }}
+      >
+        비밀번호 수정
+      </Button>
     </>
   )
 }
