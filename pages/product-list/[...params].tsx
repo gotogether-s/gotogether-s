@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useMembersDetailMutation } from '@api/requestApi'
+import Pagination from 'react-js-pagination'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -87,22 +89,34 @@ function index({ data }: any) {
     '코카서스',
     '호주,뉴질랜드',
   ]
+
+  const [membersDetail]: any = useMembersDetailMutation()
+
+  const [page, setPage] = useState<number>(1)
+  const handlePageChange = (page: number) => {
+    setPage(page)
+    if (router.query.params == 'all') {
+      router.push(
+        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${sortChange}`,
+      )
+    } else
+      router.push(
+        `/product-list/${router.query.params}?category=${
+          router.query.category
+        }&page=${page - 1}&sort=${sortChange}`,
+      )
+  }
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
     accessToken && requestUserInfo(accessToken)
-  }, [])
+    handlePageChange(page)
+  }, [page])
 
   const requestUserInfo = async (accessToken: string) => {
-    console.log(accessToken)
     try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/members/detail`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
+      const res = await membersDetail({
+        accessToken,
+      })
       const { name } = res.data.data
       setUsername(name)
     } catch (e) {
@@ -114,11 +128,11 @@ function index({ data }: any) {
     setSortChange(e.target.value)
     if (router.query.params == 'all') {
       router.push(
-        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${router.query.page}&sort=${e.target.value}`,
+        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${e.target.value}`,
       )
     } else
       router.push(
-        `/product-list/${router.query.params}?category=${router.query.category}&page=${router.query.page}&sort=${e.target.value}`,
+        `/product-list/${router.query.params}?category=${router.query.category}&page=${page}&sort=${e.target.value}`,
       )
   }
   const prevChangeContinent = (e: string) => {
@@ -191,7 +205,7 @@ function index({ data }: any) {
         the = ''
       }
       router.push(
-        `/product-list/${router.query.params}?category1=${con}&category2=${age}&category3=${com}&category4=${the}&page=${router.query.page}&sort=${router.query.sort}`,
+        `/product-list/${router.query.params}?category1=${con}&category2=${age}&category3=${com}&category4=${the}&page=0&sort=${router.query.sort}`,
       )
     }
     if (title == 'continents') {
@@ -204,11 +218,11 @@ function index({ data }: any) {
       ) {
         setContinentChange('여행 국가')
         router.push(
-          `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=&page=0&sort=${router.query.sort}`,
         )
       } else
         router.push(
-          `/product-list/${router.query.params}?category=${prevContinentChange}&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=${prevContinentChange}&page=0&sort=${router.query.sort}`,
         )
     }
     if (title == 'ages') {
@@ -221,11 +235,11 @@ function index({ data }: any) {
       ) {
         setAgeChange('연령대')
         router.push(
-          `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=&page=0&sort=${router.query.sort}`,
         )
       } else
         router.push(
-          `/product-list/${router.query.params}?category=${prevAgeChange}&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=${prevAgeChange}&page=0&sort=${router.query.sort}`,
         )
     }
     if (title == 'companion') {
@@ -238,11 +252,11 @@ function index({ data }: any) {
       ) {
         setCompanionChange('여행 유형')
         router.push(
-          `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=&page=0&sort=${router.query.sort}`,
         )
       } else
         router.push(
-          `/product-list/${router.query.params}?category=${prevCompanionChange}&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=${prevCompanionChange}&page=0&sort=${router.query.sort}`,
         )
     }
     if (title == 'themes') {
@@ -255,13 +269,14 @@ function index({ data }: any) {
       ) {
         setThemeChange('여행 테마')
         router.push(
-          `/product-list/${router.query.params}?category=&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=&page=0&sort=${router.query.sort}`,
         )
       } else
         router.push(
-          `/product-list/${router.query.params}?category=${prevThemeChange}&page=${router.query.page}&sort=${router.query.sort}`,
+          `/product-list/${router.query.params}?category=${prevThemeChange}&page=0&sort=${router.query.sort}`,
         )
     }
+    setPage(1)
     setModalIsOpen(!modalIsOpen)
   }
 
@@ -572,10 +587,9 @@ function index({ data }: any) {
                   <div className="middle">
                     {continents &&
                       continents.map((continent: string, index: number) => (
-                        <div>
+                        <div key={index}>
                           {prevContinentChange == continent ? (
                             <span
-                              key={index}
                               className="selected"
                               onClick={() => prevChangeContinent(continent)}
                             >
@@ -583,7 +597,6 @@ function index({ data }: any) {
                             </span>
                           ) : (
                             <span
-                              key={index}
                               className="select"
                               onClick={() => prevChangeContinent(continent)}
                             >
@@ -605,10 +618,9 @@ function index({ data }: any) {
                   <div className="middle">
                     {ages &&
                       ages.map((age: string, index: number) => (
-                        <div>
+                        <div key={index}>
                           {prevAgeChange == age ? (
                             <span
-                              key={index}
                               className="selected"
                               onClick={() => prevChangeAge(age)}
                             >
@@ -616,7 +628,6 @@ function index({ data }: any) {
                             </span>
                           ) : (
                             <span
-                              key={index}
                               className="select"
                               onClick={() => prevChangeAge(age)}
                             >
@@ -638,10 +649,9 @@ function index({ data }: any) {
                   <div className="middle">
                     {companions &&
                       companions.map((companion: string, index: number) => (
-                        <div>
+                        <div key={index}>
                           {prevCompanionChange == companion ? (
                             <span
-                              key={index}
                               className="selected"
                               onClick={() => prevChangeCompanion(companion)}
                             >
@@ -649,7 +659,6 @@ function index({ data }: any) {
                             </span>
                           ) : (
                             <span
-                              key={index}
                               className="select"
                               onClick={() => prevChangeCompanion(companion)}
                             >
@@ -671,10 +680,9 @@ function index({ data }: any) {
                   <div className="middle">
                     {themes &&
                       themes.map((theme: string, index: number) => (
-                        <div>
+                        <div key={index}>
                           {prevThemeChange == theme ? (
                             <span
-                              key={index}
                               className="selected"
                               onClick={() => prevChangeTheme(theme)}
                             >
@@ -682,7 +690,6 @@ function index({ data }: any) {
                             </span>
                           ) : (
                             <span
-                              key={index}
                               className="select"
                               onClick={() => prevChangeTheme(theme)}
                             >
@@ -744,6 +751,16 @@ function index({ data }: any) {
             </div>
           ))}
       </div>
+
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={data.data.pageable.pageSize}
+        totalItemsCount={data.data.totalElements}
+        pageRangeDisplayed={5}
+        prevPageText={'‹'}
+        nextPageText={'›'}
+        onChange={handlePageChange}
+      />
     </>
   )
 }
