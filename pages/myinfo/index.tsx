@@ -5,9 +5,20 @@ import style from './MyInfo.module.scss'
 const MyInfo = () => {
   const [membersDetail] = useMembersDetailMutation()
 
-  const [userName, setUserName] = useState('')
-  const [userBirthday, setUserBirthday] = useState('')
-  const [userEmail, setUserEmail] = useState('')
+  const [userInfo, setUserInfo] = useState([
+    {
+      label: '이름',
+      value: '',
+    },
+    {
+      label: '생년월일',
+      value: '',
+    },
+    {
+      label: '이메일',
+      value: '',
+    },
+  ])
 
   useEffect(() => {
     requestUserInfo()
@@ -21,19 +32,30 @@ const MyInfo = () => {
       })
       console.log('res: ', res)
       const { name, birth, email } = res.data.data
-      setUserName(name)
-      setUserBirthday(birth)
-      setUserEmail(email)
+      updateUserInfo(name, birth, email)
     } catch (e) {
       console.log('e: ', e)
     }
   }
 
+  const updateUserInfo = (name, birth, email) => {
+    const newUserInfo = userInfo.map((obj) => {
+      if (obj.label === '이름') {
+        return { ...obj, value: name }
+      } else if (obj.label === '생년월일') {
+        return { ...obj, value: birth }
+      } else {
+        return { ...obj, value: email }
+      }
+    })
+    setUserInfo(newUserInfo)
+  }
+
   return (
     <>
-      <p>{userName}</p>
-      <p>{userBirthday}</p>
-      <p>{userEmail}</p>
+      {userInfo.map((obj) => (
+        <p>{obj.value}</p>
+      ))}
     </>
   )
 }
