@@ -61,8 +61,9 @@ const MyInfo = () => {
 
   return (
     <>
-      {userInfo.map((obj) => (
+      {userInfo.map((obj, index) => (
         <List
+          key={index}
           sx={{
             padding: '0',
             margin: '3rem 0',
