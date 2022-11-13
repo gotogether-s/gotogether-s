@@ -1,9 +1,11 @@
 import { TextField, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useConfirmPasswordMutation } from '@api/requestApi'
 import { useState } from 'react'
 import style from './ConfirmPassword.module.scss'
 
 const ConfirmPassword = () => {
+  const router = useRouter()
   const [confirmPassword] = useConfirmPasswordMutation()
 
   const [passwordValue, setPasswordValue] = useState('')
@@ -35,6 +37,7 @@ const ConfirmPassword = () => {
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setPasswordConfirmResponseMessage('비밀번호가 일치합니다!')
+        router.push('/newpassword')
       } else if (res.data.statusCode === 400) {
         setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다!')
       }
