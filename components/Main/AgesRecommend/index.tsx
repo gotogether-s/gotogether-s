@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import { useAgeRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -32,15 +32,15 @@ function index() {
   const [ageValue, setAgeValue] = useState<String>('')
   const [selectAgeValue, setSelectAgeValue] = useState<String>('전체')
   const [age, setAge] = useState<[]>([])
+  const [ageRecommend]: any = useAgeRecommendMutation()
 
   const ageRec = async () => {
-    const res = await axios.get(
-      encodeURI(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/product-list/ages?category=${ageValue}&page=0&sort=`,
-      ),
-    )
-    setAge(res.data.data.content)
+    try {
+      const res = await ageRecommend({ ageValue })
+      setAge(res.data.data.content)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   const searchAge = (e: String) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import { useGolfRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -19,14 +19,15 @@ type data = {
 
 function index() {
   const [golf, setGolf] = useState<[]>([])
+  const [golfRecommend]: any = useGolfRecommendMutation()
+
   const golfRec = async () => {
-    const res = await axios.get(
-      encodeURI(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/product-list/themes?category=골프여행&page=0&sort=`,
-      ),
-    )
-    setGolf(res.data.data.content)
+    try {
+      const res = await golfRecommend()
+      setGolf(res.data.data.content)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import { useCompanionRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -32,15 +32,15 @@ function index() {
   const [selectCompanionValue, setSelectCompanionValue] =
     useState<String>('전체')
   const [companions, setCompanions] = useState<[]>([])
+  const [companionRecommend]: any = useCompanionRecommendMutation()
 
   const companionRec = async () => {
-    const res = await axios.get(
-      encodeURI(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/product-list/companion?category=${companionValue}&page=0&sort=`,
-      ),
-    )
-    setCompanions(res.data.data.content)
+    try {
+      const res = await companionRecommend({ companionValue })
+      setCompanions(res.data.data.content)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   const searchCompanion = (e: String) => {

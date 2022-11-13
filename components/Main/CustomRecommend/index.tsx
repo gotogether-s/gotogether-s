@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import {
+  useCustomRecommendUserMutation,
+  useCustomRecommendMutation,
+} from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -19,28 +22,21 @@ type data = {
 
 function index() {
   const [customs, setCustoms] = useState<[]>([])
+  const [customRecommendUser]: any = useCustomRecommendUserMutation()
+  const [customRecommend]: any = useCustomRecommendMutation()
 
   const customRec = async () => {
     const accessToken = localStorage.getItem('accessToken')
-    if (accessToken) {
-      const res = await axios.get(
-        encodeURI(
-          process.env.NEXT_PUBLIC_API_URL + `/product-list/custom?page=0&sort=`,
-        ),
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      )
-      setCustoms(res.data.data.content)
-    } else {
-      const res = await axios.get(
-        encodeURI(
-          process.env.NEXT_PUBLIC_API_URL + `/product-list/custom?page=0&sort=`,
-        ),
-      )
-      setCustoms(res.data.data.content)
+    try {
+      if (accessToken) {
+        const res = await customRecommendUser()
+        setCustoms(res.data.data.content)
+      } else {
+        const res = await customRecommend()
+        setCustoms(res.data.data.content)
+      }
+    } catch (e) {
+      console.log('e: ', e)
     }
   }
 

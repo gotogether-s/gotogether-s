@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import axios from 'axios'
+import { useHealingRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
 
 import 'swiper/css'
@@ -19,16 +19,16 @@ type data = {
 
 function index() {
   const [healing, setHealing] = useState<[]>([])
-  const healingRec = async () => {
-    const res = await axios.get(
-      encodeURI(
-        process.env.NEXT_PUBLIC_API_URL +
-          `/product-list/themes?category=리조트 휴양 및 힐링&page=0&sort=`,
-      ),
-    )
-    setHealing(res.data.data.content)
-  }
+  const [healingRecommend]: any = useHealingRecommendMutation()
 
+  const healingRec = async () => {
+    try {
+      const res = await healingRecommend()
+      setHealing(res.data.data.content)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
   useEffect(() => {
     healingRec()
   }, [])

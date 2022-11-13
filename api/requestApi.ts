@@ -61,6 +61,55 @@ export const requestApi = createApi({
         },
       }),
     }),
+    customRecommendUser: builder.mutation({
+      query: ({ accessToken }) => ({
+        url: encodeURI('/product-list/custom?page=0&sort='),
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
+    customRecommend: builder.mutation({
+      query: () => ({
+        url: encodeURI('/product-list/custom?page=0&sort='),
+        method: 'GET',
+      }),
+    }),
+    ageRecommend: builder.mutation({
+      query: ({ ageValue }) => ({
+        url: encodeURI(`/product-list/ages?category=${ageValue}&page=0&sort=`),
+        method: 'GET',
+      }),
+    }),
+    companionRecommend: builder.mutation({
+      query: ({ companionValue }) => ({
+        url: encodeURI(
+          `/product-list/companion?category=${companionValue}&page=0&sort=`,
+        ),
+        method: 'GET',
+      }),
+    }),
+    golfRecommend: builder.mutation({
+      query: () => ({
+        url: encodeURI('/product-list/themes?category=골프여행&page=0&sort='),
+        method: 'GET',
+      }),
+    }),
+    cultureRecommend: builder.mutation({
+      query: () => ({
+        url: encodeURI('/product-list/themes?category=문화탐방&page=0&sort='),
+        method: 'GET',
+      }),
+    }),
+    healingRecommend: builder.mutation({
+      query: () => ({
+        url: encodeURI(
+          '/product-list/themes?category=리조트 휴양 및 힐링&page=0&sort=',
+        ),
+        method: 'GET',
+      }),
+    }),
   }),
 })
 
@@ -72,4 +121,11 @@ export const {
   useMembersDetailMutation,
   useProductsSearchMutation,
   useLogoutMutation,
+  useCustomRecommendUserMutation,
+  useCustomRecommendMutation,
+  useAgeRecommendMutation,
+  useCompanionRecommendMutation,
+  useGolfRecommendMutation,
+  useCultureRecommendMutation,
+  useHealingRecommendMutation,
 } = requestApi
