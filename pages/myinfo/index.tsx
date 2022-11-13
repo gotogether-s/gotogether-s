@@ -1,9 +1,12 @@
 import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useMembersDetailMutation } from '@api/requestApi'
 import { useState, useEffect } from 'react'
 import style from './MyInfo.module.scss'
 
 const MyInfo = () => {
+  const router = useRouter()
+
   const [membersDetail] = useMembersDetailMutation()
 
   const [userInfo, setUserInfo] = useState([
@@ -52,6 +55,10 @@ const MyInfo = () => {
     setUserInfo(newUserInfo)
   }
 
+  const changePassword = () => {
+    router.push('/confirmpassword')
+  }
+
   return (
     <>
       {userInfo.map((obj) => (
@@ -85,6 +92,7 @@ const MyInfo = () => {
         sx={{
           width: '100%',
         }}
+        onClick={changePassword}
       >
         비밀번호 수정
       </Button>
