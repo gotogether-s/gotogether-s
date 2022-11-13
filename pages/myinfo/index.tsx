@@ -1,3 +1,4 @@
+import { List, ListItem, ListItemText, Typography } from '@mui/material'
 import { useMembersDetailMutation } from '@api/requestApi'
 import { useState, useEffect } from 'react'
 import style from './MyInfo.module.scss'
@@ -54,7 +55,30 @@ const MyInfo = () => {
   return (
     <>
       {userInfo.map((obj) => (
-        <p>{obj.value}</p>
+        <List
+          sx={{
+            padding: '0',
+            margin: '3rem 0',
+            borderBottom: '0.1rem solid #ddd',
+          }}
+        >
+          <ListItem disablePadding>
+            <ListItemText
+              primary={
+                <Typography sx={{ fontSize: '1.5rem' }}>{obj.label}</Typography>
+              }
+              secondary={
+                <Typography
+                  variant="p"
+                  component="p"
+                  sx={{ padding: '1rem 0' }}
+                >
+                  {obj.value}
+                </Typography>
+              }
+            />
+          </ListItem>
+        </List>
       ))}
     </>
   )
