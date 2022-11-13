@@ -29,7 +29,7 @@ function index() {
     const accessToken = localStorage.getItem('accessToken')
     try {
       if (accessToken) {
-        const res = await customRecommendUser()
+        const res = await customRecommendUser({ accessToken })
         setCustoms(res.data.data.content)
       } else {
         const res = await customRecommend()
