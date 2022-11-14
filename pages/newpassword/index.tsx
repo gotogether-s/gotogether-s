@@ -1,7 +1,18 @@
 import { TextField } from '@mui/material'
+import { useEffect, useState } from 'react'
 import style from './NewPassword.module.scss'
 
 const NewPassword = () => {
+  const [newPasswordValues, setNewPasswordValues] = useState({
+    password: '',
+    passwordConfirm: '',
+  })
+
+  const handleNewPasswordValuesChange = (e) => {
+    const { name, value } = e.target
+    setNewPasswordValues({ ...newPasswordValues, [name]: value })
+  }
+
   return (
     <>
       <p>새로운 비밀번호를 입력해주세요.</p>
@@ -11,7 +22,9 @@ const NewPassword = () => {
           name="password"
           size="small"
           placeholder="새로운 비밀번호를 입력해주세요"
+          value={newPasswordValues.password}
           sx={{ width: '100%' }}
+          onChange={handleNewPasswordValuesChange}
         />
       </div>
       <div className={style['input-wrapper']}>
@@ -20,7 +33,9 @@ const NewPassword = () => {
           name="passwordConfirm"
           size="small"
           placeholder="새로운 비밀번호를 다시 입력해주세요"
+          value={newPasswordValues.passwordConfirm}
           sx={{ width: '100%' }}
+          onChange={handleNewPasswordValuesChange}
         />
       </div>
     </>
