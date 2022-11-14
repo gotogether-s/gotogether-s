@@ -5,12 +5,22 @@ import MainNav from '@components/MainNav'
 import TopButton from '@components/TopButton'
 import style from './Layout.module.scss'
 
-type ALLOWED_PATH = '/search' | '/signin' | '/signup' | '/survey'
+type ALLOWED_PATH =
+  | '/search'
+  | '/signin'
+  | '/signup'
+  | '/survey'
+  | '/myinfo'
+  | '/confirmpassword'
+  | '/newpassword'
 const pageWithoutNavbar: ALLOWED_PATH[] = [
   '/search',
   '/signin',
   '/signup',
   '/survey',
+  '/myinfo',
+  '/confirmpassword',
+  '/newpassword',
 ]
 
 const Layout = ({ children }: any) => {

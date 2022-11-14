@@ -46,6 +46,26 @@ export const requestApi = createApi({
         },
       }),
     }),
+    changePassword: builder.mutation({
+      query: ({ data, accessToken }) => ({
+        url: '/members/detail',
+        method: 'PUT',
+        body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
+    confirmPassword: builder.mutation({
+      query: ({ data, accessToken }) => ({
+        url: '/members/confirm',
+        method: 'POST',
+        body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
     productsSearch: builder.mutation({
       query: (searchText) => ({
         url: `/products/search?keyword=${searchText}`,
@@ -119,6 +139,8 @@ export const {
   useValidateEmailMutation,
   useCurationSurveyMutation,
   useMembersDetailMutation,
+  useChangePasswordMutation,
+  useConfirmPasswordMutation,
   useProductsSearchMutation,
   useLogoutMutation,
   useCustomRecommendUserMutation,
