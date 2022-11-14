@@ -1,8 +1,11 @@
-import { TextField } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { TextField, Button } from '@mui/material'
+import { useChangePasswordMutation } from '@api/requestApi'
+import { useState } from 'react'
 import style from './NewPassword.module.scss'
 
 const NewPassword = () => {
+  const [changePassword] = useChangePasswordMutation()
+
   const [newPasswordValues, setNewPasswordValues] = useState({
     password: '',
     passwordConfirm: '',
@@ -11,6 +14,22 @@ const NewPassword = () => {
   const handleNewPasswordValuesChange = (e) => {
     const { name, value } = e.target
     setNewPasswordValues({ ...newPasswordValues, [name]: value })
+  }
+
+  const requestPasswordChange = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      const password = {
+        password: newPasswordValues.passwordConfirm,
+      }
+      const res = await changePassword({
+        data: password,
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   return (
@@ -38,6 +57,13 @@ const NewPassword = () => {
           onChange={handleNewPasswordValuesChange}
         />
       </div>
+      <Button
+        onClick={requestPasswordChange}
+        variant="contained"
+        sx={{ width: '100%' }}
+      >
+        확인
+      </Button>
     </>
   )
 }
