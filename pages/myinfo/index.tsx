@@ -95,7 +95,7 @@ const MyInfo = () => {
         }}
         onClick={changePassword}
       >
-        비밀번호 수정
+        비밀번호 변경
       </Button>
     </>
   )

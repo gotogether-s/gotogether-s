@@ -58,11 +58,11 @@ const ConfirmPassword = () => {
   return (
     <>
       <div className={style['input-wrapper']}>
-        <div className={style['label']}>기존 비밀번호를 입력해주세요.</div>
+        <div className={style['label']}>기존 비밀번호</div>
         <TextField
           name="password"
           size="small"
-          placeholder="기존 비밀번호 입력"
+          placeholder="기존 비밀번호를 입력해주세요"
           sx={{ width: '100%' }}
           value={passwordValue}
           onChange={handlePasswordValueChange}
