@@ -1,10 +1,13 @@
 import { TextField, Button } from '@mui/material'
+import { useRouter } from 'next/router'
 import { useChangePasswordMutation } from '@api/requestApi'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './NewPassword.module.scss'
 
 const NewPassword = () => {
+  const router = useRouter()
+
   const [changePassword] = useChangePasswordMutation()
 
   const [newPasswordValues, setNewPasswordValues] = useState({
@@ -39,6 +42,7 @@ const NewPassword = () => {
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setPasswordUpdateResponseMessage('비밀번호 변경에 성공했습니다!')
+        router.push('/')
       } else {
         setPasswordUpdateResponseMessage(
           '비밀번호 변경에 실패했습니다! 다시 시도해주세요!',
