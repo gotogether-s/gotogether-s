@@ -1,6 +1,7 @@
 import { TextField, Button } from '@mui/material'
 import { useChangePasswordMutation } from '@api/requestApi'
 import { useState } from 'react'
+import NavBar from '@components/NavBar'
 import style from './NewPassword.module.scss'
 
 const NewPassword = () => {
@@ -71,6 +72,7 @@ const NewPassword = () => {
 
   return (
     <>
+      <NavBar link="/" title="비밀번호 수정" />
       <div className={style['input-wrapper']}>
         <div className={style['label']}>새 비밀번호</div>
         <TextField

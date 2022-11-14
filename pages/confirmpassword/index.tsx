@@ -2,6 +2,7 @@ import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useConfirmPasswordMutation } from '@api/requestApi'
 import { useState } from 'react'
+import NavBar from '@components/NavBar'
 import style from './ConfirmPassword.module.scss'
 
 const ConfirmPassword = () => {
@@ -57,6 +58,7 @@ const ConfirmPassword = () => {
 
   return (
     <>
+      <NavBar link="/" title="비밀번호 수정" />
       <div className={style['input-wrapper']}>
         <div className={style['label']}>기존 비밀번호</div>
         <TextField

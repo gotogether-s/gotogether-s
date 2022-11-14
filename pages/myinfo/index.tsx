@@ -2,6 +2,7 @@ import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMembersDetailMutation } from '@api/requestApi'
 import { useState, useEffect } from 'react'
+import NavBar from '@components/NavBar'
 import style from './MyInfo.module.scss'
 
 const MyInfo = () => {
@@ -61,6 +62,7 @@ const MyInfo = () => {
 
   return (
     <>
+      <NavBar link="/" title="내 정보" />
       {userInfo.map((obj, index) => (
         <List
           key={index}
