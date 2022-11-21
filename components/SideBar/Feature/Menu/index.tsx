@@ -81,6 +81,8 @@ const Menu = () => {
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         router.push('/')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
       }
     } catch (e) {
       console.log('e: ', e)
