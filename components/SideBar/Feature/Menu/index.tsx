@@ -73,9 +73,10 @@ const Menu = () => {
     dispatch(close())
     try {
       const accessToken = localStorage.getItem('accessToken')
-      console.log('accessToken:', accessToken)
+      const refreshToken = localStorage.getItem('refreshToken')
       const res = await requestLogout({
         accessToken: accessToken,
+        refreshToken: refreshToken,
       })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
