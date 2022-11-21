@@ -50,10 +50,10 @@ type listData = {
 type query = {
   query: {
     category: string
-    category1: string
-    category2: string
-    category3: string
-    category4: string
+    category1?: string
+    category2?: string
+    category3?: string
+    category4?: string
     page: string
     sort: string
     params: string
@@ -62,7 +62,7 @@ type query = {
 
 function index(data: data) {
   const router = useRouter()
-  const title: any = router.query.params
+  const title: string | string[] | undefined = router.query.params
 
   const [username, setUsername] = useState<string>('')
 
@@ -194,7 +194,7 @@ function index(data: data) {
     setModalIsOpen(!modalIsOpen)
   }
 
-  const result = (title: string) => {
+  const result = (title: string | string[] | undefined) => {
     if (title == 'all') {
       setContinentChange(prevContinentChange)
       setPrevContinentChange(prevContinentChange)
