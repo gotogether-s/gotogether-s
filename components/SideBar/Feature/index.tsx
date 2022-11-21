@@ -1,4 +1,4 @@
-import { useMembersDetailMutation } from '@api/requestApi'
+import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
 import { useState, useEffect } from 'react'
 import User from './User'
@@ -6,7 +6,7 @@ import Menu from './Menu'
 import style from './Feature.module.scss'
 
 const Feature = () => {
-  const [membersDetail] = useMembersDetailMutation()
+  const [requestMembersDetail] = useRequestMembersDetailMutation()
   const [isLogin, setIsLogin] = useState(false)
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -35,7 +35,7 @@ const Feature = () => {
   const requestUserInfo = async (accessToken) => {
     console.log(accessToken)
     try {
-      const res = await membersDetail({
+      const res = await requestMembersDetail({
         accessToken: accessToken,
       })
       console.log('res: ', res)

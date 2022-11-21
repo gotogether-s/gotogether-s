@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CloseIcon from '@mui/icons-material/Close'
-import { useProductsSearchMutation } from '@api/requestApi'
+import { useSearchProductsMutation } from '@api/requestApi'
 import { FormControl, OutlinedInput, InputAdornment } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,7 +13,7 @@ import { useState } from 'react'
 import style from './Search.module.scss'
 
 const Search = () => {
-  const [productsSearch] = useProductsSearchMutation()
+  const [searchProducts] = useSearchProductsMutation()
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -50,7 +50,7 @@ const Search = () => {
     //   keyword: searchText,
     // }
     try {
-      const res = await productsSearch(searchText)
+      const res = await searchProducts(searchText)
       // const res = await axios.get(
       //   `${process.env.NEXT_PUBLIC_API_URL}/products/search?keyword=${searchText}`,
       // )

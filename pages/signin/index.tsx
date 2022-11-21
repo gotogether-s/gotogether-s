@@ -1,6 +1,6 @@
 import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useSignInMutation } from '@api/requestApi'
+import { useRequestSignInMutation } from '@api/requestApi'
 import { useState } from 'react'
 import Link from 'next/link'
 import NavBar from '@components/NavBar'
@@ -10,7 +10,7 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
   const router = useRouter()
-  const [signIn] = useSignInMutation()
+  const [requestSignIn] = useRequestSignInMutation()
 
   const [signInValues, setSignInValues] = useState({
     email: '',
@@ -45,7 +45,7 @@ const SignIn = () => {
     return errors
   }
 
-  const requestSignIn = async (e) => {
+  const submitSignIn = async (e) => {
     e.preventDefault()
     const signInValidation = validateSignIn(signInValues)
     setSignInValuesErrors(validateSignIn(signInValues))
@@ -54,7 +54,7 @@ const SignIn = () => {
     if (Object.keys(signInValidation).length !== 0) return
 
     try {
-      const res = await signIn({
+      const res = await requestSignIn({
         data: signInValues,
       })
       console.log('res: ', res)
@@ -80,7 +80,7 @@ const SignIn = () => {
   return (
     <>
       <NavBar link="/" title="로그인" />
-      <form onSubmit={requestSignIn}>
+      <form onSubmit={submitSignIn}>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이메일</div>
           <TextField

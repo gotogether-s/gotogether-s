@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useMembersDetailMutation } from '@api/requestApi'
+import { useRequestMembersDetailMutation } from '@api/requestApi'
 import Pagination from 'react-js-pagination'
 
 import 'swiper/css'
@@ -90,7 +90,7 @@ function index({ data }: any) {
     '호주,뉴질랜드',
   ]
 
-  const [membersDetail]: any = useMembersDetailMutation()
+  const [requestMembersDetail]: any = useRequestMembersDetailMutation()
 
   const [page, setPage] = useState<number>(1)
   const handlePageChange = (page: number) => {
@@ -114,7 +114,7 @@ function index({ data }: any) {
 
   const requestUserInfo = async (accessToken: string) => {
     try {
-      const res = await membersDetail({
+      const res = await requestMembersDetail({
         accessToken,
       })
       const { name } = res.data.data

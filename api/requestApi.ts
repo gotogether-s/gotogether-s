@@ -6,14 +6,14 @@ export const requestApi = createApi({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
   }),
   endpoints: (builder) => ({
-    signIn: builder.mutation({
+    requestSignIn: builder.mutation({
       query: ({ data }) => ({
         url: '/login',
         method: 'POST',
         body: data,
       }),
     }),
-    signUp: builder.mutation({
+    requestSignUp: builder.mutation({
       query: ({ data }) => ({
         url: '/members',
         method: 'POST',
@@ -27,7 +27,7 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
-    curationSurvey: builder.mutation({
+    sendSurveyResult: builder.mutation({
       query: ({ data, accessToken }) => ({
         url: '/members/curation',
         method: 'POST',
@@ -37,7 +37,7 @@ export const requestApi = createApi({
         },
       }),
     }),
-    membersDetail: builder.mutation({
+    requestMembersDetail: builder.mutation({
       query: ({ accessToken }) => ({
         url: '/members/detail',
         method: 'GET',
@@ -66,13 +66,13 @@ export const requestApi = createApi({
         },
       }),
     }),
-    productsSearch: builder.mutation({
+    searchProducts: builder.mutation({
       query: (searchText) => ({
         url: `/products/search?keyword=${searchText}`,
         method: 'GET',
       }),
     }),
-    logout: builder.mutation({
+    requestLogout: builder.mutation({
       query: ({ accessToken }) => ({
         url: '/logout',
         method: 'POST',
@@ -134,15 +134,15 @@ export const requestApi = createApi({
 })
 
 export const {
-  useSignInMutation,
-  useSignUpMutation,
+  useRequestSignInMutation,
+  useRequestSignUpMutation,
   useValidateEmailMutation,
-  useCurationSurveyMutation,
-  useMembersDetailMutation,
+  useSendSurveyResultMutation,
+  useRequestMembersDetailMutation,
   useChangePasswordMutation,
   useConfirmPasswordMutation,
-  useProductsSearchMutation,
-  useLogoutMutation,
+  useSearchProductsMutation,
+  useRequestLogoutMutation,
   useCustomRecommendUserMutation,
   useCustomRecommendMutation,
   useAgeRecommendMutation,

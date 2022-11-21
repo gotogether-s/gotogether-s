@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useMembersDetailMutation } from '@api/requestApi'
+import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { useState, useEffect } from 'react'
 import NavBar from '@components/NavBar'
 import style from './MyInfo.module.scss'
@@ -8,7 +8,7 @@ import style from './MyInfo.module.scss'
 const MyInfo = () => {
   const router = useRouter()
 
-  const [membersDetail] = useMembersDetailMutation()
+  const [requestMembersDetail] = useRequestMembersDetailMutation()
 
   const [userInfo, setUserInfo] = useState([
     {
@@ -32,7 +32,7 @@ const MyInfo = () => {
   const requestUserInfo = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
-      const res = await membersDetail({
+      const res = await requestMembersDetail({
         accessToken: accessToken,
       })
       console.log('res: ', res)

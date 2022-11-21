@@ -1,12 +1,12 @@
 import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
-import { useCurationSurveyMutation } from '@api/requestApi'
+import { useSendSurveyResultMutation } from '@api/requestApi'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import style from './QnA.module.scss'
 
 const QnA = () => {
-  const [curationSurvey] = useCurationSurveyMutation()
+  const [sendSurveyResult] = useSendSurveyResultMutation()
 
   const [userSurveyResult, setUserSurveyResult] = useState({
     ages: '',
@@ -61,7 +61,7 @@ const QnA = () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
       console.log('accessToken:', accessToken)
-      const res = await curationSurvey({
+      const res = await sendSurveyResult({
         data: userSurveyResult,
         accessToken: accessToken,
       })
