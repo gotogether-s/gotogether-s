@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { GetServerSideProps } from 'next'
 import CloseIcon from '@mui/icons-material/Close'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {
@@ -14,7 +13,42 @@ import {
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
-function index({ data }: any) {
+type data = {
+  ages: string
+  airport: string
+  basicPrice: number
+  companion: string
+  continent: string
+  country: string
+  genderGroup: string
+  id: number
+  info: string
+  points: string
+  productName: string
+  productOptionList: {
+    출발일: []
+  }
+  region: string
+  religion: string
+  theme: string
+  thumbnail: string
+}
+type productOptionList = {
+  additional: number
+  id: number
+  name: string
+  required: boolean
+  value: string
+}
+type paramType = {
+  params: {
+    id: string
+  }
+}
+
+function index(data: data) {
+  const departure = data.productOptionList.출발일
+
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   let currentUrl = ''
   if (typeof window !== 'undefined') {
@@ -69,7 +103,6 @@ function index({ data }: any) {
     } else {
       setVisible('hidden')
       setMaxHeight('40rem')
-      window.scrollTo(0, 1000)
     }
   }, [showMore, visible, maxHeight])
 
@@ -84,7 +117,7 @@ function index({ data }: any) {
         <div className="title">{data.productName}</div>
         <div className="hashTags">
           <div className="hashTag">#{data.ages} &nbsp;</div>
-          <div className="hashTag">#{data.companion} &nbsp;</div>
+          <div className="hashTag">#{data.theme} &nbsp;</div>
         </div>
         {data.basicPrice == 0 ? (
           <div className="price">가격 문의</div>
@@ -106,14 +139,12 @@ function index({ data }: any) {
         <div className="selectDepartureDate">
           <select name="departure" className="select">
             <option value="">출발일 선택하기</option>
-            {data.productOptionList.출발일 &&
-              data.productOptionList.출발일.map(
-                (data: string, index: number) => (
-                  <option key={index} value={data.value}>
-                    {data.value}
-                  </option>
-                ),
-              )}
+            {departure &&
+              departure.map((data: productOptionList, index: number) => (
+                <option key={index} value={data.value}>
+                  {data.value}
+                </option>
+              ))}
           </select>
         </div>
       </div>
@@ -264,14 +295,12 @@ function index({ data }: any) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: any) => {
+export const getServerSideProps = async (context: paramType) => {
   const res = await axios.get(
-    process.env.NEXT_PUBLIC_API_URL + `/product-details/${params.id}`,
+    process.env.NEXT_PUBLIC_API_URL + `/product-details/${context.params.id}`,
   )
   const data = await res.data.data
-  return { props: { data } }
+  return { props: data }
 }
 
 export default index

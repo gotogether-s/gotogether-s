@@ -14,6 +14,7 @@ import { toggleCategorySubMenu } from '@store/categoryMenuSlice'
 import { close } from '@store/sideBarStatusSlice'
 import { useState, Fragment } from 'react'
 import style from './Category.module.scss'
+import { useRouter } from 'next/router'
 
 const Category = () => {
   const [categoryOpen, setCategoryOpen] = useState(false)
@@ -26,6 +27,11 @@ const Category = () => {
   })
 
   const dispatch = useDispatch()
+
+  const router = useRouter()
+  const moveLink = (link: string) => {
+    router.push(link)
+  }
 
   return (
     <List disablePadding>
@@ -64,6 +70,7 @@ const Category = () => {
                   timeout="auto"
                   unmountOnExit
                   key={index}
+                  onClick={() => moveLink(subMenu.link)}
                 >
                   <ListItemButton
                     sx={{ pl: 6 }}

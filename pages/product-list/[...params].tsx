@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { useRouter } from 'next/router'
-import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
@@ -12,19 +11,58 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 type data = {
-  id: string
-  thumbnail: string
-  theme: string
-  country: string
-  productName: string
-  ages: string
-  companion: string
-  basicPrice: number
+  content: [
+    {
+      ages: string
+      basicPrice: number
+      companion: string
+      country: string
+      genderGroup: string
+      id: number
+      productName: string
+      religion: string
+      theme: string
+      thumbnail: string
+    },
+  ]
+  number: number
+  numberOfElements: number
+  pageable: {
+    pageSize: number
+  }
+  totalElements: number
+  totalPages: number
 }
 
-function index({ data }: any) {
+type listData = {
+  ages: string
+  basicPrice: number
+  companion: string
+  country: string
+  genderGroup: string
+  id: number
+  productName: string
+  religion: string
+  theme: string
+  thumbnail: string
+}
+
+type query = {
+  query: {
+    category: string
+    category1?: string
+    category2?: string
+    category3?: string
+    category4?: string
+    page: string
+    sort: string
+    params: string
+  }
+}
+
+function index(data: data) {
   const router = useRouter()
-  const title: any = router.query.params
+  const title: string | string[] | undefined = router.query.params
 
   const [username, setUsername] = useState<string>('')
 
@@ -156,7 +194,7 @@ function index({ data }: any) {
     setModalIsOpen(!modalIsOpen)
   }
 
-  const result = (title: string) => {
+  const result = (title: string | string[] | undefined) => {
     if (title == 'all') {
       setContinentChange(prevContinentChange)
       setPrevContinentChange(prevContinentChange)
@@ -717,8 +755,7 @@ function index({ data }: any) {
       <div className="totalFilter">
         <div className="productTotal">
           총 상품
-          <span className="productCount">&nbsp;{data.data.totalElements}</span>
-          개
+          <span className="productCount">&nbsp;{data.totalElements}</span>개
         </div>
         <select className="selectBox" onChange={changeSort} value={sortChange}>
           <option value="">기본순</option>
@@ -730,7 +767,7 @@ function index({ data }: any) {
 
       <div className="productLists">
         {data &&
-          data.data.content.map(({ ...list }: data, index: number) => (
+          data.content.map((list: listData, index: number) => (
             <div className="productList" key={index}>
               <Link href={`/product-details/${list.id}`}>
                 <img src={list.thumbnail} alt="img" className="imgClick" />
@@ -752,35 +789,39 @@ function index({ data }: any) {
           ))}
       </div>
 
-      <Pagination
-        activePage={page}
-        itemsCountPerPage={data.data.pageable.pageSize}
-        totalItemsCount={data.data.totalElements}
-        pageRangeDisplayed={5}
-        prevPageText={'‹'}
-        nextPageText={'›'}
-        onChange={handlePageChange}
-      />
+      {data.totalElements ? (
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={data.pageable.pageSize}
+          totalItemsCount={data.totalElements}
+          pageRangeDisplayed={5}
+          prevPageText={'‹'}
+          nextPageText={'›'}
+          onChange={handlePageChange}
+        />
+      ) : (
+        <>상품을 준비중입니다...</>
+      )}
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps = async (context: query) => {
   let API_URL = ''
 
-  if (query.params == 'all') {
+  if (context.query.params == 'all') {
     API_URL =
       process.env.NEXT_PUBLIC_API_URL +
-      `/product-list/${query.params}?category1=${query.category1}&category2=${query.category2}&category3=${query.category3}&category4=${query.category4}&page=${query.page}&sort=${query.sort}`
+      `/product-list/${context.query.params}?category1=${context.query.category1}&category2=${context.query.category2}&category3=${context.query.category3}&category4=${context.query.category4}&page=${context.query.page}&sort=${context.query.sort}`
   } else {
     API_URL =
       process.env.NEXT_PUBLIC_API_URL +
-      `/product-list/${query.params}?category=${query.category}&page=${query.page}&sort=${query.sort}`
+      `/product-list/${context.query.params}?category=${context.query.category}&page=${context.query.page}&sort=${context.query.sort}`
   }
 
   const response = await axios.get(encodeURI(API_URL))
-  const data = response.data
-  return { props: { data } }
+  const data = response.data.data
+  return { props: data }
 }
 
 export default index
