@@ -68,7 +68,7 @@ export const requestApi = createApi({
     }),
     searchProducts: builder.mutation({
       query: (searchText) => ({
-        url: `/products/search?keyword=${searchText}`,
+        url: encodeURI(`/product-search?keyword=${searchText}&page=0`),
         method: 'GET',
       }),
     }),
