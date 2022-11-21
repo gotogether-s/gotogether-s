@@ -4,6 +4,7 @@ import categoryMenu from './categoryMenuSlice'
 import searchHistory from './searchHistorySlice'
 import surveyQnaLists from './surveyQnaListsSlice'
 import sideBarStatus from './sideBarStatusSlice'
+import isLogin from './isLoginSlice'
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     searchHistory: searchHistory.reducer,
     surveyQnaLists: surveyQnaLists.reducer,
     sideBarStatus: sideBarStatus.reducer,
+    isLogin: isLogin.reducer,
     [requestApi.reducerPath]: requestApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
