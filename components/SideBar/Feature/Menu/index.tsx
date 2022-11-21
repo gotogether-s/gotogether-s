@@ -4,9 +4,10 @@ import {
   useRequestLogoutMutation,
 } from '@api/requestApi'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { close } from '@store/sideBarStatusSlice'
-import { useState, useEffect } from 'react'
+import { getLoginStatus } from '@store/isLoginSlice'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Category from './Category'
 import style from './Menu.module.scss'
@@ -46,24 +47,24 @@ const Menu = () => {
   const [requestLogout] = useRequestLogoutMutation()
 
   const router = useRouter()
+
+  const isLogin = useSelector((state) => {
+    return state.isLogin.isLogin
+  })
   const dispatch = useDispatch()
 
-  const [statusCode, setStatusCode] = useState(null)
-
   useEffect(() => {
+    dispatch(getLoginStatus())
     const accessToken = localStorage.getItem('accessToken')
     accessToken && requestUserInfo(accessToken)
   }, [])
 
   const requestUserInfo = async (accessToken) => {
-    console.log(accessToken)
     try {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
       console.log('res: ', res)
-      const { statusCode } = res.data
-      setStatusCode(statusCode)
     } catch (e) {
       console.log('e: ', e)
     }
@@ -73,13 +74,17 @@ const Menu = () => {
     dispatch(close())
     try {
       const accessToken = localStorage.getItem('accessToken')
-      console.log('accessToken:', accessToken)
+      const refreshToken = localStorage.getItem('refreshToken')
       const res = await requestLogout({
         accessToken: accessToken,
+        refreshToken: refreshToken,
       })
       console.log('res: ', res)
       if (res.data.statusCode === 200) {
         router.push('/')
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        dispatch(getLoginStatus())
       }
     } catch (e) {
       console.log('e: ', e)
@@ -93,7 +98,7 @@ const Menu = () => {
 
   return (
     <>
-      {statusCode ? (
+      {isLogin ? (
         <>
           <List onClick={() => dispatch(close())} sx={{ padding: '0' }}>
             {mainMenusLogin.map((mainMenu: any, index: number) => (

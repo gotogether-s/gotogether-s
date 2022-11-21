@@ -1,13 +1,19 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
+import { useSelector, useDispatch } from 'react-redux'
+import { getLoginStatus } from '@store/isLoginSlice'
 import { useState, useEffect } from 'react'
 import User from './User'
 import Menu from './Menu'
 import style from './Feature.module.scss'
 
 const Feature = () => {
+  const isLogin = useSelector((state) => {
+    return state.isLogin.isLogin
+  })
+  const dispatch = useDispatch()
+
   const [requestMembersDetail] = useRequestMembersDetailMutation()
-  const [isLogin, setIsLogin] = useState(false)
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
 
@@ -28,12 +34,12 @@ const Feature = () => {
   }
 
   useEffect(() => {
+    dispatch(getLoginStatus())
     const accessToken = localStorage.getItem('accessToken')
     accessToken && requestUserInfo(accessToken)
   }, [])
 
   const requestUserInfo = async (accessToken) => {
-    console.log(accessToken)
     try {
       const res = await requestMembersDetail({
         accessToken: accessToken,
@@ -42,7 +48,6 @@ const Feature = () => {
       const { name, email } = res.data.data
       setUserName(name)
       setUserEmail(email)
-      setIsLogin(true)
     } catch (e) {
       console.log('e: ', e)
     }

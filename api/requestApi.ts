@@ -73,12 +73,10 @@ export const requestApi = createApi({
       }),
     }),
     requestLogout: builder.mutation({
-      query: ({ accessToken }) => ({
+      query: (data) => ({
         url: '/logout',
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+        body: data,
       }),
     }),
     customRecommendUser: builder.mutation({

@@ -1,5 +1,7 @@
 import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { close } from '@store/sideBarStatusSlice'
 import { useRequestSignInMutation } from '@api/requestApi'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -10,6 +12,8 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
+
   const [requestSignIn] = useRequestSignInMutation()
 
   const [signInValues, setSignInValues] = useState({
@@ -66,6 +70,7 @@ const SignIn = () => {
         window.localStorage.setItem('accessToken', accessToken)
         window.localStorage.setItem('refreshToken', refreshToken)
         setTimeout(() => {
+          dispatch(close())
           router.push('/')
         }, 1000)
       } else if (res.data.statusCode === 400) {
