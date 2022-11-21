@@ -46,14 +46,8 @@ const Search = () => {
   }
 
   const requestSearch = async () => {
-    // const keyword = {
-    //   keyword: searchText,
-    // }
     try {
       const res = await searchProducts(searchText)
-      // const res = await axios.get(
-      //   `${process.env.NEXT_PUBLIC_API_URL}/products/search?keyword=${searchText}`,
-      // )
       console.log('res: ', res)
     } catch (e) {
       console.log('e: ', e)
