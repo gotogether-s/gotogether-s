@@ -1,5 +1,8 @@
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import { useMembersDetailMutation, useLogoutMutation } from '@api/requestApi'
+import {
+  useRequestMembersDetailMutation,
+  useRequestLogoutMutation,
+} from '@api/requestApi'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { close } from '@store/sideBarStatusSlice'
@@ -39,8 +42,8 @@ const mainMenusLogout = [
 ]
 
 const Menu = () => {
-  const [membersDetail] = useMembersDetailMutation()
-  const [logout] = useLogoutMutation()
+  const [requestMembersDetail] = useRequestMembersDetailMutation()
+  const [requestLogout] = useRequestLogoutMutation()
 
   const router = useRouter()
   const dispatch = useDispatch()
@@ -55,7 +58,7 @@ const Menu = () => {
   const requestUserInfo = async (accessToken) => {
     console.log(accessToken)
     try {
-      const res = await membersDetail({
+      const res = await requestMembersDetail({
         accessToken: accessToken,
       })
       console.log('res: ', res)
@@ -66,16 +69,12 @@ const Menu = () => {
     }
   }
 
-  const clickLogoutMenu = () => {
+  const clickLogoutMenu = async (e) => {
     dispatch(close())
-    requestLogout()
-  }
-
-  const requestLogout = async (e) => {
     try {
       const accessToken = localStorage.getItem('accessToken')
       console.log('accessToken:', accessToken)
-      const res = await logout({
+      const res = await requestLogout({
         accessToken: accessToken,
       })
       console.log('res: ', res)

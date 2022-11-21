@@ -4,7 +4,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { TextField, Button } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useSignUpMutation, useValidateEmailMutation } from '@api/requestApi'
+import {
+  useRequestSignUpMutation,
+  useValidateEmailMutation,
+} from '@api/requestApi'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './SignUp.module.scss'
@@ -13,7 +16,7 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
   const router = useRouter()
-  const [signUp] = useSignUpMutation()
+  const [requestSignUp] = useRequestSignUpMutation()
   const [validateEmail] = useValidateEmailMutation()
 
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
@@ -129,7 +132,7 @@ const SignUp = () => {
 
   const [signUpResponseMessage, setSignUpResponseMessage] = useState('')
 
-  const requestSignUp = async (e) => {
+  const submitSignUp = async (e) => {
     e.preventDefault()
     const signUpValidation = validateSignUp(signUpValues)
     setSignUpValuesErrors(validateSignUp(signUpValues))
@@ -145,7 +148,7 @@ const SignUp = () => {
     }
 
     try {
-      const res = await signUp({
+      const res = await requestSignUp({
         data: signUpData,
       })
       console.log('res: ', res)
@@ -168,7 +171,7 @@ const SignUp = () => {
   return (
     <>
       <NavBar link="/" title="회원가입" />
-      <form onSubmit={requestSignUp}>
+      <form onSubmit={submitSignUp}>
         <div className={style['input-wrapper']}>
           <div className={style['label']}>이름</div>
           <TextField
