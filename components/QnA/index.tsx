@@ -60,7 +60,6 @@ const QnA = () => {
   const submitSurvey = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
-      console.log('accessToken:', accessToken)
       const res = await sendSurveyResult({
         data: userSurveyResult,
         accessToken: accessToken,

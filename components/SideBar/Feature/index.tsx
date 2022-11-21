@@ -40,7 +40,6 @@ const Feature = () => {
   }, [])
 
   const requestUserInfo = async (accessToken) => {
-    console.log(accessToken)
     try {
       const res = await requestMembersDetail({
         accessToken: accessToken,
