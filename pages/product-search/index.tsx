@@ -1,4 +1,3 @@
-import axios from 'axios'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
@@ -12,25 +11,26 @@ import { add, remove } from '@store/searchHistorySlice'
 import { useState } from 'react'
 import style from './Search.module.scss'
 
-const Search = () => {
+const ProductSearch = () => {
   const [searchProducts] = useSearchProductsMutation()
   const router = useRouter()
+
   const dispatch = useDispatch()
 
   const searchHistory = useSelector((state) => {
     return state.searchHistory
   })
 
-  const [searchText, setSearchText] = useState('')
+  const [keyword, setKeyword] = useState('')
   const [displaySearchResult, setDisplaySearchResult] = useState(false)
 
   const getInputValue = (e) => {
-    setSearchText(e.target.value)
+    setKeyword(e.target.value)
   }
 
   const searchProductOrclearInput = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
-      dispatch(add(searchText))
+      dispatch(add(keyword))
       setDisplaySearchResult(true)
       requestSearch()
     }
@@ -41,14 +41,15 @@ const Search = () => {
   }
 
   const clearInput = () => {
-    setSearchText('')
+    setKeyword('')
     setDisplaySearchResult(false)
   }
 
   const requestSearch = async () => {
     try {
-      const res = await searchProducts(searchText)
+      const res = await searchProducts(keyword)
       console.log('res: ', res)
+      router.push(`/product-search?keyword=${keyword}&page=0`)
     } catch (e) {
       console.log('e: ', e)
     }
@@ -66,7 +67,7 @@ const Search = () => {
         <FormControl sx={{ width: '100%' }} size="small">
           <OutlinedInput
             placeholder="상품을 검색해주세요"
-            value={searchText}
+            value={keyword}
             autoFocus={true}
             onChange={getInputValue}
             onKeyDown={searchProductOrclearInput}
@@ -116,4 +117,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default ProductSearch
