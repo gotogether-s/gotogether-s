@@ -6,15 +6,16 @@ import TopButton from '@components/TopButton'
 import style from './Layout.module.scss'
 
 type ALLOWED_PATH =
-  | '/search'
+  | '/product-search'
   | '/signin'
   | '/signup'
   | '/survey'
   | '/myinfo'
   | '/confirmpassword'
   | '/newpassword'
-const pageWithoutNavbar: ALLOWED_PATH[] = [
-  '/search',
+
+const pageWithNavbar: ALLOWED_PATH[] = [
+  '/product-search',
   '/signin',
   '/signup',
   '/survey',
@@ -28,13 +29,15 @@ const Layout = ({ children }: any) => {
   const [currentPath, setCurrentPath] = useState<ALLOWED_PATH | null>(null)
   const listExp: RegExp = new RegExp(`/product-list/\?(.*)`)
   const detailExp: RegExp = new RegExp(`/product-detail/\?(.*)`)
+  const searchExp: RegExp = new RegExp(`/product-search/\?(.*)`)
 
   useEffect(() => {
     if (asPath !== currentPath) setCurrentPath(asPath as ALLOWED_PATH)
   }, [asPath, currentPath])
 
   const displayMainNav = () => {
-    if (currentPath && !pageWithoutNavbar.includes(currentPath)) {
+    // 'currentPath && !searchExp' condition needs to be added
+    if (currentPath && !pageWithNavbar.includes(currentPath)) {
       return <MainNav />
     }
   }
