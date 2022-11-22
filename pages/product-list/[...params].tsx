@@ -135,7 +135,13 @@ function index(data: data) {
     setPage(page)
     if (router.query.params == 'all') {
       router.push(
-        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${sortChange}`,
+        `/product-list/${router.query.params}?category1=${
+          router.query.category1
+        }&category2=${router.query.category2}&category3=${
+          router.query.category3
+        }&category4=${router.query.category4}&page=${
+          page - 1
+        }&sort=${sortChange}`,
       )
     } else
       router.push(
