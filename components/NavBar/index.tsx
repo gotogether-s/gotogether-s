@@ -2,11 +2,14 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { useRouter } from 'next/router'
 import style from './NavBar.module.scss'
 
-const NavBar = ({ link, title }) => {
+const NavBar = ({ link, title, marginBottom }) => {
   const router = useRouter()
 
   return (
-    <div className={style['navbar-container']}>
+    <div
+      className={style['navbar-container']}
+      style={{ marginBottom: marginBottom ? marginBottom : '3rem' }}
+    >
       <ArrowBackIosNewIcon
         className={style['icon']}
         onClick={() => {
