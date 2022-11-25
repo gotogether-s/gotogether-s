@@ -133,6 +133,7 @@ const Menu = () => {
               </Link>
             ))}
           </List>
+          <Category />
           <List onClick={clickSignupMenu} sx={{ padding: '0' }}>
             <ListItem disablePadding>
               <ListItemButton>
