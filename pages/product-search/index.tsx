@@ -72,7 +72,7 @@ const ProductSearch = () => {
           value={keyword}
           autoFocus={true}
           onChange={getInputValue}
-          onKeyDown={searchProductOrclearInput}
+          onKeyPress={searchProductOrclearInput}
           endAdornment={
             <InputAdornment position="end">
               {!displaySearchResult ? (
