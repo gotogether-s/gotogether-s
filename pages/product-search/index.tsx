@@ -56,10 +56,8 @@ const ProductSearch = () => {
       router.push(`/product-search?keyword=${keyword}&page=0`)
       const { content } = res.data.data
       console.log(content)
-      if (content.length) {
-        setProductNumber(content.length)
-        setProductLists(content)
-      }
+      setProductNumber(content.length)
+      setProductLists(content)
     } catch (e) {
       console.log('e: ', e)
     }
