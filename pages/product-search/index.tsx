@@ -3,13 +3,14 @@ import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CloseIcon from '@mui/icons-material/Close'
-import Link from 'next/link'
 import { useSearchProductsMutation } from '@api/requestApi'
 import { FormControl, OutlinedInput, InputAdornment } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import { add, remove } from '@store/searchHistorySlice'
 import { useState } from 'react'
+import Link from 'next/link'
+import NavBar from '@components/NavBar'
 import style from './Search.module.scss'
 
 const ProductSearch = () => {
@@ -66,40 +67,33 @@ const ProductSearch = () => {
 
   return (
     <>
-      <div className={style['search-container']}>
-        <ArrowBackIosNewIcon
-          className={style['clickable-icon']}
-          onClick={() => {
-            router.push('/')
-          }}
+      <NavBar link="/" title="상품검색" marginBottom="1rem" />
+      <FormControl sx={{ width: '100%', marginBottom: '3rem' }} size="small">
+        <OutlinedInput
+          placeholder="상품을 검색해주세요"
+          value={keyword}
+          autoFocus={true}
+          onChange={getInputValue}
+          onKeyDown={searchProductOrclearInput}
+          endAdornment={
+            <InputAdornment position="end">
+              {!displaySearchResult ? (
+                <SearchIcon
+                  sx={{ fontSize: 25 }}
+                  className={style['clickable-icon']}
+                  onClick={searchProductOrclearInput}
+                />
+              ) : (
+                <HighlightOffIcon
+                  sx={{ fontSize: 25 }}
+                  className={style['clickable-icon']}
+                  onClick={clearInput}
+                />
+              )}
+            </InputAdornment>
+          }
         />
-        <FormControl sx={{ width: '100%' }} size="small">
-          <OutlinedInput
-            placeholder="상품을 검색해주세요"
-            value={keyword}
-            autoFocus={true}
-            onChange={getInputValue}
-            onKeyDown={searchProductOrclearInput}
-            endAdornment={
-              <InputAdornment position="end">
-                {!displaySearchResult ? (
-                  <SearchIcon
-                    sx={{ fontSize: 25 }}
-                    className={style['clickable-icon']}
-                    onClick={searchProductOrclearInput}
-                  />
-                ) : (
-                  <HighlightOffIcon
-                    sx={{ fontSize: 25 }}
-                    className={style['clickable-icon']}
-                    onClick={clearInput}
-                  />
-                )}
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-      </div>
+      </FormControl>
       {!displaySearchResult ? (
         <>
           <div className={style['label']}>최근 검색어</div>
