@@ -36,8 +36,11 @@ const Layout = ({ children }: any) => {
   }, [asPath, currentPath])
 
   const displayMainNav = () => {
-    // 'currentPath && !searchExp' condition needs to be added
-    if (currentPath && !pageWithNavbar.includes(currentPath)) {
+    if (
+      currentPath &&
+      !pageWithNavbar.includes(currentPath) &&
+      !searchExp.test(asPath)
+    ) {
       return <MainNav />
     }
   }
