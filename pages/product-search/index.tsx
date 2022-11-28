@@ -141,14 +141,6 @@ const ProductSearch = () => {
             {searchHistory.map((list: string, index: number) => (
               <ListItem
                 key={index}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                    <CloseIcon
-                      className={style['clickable-icon']}
-                      onClick={() => dispatch(remove(index))}
-                    />
-                  </IconButton>
-                }
                 sx={{
                   padding: '1rem 0',
                   borderBottom: '1px solid #ddd',
@@ -161,7 +153,11 @@ const ProductSearch = () => {
               >
                 <div className={style['flex-wrapper']}>
                   <AccessTimeIcon />
-                  <ListItemText primary={list} />
+                  <ListItemText primary={list} sx={{ marginLeft: '1rem' }} />
+                  <CloseIcon
+                    className={style['clickable-icon']}
+                    onClick={() => dispatch(remove(index))}
+                  />
                 </div>
               </ListItem>
             ))}
