@@ -17,7 +17,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const CompanionRecommend = () => {
   const companion: string[] = [
     '전체',
     '남자끼리',
@@ -116,4 +116,4 @@ function index() {
   )
 }
 
-export default index
+export default CompanionRecommend

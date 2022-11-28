@@ -1,5 +1,5 @@
 import HeadInfo from '@components/HeadInfo'
-import Main from '@components/Main'
+import Main from '@components/Main/Main'
 
 const Home = () => {
   return (

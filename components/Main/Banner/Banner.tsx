@@ -7,7 +7,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './Banner.module.scss'
 
-function index() {
+const Banner = () => {
   return (
     <>
       <Swiper
@@ -44,4 +44,4 @@ function index() {
   )
 }
 
-export default index
+export default Banner

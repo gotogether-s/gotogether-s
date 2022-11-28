@@ -17,7 +17,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const CultureRecommend = () => {
   const [culture, setCulture] = useState<[]>([])
   const [cultureRecommend]: any = useCultureRecommendMutation()
 
@@ -63,4 +63,4 @@ function index() {
   )
 }
 
-export default index
+export default CultureRecommend

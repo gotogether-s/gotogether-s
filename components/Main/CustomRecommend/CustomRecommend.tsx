@@ -20,7 +20,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const CustomRecommend = () => {
   const [customs, setCustoms] = useState<[]>([])
   const [customRecommendUser]: any = useCustomRecommendUserMutation()
   const [customRecommend]: any = useCustomRecommendMutation()
@@ -74,4 +74,4 @@ function index() {
   )
 }
 
-export default index
+export default CustomRecommend

@@ -17,7 +17,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const AgesRecommend = () => {
   const ages: string[] = [
     '전체',
     '10대',
@@ -106,4 +106,4 @@ function index() {
   )
 }
 
-export default index
+export default AgesRecommend

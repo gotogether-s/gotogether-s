@@ -4,7 +4,7 @@
   .selectMenu {
     width: 35.8rem;
     height: 4rem;
-    margin: 0 0 0.8rem -1.6rem;
+    margin-bottom: 0.8rem;
     background-color: #f5f5f5;
     font-size: 1.1rem;
     display: flex;
@@ -29,16 +29,18 @@
     color: #3c3c3c;
     font-size: 1.2rem;
     font-weight: 500;
+    margin-left: 1.6rem;
   }
   .line {
     width: 36rem;
     height: 0.01rem;
-    margin: 0.8rem -1.7rem;
+    margin: 0.8rem 0;
     background-color: #e7e8ed;
   }
   .number {
     color: #3c3c3c;
     font-size: 1.2rem;
+    margin-left: 1.6rem;
     .CallIcon {
       width: 1.1rem;
       height: 1.2rem;
@@ -46,8 +48,9 @@
     }
   }
   .infoAll {
+    margin-left: 1.6rem;
     .icon {
-      background-image: url('../../../public/TheShiny_footer.png');
+      background-image: url('../../public/TheShiny_footer.png');
       background-repeat: no-repeat;
       background-size: contain;
       width: 9.7rem;

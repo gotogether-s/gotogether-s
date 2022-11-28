@@ -1,11 +1,11 @@
-import TilteAndEtc from '../TitleAndEtc'
-import CustomRecommend from '../CustomRecommend'
-import ContinentsRecommend from '../ContinentsRecommend'
-import AgesRecommend from '../AgesRecommend'
-import CompanionRecommend from '../CompanionRecommend'
-import GolfRecommend from '../GolfRecommend'
-import CultureRecommend from '../CultureRecommend'
-import HealingRecommend from '../HealingRecommend'
+import TilteAndEtc from '../TitleAndEtc/TitleAndEtc'
+import CustomRecommend from '../CustomRecommend/CustomRecommend'
+import ContinentsRecommend from '../ContinentsRecommend/ContinentsRecommend'
+import AgesRecommend from '../AgesRecommend/AgesRecommend'
+import CompanionRecommend from '../CompanionRecommend/CompanionRecommend'
+import GolfRecommend from '../GolfRecommend/GolfRecommend'
+import CultureRecommend from '../CultureRecommend/CultureRecommend'
+import HealingRecommend from '../HealingRecommend/HealingRecommend'
 
 type recommendProps = {
   title: string
@@ -14,7 +14,7 @@ type recommendProps = {
   apiAddress: string
 }
 
-function index(props: recommendProps) {
+const Recommend = (props: recommendProps) => {
   return (
     <>
       <TilteAndEtc
@@ -34,4 +34,4 @@ function index(props: recommendProps) {
   )
 }
 
-export default index
+export default Recommend

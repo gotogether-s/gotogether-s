@@ -17,7 +17,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const GolfRecommend = () => {
   const [golf, setGolf] = useState<[]>([])
   const [golfRecommend]: any = useGolfRecommendMutation()
 
@@ -63,4 +63,4 @@ function index() {
   )
 }
 
-export default index
+export default GolfRecommend
