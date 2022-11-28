@@ -5,6 +5,7 @@ import searchHistory from './searchHistorySlice'
 import surveyQnaLists from './surveyQnaListsSlice'
 import sideBarStatus from './sideBarStatusSlice'
 import isLogin from './isLoginSlice'
+import reservationDetail from './reservationDetailSlice'
 
 const store = configureStore({
   reducer: {
@@ -14,9 +15,12 @@ const store = configureStore({
     sideBarStatus: sideBarStatus.reducer,
     isLogin: isLogin.reducer,
     [requestApi.reducerPath]: requestApi.reducer,
+    reservationDetail: reservationDetail.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(requestApi.middleware),
 })
+
+export type RootState = ReturnType<typeof store.getState>
 
 export default store

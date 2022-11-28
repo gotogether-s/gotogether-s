@@ -12,6 +12,9 @@ import {
 } from 'react-share'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { useSelector, useDispatch } from 'react-redux'
+import { reservation, reset } from '@store/reservationDetailSlice'
+import { useRouter } from 'next/router'
 
 type data = {
   ages: string
@@ -46,8 +49,30 @@ type paramType = {
   }
 }
 
-function index(data: data) {
+type state = {
+  reservationDetail: {
+    productName?: string
+    airport?: string
+    productOptionList?: string
+    basicPrice?: 0
+  }
+}
+
+export default function productId(data: data) {
   const departure = data.productOptionList.출발일
+
+  const router = useRouter()
+  const reservationDetail = useSelector((state: state) => {
+    return state.reservationDetail
+  })
+
+  const dispatch = useDispatch()
+
+  const moveBook = () => {
+    dispatch(reset())
+    dispatch(reservation(data))
+    router.push('/book')
+  }
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
   let currentUrl = ''
@@ -131,7 +156,14 @@ function index(data: data) {
 
       <footer className="wish_reser">
         <div className="wish">찜하기</div>
-        <div className="reservation">예약하기</div>
+        <div
+          className="reservation"
+          onClick={() => {
+            moveBook()
+          }}
+        >
+          예약하기
+        </div>
       </footer>
 
       <div className="departureDate">
@@ -302,5 +334,3 @@ export const getServerSideProps = async (context: paramType) => {
   const data = await res.data.data
   return { props: data }
 }
-
-export default index
