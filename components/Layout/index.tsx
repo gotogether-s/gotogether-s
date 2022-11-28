@@ -2,7 +2,8 @@ import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import MainNav from '@components/MainNav'
-import TopButton from '@components/TopButton'
+import TopButton from '@components/TopButton/TopButton'
+import Footer from '@components/Footer/Footer'
 import style from './Layout.module.scss'
 
 type ALLOWED_PATH =
@@ -54,12 +55,22 @@ const Layout = ({ children }: any) => {
     }
   }
 
+  const displayFooter = () => {
+    if (
+      asPath &&
+      (asPath === '/' || listExp.test(asPath) || detailExp.test(asPath))
+    ) {
+      return <Footer />
+    }
+  }
+
   return (
     <>
       <Container maxWidth="sm" className={style['layout-container']}>
         {displayMainNav()}
         {displayTopButton()}
         <div className={style['layout-body-container']}>{children}</div>
+        {displayFooter()}
       </Container>
     </>
   )

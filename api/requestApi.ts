@@ -128,6 +128,13 @@ export const requestApi = createApi({
         method: 'GET',
       }),
     }),
+    addFavorite: builder.mutation({
+      query: ({ data }) => ({
+        url: '/wishes',
+        method: 'POST',
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -148,4 +155,5 @@ export const {
   useGolfRecommendMutation,
   useCultureRecommendMutation,
   useHealingRecommendMutation,
+  useAddFavoriteMutation,
 } = requestApi

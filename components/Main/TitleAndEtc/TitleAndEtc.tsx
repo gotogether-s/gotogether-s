@@ -15,7 +15,7 @@ type Props = {
   apiAddress: string
 }
 
-function index(props: titleProps) {
+const TitleAndEtc = (props: titleProps) => {
   return (
     <>
       <div className={style.mainAndMore}>
@@ -40,4 +40,4 @@ function index(props: titleProps) {
   )
 }
 
-export default index
+export default TitleAndEtc

@@ -12,6 +12,10 @@ import {
 } from 'react-share'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { useSelector, useDispatch } from 'react-redux'
+import { reservation, reset } from '@store/reservationDetailSlice'
+import { useRouter } from 'next/router'
+import { useAddFavoriteMutation } from '@api/requestApi'
 
 type data = {
   ages: string
@@ -46,10 +50,54 @@ type paramType = {
   }
 }
 
-function index(data: data) {
-  const departure = data.productOptionList.출발일
+type state = {
+  reservationDetail: {
+    productName?: string
+    airport?: string
+    productOptionList?: string
+    basicPrice?: 0
+  }
+}
 
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+export default function productId(data: data) {
+  const departure = data.productOptionList.출발일
+  const id = data.id
+  const router = useRouter()
+  const reservationDetail = useSelector((state: state) => {
+    return state.reservationDetail
+  })
+
+  const dispatch = useDispatch()
+
+  const moveBook = () => {
+    dispatch(reset())
+    dispatch(reservation(data))
+    router.push('/book')
+  }
+
+  const [shareModalIsOpen, setShareModalIsOpen] = useState<boolean>(false)
+  const [favoriteModalIsOpen, setFavoriteModalIsOpen] = useState<boolean>(false)
+  const [addFavorite]: any = useAddFavoriteMutation()
+
+  const openFavorite = async () => {
+    console.log(id)
+    const res = await addFavorite({
+      id,
+    })
+    console.log(res)
+    if (res.error) {
+      console.log('에런뎅?')
+    } else setFavoriteModalIsOpen(!favoriteModalIsOpen)
+  }
+
+  const closeFavoriteModal = () => {
+    setFavoriteModalIsOpen(!favoriteModalIsOpen)
+  }
+
+  const moveFavorite = () => {
+    router.push('/favorite')
+  }
+
   let currentUrl = ''
   if (typeof window !== 'undefined') {
     currentUrl = window.location.href
@@ -87,8 +135,8 @@ function index(data: data) {
     let shareURL = 'https://band.us/plugin/share?body' + url + '&route=' + title
     document.location = shareURL
   }
-  const closeModal = () => {
-    setModalIsOpen(!modalIsOpen)
+  const closeShareModal = () => {
+    setShareModalIsOpen(!shareModalIsOpen)
   }
   const detailData = JSON.parse(data.info)
 
@@ -130,8 +178,40 @@ function index(data: data) {
       <div className="line"></div>
 
       <footer className="wish_reser">
-        <div className="wish">찜하기</div>
-        <div className="reservation">예약하기</div>
+        <div
+          className="wish"
+          onClick={() => {
+            openFavorite()
+          }}
+        >
+          찜하기
+        </div>
+        {favoriteModalIsOpen && (
+          <div className="favoriteContainer" onClick={closeFavoriteModal}>
+            <div
+              className="favoriteModalBody"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="contents">찜한 상품 목록을 확인하시겠습니까?</div>
+              <div className="select">
+                <div className="goFavorite" onClick={moveFavorite}>
+                  찜 목록 보기
+                </div>
+                <div className="stay" onClick={closeFavoriteModal}>
+                  쇼핑 계속하기
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        <div
+          className="reservation"
+          onClick={() => {
+            moveBook()
+          }}
+        >
+          예약하기
+        </div>
       </footer>
 
       <div className="departureDate">
@@ -164,18 +244,18 @@ function index(data: data) {
         <div className="title">항공</div>
         <div className="content">{data.airport}</div>
       </div>
-      <div className="share" onClick={() => setModalIsOpen(true)}>
+      <div className="share" onClick={() => setShareModalIsOpen(true)}>
         공유하기
       </div>
-      {modalIsOpen && (
-        <div className="shareContainer" onClick={closeModal}>
+      {shareModalIsOpen && (
+        <div className="shareContainer" onClick={closeShareModal}>
           <div className="shareModalBody" onClick={(e) => e.stopPropagation()}>
             <div className="top">
               <div className="sharePhrases">공유하기</div>
               <CloseIcon
                 fontSize="medium"
                 className="closeButton"
-                onClick={closeModal}
+                onClick={closeShareModal}
               />
             </div>
             <div className="middle">
@@ -302,5 +382,3 @@ export const getServerSideProps = async (context: paramType) => {
   const data = await res.data.data
   return { props: data }
 }
-
-export default index

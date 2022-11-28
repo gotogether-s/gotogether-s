@@ -1,7 +1,7 @@
 import style from './Category.module.scss'
 import Link from 'next/link'
 
-function index() {
+const Category = () => {
   type Props = {
     name: string
     api: string
@@ -96,4 +96,4 @@ function index() {
   )
 }
 
-export default index
+export default Category

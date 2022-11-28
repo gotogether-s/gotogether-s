@@ -17,7 +17,7 @@ type data = {
   basicPrice: number
 }
 
-function index() {
+const HealingRecommend = () => {
   const [healing, setHealing] = useState<[]>([])
   const [healingRecommend]: any = useHealingRecommendMutation()
 
@@ -62,4 +62,4 @@ function index() {
   )
 }
 
-export default index
+export default HealingRecommend

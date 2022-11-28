@@ -60,7 +60,7 @@ type query = {
   }
 }
 
-function index(data: data) {
+export default function productLists(data: data) {
   const router = useRouter()
   const title: string | string[] | undefined = router.query.params
 
@@ -829,5 +829,3 @@ export const getServerSideProps = async (context: query) => {
   const data = response.data.data
   return { props: data }
 }
-
-export default index

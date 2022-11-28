@@ -1,7 +1,7 @@
 import style from './Bundary.module.scss'
 
-function index() {
+const Bundary = () => {
   return <div className={style.area}></div>
 }
 
-export default index
+export default Bundary

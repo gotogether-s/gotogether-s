@@ -5,7 +5,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './ContinentsRecommend.module.scss'
 
-function index() {
+const ContinentsRecommend = () => {
   return (
     <>
       <Swiper
@@ -229,4 +229,4 @@ function index() {
   )
 }
 
-export default index
+export default ContinentsRecommend

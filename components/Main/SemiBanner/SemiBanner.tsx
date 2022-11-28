@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import style from './SemiBanner.module.scss'
 
-function index() {
+const SemiBanner = () => {
   return (
     <Link href="/survey">
       <img src="./semiBanner.png" className={style.semiBanner} />
@@ -9,4 +9,4 @@ function index() {
   )
 }
 
-export default index
+export default SemiBanner

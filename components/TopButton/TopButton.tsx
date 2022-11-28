@@ -2,7 +2,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import React from 'react'
 import button from './TopButton.module.scss'
 import Fab from '@mui/material/Fab'
-function index() {
+
+const TopButton = () => {
   const upToTop = () => {
     window.scrollTo(0, 0)
   }
@@ -18,4 +19,4 @@ function index() {
   )
 }
 
-export default index
+export default TopButton

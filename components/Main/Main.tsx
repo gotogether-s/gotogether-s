@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import style from './Main.module.scss'
-import Banner from './Banner'
-import Category from './Category'
-import Recommend from './Recommend'
-import Bundary from './Bundary'
-import SemiBanner from './SemiBanner'
-import Footer from './Footer'
+import Banner from './Banner/Banner'
+import Category from './Category/Category'
+import Recommend from './Recommend/Recommend'
+import Bundary from './Bundary/Bundary'
+import SemiBanner from './SemiBanner/SemiBanner'
+import Footer from '../Footer/Footer'
 
-function Main() {
+const Main = () => {
   const [username, setUsername] = useState<string>('')
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
@@ -101,8 +101,6 @@ function Main() {
           api="healing"
           apiAddress="themes"
         />
-
-        <Footer />
       </div>
     </>
   )
