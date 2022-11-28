@@ -43,12 +43,12 @@ const ProductSearch = () => {
         setProductLists(null)
       } else {
         dispatch(add(keyword))
-        requestSearch()
+        requestSearch(keyword)
       }
     }
     if (e.key === 'Backspace' && e.target.value === '') {
       clearInput()
-      requestSearch()
+      requestSearch(keyword)
     }
   }
 
@@ -57,7 +57,13 @@ const ProductSearch = () => {
     setDisplaySearchResult(false)
   }
 
-  const requestSearch = async () => {
+  const clickSearchHistory = (keyword) => {
+    setKeyword(keyword)
+    setDisplaySearchResult(true)
+    requestSearch(keyword)
+  }
+
+  const requestSearch = async (keyword) => {
     try {
       const res = await searchProducts(keyword)
       console.log('res: ', res)
@@ -128,7 +134,12 @@ const ProductSearch = () => {
                 sx={{
                   padding: '1rem 0',
                   borderBottom: '1px solid #ddd',
+                  '&:hover': {
+                    backgroundColor: '#eee',
+                    cursor: 'pointer',
+                  },
                 }}
+                onClick={() => clickSearchHistory(list)}
               >
                 <div className={style['flex-wrapper']}>
                   <AccessTimeIcon />
