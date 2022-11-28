@@ -1,4 +1,7 @@
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
@@ -40,12 +43,12 @@ const ProductSearch = () => {
         setProductLists(null)
       } else {
         dispatch(add(keyword))
-        requestSearch()
+        requestSearch(keyword)
       }
     }
     if (e.key === 'Backspace' && e.target.value === '') {
       clearInput()
-      requestSearch()
+      requestSearch(keyword)
     }
   }
 
@@ -54,7 +57,13 @@ const ProductSearch = () => {
     setDisplaySearchResult(false)
   }
 
-  const requestSearch = async () => {
+  const clickSearchHistory = (keyword) => {
+    setKeyword(keyword)
+    setDisplaySearchResult(true)
+    requestSearch(keyword)
+  }
+
+  const requestSearch = async (keyword) => {
     try {
       const res = await searchProducts(keyword)
       console.log('res: ', res)
@@ -106,18 +115,39 @@ const ProductSearch = () => {
       {!displaySearchResult ? (
         <>
           <div className={style['label']}>최근 검색어</div>
-          {searchHistory.map((list: string, index: number) => (
-            <div className={style['search-history']} key={index}>
-              <div className={style['flex-wrapper']}>
-                <AccessTimeIcon />
-                <p key={index}>{list}</p>
-              </div>
-              <CloseIcon
-                className={style['clickable-icon']}
-                onClick={() => dispatch(remove(index))}
-              />
-            </div>
-          ))}
+          <List
+            sx={{
+              padding: 0,
+            }}
+          >
+            {searchHistory.map((list: string, index: number) => (
+              <ListItem
+                key={index}
+                secondaryAction={
+                  <IconButton edge="end" aria-label="delete">
+                    <CloseIcon
+                      className={style['clickable-icon']}
+                      onClick={() => dispatch(remove(index))}
+                    />
+                  </IconButton>
+                }
+                sx={{
+                  padding: '1rem 0',
+                  borderBottom: '1px solid #ddd',
+                  '&:hover': {
+                    backgroundColor: '#eee',
+                    cursor: 'pointer',
+                  },
+                }}
+                onClick={() => clickSearchHistory(list)}
+              >
+                <div className={style['flex-wrapper']}>
+                  <AccessTimeIcon />
+                  <ListItemText primary={list} />
+                </div>
+              </ListItem>
+            ))}
+          </List>
         </>
       ) : (
         <>

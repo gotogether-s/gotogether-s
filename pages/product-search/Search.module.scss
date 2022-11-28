@@ -7,17 +7,10 @@
   border-bottom: 1px solid #ddd;
 }
 
-.search-history {
+.flex-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #ddd;
-  .flex-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+  gap: 1rem;
 }
 
 .no-result {
