@@ -8,7 +8,7 @@ import { FormControl, OutlinedInput, InputAdornment } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import { add, remove } from '@store/searchHistorySlice'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import NavBar from '@components/NavBar'
 import style from './Search.module.scss'
@@ -34,9 +34,14 @@ const ProductSearch = () => {
 
   const searchProductOrclearInput = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
-      dispatch(add(keyword))
       setDisplaySearchResult(true)
-      requestSearch()
+      if (keyword.trim().replace(/\s/g, '') === '') {
+        setProductNumber(0)
+        setProductLists(null)
+      } else {
+        dispatch(add(keyword))
+        requestSearch()
+      }
     }
     if (e.key === 'Backspace' && e.target.value === '') {
       clearInput()
@@ -55,13 +60,19 @@ const ProductSearch = () => {
       console.log('res: ', res)
       router.push(`/product-search?keyword=${keyword}&page=0`)
       const { content } = res.data.data
-      console.log(content)
       setProductNumber(content.length)
       setProductLists(content)
     } catch (e) {
       console.log('e: ', e)
     }
   }
+
+  useEffect(() => {
+    if (keyword === '') {
+      setDisplaySearchResult(false)
+      router.push('/product-search')
+    }
+  }, [keyword])
 
   return (
     <>
