@@ -69,6 +69,11 @@ const ProductSearch = () => {
     requestSearch(keyword)
   }
 
+  const removeSearchHistory = (e, index) => {
+    e.stopPropagation()
+    dispatch(remove(index))
+  }
+
   const requestSearch = async (keyword) => {
     try {
       const res = await searchProducts(keyword)
@@ -156,7 +161,7 @@ const ProductSearch = () => {
                   <ListItemText primary={list} sx={{ marginLeft: '1rem' }} />
                   <CloseIcon
                     className={style['clickable-icon']}
-                    onClick={() => dispatch(remove(index))}
+                    onClick={(e) => removeSearchHistory(e, index)}
                   />
                 </div>
               </ListItem>
