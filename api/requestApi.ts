@@ -129,10 +129,13 @@ export const requestApi = createApi({
       }),
     }),
     addFavorite: builder.mutation({
-      query: ({ data }) => ({
+      query: ({ data, accessToken }) => ({
         url: '/wishes',
         method: 'POST',
         body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }),
     }),
   }),

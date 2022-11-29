@@ -5,6 +5,7 @@ type reservationInfo = {
   airport: string
   productOptionList: string
   basicPrice: number
+  thumbnail: string
 }
 
 const initialState: reservationInfo = {
@@ -12,6 +13,7 @@ const initialState: reservationInfo = {
   airport: '',
   productOptionList: '',
   basicPrice: 0,
+  thumbnail: '',
 }
 
 const reservationDetailSlice = createSlice({
@@ -23,6 +25,7 @@ const reservationDetailSlice = createSlice({
       state.airport = action.payload.airport
       state.productOptionList = action.payload.productOptionList
       state.basicPrice = action.payload.basicPrice
+      state.thumbnail = action.payload.thumbnail
     },
     reset: (state) => {
       state = {
@@ -30,6 +33,7 @@ const reservationDetailSlice = createSlice({
         airport: '',
         productOptionList: '',
         basicPrice: 0,
+        thumbnail: '',
       }
     },
   },
