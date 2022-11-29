@@ -14,6 +14,7 @@ type ALLOWED_PATH =
   | '/myinfo'
   | '/confirmpassword'
   | '/newpassword'
+  | '/book'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
   '/product-search',
@@ -23,7 +24,10 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/myinfo',
   '/confirmpassword',
   '/newpassword',
+  '/book',
 ]
+
+const pageWithoutPadding = ['/book']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
@@ -43,6 +47,12 @@ const Layout = ({ children }: any) => {
       !searchExp.test(asPath)
     ) {
       return <MainNav />
+    }
+  }
+
+  const ApplyPadding = () => {
+    if (currentPath && !pageWithoutPadding.includes(currentPath)) {
+      return true
     }
   }
 
@@ -69,7 +79,15 @@ const Layout = ({ children }: any) => {
       <Container maxWidth="sm" className={style['layout-container']}>
         {displayMainNav()}
         {displayTopButton()}
-        <div className={style['layout-body-container']}>{children}</div>
+        <div
+          className={
+            ApplyPadding()
+              ? style['children-container-with-padding']
+              : style['children-container-without-padding']
+          }
+        >
+          {children}
+        </div>
         {displayFooter()}
       </Container>
     </>

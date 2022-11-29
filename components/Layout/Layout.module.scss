@@ -3,6 +3,11 @@
   border-right: 1px solid #ddd;
   min-height: 100vh;
 }
-.layout-body-container {
-  padding: 0 1.6rem;
+.children-container-with-padding {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+.children-container-without-padding > div:first-child {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
 }
