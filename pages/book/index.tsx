@@ -24,7 +24,7 @@ const Book = () => {
             <CardMedia
               component="img"
               sx={{ width: 120, borderRadius: '0.8rem' }}
-              image="https://via.placeholder.com/120"
+              image={getReservationDetail.thumbnail}
             />
             <CardContent
               sx={{
