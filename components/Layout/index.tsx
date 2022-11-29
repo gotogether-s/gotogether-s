@@ -27,6 +27,8 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/book',
 ]
 
+const pageWithoutPadding = ['/book']
+
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
   const [currentPath, setCurrentPath] = useState<ALLOWED_PATH | null>(null)
@@ -45,6 +47,12 @@ const Layout = ({ children }: any) => {
       !searchExp.test(asPath)
     ) {
       return <MainNav />
+    }
+  }
+
+  const ApplyPadding = () => {
+    if (currentPath && !pageWithoutPadding.includes(currentPath)) {
+      return true
     }
   }
 
@@ -71,7 +79,15 @@ const Layout = ({ children }: any) => {
       <Container maxWidth="sm" className={style['layout-container']}>
         {displayMainNav()}
         {displayTopButton()}
-        <div className={style['layout-body-container']}>{children}</div>
+        <div
+          className={
+            ApplyPadding()
+              ? style['children-container-with-padding']
+              : style['children-container-without-padding']
+          }
+        >
+          {children}
+        </div>
         {displayFooter()}
       </Container>
     </>
