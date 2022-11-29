@@ -14,6 +14,7 @@ type ALLOWED_PATH =
   | '/myinfo'
   | '/confirmpassword'
   | '/newpassword'
+  | '/book'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
   '/product-search',
@@ -23,6 +24,7 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/myinfo',
   '/confirmpassword',
   '/newpassword',
+  '/book',
 ]
 
 const Layout = ({ children }: any) => {
