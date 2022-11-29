@@ -1,5 +1,6 @@
 import { Box, Card, CardMedia, CardContent, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { useSelector } from 'react-redux'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
 
@@ -10,6 +11,10 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const getReservationDetail = useSelector((state) => {
+    return state.reservationDetail
+  })
+
   return (
     <>
       <NavBar link="/" title="예약" marginBottom="0" />
@@ -30,11 +35,14 @@ const Book = () => {
               }}
             >
               <Box>
-                <Typography>시칠리아 9일 일주</Typography>
-                <Typography>터키항공</Typography>
+                <Typography>{getReservationDetail.productName}</Typography>
+                <Typography>{getReservationDetail.airport}</Typography>
                 <Typography>10/18 (화)</Typography>
               </Box>
-              <Typography>1인/ 4,390,000 원</Typography>
+              <Typography>
+                1인 / {getReservationDetail.basicPrice.toLocaleString('ko-KR')}{' '}
+                원
+              </Typography>
             </CardContent>
           </Card>
         </StyledSection>
