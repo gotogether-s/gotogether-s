@@ -56,12 +56,12 @@ type state = {
     airport?: string
     productOptionList?: string
     basicPrice?: 0
+    thumbnail?: string
   }
 }
 
 export default function productId(data: data) {
   const departure = data.productOptionList.출발일
-  const id = data.id
   const router = useRouter()
   const reservationDetail = useSelector((state: state) => {
     return state.reservationDetail
@@ -77,21 +77,30 @@ export default function productId(data: data) {
 
   const [shareModalIsOpen, setShareModalIsOpen] = useState<boolean>(false)
   const [favoriteModalIsOpen, setFavoriteModalIsOpen] = useState<boolean>(false)
+  const [favoriteDuplicateModalIsOpen, setFavoriteDuplicateModalIsOpen] =
+    useState<boolean>(false)
   const [addFavorite]: any = useAddFavoriteMutation()
 
   const openFavorite = async () => {
-    console.log(id)
-    const res = await addFavorite({
-      id,
-    })
-    console.log(res)
-    if (res.error) {
-      console.log('에런뎅?')
-    } else setFavoriteModalIsOpen(!favoriteModalIsOpen)
+    const accessToken = localStorage.getItem('accessToken')
+    try {
+      const res = await addFavorite({
+        data: { product_id: data.id },
+        accessToken: accessToken,
+      })
+      if (res.data.statusCode == 400) {
+        setFavoriteDuplicateModalIsOpen(!favoriteDuplicateModalIsOpen)
+      } else setFavoriteModalIsOpen(!favoriteModalIsOpen)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const closeFavoriteModal = () => {
     setFavoriteModalIsOpen(!favoriteModalIsOpen)
+  }
+  const closeDuplicateFavoriteModal = () => {
+    setFavoriteDuplicateModalIsOpen(!favoriteDuplicateModalIsOpen)
   }
 
   const moveFavorite = () => {
@@ -145,6 +154,8 @@ export default function productId(data: data) {
   const [maxHeight, setMaxHeight] = useState<string>('40rem')
 
   useEffect(() => {
+    localStorage.getItem('accessToken')
+
     if (showMore) {
       setVisible('visible')
       setMaxHeight('100%')
@@ -192,12 +203,35 @@ export default function productId(data: data) {
               className="favoriteModalBody"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="contents">찜한 상품 목록을 확인하시겠습니까?</div>
+              <div className="contents">
+                찜 성공! 상품 목록을 확인하시겠습니까?
+              </div>
               <div className="select">
                 <div className="goFavorite" onClick={moveFavorite}>
                   찜 목록 보기
                 </div>
                 <div className="stay" onClick={closeFavoriteModal}>
+                  쇼핑 계속하기
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {favoriteDuplicateModalIsOpen && (
+          <div
+            className="favoriteContainer"
+            onClick={closeDuplicateFavoriteModal}
+          >
+            <div
+              className="favoriteModalBody"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="contents">이미 찜한 상품입니다!</div>
+              <div className="select">
+                <div className="goFavorite" onClick={moveFavorite}>
+                  찜 목록 보기
+                </div>
+                <div className="stay" onClick={closeDuplicateFavoriteModal}>
                   쇼핑 계속하기
                 </div>
               </div>
