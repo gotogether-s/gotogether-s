@@ -1,4 +1,11 @@
-import { Box, Card, CardMedia, CardContent, Typography } from '@mui/material'
+import {
+  Box,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  TextField,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
 import NavBar from '@components/NavBar'
@@ -45,6 +52,27 @@ const Book = () => {
               </Typography>
             </CardContent>
           </Card>
+        </StyledSection>
+        <StyledSection>
+          <Typography>예약자 정보 (대표)</Typography>
+          <div className={style['input-wrapper']}>
+            <div className={style['label']}>이름</div>
+            <TextField
+              name="name"
+              size="small"
+              placeholder="이름을 입력해주세요"
+              sx={{ width: '100%' }}
+            />
+          </div>
+          <div className={style['input-wrapper']}>
+            <div className={style['label']}>전화번호</div>
+            <TextField
+              name="phone"
+              size="small"
+              placeholder="전화번호를 입력해주세요"
+              sx={{ width: '100%' }}
+            />
+          </div>
         </StyledSection>
       </Box>
     </>
