@@ -66,31 +66,55 @@ export default function productId(data: data) {
   const reservationDetail = useSelector((state: state) => {
     return state.reservationDetail
   })
+  const [selectDeperatureValue, setSelectDeperatureValue] = useState<string>('')
 
   const dispatch = useDispatch()
 
   const moveBook = () => {
-    dispatch(reset())
-    dispatch(reservation(data))
-    router.push('/book')
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken && selectDeperatureValue) {
+      dispatch(reset())
+      dispatch(
+        reservation({
+          productName: data.productName,
+          airport: data.airport,
+          productOptionList: selectDeperatureValue,
+          basicPrice: data.basicPrice,
+          thumbnail: data.thumbnail,
+        }),
+      )
+      router.push('/book')
+    } else if (selectDeperatureValue == '') {
+      setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
+    } else {
+      setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+    }
   }
 
   const [shareModalIsOpen, setShareModalIsOpen] = useState<boolean>(false)
   const [favoriteModalIsOpen, setFavoriteModalIsOpen] = useState<boolean>(false)
   const [favoriteDuplicateModalIsOpen, setFavoriteDuplicateModalIsOpen] =
     useState<boolean>(false)
+  const [needLoginModalIsOpen, setNeedLoginModalIsOpenIsOpen] =
+    useState<boolean>(false)
+  const [needDeperatureModalIsOpen, setNeedDeperatureModalIsOpen] =
+    useState<boolean>(false)
   const [addFavorite]: any = useAddFavoriteMutation()
 
   const openFavorite = async () => {
     const accessToken = localStorage.getItem('accessToken')
     try {
-      const res = await addFavorite({
-        data: { product_id: data.id },
-        accessToken: accessToken,
-      })
-      if (res.data.statusCode == 400) {
-        setFavoriteDuplicateModalIsOpen(!favoriteDuplicateModalIsOpen)
-      } else setFavoriteModalIsOpen(!favoriteModalIsOpen)
+      if (accessToken) {
+        const res = await addFavorite({
+          data: { product_id: data.id },
+          accessToken: accessToken,
+        })
+        if (res.data.statusCode == 400) {
+          setFavoriteDuplicateModalIsOpen(!favoriteDuplicateModalIsOpen)
+        } else setFavoriteModalIsOpen(!favoriteModalIsOpen)
+      } else {
+        setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+      }
     } catch (e) {
       console.log(e)
     }
@@ -102,9 +126,24 @@ export default function productId(data: data) {
   const closeDuplicateFavoriteModal = () => {
     setFavoriteDuplicateModalIsOpen(!favoriteDuplicateModalIsOpen)
   }
+  const closeNeedLoginModal = () => {
+    setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+  }
+  const closeNeedDeperatureModal = () => {
+    setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
+  }
+
+  const selectDeperature = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectDeperatureValue(e.target.value)
+    dispatch(reservation({ productOptionList: e.target.value }))
+  }
 
   const moveFavorite = () => {
     router.push('/favorite')
+  }
+
+  const moveLogin = () => {
+    router.push('/signin')
   }
 
   let currentUrl = ''
@@ -238,6 +277,42 @@ export default function productId(data: data) {
             </div>
           </div>
         )}
+        {needLoginModalIsOpen && (
+          <div className="needLoginContainer" onClick={closeNeedLoginModal}>
+            <div
+              className="needLoginModalBody"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="contents">로그인이 필요한 서비스입니다!</div>
+              <div className="select">
+                <div className="goLogin" onClick={moveLogin}>
+                  로그인
+                </div>
+                <div className="stay" onClick={closeNeedLoginModal}>
+                  쇼핑 계속하기
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {needDeperatureModalIsOpen && (
+          <div
+            className="needDeperatureContainer"
+            onClick={closeNeedDeperatureModal}
+          >
+            <div
+              className="needDeperatureModalBody"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="contents">출발일을 선택해주세요!</div>
+              <div className="select">
+                <div className="ok" onClick={closeNeedDeperatureModal}>
+                  확인
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div
           className="reservation"
           onClick={() => {
@@ -251,7 +326,11 @@ export default function productId(data: data) {
       <div className="departureDate">
         <div className="departure">출발일 (필수)</div>
         <div className="selectDepartureDate">
-          <select name="departure" className="select">
+          <select
+            name="departure"
+            className="select"
+            onChange={selectDeperature}
+          >
             <option value="">출발일 선택하기</option>
             {departure &&
               departure.map((data: productOptionList, index: number) => (
