@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
 
@@ -21,6 +22,16 @@ const Book = () => {
   const getReservationDetail = useSelector((state) => {
     return state.reservationDetail
   })
+
+  const [reservationInfo, setReservationInfo] = useState({
+    name: '',
+    phone: '',
+  })
+
+  const handleReservationInfoChange = (e) => {
+    const { name, value } = e.target
+    setReservationInfo({ ...reservationInfo, [name]: value })
+  }
 
   return (
     <>
@@ -62,6 +73,8 @@ const Book = () => {
               size="small"
               placeholder="이름을 입력해주세요"
               sx={{ width: '100%' }}
+              value={reservationInfo.name}
+              onChange={handleReservationInfoChange}
             />
           </div>
           <div className={style['input-wrapper']}>
@@ -71,6 +84,8 @@ const Book = () => {
               size="small"
               placeholder="전화번호를 입력해주세요"
               sx={{ width: '100%' }}
+              value={reservationInfo.phone}
+              onChange={handleReservationInfoChange}
             />
           </div>
         </StyledSection>
