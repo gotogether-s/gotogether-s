@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
 
@@ -31,6 +31,14 @@ const Book = () => {
   const handleReservationInfoChange = (e) => {
     const { name, value } = e.target
     setReservationInfo({ ...reservationInfo, [name]: value })
+  }
+
+  const removeInputSpaces = (e) => {
+    const { name, value } = e.target
+    setReservationInfo({
+      ...reservationInfo,
+      [name]: value.trim().replace(/\s/g, ''),
+    })
   }
 
   return (
@@ -75,6 +83,7 @@ const Book = () => {
               sx={{ width: '100%' }}
               value={reservationInfo.name}
               onChange={handleReservationInfoChange}
+              onBlur={removeInputSpaces}
             />
           </div>
           <div className={style['input-wrapper']}>
@@ -86,6 +95,7 @@ const Book = () => {
               sx={{ width: '100%' }}
               value={reservationInfo.phone}
               onChange={handleReservationInfoChange}
+              onBlur={removeInputSpaces}
             />
           </div>
         </StyledSection>
