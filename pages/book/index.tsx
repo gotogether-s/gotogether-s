@@ -5,10 +5,13 @@ import {
   CardContent,
   Typography,
   TextField,
+  Button,
 } from '@mui/material'
+import RemoveIcon from '@mui/icons-material/Remove'
+import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
 
@@ -27,6 +30,8 @@ const Book = () => {
     name: '',
     phone: '',
   })
+
+  const [totalReservationPeople, setTotalReservationPeople] = useState(1)
 
   const handleReservationInfoChange = (e) => {
     const { name, value } = e.target
@@ -98,6 +103,45 @@ const Book = () => {
               onBlur={removeInputSpaces}
             />
           </div>
+        </StyledSection>
+        <StyledSection>
+          <Typography>인원</Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography>인원수</Typography>
+            <Box sx={{ display: 'flex', gap: '1.6rem' }}>
+              <Button
+                aria-label="reduce"
+                sx={{
+                  padding: '0.3rem',
+                  minWidth: '0',
+                  border: '1px solid #ddd',
+                  borderRadius: '100%',
+                }}
+                onClick={() => {
+                  setTotalReservationPeople(
+                    Math.max(totalReservationPeople - 1, 0),
+                  )
+                }}
+              >
+                <RemoveIcon fontSize="small" />
+              </Button>
+              <Typography>{totalReservationPeople}</Typography>
+              <Button
+                aria-label="increase"
+                sx={{
+                  padding: '0.3rem',
+                  minWidth: '0',
+                  border: '1px solid #ddd',
+                  borderRadius: '100%',
+                }}
+                onClick={() => {
+                  setTotalReservationPeople(totalReservationPeople + 1)
+                }}
+              >
+                <AddIcon fontSize="small" />
+              </Button>
+            </Box>
+          </Box>
         </StyledSection>
       </Box>
     </>
