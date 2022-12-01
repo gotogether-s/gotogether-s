@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 type reservationInfo = {
+  productId: number
   productName: string
   airport: string
   productOptionList: string
@@ -9,6 +10,7 @@ type reservationInfo = {
 }
 
 const initialState: reservationInfo = {
+  productId: 0,
   productName: '',
   airport: '',
   productOptionList: '',
@@ -21,6 +23,7 @@ const reservationDetailSlice = createSlice({
   initialState,
   reducers: {
     reservation: (state, action) => {
+      state.productId = action.payload.productId
       state.productName = action.payload.productName
       state.airport = action.payload.airport
       state.productOptionList = action.payload.productOptionList
@@ -29,6 +32,7 @@ const reservationDetailSlice = createSlice({
     },
     reset: (state) => {
       state = {
+        productId: 0,
         productName: '',
         airport: '',
         productOptionList: '',

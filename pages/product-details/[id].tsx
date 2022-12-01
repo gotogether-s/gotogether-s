@@ -12,7 +12,7 @@ import {
 } from 'react-share'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { reservation, reset } from '@store/reservationDetailSlice'
 import { useRouter } from 'next/router'
 import { useAddFavoriteMutation } from '@api/requestApi'
@@ -50,22 +50,10 @@ type paramType = {
   }
 }
 
-type state = {
-  reservationDetail: {
-    productName?: string
-    airport?: string
-    productOptionList?: string
-    basicPrice?: 0
-    thumbnail?: string
-  }
-}
-
 export default function productId(data: data) {
   const departure = data.productOptionList.출발일
   const router = useRouter()
-  const reservationDetail = useSelector((state: state) => {
-    return state.reservationDetail
-  })
+
   const [selectDeperatureValue, setSelectDeperatureValue] = useState<string>('')
 
   const dispatch = useDispatch()
@@ -76,6 +64,7 @@ export default function productId(data: data) {
       dispatch(reset())
       dispatch(
         reservation({
+          productId: data.id,
           productName: data.productName,
           airport: data.airport,
           productOptionList: selectDeperatureValue,
