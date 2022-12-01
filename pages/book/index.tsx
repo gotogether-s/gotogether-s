@@ -6,9 +6,15 @@ import {
   Typography,
   TextField,
   Button,
+  FormControlLabel,
+  Checkbox,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { styled } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
@@ -142,6 +148,44 @@ const Book = () => {
               </Button>
             </Box>
           </Box>
+          <Accordion
+            defaultExpanded={true}
+            disableGutters={true}
+            sx={{
+              marginTop: '2rem',
+              boxShadow: 'unset',
+              border: '1px solid #ddd',
+              borderRadius: '5px',
+              '&::before': {
+                height: 0,
+              },
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              sx={{ backgroundColor: '#F2F4FA' }}
+            >
+              <Typography>여행자 정보 1</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Typography>여행자 정보</Typography>
+                  <FormControlLabel
+                    control={<Checkbox defaultChecked />}
+                    label="예약자 정보와 동일"
+                    sx={{
+                      margin: '0',
+                      '& .MuiButtonBase-root': {
+                        padding: '0 0.5rem 0 0',
+                      },
+                    }}
+                  />
+                </Box>
+              </Box>
+            </AccordionDetails>
+          </Accordion>
         </StyledSection>
       </Box>
     </>
