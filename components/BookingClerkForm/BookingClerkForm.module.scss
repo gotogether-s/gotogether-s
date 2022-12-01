@@ -1,0 +1,9 @@
+.input-wrapper {
+  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .label {
+    padding-bottom: 0.5rem;
+  }
+}
