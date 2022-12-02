@@ -44,7 +44,7 @@ const BookingClerkForm = () => {
           >
             <Typography>여행자 정보</Typography>
             <FormControlLabel
-              control={<Checkbox defaultChecked />}
+              control={<Checkbox />}
               label="예약자 정보와 동일"
               sx={{
                 margin: '0',
