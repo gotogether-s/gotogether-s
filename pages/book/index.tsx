@@ -26,6 +26,8 @@ const Book = () => {
   const getReservationDetail = useSelector((state) => {
     return state.reservationDetail
   })
+  const { thumbnail, productName, airport, productOptionList, basicPrice } =
+    getReservationDetail
 
   const [reservationInfo, setReservationInfo] = useState({
     name: '',
@@ -74,7 +76,7 @@ const Book = () => {
             <CardMedia
               component="img"
               sx={{ width: 120, borderRadius: '0.8rem' }}
-              image={getReservationDetail.thumbnail}
+              image={thumbnail}
             />
             <CardContent
               sx={{
@@ -85,13 +87,12 @@ const Book = () => {
               }}
             >
               <Box>
-                <Typography>{getReservationDetail.productName}</Typography>
-                <Typography>{getReservationDetail.airport}</Typography>
+                <Typography>{productName}</Typography>
+                <Typography>{airport}</Typography>
                 <Typography>10/18 (화)</Typography>
               </Box>
               <Typography>
-                1인 / {getReservationDetail.basicPrice.toLocaleString('ko-KR')}{' '}
-                원
+                1인 / {basicPrice.toLocaleString('ko-KR')} 원
               </Typography>
             </CardContent>
           </Card>
