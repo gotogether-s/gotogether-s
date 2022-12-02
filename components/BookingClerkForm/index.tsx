@@ -37,17 +37,15 @@ const BookingClerkForm = ({ number }) => {
         <Box>
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginBottom: '2rem',
+              display: number === 1 ? 'flex' : 'none',
+              justifyContent: 'flex-end',
             }}
           >
-            <Typography>여행자 정보</Typography>
             <FormControlLabel
               control={<Checkbox />}
               label="예약자 정보와 동일"
               sx={{
-                margin: '0',
+                margin: '0 0 1rem 0',
                 '& .MuiButtonBase-root': {
                   padding: '0 0.5rem 0 0',
                 },
