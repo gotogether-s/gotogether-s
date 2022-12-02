@@ -27,7 +27,7 @@ const Book = () => {
     name: '',
     phone: '',
   })
-  const [totalReservationPeople, setTotalReservationPeople] = useState(1)
+  const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [bookingClerkFormComponents, setBookingClerkFormComponents] = useState([
     <BookingClerkForm />,
   ])
@@ -62,14 +62,14 @@ const Book = () => {
   }
 
   const removeClerkFormComponent = () => {
-    setTotalReservationPeople(Math.max(totalReservationPeople - 1, 1))
+    setNumberOfTravellers(Math.max(numberOfTravellers - 1, 1))
     const newData = [...bookingClerkFormComponents].slice(0, -1)
     setBookingClerkFormComponents(newData)
   }
 
   const AddClerkFormComponent = () => {
-    if (totalReservationPeople === 4) return
-    setTotalReservationPeople(totalReservationPeople + 1)
+    if (numberOfTravellers === 4) return
+    setNumberOfTravellers(numberOfTravellers + 1)
     setBookingClerkFormComponents([
       ...bookingClerkFormComponents,
       <BookingClerkForm />,
@@ -153,7 +153,7 @@ const Book = () => {
               >
                 <RemoveIcon fontSize="small" />
               </Button>
-              <Typography>{totalReservationPeople}</Typography>
+              <Typography>{numberOfTravellers}</Typography>
               <Button
                 aria-label="increase"
                 sx={{
