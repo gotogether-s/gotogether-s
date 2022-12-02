@@ -62,7 +62,8 @@ const Book = () => {
   }
 
   const removeClerkFormComponent = () => {
-    setNumberOfTravellers(Math.max(numberOfTravellers - 1, 1))
+    if (numberOfTravellers === 1) return
+    setNumberOfTravellers(numberOfTravellers - 1)
     const newData = [...bookingClerkFormComponents].slice(0, -1)
     setBookingClerkFormComponents(newData)
   }
