@@ -23,21 +23,30 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
-  const getReservationDetail = useSelector((state) => {
-    return state.reservationDetail
-  })
-  const { thumbnail, productName, airport, productOptionList, basicPrice } =
-    getReservationDetail
-
   const [reservationInfo, setReservationInfo] = useState({
     name: '',
     phone: '',
   })
-
   const [totalReservationPeople, setTotalReservationPeople] = useState(1)
   const [bookingClerkFormComponents, setBookingClerkFormComponents] = useState([
     <BookingClerkForm />,
   ])
+
+  const getReservationDetail = useSelector((state) => {
+    return state.reservationDetail
+  })
+
+  const { thumbnail, productName, airport, productOptionList, basicPrice } =
+    getReservationDetail
+
+  const reservationDate = productOptionList.trim().replace(/\s/g, '').split('~')
+
+  const getDayName = (dateStr) => {
+    const date = new Date(dateStr)
+    return date.toLocaleDateString('ko-KR', { weekday: 'long' })
+  }
+
+  const reservationDay = reservationDate.map((date) => getDayName(date))
 
   const handleReservationInfoChange = (e) => {
     const { name, value } = e.target
@@ -89,7 +98,10 @@ const Book = () => {
               <Box>
                 <Typography>{productName}</Typography>
                 <Typography>{airport}</Typography>
-                <Typography>10/18 (화)</Typography>
+                <Typography>
+                  출발 {reservationDate[0]} {reservationDay[0]}
+                  도착 {reservationDate[1]} {reservationDay[1]}
+                </Typography>
               </Box>
               <Typography>
                 1인 / {basicPrice.toLocaleString('ko-KR')} 원
