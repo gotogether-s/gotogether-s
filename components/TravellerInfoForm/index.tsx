@@ -9,9 +9,9 @@ import {
   Typography,
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import style from './BookingClerkForm.module.scss'
+import style from './TravellerInfoForm.module.scss'
 
-const BookingClerkForm = ({ number }) => {
+const TravellerInfoForm = ({ number }) => {
   return (
     <Accordion
       defaultExpanded={true}
@@ -76,4 +76,4 @@ const BookingClerkForm = ({ number }) => {
   )
 }
 
-export default BookingClerkForm
+export default TravellerInfoForm

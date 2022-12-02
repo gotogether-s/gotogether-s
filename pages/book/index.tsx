@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
-import BookingClerkForm from '@components/BookingClerkForm'
+import TravellerInfoForm from '@components/TravellerInfoForm'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
@@ -28,9 +28,8 @@ const Book = () => {
     phone: '',
   })
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
-  const [bookingClerkFormComponents, setBookingClerkFormComponents] = useState([
-    <BookingClerkForm />,
-  ])
+  const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
+    useState([<TravellerInfoForm />])
 
   const getReservationDetail = useSelector((state) => {
     return state.reservationDetail
@@ -64,16 +63,16 @@ const Book = () => {
   const removeClerkFormComponent = () => {
     if (numberOfTravellers === 1) return
     setNumberOfTravellers(numberOfTravellers - 1)
-    const newData = [...bookingClerkFormComponents].slice(0, -1)
-    setBookingClerkFormComponents(newData)
+    const newData = [...TravellerInfoFormComponents].slice(0, -1)
+    setTravellerInfoFormComponents(newData)
   }
 
   const AddClerkFormComponent = () => {
     if (numberOfTravellers === 4) return
     setNumberOfTravellers(numberOfTravellers + 1)
-    setBookingClerkFormComponents([
-      ...bookingClerkFormComponents,
-      <BookingClerkForm />,
+    setTravellerInfoFormComponents([
+      ...TravellerInfoFormComponents,
+      <TravellerInfoForm />,
     ])
   }
 
@@ -169,8 +168,8 @@ const Book = () => {
               </Button>
             </Box>
           </Box>
-          {bookingClerkFormComponents.map((element, index) => {
-            return <BookingClerkForm key={index} number={index + 1} />
+          {TravellerInfoFormComponents.map((element, index) => {
+            return <TravellerInfoForm key={index} number={index + 1} />
           })}
         </StyledSection>
       </Box>
