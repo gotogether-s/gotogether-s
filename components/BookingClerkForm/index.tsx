@@ -11,7 +11,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import style from './BookingClerkForm.module.scss'
 
-const BookingClerkForm = () => {
+const BookingClerkForm = ({ number }) => {
   return (
     <Accordion
       defaultExpanded={true}
@@ -31,7 +31,7 @@ const BookingClerkForm = () => {
         aria-controls="panel1a-content"
         sx={{ backgroundColor: '#F2F4FA', marginBottom: '0' }}
       >
-        <Typography>여행자 정보 1</Typography>
+        <Typography>여행자 정보 {number}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: '1.6rem' }}>
         <Box>

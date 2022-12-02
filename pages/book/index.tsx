@@ -169,7 +169,7 @@ const Book = () => {
             </Box>
           </Box>
           {bookingClerkFormComponents.map((element, index) => {
-            return <BookingClerkForm key={index} />
+            return <BookingClerkForm key={index} number={index + 1} />
           })}
         </StyledSection>
       </Box>
