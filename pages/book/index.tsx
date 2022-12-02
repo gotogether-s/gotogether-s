@@ -33,6 +33,9 @@ const Book = () => {
   })
 
   const [totalReservationPeople, setTotalReservationPeople] = useState(1)
+  const [bookingClerkFormComponents, setBookingClerkFormComponents] = useState([
+    <BookingClerkForm />,
+  ])
 
   const handleReservationInfoChange = (e) => {
     const { name, value } = e.target
@@ -45,6 +48,14 @@ const Book = () => {
       ...reservationInfo,
       [name]: value.trim().replace(/\s/g, ''),
     })
+  }
+
+  const AddClerkFormComponent = () => {
+    setTotalReservationPeople(totalReservationPeople + 1)
+    setBookingClerkFormComponents([
+      ...bookingClerkFormComponents,
+      <BookingClerkForm />,
+    ])
   }
 
   return (
@@ -135,15 +146,15 @@ const Book = () => {
                   border: '1px solid #ddd',
                   borderRadius: '100%',
                 }}
-                onClick={() => {
-                  setTotalReservationPeople(totalReservationPeople + 1)
-                }}
+                onClick={AddClerkFormComponent}
               >
                 <AddIcon fontSize="small" />
               </Button>
             </Box>
           </Box>
-          <BookingClerkForm />
+          {bookingClerkFormComponents.map((element, index) => {
+            return <BookingClerkForm key={index} />
+          })}
         </StyledSection>
       </Box>
     </>
