@@ -57,6 +57,7 @@ const Book = () => {
   }
 
   const AddClerkFormComponent = () => {
+    if (totalReservationPeople === 4) return
     setTotalReservationPeople(totalReservationPeople + 1)
     setBookingClerkFormComponents([
       ...bookingClerkFormComponents,
