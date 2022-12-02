@@ -50,6 +50,12 @@ const Book = () => {
     })
   }
 
+  const removeClerkFormComponent = () => {
+    setTotalReservationPeople(Math.max(totalReservationPeople - 1, 0))
+    const newData = bookingClerkFormComponents.slice(-1)
+    setBookingClerkFormComponents([...newData])
+  }
+
   const AddClerkFormComponent = () => {
     setTotalReservationPeople(totalReservationPeople + 1)
     setBookingClerkFormComponents([
@@ -129,11 +135,7 @@ const Book = () => {
                   border: '1px solid #ddd',
                   borderRadius: '100%',
                 }}
-                onClick={() => {
-                  setTotalReservationPeople(
-                    Math.max(totalReservationPeople - 1, 0),
-                  )
-                }}
+                onClick={removeClerkFormComponent}
               >
                 <RemoveIcon fontSize="small" />
               </Button>
