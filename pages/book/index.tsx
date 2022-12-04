@@ -60,14 +60,14 @@ const Book = () => {
     })
   }
 
-  const removeClerkFormComponent = () => {
+  const removeTravellerInfoFormComponent = () => {
     if (numberOfTravellers === 1) return
     setNumberOfTravellers(numberOfTravellers - 1)
     const newData = [...TravellerInfoFormComponents].slice(0, -1)
     setTravellerInfoFormComponents(newData)
   }
 
-  const AddClerkFormComponent = () => {
+  const AddTravellerInfoFormComponent = () => {
     if (numberOfTravellers === 4) return
     setNumberOfTravellers(numberOfTravellers + 1)
     setTravellerInfoFormComponents([
@@ -149,7 +149,7 @@ const Book = () => {
                   border: '1px solid #ddd',
                   borderRadius: '100%',
                 }}
-                onClick={removeClerkFormComponent}
+                onClick={removeTravellerInfoFormComponent}
               >
                 <RemoveIcon fontSize="small" />
               </Button>
@@ -162,7 +162,7 @@ const Book = () => {
                   border: '1px solid #ddd',
                   borderRadius: '100%',
                 }}
-                onClick={AddClerkFormComponent}
+                onClick={AddTravellerInfoFormComponent}
               >
                 <AddIcon fontSize="small" />
               </Button>
