@@ -6,6 +6,7 @@ import surveyQnaLists from './surveyQnaListsSlice'
 import sideBarStatus from './sideBarStatusSlice'
 import isLogin from './isLoginSlice'
 import reservationDetail from './reservationDetailSlice'
+import bookingClientInfo from './bookingClientInfoSlice'
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     isLogin: isLogin.reducer,
     [requestApi.reducerPath]: requestApi.reducer,
     reservationDetail: reservationDetail.reducer,
+    bookingClientInfo: bookingClientInfo.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(requestApi.middleware),
