@@ -88,6 +88,11 @@ const TravellerInfoForm = ({ number }) => {
               name="name"
               size="small"
               placeholder="이름을 입력해주세요"
+              value={
+                duplicateClientInfo && number === 1
+                  ? getBookingClientInfo.name
+                  : ''
+              }
               sx={{ width: '100%' }}
             />
           </div>
@@ -97,6 +102,11 @@ const TravellerInfoForm = ({ number }) => {
               name="phoneNumber"
               size="small"
               placeholder="전화번호을 입력해주세요"
+              value={
+                duplicateClientInfo && number === 1
+                  ? getBookingClientInfo.phone
+                  : ''
+              }
               sx={{ width: '100%' }}
             />
           </div>
