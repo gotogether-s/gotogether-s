@@ -23,7 +23,7 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
-  const [reservationInfo, setReservationInfo] = useState({
+  const [clientInfo, setClientInfo] = useState({
     name: '',
     phone: '',
   })
@@ -47,15 +47,15 @@ const Book = () => {
 
   const reservationDay = reservationDate.map((date) => getDayName(date))
 
-  const handleReservationInfoChange = (e) => {
+  const handleClientInfoChange = (e) => {
     const { name, value } = e.target
-    setReservationInfo({ ...reservationInfo, [name]: value })
+    setClientInfo({ ...clientInfo, [name]: value })
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    setReservationInfo({
-      ...reservationInfo,
+    setClientInfo({
+      ...clientInfo,
       [name]: value.trim().replace(/\s/g, ''),
     })
   }
@@ -118,8 +118,8 @@ const Book = () => {
               size="small"
               placeholder="이름을 입력해주세요"
               sx={{ width: '100%' }}
-              value={reservationInfo.name}
-              onChange={handleReservationInfoChange}
+              value={clientInfo.name}
+              onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
           </div>
@@ -130,8 +130,8 @@ const Book = () => {
               size="small"
               placeholder="전화번호를 입력해주세요"
               sx={{ width: '100%' }}
-              value={reservationInfo.phone}
-              onChange={handleReservationInfoChange}
+              value={clientInfo.phone}
+              onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
           </div>
