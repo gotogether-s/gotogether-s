@@ -8,11 +8,12 @@ const bookingClientInfoSlice = createSlice({
   },
   reducers: {
     updateBookingClientInfo: (state, action) => {
-      if (action.payload.name || action.payload.name === '') {
-        state.name = action.payload.name
+      const { name, phone } = action.payload
+      if (name || name === '') {
+        state.name = name
       }
-      if (action.payload.phone || action.payload.phone === '') {
-        state.phone = action.payload.phone
+      if (phone || phone === '') {
+        state.phone = phone
       }
     },
   },
