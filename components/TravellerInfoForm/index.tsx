@@ -8,12 +8,15 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updatePersonInfo } from '@store/makeReservationSlice'
 import { useState, useEffect } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import style from './TravellerInfoForm.module.scss'
 
 const TravellerInfoForm = ({ number }) => {
+  const dispatch = useDispatch()
+
   const [duplicateClientInfo, setDuplicateClientInfo] = useState(false)
 
   const updateDuplicateClientInfoState = () => {
@@ -23,6 +26,12 @@ const TravellerInfoForm = ({ number }) => {
   const getBookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
   })
+
+  const makeReservation = useSelector((state) => {
+    return state.makeReservation
+  })
+
+  const { reservationPersonListDto } = makeReservation
 
   const getClientInfo = () => {
     const { name, phone } = getBookingClientInfo
@@ -36,6 +45,12 @@ const TravellerInfoForm = ({ number }) => {
   useEffect(() => {
     duplicateClientInfo && getClientInfo()
   }, [duplicateClientInfo])
+
+  const inputChangeHandler = (e) => {
+    const { name, value } = e.target
+    const index = number - 1
+    dispatch(updatePersonInfo({ [name]: value, index: index }))
+  }
 
   return (
     <Accordion
@@ -88,11 +103,8 @@ const TravellerInfoForm = ({ number }) => {
               name="name"
               size="small"
               placeholder="이름을 입력해주세요"
-              value={
-                duplicateClientInfo && number === 1
-                  ? getBookingClientInfo.name
-                  : ''
-              }
+              value={reservationPersonListDto[number - 1].name}
+              onChange={inputChangeHandler}
               sx={{ width: '100%' }}
             />
           </div>
@@ -102,11 +114,8 @@ const TravellerInfoForm = ({ number }) => {
               name="phoneNumber"
               size="small"
               placeholder="전화번호을 입력해주세요"
-              value={
-                duplicateClientInfo && number === 1
-                  ? getBookingClientInfo.phone
-                  : ''
-              }
+              value={reservationPersonListDto[number - 1].phoneNumber}
+              onChange={inputChangeHandler}
               sx={{ width: '100%' }}
             />
           </div>
