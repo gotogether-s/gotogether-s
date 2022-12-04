@@ -7,6 +7,7 @@ import sideBarStatus from './sideBarStatusSlice'
 import isLogin from './isLoginSlice'
 import reservationDetail from './reservationDetailSlice'
 import bookingClientInfo from './bookingClientInfoSlice'
+import makeReservation from './makeReservationSlice'
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     [requestApi.reducerPath]: requestApi.reducer,
     reservationDetail: reservationDetail.reducer,
     bookingClientInfo: bookingClientInfo.reducer,
+    makeReservation: makeReservation.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(requestApi.middleware),
