@@ -10,7 +10,8 @@ import {
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import style from './Book.module.scss'
@@ -23,10 +24,6 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
-  const [clientInfo, setClientInfo] = useState({
-    name: '',
-    phone: '',
-  })
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
@@ -47,17 +44,22 @@ const Book = () => {
 
   const reservationDay = reservationDate.map((date) => getDayName(date))
 
+  const getBookingClientInfo = useSelector((state) => {
+    return state.bookingClientInfo
+  })
+
+  const dispatch = useDispatch()
+
   const handleClientInfoChange = (e) => {
     const { name, value } = e.target
-    setClientInfo({ ...clientInfo, [name]: value })
+    dispatch(updateBookingClientInfo({ [name]: value }))
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    setClientInfo({
-      ...clientInfo,
-      [name]: value.trim().replace(/\s/g, ''),
-    })
+    dispatch(
+      updateBookingClientInfo({ [name]: value.trim().replace(/\s/g, '') }),
+    )
   }
 
   const removeTravellerInfoFormComponent = () => {
@@ -118,7 +120,7 @@ const Book = () => {
               size="small"
               placeholder="이름을 입력해주세요"
               sx={{ width: '100%' }}
-              value={clientInfo.name}
+              value={getBookingClientInfo.name}
               onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
@@ -130,7 +132,7 @@ const Book = () => {
               size="small"
               placeholder="전화번호를 입력해주세요"
               sx={{ width: '100%' }}
-              value={clientInfo.phone}
+              value={getBookingClientInfo.phone}
               onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
