@@ -42,8 +42,8 @@ const TravellerInfoForm = ({ number }) => {
   const { reservationPersonListDto } = makeReservation
 
   const getClientInfo = () => {
-    const { name, phone } = bookingClientInfo
-    if (name === '' || phone === '') {
+    const { name, phoneNumber } = bookingClientInfo
+    if (name === '' || phoneNumber === '') {
       setDuplicateClientInfo(false)
       dispatch(openModal())
     } else {

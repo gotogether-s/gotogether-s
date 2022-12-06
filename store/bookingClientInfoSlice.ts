@@ -4,16 +4,16 @@ const bookingClientInfoSlice = createSlice({
   name: 'bookingClientInfoSlice',
   initialState: {
     name: '',
-    phone: '',
+    phoneNumber: '',
   },
   reducers: {
     updateBookingClientInfo: (state, action) => {
-      const { name, phone } = action.payload
+      const { name, phoneNumber } = action.payload
       if (name || name === '') {
         state.name = name
       }
-      if (phone || phone === '') {
-        state.phone = phone
+      if (phoneNumber || phoneNumber === '') {
+        state.phoneNumber = phoneNumber
       }
     },
   },

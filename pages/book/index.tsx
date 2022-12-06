@@ -128,11 +128,11 @@ const Book = () => {
           <div className={style['input-wrapper']}>
             <div className={style['label']}>전화번호</div>
             <TextField
-              name="phone"
+              name="phoneNumber"
               size="small"
               placeholder="전화번호를 입력해주세요"
               sx={{ width: '100%' }}
-              value={getBookingClientInfo.phone}
+              value={getBookingClientInfo.phoneNumber}
               onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
