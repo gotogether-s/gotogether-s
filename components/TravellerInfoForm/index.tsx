@@ -17,6 +17,8 @@ import ModalWindow from '@components/ModalWindow'
 import style from './TravellerInfoForm.module.scss'
 
 const TravellerInfoForm = ({ number }) => {
+  const index = number - 1
+
   const dispatch = useDispatch()
 
   const [duplicateClientInfo, setDuplicateClientInfo] = useState(false)
@@ -28,6 +30,8 @@ const TravellerInfoForm = ({ number }) => {
   const bookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
   })
+
+  const { name, phoneNumber } = bookingClientInfo
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -42,12 +46,17 @@ const TravellerInfoForm = ({ number }) => {
   const { reservationPersonListDto } = makeReservation
 
   const getClientInfo = () => {
-    const { name, phoneNumber } = bookingClientInfo
     if (name === '' || phoneNumber === '') {
       setDuplicateClientInfo(false)
       dispatch(openModal())
     } else {
-      console.log('예약자 정보 복사 후 입력')
+      dispatch(
+        updatePersonInfo({
+          name: name,
+          phoneNumber: phoneNumber,
+          index: index,
+        }),
+      )
     }
   }
 
@@ -57,7 +66,6 @@ const TravellerInfoForm = ({ number }) => {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target
-    const index = number - 1
     dispatch(updatePersonInfo({ [name]: value, index: index }))
   }
 
