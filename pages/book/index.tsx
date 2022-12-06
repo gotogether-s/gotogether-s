@@ -14,8 +14,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
-import style from './Book.module.scss'
+import ModalWindow from '@components/ModalWindow'
 import TravellerInfoForm from '@components/TravellerInfoForm'
+import style from './Book.module.scss'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
@@ -27,6 +28,12 @@ const Book = () => {
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
+
+  const displayModalWindow = useSelector((state) => {
+    return state.displayModalWindow
+  })
+
+  const { isOpen } = displayModalWindow
 
   const getReservationDetail = useSelector((state) => {
     return state.reservationDetail
@@ -81,6 +88,13 @@ const Book = () => {
   return (
     <>
       <NavBar link="/" title="예약" marginBottom="0" />
+      {isOpen && (
+        <ModalWindow
+          text="예약자 정보를 먼저 입력해주세요"
+          primaryBtnText="확인"
+          primaryBtnLink=""
+        />
+      )}
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         <StyledSection>
           <Card sx={{ display: 'flex', borderRadius: 0, boxShadow: 'none' }}>
