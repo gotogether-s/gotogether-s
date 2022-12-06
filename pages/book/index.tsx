@@ -12,7 +12,10 @@ import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
-import { createReservationPersonList } from '@store/makeReservationSlice'
+import {
+  createReservationPersonList,
+  deleteReservationPersonList,
+} from '@store/makeReservationSlice'
 import { useState } from 'react'
 import NavBar from '@components/NavBar'
 import ModalWindow from '@components/ModalWindow'
@@ -73,6 +76,7 @@ const Book = () => {
   const removeTravellerInfoFormComponent = () => {
     if (numberOfTravellers === 1) return
     setNumberOfTravellers(numberOfTravellers - 1)
+    dispatch(deleteReservationPersonList())
     const newData = [...TravellerInfoFormComponents].slice(0, -1)
     setTravellerInfoFormComponents(newData)
   }

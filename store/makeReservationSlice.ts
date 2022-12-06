@@ -35,6 +35,9 @@ const makeReservationSlice = createSlice({
         role: false,
       })
     },
+    deleteReservationPersonList: (state) => {
+      state.reservationPersonListDto.pop()
+    },
     updateReservationPersonInfo: (state, action) => {
       const { name, phoneNumber, index } = action.payload
       if (name || name === '') {
@@ -49,5 +52,8 @@ const makeReservationSlice = createSlice({
 
 export default makeReservationSlice
 
-export const { createReservationPersonList, updateReservationPersonInfo } =
-  makeReservationSlice.actions
+export const {
+  createReservationPersonList,
+  deleteReservationPersonList,
+  updateReservationPersonInfo,
+} = makeReservationSlice.actions
