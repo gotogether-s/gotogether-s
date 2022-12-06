@@ -28,6 +28,13 @@ const makeReservationSlice = createSlice({
     ],
   },
   reducers: {
+    createReservationPersonList: (state) => {
+      state.reservationPersonListDto.push({
+        name: '',
+        phoneNumber: '',
+        role: false,
+      })
+    },
     updatePersonInfo: (state, action) => {
       const { name, phoneNumber, index } = action.payload
       if (name || name === '') {
@@ -42,4 +49,5 @@ const makeReservationSlice = createSlice({
 
 export default makeReservationSlice
 
-export const { updatePersonInfo } = makeReservationSlice.actions
+export const { createReservationPersonList, updatePersonInfo } =
+  makeReservationSlice.actions
