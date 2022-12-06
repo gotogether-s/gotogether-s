@@ -45,23 +45,37 @@ const TravellerInfoForm = ({ number }) => {
 
   const { reservationPersonListDto } = makeReservation
 
-  const getClientInfo = () => {
-    if (name === '' || phoneNumber === '') {
-      setDuplicateClientInfo(false)
-      dispatch(openModal())
+  const getClientInfo = (duplicateClientInfo) => {
+    if (duplicateClientInfo) {
+      if (name === '' || phoneNumber === '') {
+        setDuplicateClientInfo(false)
+        dispatch(openModal())
+      } else {
+        dispatch(
+          updatePersonInfo({
+            name: name,
+            phoneNumber: phoneNumber,
+            index: index,
+          }),
+        )
+      }
     } else {
-      dispatch(
-        updatePersonInfo({
-          name: name,
-          phoneNumber: phoneNumber,
-          index: index,
-        }),
-      )
+      if (name === '' || phoneNumber === '') {
+        return
+      } else {
+        dispatch(
+          updatePersonInfo({
+            name: '',
+            phoneNumber: '',
+            index: index,
+          }),
+        )
+      }
     }
   }
 
   useEffect(() => {
-    duplicateClientInfo && getClientInfo()
+    getClientInfo(duplicateClientInfo)
   }, [duplicateClientInfo])
 
   const inputChangeHandler = (e) => {
