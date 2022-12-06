@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
-import { updatePersonInfo } from '@store/makeReservationSlice'
+import { updateReservationPersonInfo } from '@store/makeReservationSlice'
 import { openModal } from '@store/displayModalWindowSlice'
 import { useState, useEffect } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -45,7 +45,7 @@ const TravellerInfoForm = ({ number }) => {
         dispatch(openModal())
       } else {
         dispatch(
-          updatePersonInfo({
+          updateReservationPersonInfo({
             name: name,
             phoneNumber: phoneNumber,
             index: index,
@@ -57,7 +57,7 @@ const TravellerInfoForm = ({ number }) => {
         return
       } else {
         dispatch(
-          updatePersonInfo({
+          updateReservationPersonInfo({
             name: '',
             phoneNumber: '',
             index: index,
@@ -73,7 +73,7 @@ const TravellerInfoForm = ({ number }) => {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target
-    dispatch(updatePersonInfo({ [name]: value, index: index }))
+    dispatch(updateReservationPersonInfo({ [name]: value, index: index }))
   }
 
   return (
