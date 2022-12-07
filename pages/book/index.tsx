@@ -6,6 +6,8 @@ import {
   Typography,
   TextField,
   Button,
+  FormControlLabel,
+  Radio,
 } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
@@ -241,6 +243,20 @@ const Book = () => {
             <Typography>합계</Typography>
             <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
           </Box>
+        </StyledSection>
+        <StyledSection>
+          <Typography>결제 방법</Typography>
+          <FormControlLabel
+            control={<Radio defaultChecked />}
+            label="무통장입금"
+          />
+          <Typography>입금자명</Typography>
+          <TextField
+            name="depositor"
+            size="small"
+            placeholder="입금자명을 입력해주세요"
+            sx={{ width: '100%' }}
+          />
         </StyledSection>
       </Box>
     </>
