@@ -8,6 +8,7 @@ import {
   Button,
   FormControlLabel,
   Radio,
+  Checkbox,
 } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
@@ -257,6 +258,24 @@ const Book = () => {
             placeholder="입금자명을 입력해주세요"
             sx={{ width: '100%' }}
           />
+        </StyledSection>
+        <StyledSection
+          sx={{
+            marginBottom: 0,
+          }}
+        >
+          <FormControlLabel
+            control={<Checkbox />}
+            label="예약조건 확인 및 결제진행에 동의"
+          />
+          <Button
+            variant="contained"
+            sx={{
+              width: '100%',
+            }}
+          >
+            예약 완료
+          </Button>
         </StyledSection>
       </Box>
     </>
