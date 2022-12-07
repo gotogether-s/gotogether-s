@@ -16,7 +16,7 @@ import {
   createReservationPersonList,
   deleteReservationPersonList,
 } from '@store/makeReservationSlice'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import NavBar from '@components/NavBar'
 import ModalWindow from '@components/ModalWindow'
 import TravellerInfoForm from '@components/TravellerInfoForm'
@@ -32,6 +32,7 @@ const Book = () => {
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
+  const [totalFee, setTotalFee] = useState(0)
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -90,6 +91,10 @@ const Book = () => {
       <TravellerInfoForm />,
     ])
   }
+
+  useEffect(() => {
+    setTotalFee(basicPrice * numberOfTravellers)
+  }, [basicPrice, numberOfTravellers])
 
   return (
     <>
@@ -193,6 +198,49 @@ const Book = () => {
           {TravellerInfoFormComponents.map((element, index) => {
             return <TravellerInfoForm key={index} number={index + 1} />
           })}
+        </StyledSection>
+        <StyledSection>
+          <Typography>최종 요금</Typography>
+          <Box
+            sx={{
+              padding: '1rem 0',
+            }}
+          >
+            <Typography>{productName}</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography>
+                출발 {reservationDate[0]} {reservationDay[0]}
+              </Typography>
+              <Typography>
+                도착 {reservationDate[1]} {reservationDay[1]}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '1rem 0',
+            }}
+          >
+            <Typography>성인 x{numberOfTravellers}</Typography>
+            <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '1rem 0',
+            }}
+          >
+            <Typography>합계</Typography>
+            <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
+          </Box>
         </StyledSection>
       </Box>
     </>
