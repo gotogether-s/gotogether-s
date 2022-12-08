@@ -57,7 +57,9 @@ const Book = () => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' })
   }
 
-  const reservationDay = reservationDate.map((date) => getDayName(date))
+  const reservationDay = reservationDate.map((date) =>
+    getDayName(date).charAt(0),
+  )
 
   const getBookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
@@ -128,10 +130,14 @@ const Book = () => {
               <Box>
                 <Typography>{productName}</Typography>
                 <Typography>{airport}</Typography>
-                <Typography>
-                  출발 {reservationDate[0]} {reservationDay[0]}
-                  도착 {reservationDate[1]} {reservationDay[1]}
-                </Typography>
+                <Box>
+                  <Typography>
+                    출발 {reservationDate[0]} ({reservationDay[0]})
+                  </Typography>
+                  <Typography>
+                    도착 {reservationDate[1]} ({reservationDay[1]})
+                  </Typography>
+                </Box>
               </Box>
               <Typography>
                 1인 / {basicPrice.toLocaleString('ko-KR')} 원
@@ -217,10 +223,10 @@ const Book = () => {
               }}
             >
               <Typography>
-                출발 {reservationDate[0]} {reservationDay[0]}
+                출발 {reservationDate[0]} ({reservationDay[0]})
               </Typography>
               <Typography>
-                도착 {reservationDate[1]} {reservationDay[1]}
+                도착 {reservationDate[1]} ({reservationDay[1]})
               </Typography>
             </Box>
           </Box>
