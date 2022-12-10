@@ -111,10 +111,10 @@ const Book = () => {
   const validateReservation = (values) => {
     const errors = {}
     if (!values.name) {
-      errors.name = '이메일을 입력해주세요!'
+      errors.name = '이름을 입력해주세요!'
     }
     if (!values.phoneNumber) {
-      errors.phoneNumber = '비밀번호를 입력해주세요!'
+      errors.phoneNumber = '전화번호를 입력해주세요!'
     }
     return errors
   }
