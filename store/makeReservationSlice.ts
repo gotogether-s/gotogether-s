@@ -3,21 +3,21 @@ import { createSlice } from '@reduxjs/toolkit'
 const makeReservationSlice = createSlice({
   name: 'makeReservationSlice',
   initialState: {
-    product_id: 1,
+    product_id: '',
     reservationDto: {
-      totalReservationPeople: 0,
-      totalBasicPrice: 0,
+      duration: '',
       firstSelectOption: '',
+      secondSelectOption: '',
+      thirdSelectOption: '',
+      totalBasicPrice: 0,
       totalFirstSelectOptionCount: 0,
       totalFirstSelectOptionPrice: 0,
-      secondSelectOption: '',
+      totalPrice: 0,
+      totalReservationPeople: 0,
       totalSecondSelectOptionCount: 0,
       totalSecondSelectOptionPrice: 0,
-      thirdSelectOption: '',
       totalThirdSelectOptionCount: 0,
       totalThirdSelectOptionPrice: 0,
-      totalPrice: 0,
-      duration: '',
     },
     reservationPersonListDto: [
       {
