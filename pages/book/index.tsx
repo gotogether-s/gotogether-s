@@ -38,7 +38,7 @@ const Book = () => {
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
   const [totalFee, setTotalFee] = useState(0)
-  const [reservationValuesErrors, setReservationValuesErrors] = useState({})
+  const [bookingClientValuesErrors, setBookingClientValuesErrors] = useState({})
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -110,7 +110,7 @@ const Book = () => {
     setTotalFee(basicPrice * numberOfTravellers)
   }, [basicPrice, numberOfTravellers])
 
-  const validateReservation = (values) => {
+  const validateBookingClientValues = (values) => {
     const errors = {}
     if (!values.name) {
       errors.name = '이름을 입력해주세요!'
@@ -124,9 +124,12 @@ const Book = () => {
   }
 
   const requestReservation = () => {
-    const reservationValidation = validateReservation(getBookingClientInfo)
-    setReservationValuesErrors(validateReservation(getBookingClientInfo))
-    if (Object.keys(reservationValidation).length !== 0) return
+    const bookingClientValuesValidation =
+      validateBookingClientValues(getBookingClientInfo)
+    setBookingClientValuesErrors(
+      validateBookingClientValues(getBookingClientInfo),
+    )
+    if (Object.keys(bookingClientValuesValidation).length !== 0) return
   }
 
   return (
@@ -192,11 +195,13 @@ const Book = () => {
             />
             <p
               style={{
-                visibility: reservationValuesErrors.name ? 'visible' : 'hidden',
+                visibility: bookingClientValuesErrors.name
+                  ? 'visible'
+                  : 'hidden',
               }}
               className={style['error-message']}
             >
-              {reservationValuesErrors.name}
+              {bookingClientValuesErrors.name}
             </p>
           </div>
           <div className={style['input-wrapper']}>
@@ -212,13 +217,13 @@ const Book = () => {
             />
             <p
               style={{
-                visibility: reservationValuesErrors.phoneNumber
+                visibility: bookingClientValuesErrors.phoneNumber
                   ? 'visible'
                   : 'hidden',
               }}
               className={style['error-message']}
             >
-              {reservationValuesErrors.phoneNumber}
+              {bookingClientValuesErrors.phoneNumber}
             </p>
           </div>
         </StyledSection>
