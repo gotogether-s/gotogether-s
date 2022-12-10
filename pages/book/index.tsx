@@ -47,8 +47,14 @@ const Book = () => {
     return state.reservationDetail
   })
 
-  const { thumbnail, productName, airport, productOptionList, basicPrice } =
-    getReservationDetail
+  const {
+    thumbnail,
+    productName,
+    airport,
+    productOptionList,
+    basicPrice,
+    productId,
+  } = getReservationDetail
 
   const reservationDate = productOptionList.trim().replace(/\s/g, '').split('~')
 
@@ -103,7 +109,11 @@ const Book = () => {
 
   return (
     <>
-      <NavBar link="/" title="예약" marginBottom="0" />
+      <NavBar
+        link={`/product-details/${productId}`}
+        title="예약"
+        marginBottom="0"
+      />
       {isOpen && (
         <ModalWindow
           text="예약자 정보를 먼저 입력해주세요"
