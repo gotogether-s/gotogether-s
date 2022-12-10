@@ -31,6 +31,8 @@ const StyledSection = styled('div')(() => ({
   marginBottom: '1.6rem',
 }))
 
+const isNum = /^\d+$/
+
 const Book = () => {
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
@@ -115,6 +117,8 @@ const Book = () => {
     }
     if (!values.phoneNumber) {
       errors.phoneNumber = '전화번호를 입력해주세요!'
+    } else if (!isNum.test(values.phoneNumber)) {
+      errors.phoneNumber = '숫자만 입력해주세요!'
     }
     return errors
   }
