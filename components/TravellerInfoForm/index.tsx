@@ -137,7 +137,7 @@ const TravellerInfoForm = ({ number }) => {
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호을 입력해주세요"
+              placeholder="전화번호 11자리를 입력해주세요"
               value={reservationPersonListDto[number - 1].phoneNumber}
               onChange={inputChangeHandler}
               sx={{ width: '100%' }}

@@ -174,7 +174,7 @@ const Book = () => {
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호를 입력해주세요"
+              placeholder="전화번호 11자리를 입력해주세요"
               sx={{ width: '100%' }}
               value={getBookingClientInfo.phoneNumber}
               onChange={handleClientInfoChange}
