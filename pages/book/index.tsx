@@ -36,6 +36,7 @@ const Book = () => {
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
   const [totalFee, setTotalFee] = useState(0)
+  const [reservationValuesErrors, setReservationValuesErrors] = useState({})
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -107,6 +108,23 @@ const Book = () => {
     setTotalFee(basicPrice * numberOfTravellers)
   }, [basicPrice, numberOfTravellers])
 
+  const validateReservation = (values) => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = '이메일을 입력해주세요!'
+    }
+    if (!values.phoneNumber) {
+      errors.phoneNumber = '비밀번호를 입력해주세요!'
+    }
+    return errors
+  }
+
+  const requestReservation = () => {
+    const reservationValidation = validateReservation(getBookingClientInfo)
+    setReservationValuesErrors(validateReservation(getBookingClientInfo))
+    if (Object.keys(reservationValidation).length !== 0) return
+  }
+
   return (
     <>
       <NavBar
@@ -168,6 +186,14 @@ const Book = () => {
               onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
+            <p
+              style={{
+                visibility: reservationValuesErrors.name ? 'visible' : 'hidden',
+              }}
+              className={style['error-message']}
+            >
+              {reservationValuesErrors.name}
+            </p>
           </div>
           <div className={style['input-wrapper']}>
             <div className={style['label']}>전화번호</div>
@@ -180,6 +206,16 @@ const Book = () => {
               onChange={handleClientInfoChange}
               onBlur={removeInputSpaces}
             />
+            <p
+              style={{
+                visibility: reservationValuesErrors.phoneNumber
+                  ? 'visible'
+                  : 'hidden',
+              }}
+              className={style['error-message']}
+            >
+              {reservationValuesErrors.phoneNumber}
+            </p>
           </div>
         </StyledSection>
         <StyledSection>
@@ -289,6 +325,7 @@ const Book = () => {
             sx={{
               width: '100%',
             }}
+            onClick={requestReservation}
           >
             예약 완료
           </Button>
