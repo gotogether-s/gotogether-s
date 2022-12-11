@@ -139,6 +139,8 @@ const Book = () => {
     }
     if (!values.phoneNumber) {
       errors.phoneNumber = '전화번호를 입력해주세요!'
+    } else if (values.phoneNumber.length !== 13) {
+      errors.phoneNumber = '전화번호는 11자리여야 합니다!'
     }
     if (!values.depositor) {
       errors.depositor = '입금자명을 입력해주세요!'
