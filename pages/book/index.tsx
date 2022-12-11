@@ -13,9 +13,11 @@ import {
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
+import { useRequestReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
+  updateReservationDetail,
   createReservationPersonList,
   deleteReservationPersonList,
 } from '@store/makeReservationSlice'
@@ -34,6 +36,8 @@ const StyledSection = styled('div')(() => ({
 const isNum = /^\d+$/
 
 const Book = () => {
+  const [requestReservation] = useRequestReservationMutation()
+
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
@@ -123,14 +127,40 @@ const Book = () => {
     return errors
   }
 
-  const requestReservation = () => {
+  const makeReservation = useSelector((state) => {
+    return state.makeReservation
+  })
+
+  const clickReservationRequest = async (e) => {
     const bookingClientValuesValidation =
       validateBookingClientValues(getBookingClientInfo)
     setBookingClientValuesErrors(
       validateBookingClientValues(getBookingClientInfo),
     )
     if (Object.keys(bookingClientValuesValidation).length !== 0) return
+
+    try {
+      const res = await requestReservation({
+        data: makeReservation,
+      })
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
+
+  useEffect(() => {
+    const reservationDetail = {
+      product_id: productId,
+      reservationDto: {
+        totalReservationPeople: numberOfTravellers,
+        totalBasicPrice: totalFee,
+        totalPrice: totalFee,
+        duration: productOptionList,
+      },
+    }
+    dispatch(updateReservationDetail(reservationDetail))
+  }, [productId, numberOfTravellers, totalFee, productOptionList])
 
   return (
     <>
@@ -334,7 +364,7 @@ const Book = () => {
             sx={{
               width: '100%',
             }}
-            onClick={requestReservation}
+            onClick={clickReservationRequest}
           >
             예약 완료
           </Button>
