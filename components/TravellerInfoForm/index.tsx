@@ -79,7 +79,10 @@ const TravellerInfoForm = ({ number }) => {
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
     dispatch(
-      updateReservationPersonInfo({ [name]: value.trim().replace(/\s/g, '') }),
+      updateReservationPersonInfo({
+        [name]: value.trim().replace(/\s/g, ''),
+        index: index,
+      }),
     )
   }
 
