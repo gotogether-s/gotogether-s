@@ -42,6 +42,7 @@ const Book = () => {
   const [totalFee, setTotalFee] = useState(0)
   const [bookingClientValuesErrors, setBookingClientValuesErrors] = useState({})
   const [depositor, setDepositor] = useState('')
+  const [agreement, setAgreement] = useState(false)
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -80,9 +81,11 @@ const Book = () => {
   const dispatch = useDispatch()
 
   const inputChangeHandler = (e) => {
-    const { name, value } = e.target
+    const { name, value, checked } = e.target
     if (name === 'depositor') {
       setDepositor(value)
+    } else if (name === 'agreement') {
+      setAgreement(checked)
     } else {
       dispatch(updateBookingClientInfo({ [name]: value }))
     }
@@ -140,6 +143,9 @@ const Book = () => {
     if (!values.depositor) {
       errors.depositor = '입금자명을 입력해주세요!'
     }
+    if (!values.agreement) {
+      errors.agreement = '예약조건 확인 및 결제진행에 동의해주세요!'
+    }
     return errors
   }
 
@@ -151,11 +157,13 @@ const Book = () => {
     const bookingClientValuesValidation = validateValues({
       ...getBookingClientInfo,
       depositor: depositor,
+      agreement: agreement,
     })
     setBookingClientValuesErrors(
       validateValues({
         ...getBookingClientInfo,
         depositor: depositor,
+        agreement: agreement,
       }),
     )
     if (Object.keys(bookingClientValuesValidation).length !== 0) return
@@ -390,9 +398,25 @@ const Book = () => {
           }}
         >
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                name="agreement"
+                checked={agreement}
+                onChange={inputChangeHandler}
+              />
+            }
             label="예약조건 확인 및 결제진행에 동의"
           />
+          <p
+            style={{
+              visibility: bookingClientValuesErrors.agreement
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {bookingClientValuesErrors.agreement}
+          </p>
           <Button
             variant="contained"
             sx={{
