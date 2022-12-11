@@ -41,6 +41,7 @@ const Book = () => {
     useState([<TravellerInfoForm />])
   const [totalFee, setTotalFee] = useState(0)
   const [bookingClientValuesErrors, setBookingClientValuesErrors] = useState({})
+  const [depositor, setDepositor] = useState('')
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -78,15 +79,21 @@ const Book = () => {
 
   const dispatch = useDispatch()
 
-  const handleClientInfoChange = (e) => {
+  const inputChangeHandler = (e) => {
     const { name, value } = e.target
-    dispatch(updateBookingClientInfo({ [name]: value }))
+    if (name === 'depositor') {
+      setDepositor(value)
+    } else {
+      dispatch(updateBookingClientInfo({ [name]: value }))
+    }
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
     const removedSpacesValue = value.trim().replace(/\s/g, '')
-    if (name === 'phoneNumber' && value.length === 11) {
+    if (name === 'depositor') {
+      setDepositor(removedSpacesValue)
+    } else if (name === 'phoneNumber' && value.length === 11) {
       const removedDashValue = removedSpacesValue.replaceAll('-', '')
       const formattedPhoneNumber =
         removedDashValue.slice(0, 3) +
@@ -122,13 +129,16 @@ const Book = () => {
     setTotalFee(basicPrice * numberOfTravellers)
   }, [basicPrice, numberOfTravellers])
 
-  const validateBookingClientValues = (values) => {
+  const validateValues = (values) => {
     const errors = {}
     if (!values.name) {
       errors.name = '이름을 입력해주세요!'
     }
     if (!values.phoneNumber) {
       errors.phoneNumber = '전화번호를 입력해주세요!'
+    }
+    if (!values.depositor) {
+      errors.depositor = '입금자명을 입력해주세요!'
     }
     return errors
   }
@@ -138,10 +148,15 @@ const Book = () => {
   })
 
   const clickReservationRequest = async (e) => {
-    const bookingClientValuesValidation =
-      validateBookingClientValues(getBookingClientInfo)
+    const bookingClientValuesValidation = validateValues({
+      ...getBookingClientInfo,
+      depositor: depositor,
+    })
     setBookingClientValuesErrors(
-      validateBookingClientValues(getBookingClientInfo),
+      validateValues({
+        ...getBookingClientInfo,
+        depositor: depositor,
+      }),
     )
     if (Object.keys(bookingClientValuesValidation).length !== 0) return
 
@@ -226,7 +241,7 @@ const Book = () => {
               placeholder="이름을 입력해주세요"
               sx={{ width: '100%' }}
               value={getBookingClientInfo.name}
-              onChange={handleClientInfoChange}
+              onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
             <p
@@ -248,7 +263,7 @@ const Book = () => {
               placeholder="전화번호 11자리를 입력해주세요"
               sx={{ width: '100%' }}
               value={getBookingClientInfo.phoneNumber}
-              onChange={handleClientInfoChange}
+              onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
             <p
@@ -353,8 +368,21 @@ const Book = () => {
             name="depositor"
             size="small"
             placeholder="입금자명을 입력해주세요"
+            value={depositor}
+            onChange={inputChangeHandler}
+            onBlur={removeInputSpaces}
             sx={{ width: '100%' }}
           />
+          <p
+            style={{
+              visibility: bookingClientValuesErrors.depositor
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {bookingClientValuesErrors.depositor}
+          </p>
         </StyledSection>
         <StyledSection
           sx={{
