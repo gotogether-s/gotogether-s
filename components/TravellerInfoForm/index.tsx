@@ -76,6 +76,13 @@ const TravellerInfoForm = ({ number }) => {
     dispatch(updateReservationPersonInfo({ [name]: value, index: index }))
   }
 
+  const removeInputSpaces = (e) => {
+    const { name, value } = e.target
+    dispatch(
+      updateReservationPersonInfo({ [name]: value.trim().replace(/\s/g, '') }),
+    )
+  }
+
   return (
     <Accordion
       defaultExpanded={true}
@@ -129,6 +136,7 @@ const TravellerInfoForm = ({ number }) => {
               placeholder="이름을 입력해주세요"
               value={reservationPersonListDto[number - 1].name}
               onChange={inputChangeHandler}
+              onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
           </div>
@@ -140,6 +148,7 @@ const TravellerInfoForm = ({ number }) => {
               placeholder="전화번호 11자리를 입력해주세요"
               value={reservationPersonListDto[number - 1].phoneNumber}
               onChange={inputChangeHandler}
+              onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
           </div>
