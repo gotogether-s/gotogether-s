@@ -79,7 +79,7 @@ const TravellerInfoForm = ({ number }) => {
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
     const removedSpacesValue = value.trim().replace(/\s/g, '')
-    if (name === 'phoneNumber' && value.length === 11) {
+    if (name === 'phoneNumber' && removedSpacesValue.length === 11) {
       const removedDashValue = removedSpacesValue.replaceAll('-', '')
       const formattedPhoneNumber =
         removedDashValue.slice(0, 3) +

@@ -96,7 +96,7 @@ const Book = () => {
     const removedSpacesValue = value.trim().replace(/\s/g, '')
     if (name === 'depositor') {
       setDepositor(removedSpacesValue)
-    } else if (name === 'phoneNumber' && value.length === 11) {
+    } else if (name === 'phoneNumber' && removedSpacesValue.length === 11) {
       const removedDashValue = removedSpacesValue.replaceAll('-', '')
       const formattedPhoneNumber =
         removedDashValue.slice(0, 3) +
