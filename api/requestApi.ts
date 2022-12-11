@@ -79,6 +79,13 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
+    requestReservation: builder.mutation({
+      query: ({ data }) => ({
+        url: '/reservation',
+        method: 'POST',
+        body: data,
+      }),
+    }),
     customRecommendUser: builder.mutation({
       query: ({ accessToken }) => ({
         url: encodeURI('/product-list/custom?page=0&sort='),
@@ -151,6 +158,7 @@ export const {
   useConfirmPasswordMutation,
   useSearchProductsMutation,
   useRequestLogoutMutation,
+  useRequestReservationMutation,
   useCustomRecommendUserMutation,
   useCustomRecommendMutation,
   useAgeRecommendMutation,
