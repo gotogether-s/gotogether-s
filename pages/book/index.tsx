@@ -87,9 +87,19 @@ const Book = () => {
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    dispatch(
-      updateBookingClientInfo({ [name]: value.trim().replace(/\s/g, '') }),
-    )
+    const removedSpacesValue = value.trim().replace(/\s/g, '')
+    if (name === 'phoneNumber' && value.length === 11) {
+      const removedDashValue = removedSpacesValue.replaceAll('-', '')
+      const formattedPhoneNumber =
+        removedDashValue.slice(0, 3) +
+        '-' +
+        removedDashValue.slice(3, 7) +
+        '-' +
+        removedDashValue.slice(7)
+      dispatch(updateBookingClientInfo({ [name]: formattedPhoneNumber }))
+    } else {
+      dispatch(updateBookingClientInfo({ [name]: removedSpacesValue }))
+    }
   }
 
   const removeTravellerInfoFormComponent = () => {

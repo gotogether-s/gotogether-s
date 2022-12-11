@@ -78,12 +78,29 @@ const TravellerInfoForm = ({ number }) => {
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    dispatch(
-      updateReservationPersonInfo({
-        [name]: value.trim().replace(/\s/g, ''),
-        index: index,
-      }),
-    )
+    const removedSpacesValue = value.trim().replace(/\s/g, '')
+    if (name === 'phoneNumber' && value.length === 11) {
+      const removedDashValue = removedSpacesValue.replaceAll('-', '')
+      const formattedPhoneNumber =
+        removedDashValue.slice(0, 3) +
+        '-' +
+        removedDashValue.slice(3, 7) +
+        '-' +
+        removedDashValue.slice(7)
+      dispatch(
+        updateReservationPersonInfo({
+          [name]: formattedPhoneNumber,
+          index: index,
+        }),
+      )
+    } else {
+      dispatch(
+        updateReservationPersonInfo({
+          [name]: removedSpacesValue,
+          index: index,
+        }),
+      )
+    }
   }
 
   return (
