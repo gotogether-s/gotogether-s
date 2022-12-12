@@ -20,7 +20,8 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@public/*": ["public/*"]
     },
     "typeRoots": ["./@types", "./node_modules/@types"]
   },
