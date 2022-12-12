@@ -1,9 +1,29 @@
 import { Box, Typography, Button } from '@mui/material'
 import Image from 'next/image'
 import payment from '@public/payment.png'
+import { useState } from 'react'
 import style from './Payment.module.scss'
 
 const Payment = () => {
+  const [paymentSummary, setPaymentSummary] = useState([
+    {
+      title: '계좌번호 : ',
+      content: '267-910020-36604',
+    },
+    {
+      title: '은행명 : ',
+      content: 'KEB하나은행',
+    },
+    {
+      title: '예금주 : ',
+      content: '(주)더샤이니',
+    },
+    {
+      title: '입금기한 : ',
+      content: '',
+    },
+  ])
+
   return (
     <Box sx={{ paddingTop: '5rem' }}>
       <Box sx={{ textAlign: 'center' }}>
@@ -41,22 +61,12 @@ const Payment = () => {
         }}
       >
         <Box sx={{ width: '80%', margin: '0 auto' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Typography sx={{ width: '35%' }}>계좌번호 : </Typography>
-            <Typography>267-910020-36604</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Typography sx={{ width: '35%' }}>은행명 : </Typography>
-            <Typography>KEB하나은행</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Typography sx={{ width: '35%' }}>예금주 : </Typography>
-            <Typography>(주)더샤이니</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Typography sx={{ width: '35%' }}>입금기한 : </Typography>
-            <Typography></Typography>
-          </Box>
+          {paymentSummary.map((list, index) => (
+            <Box key={index} sx={{ display: 'flex', flexDirection: 'row' }}>
+              <Typography sx={{ width: '35%' }}>{list.title}</Typography>
+              <Typography>{list.content}</Typography>
+            </Box>
+          ))}
         </Box>
       </Box>
       <Button
