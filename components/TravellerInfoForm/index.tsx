@@ -76,6 +76,33 @@ const TravellerInfoForm = ({ number }) => {
     dispatch(updateReservationPersonInfo({ [name]: value, index: index }))
   }
 
+  const removeInputSpaces = (e) => {
+    const { name, value } = e.target
+    const removedSpacesValue = value.trim().replace(/\s/g, '')
+    if (name === 'phoneNumber' && removedSpacesValue.length === 11) {
+      const removedDashValue = removedSpacesValue.replaceAll('-', '')
+      const formattedPhoneNumber =
+        removedDashValue.slice(0, 3) +
+        '-' +
+        removedDashValue.slice(3, 7) +
+        '-' +
+        removedDashValue.slice(7)
+      dispatch(
+        updateReservationPersonInfo({
+          [name]: formattedPhoneNumber,
+          index: index,
+        }),
+      )
+    } else {
+      dispatch(
+        updateReservationPersonInfo({
+          [name]: removedSpacesValue,
+          index: index,
+        }),
+      )
+    }
+  }
+
   return (
     <Accordion
       defaultExpanded={true}
@@ -129,6 +156,7 @@ const TravellerInfoForm = ({ number }) => {
               placeholder="이름을 입력해주세요"
               value={reservationPersonListDto[number - 1].name}
               onChange={inputChangeHandler}
+              onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
           </div>
@@ -137,9 +165,10 @@ const TravellerInfoForm = ({ number }) => {
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호을 입력해주세요"
+              placeholder="전화번호 11자리를 입력해주세요"
               value={reservationPersonListDto[number - 1].phoneNumber}
               onChange={inputChangeHandler}
+              onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
           </div>

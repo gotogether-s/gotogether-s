@@ -8,7 +8,7 @@ import Link from 'next/link'
 import NavBar from '@components/NavBar'
 import style from './SignIn.module.scss'
 
-const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+const isEmail = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
   const router = useRouter()
@@ -40,7 +40,7 @@ const SignIn = () => {
     const errors = {}
     if (!values.email) {
       errors.email = '이메일을 입력해주세요!'
-    } else if (!regex.test(signInValues.email)) {
+    } else if (!isEmail.test(signInValues.email)) {
       errors.email = '올바른 이메일 형식이 아닙니다!'
     }
     if (!values.password) {

@@ -13,9 +13,11 @@ import {
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
+import { useRequestReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
+  updateReservationDetail,
   createReservationPersonList,
   deleteReservationPersonList,
 } from '@store/makeReservationSlice'
@@ -32,10 +34,15 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const [requestReservation] = useRequestReservationMutation()
+
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
   const [TravellerInfoFormComponents, setTravellerInfoFormComponents] =
     useState([<TravellerInfoForm />])
   const [totalFee, setTotalFee] = useState(0)
+  const [bookingClientValuesErrors, setBookingClientValuesErrors] = useState({})
+  const [depositor, setDepositor] = useState('')
+  const [agreement, setAgreement] = useState(false)
 
   const displayModalWindow = useSelector((state) => {
     return state.displayModalWindow
@@ -47,8 +54,14 @@ const Book = () => {
     return state.reservationDetail
   })
 
-  const { thumbnail, productName, airport, productOptionList, basicPrice } =
-    getReservationDetail
+  const {
+    thumbnail,
+    productName,
+    airport,
+    productOptionList,
+    basicPrice,
+    productId,
+  } = getReservationDetail
 
   const reservationDate = productOptionList.trim().replace(/\s/g, '').split('~')
 
@@ -57,7 +70,9 @@ const Book = () => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' })
   }
 
-  const reservationDay = reservationDate.map((date) => getDayName(date))
+  const reservationDay = reservationDate.map((date) =>
+    getDayName(date).charAt(0),
+  )
 
   const getBookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
@@ -65,16 +80,34 @@ const Book = () => {
 
   const dispatch = useDispatch()
 
-  const handleClientInfoChange = (e) => {
-    const { name, value } = e.target
-    dispatch(updateBookingClientInfo({ [name]: value }))
+  const inputChangeHandler = (e) => {
+    const { name, value, checked } = e.target
+    if (name === 'depositor') {
+      setDepositor(value)
+    } else if (name === 'agreement') {
+      setAgreement(checked)
+    } else {
+      dispatch(updateBookingClientInfo({ [name]: value }))
+    }
   }
 
   const removeInputSpaces = (e) => {
     const { name, value } = e.target
-    dispatch(
-      updateBookingClientInfo({ [name]: value.trim().replace(/\s/g, '') }),
-    )
+    const removedSpacesValue = value.trim().replace(/\s/g, '')
+    if (name === 'depositor') {
+      setDepositor(removedSpacesValue)
+    } else if (name === 'phoneNumber' && removedSpacesValue.length === 11) {
+      const removedDashValue = removedSpacesValue.replaceAll('-', '')
+      const formattedPhoneNumber =
+        removedDashValue.slice(0, 3) +
+        '-' +
+        removedDashValue.slice(3, 7) +
+        '-' +
+        removedDashValue.slice(7)
+      dispatch(updateBookingClientInfo({ [name]: formattedPhoneNumber }))
+    } else {
+      dispatch(updateBookingClientInfo({ [name]: removedSpacesValue }))
+    }
   }
 
   const removeTravellerInfoFormComponent = () => {
@@ -99,9 +132,74 @@ const Book = () => {
     setTotalFee(basicPrice * numberOfTravellers)
   }, [basicPrice, numberOfTravellers])
 
+  const validateValues = (values) => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = '이름을 입력해주세요!'
+    }
+    if (!values.phoneNumber) {
+      errors.phoneNumber = '전화번호를 입력해주세요!'
+    } else if (values.phoneNumber.length !== 13) {
+      errors.phoneNumber = '전화번호는 11자리여야 합니다!'
+    }
+    if (!values.depositor) {
+      errors.depositor = '입금자명을 입력해주세요!'
+    }
+    if (!values.agreement) {
+      errors.agreement = '예약조건 확인 및 결제진행에 동의해주세요!'
+    }
+    return errors
+  }
+
+  const makeReservation = useSelector((state) => {
+    return state.makeReservation
+  })
+
+  const clickReservationRequest = async (e) => {
+    const bookingClientValuesValidation = validateValues({
+      ...getBookingClientInfo,
+      depositor: depositor,
+      agreement: agreement,
+    })
+    setBookingClientValuesErrors(
+      validateValues({
+        ...getBookingClientInfo,
+        depositor: depositor,
+        agreement: agreement,
+      }),
+    )
+    if (Object.keys(bookingClientValuesValidation).length !== 0) return
+
+    try {
+      const res = await requestReservation({
+        data: makeReservation,
+      })
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  useEffect(() => {
+    const reservationDetail = {
+      product_id: productId,
+      reservationDto: {
+        totalReservationPeople: numberOfTravellers,
+        totalBasicPrice: totalFee,
+        totalPrice: totalFee,
+        duration: productOptionList,
+      },
+    }
+    dispatch(updateReservationDetail(reservationDetail))
+  }, [productId, numberOfTravellers, totalFee, productOptionList])
+
   return (
     <>
-      <NavBar link="/" title="예약" marginBottom="0" />
+      <NavBar
+        link={`/product-details/${productId}`}
+        title="예약"
+        marginBottom="0"
+      />
       {isOpen && (
         <ModalWindow
           text="예약자 정보를 먼저 입력해주세요"
@@ -128,10 +226,14 @@ const Book = () => {
               <Box>
                 <Typography>{productName}</Typography>
                 <Typography>{airport}</Typography>
-                <Typography>
-                  출발 {reservationDate[0]} {reservationDay[0]}
-                  도착 {reservationDate[1]} {reservationDay[1]}
-                </Typography>
+                <Box>
+                  <Typography>
+                    출발 {reservationDate[0]} ({reservationDay[0]})
+                  </Typography>
+                  <Typography>
+                    도착 {reservationDate[1]} ({reservationDay[1]})
+                  </Typography>
+                </Box>
               </Box>
               <Typography>
                 1인 / {basicPrice.toLocaleString('ko-KR')} 원
@@ -149,21 +251,41 @@ const Book = () => {
               placeholder="이름을 입력해주세요"
               sx={{ width: '100%' }}
               value={getBookingClientInfo.name}
-              onChange={handleClientInfoChange}
+              onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
+            <p
+              style={{
+                visibility: bookingClientValuesErrors.name
+                  ? 'visible'
+                  : 'hidden',
+              }}
+              className={style['error-message']}
+            >
+              {bookingClientValuesErrors.name}
+            </p>
           </div>
           <div className={style['input-wrapper']}>
             <div className={style['label']}>전화번호</div>
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호를 입력해주세요"
+              placeholder="전화번호 11자리를 입력해주세요"
               sx={{ width: '100%' }}
               value={getBookingClientInfo.phoneNumber}
-              onChange={handleClientInfoChange}
+              onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
+            <p
+              style={{
+                visibility: bookingClientValuesErrors.phoneNumber
+                  ? 'visible'
+                  : 'hidden',
+              }}
+              className={style['error-message']}
+            >
+              {bookingClientValuesErrors.phoneNumber}
+            </p>
           </div>
         </StyledSection>
         <StyledSection>
@@ -217,10 +339,10 @@ const Book = () => {
               }}
             >
               <Typography>
-                출발 {reservationDate[0]} {reservationDay[0]}
+                출발 {reservationDate[0]} ({reservationDay[0]})
               </Typography>
               <Typography>
-                도착 {reservationDate[1]} {reservationDay[1]}
+                도착 {reservationDate[1]} ({reservationDay[1]})
               </Typography>
             </Box>
           </Box>
@@ -256,8 +378,21 @@ const Book = () => {
             name="depositor"
             size="small"
             placeholder="입금자명을 입력해주세요"
+            value={depositor}
+            onChange={inputChangeHandler}
+            onBlur={removeInputSpaces}
             sx={{ width: '100%' }}
           />
+          <p
+            style={{
+              visibility: bookingClientValuesErrors.depositor
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {bookingClientValuesErrors.depositor}
+          </p>
         </StyledSection>
         <StyledSection
           sx={{
@@ -265,14 +400,31 @@ const Book = () => {
           }}
         >
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                name="agreement"
+                checked={agreement}
+                onChange={inputChangeHandler}
+              />
+            }
             label="예약조건 확인 및 결제진행에 동의"
           />
+          <p
+            style={{
+              visibility: bookingClientValuesErrors.agreement
+                ? 'visible'
+                : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {bookingClientValuesErrors.agreement}
+          </p>
           <Button
             variant="contained"
             sx={{
               width: '100%',
             }}
+            onClick={clickReservationRequest}
           >
             예약 완료
           </Button>
