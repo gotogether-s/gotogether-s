@@ -12,7 +12,7 @@ const MainNav = () => {
         <a>로고</a>
       </Link>
       <div className={style['flex-wrapper']}>
-        <Link href="/favorite">
+        <Link href="/likes">
           <a className={style['flex-wrapper-favorite']}>
             <FavoriteBorderIcon sx={{ fontSize: 20 }} />
             <div>찜 목록</div>

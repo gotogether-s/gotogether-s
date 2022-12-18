@@ -128,7 +128,7 @@ export default function productId(data: data) {
   }
 
   const moveFavorite = () => {
-    router.push('/favorite')
+    router.push('/likes')
   }
 
   const moveLogin = () => {
