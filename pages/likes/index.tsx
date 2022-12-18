@@ -1,7 +1,9 @@
 import { styled } from '@mui/material/styles'
 import { Box, FormControlLabel, Checkbox, Button } from '@mui/material'
+import { useRequestLikedItemsMutation } from '@api/requestApi'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
+import { useEffect } from 'react'
 
 const Likes = () => {
   const StyledSection = styled('div')(() => ({
@@ -9,6 +11,21 @@ const Likes = () => {
     padding: '1.6rem',
     marginBottom: '1.6rem',
   }))
+
+  const [requestLikedItems] = useRequestLikedItemsMutation()
+
+  const getLikedItems = async () => {
+    try {
+      const res = await requestLikedItems()
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  useEffect(() => {
+    getLikedItems()
+  }, [])
 
   return (
     <>

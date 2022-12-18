@@ -86,6 +86,12 @@ export const requestApi = createApi({
         body: data,
       }),
     }),
+    requestLikedItems: builder.mutation({
+      query: () => ({
+        url: '/wishes',
+        method: 'GET',
+      }),
+    }),
     customRecommendUser: builder.mutation({
       query: ({ accessToken }) => ({
         url: encodeURI('/product-list/custom?page=0&sort='),
@@ -159,6 +165,7 @@ export const {
   useSearchProductsMutation,
   useRequestLogoutMutation,
   useRequestReservationMutation,
+  useRequestLikedItemsMutation,
   useCustomRecommendUserMutation,
   useCustomRecommendMutation,
   useAgeRecommendMutation,
