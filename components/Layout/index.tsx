@@ -15,6 +15,7 @@ type ALLOWED_PATH =
   | '/confirmpassword'
   | '/newpassword'
   | '/book'
+  | '/likes'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
   '/product-search',
@@ -25,9 +26,10 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/confirmpassword',
   '/newpassword',
   '/book',
+  '/likes',
 ]
 
-const pageWithoutPadding = ['/book']
+const pageWithoutPadding = ['/book', '/likes']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
