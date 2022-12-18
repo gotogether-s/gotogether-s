@@ -29,7 +29,7 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/likes',
 ]
 
-const pageWithoutPadding = ['/book']
+const pageWithoutPadding = ['/book', '/likes']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
