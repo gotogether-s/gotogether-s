@@ -1,7 +1,12 @@
+import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
 
 const Likes = () => {
-  return <>찜목록페이지는 준비중입니다 😅</>
+  return (
+    <>
+      <NavBar link={`/`} title="찜" marginBottom="0" />
+    </>
+  )
 }
 
 export default Likes
