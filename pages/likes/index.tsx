@@ -16,7 +16,10 @@ const Likes = () => {
 
   const getLikedItems = async () => {
     try {
-      const res = await requestLikedItems()
+      const accessToken = localStorage.getItem('accessToken')
+      const res = await requestLikedItems({
+        accessToken: accessToken,
+      })
       console.log('res: ', res)
     } catch (e) {
       console.log('e: ', e)
