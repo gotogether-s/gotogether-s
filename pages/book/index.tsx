@@ -171,8 +171,10 @@ const Book = () => {
     if (Object.keys(bookingClientValuesValidation).length !== 0) return
 
     try {
+      const accessToken = localStorage.getItem('accessToken')
       const res = await requestReservation({
         data: makeReservation,
+        accessToken: accessToken,
       })
       console.log('res: ', res)
     } catch (e) {

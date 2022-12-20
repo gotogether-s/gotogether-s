@@ -80,10 +80,13 @@ export const requestApi = createApi({
       }),
     }),
     requestReservation: builder.mutation({
-      query: ({ data }) => ({
-        url: '/reservation',
+      query: ({ data, accessToken }) => ({
+        url: '/reservations',
         method: 'POST',
         body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }),
     }),
     requestLikedItems: builder.mutation({
