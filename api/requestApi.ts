@@ -87,9 +87,12 @@ export const requestApi = createApi({
       }),
     }),
     requestLikedItems: builder.mutation({
-      query: () => ({
+      query: ({ accessToken }) => ({
         url: '/wishes',
         method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }),
     }),
     customRecommendUser: builder.mutation({
