@@ -98,6 +98,16 @@ export const requestApi = createApi({
         },
       }),
     }),
+    deleteLikedItems: builder.mutation({
+      query: ({ data, accessToken }) => ({
+        url: '/wishes',
+        method: 'DELETE',
+        body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
     customRecommendUser: builder.mutation({
       query: ({ accessToken }) => ({
         url: encodeURI('/product-list/custom?page=0&sort='),
@@ -172,6 +182,7 @@ export const {
   useRequestLogoutMutation,
   useRequestReservationMutation,
   useRequestLikedItemsMutation,
+  useDeleteLikedItemsMutation,
   useCustomRecommendUserMutation,
   useCustomRecommendMutation,
   useAgeRecommendMutation,
