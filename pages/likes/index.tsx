@@ -16,7 +16,7 @@ import { add, remove } from '@store/likedItemsSlice'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const Likes = () => {
   const StyledSection = styled('div')(() => ({
@@ -26,6 +26,8 @@ const Likes = () => {
   }))
 
   const dispatch = useDispatch()
+
+  const [checked, setChecked] = useState([])
 
   const likedItems = useSelector((state) => {
     return state.likedItems
@@ -42,6 +44,7 @@ const Likes = () => {
       })
       console.log('res: ', res)
       dispatch(add(res.data.data))
+      getInitialChecked(res.data.data)
     } catch (e) {
       console.log('e: ', e)
     }
@@ -61,6 +64,20 @@ const Likes = () => {
     } catch (e) {
       console.log('e: ', e)
     }
+  }
+
+  const getInitialChecked = (likedItems) => {
+    const newChecked = []
+    for (const i of likedItems) {
+      newChecked.push(false)
+    }
+    setChecked([...newChecked])
+  }
+
+  const handleCheckedChange = (index) => {
+    const copyChecked = checked.slice()
+    copyChecked[index] = !copyChecked[index]
+    setChecked([...copyChecked])
   }
 
   useEffect(() => {
@@ -120,7 +137,13 @@ const Likes = () => {
                     }}
                   >
                     <FormControlLabel
-                      control={<Checkbox sx={{ padding: 0 }} />}
+                      control={
+                        <Checkbox
+                          sx={{ padding: 0 }}
+                          checked={checked[index]}
+                          onChange={() => handleCheckedChange(index)}
+                        />
+                      }
                       sx={{ margin: 0 }}
                     />
                     <Typography>{likedItem.productName}</Typography>
