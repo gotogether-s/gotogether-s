@@ -12,7 +12,11 @@ import {
   useDeleteLikedItemsMutation,
 } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, remove } from '@store/likedItemsSlice'
+import { add, remove, findAndRemove } from '@store/likedItemsSlice'
+import {
+  addWishIdsToDelete,
+  removeWishIdsToDelete,
+} from '@store/wishIdsToDeleteSlice'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
@@ -34,6 +38,10 @@ const Likes = () => {
     return state.likedItems
   })
 
+  const wishIdsToDelete = useSelector((state) => {
+    return state.wishIdsToDelete
+  })
+
   const [requestLikedItems] = useRequestLikedItemsMutation()
   const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
@@ -51,14 +59,30 @@ const Likes = () => {
     }
   }
 
-  const requestToRemoveLikedItem = async (wish_id, index) => {
-    const likedItemsToDelete = []
-    likedItemsToDelete.push(wish_id)
+  const requestToRemoveSelectedLikedItems = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
       const res = await deleteLikedItems({
         accessToken: accessToken,
-        data: { wish_id: likedItemsToDelete },
+        data: { wish_id: wishIdsToDelete },
+      })
+      console.log('res: ', res)
+      dispatch(findAndRemove(wishIdsToDelete))
+      setCheckedAll(false)
+      setChecked([])
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  const requestToRemoveLikedItem = async (wish_id, index) => {
+    const wishIds = []
+    wishIds.push(wish_id)
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      const res = await deleteLikedItems({
+        accessToken: accessToken,
+        data: { wish_id: wishIds },
       })
       console.log('res: ', res)
       dispatch(remove(index))
@@ -75,10 +99,13 @@ const Likes = () => {
     setChecked([...newChecked])
   }
 
-  const handleCheckedChange = (index) => {
+  const handleCheckedChange = (wish_id, index) => {
     const copyChecked = checked.slice()
     copyChecked[index] = !copyChecked[index]
     setChecked([...copyChecked])
+    copyChecked[index]
+      ? dispatch(addWishIdsToDelete(wish_id))
+      : dispatch(removeWishIdsToDelete(wish_id))
   }
 
   const handleCheckedAllChange = (likedItems) => {
@@ -88,6 +115,12 @@ const Likes = () => {
     }
     setChecked([...newChecked])
     setCheckedAll(!checkedAll)
+    const checkedAllStatus = !checkedAll
+    likedItems.map((likedItem) =>
+      checkedAllStatus
+        ? dispatch(addWishIdsToDelete(likedItem.wish_id))
+        : dispatch(removeWishIdsToDelete(likedItem.wish_id)),
+    )
   }
 
   useEffect(() => {
@@ -124,6 +157,7 @@ const Likes = () => {
                 padding: '0.5rem 1.5rem',
                 height: '100%',
               }}
+              onClick={requestToRemoveSelectedLikedItems}
             >
               선택 상품 삭제
             </Button>
@@ -159,7 +193,9 @@ const Likes = () => {
                         <Checkbox
                           sx={{ padding: 0 }}
                           checked={checked[index]}
-                          onChange={() => handleCheckedChange(index)}
+                          onChange={() =>
+                            handleCheckedChange(likedItem.wish_id, index)
+                          }
                         />
                       }
                       sx={{ margin: 0 }}

@@ -14,9 +14,20 @@ const likedItemsSlice = createSlice({
       const index = action.payload
       state.splice(index, 1)
     },
+    findAndRemove: (state, action) => {
+      const likedItemsToDelete = action.payload
+      Array.from(Array(state.length).keys())
+        .reverse()
+        .forEach(
+          (index) =>
+            likedItemsToDelete.some(
+              (wish_id) => wish_id === state[index].wish_id,
+            ) && state.splice(index, 1),
+        )
+    },
   },
 })
 
 export default likedItemsSlice
 
-export const { add, remove } = likedItemsSlice.actions
+export const { add, remove, findAndRemove } = likedItemsSlice.actions
