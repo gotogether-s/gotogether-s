@@ -9,6 +9,7 @@ import reservationDetail from './reservationDetailSlice'
 import bookingClientInfo from './bookingClientInfoSlice'
 import makeReservation from './makeReservationSlice'
 import displayModalWindow from './displayModalWindowSlice'
+import likedItems from './likedItemsSlice'
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     bookingClientInfo: bookingClientInfo.reducer,
     makeReservation: makeReservation.reducer,
     displayModalWindow: displayModalWindow.reducer,
+    likedItems: likedItems.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(requestApi.middleware),
