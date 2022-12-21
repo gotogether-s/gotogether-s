@@ -27,6 +27,7 @@ const Likes = () => {
 
   const dispatch = useDispatch()
 
+  const [checkedAll, setCheckedAll] = useState(false)
   const [checked, setChecked] = useState([])
 
   const likedItems = useSelector((state) => {
@@ -80,6 +81,15 @@ const Likes = () => {
     setChecked([...copyChecked])
   }
 
+  const handleCheckedAllChange = (likedItems) => {
+    const newChecked = []
+    for (const i of likedItems) {
+      newChecked.push(!checkedAll)
+    }
+    setChecked([...newChecked])
+    setCheckedAll(!checkedAll)
+  }
+
   useEffect(() => {
     getLikedItems()
   }, [])
@@ -96,7 +106,15 @@ const Likes = () => {
               justifyContent: 'space-between',
             }}
           >
-            <FormControlLabel control={<Checkbox />} label="전체 선택" />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={checkedAll}
+                  onChange={() => handleCheckedAllChange(likedItems)}
+                />
+              }
+              label="전체 선택"
+            />
             <Button
               variant="outlined"
               sx={{
