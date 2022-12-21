@@ -74,7 +74,10 @@ const Likes = () => {
               <Box
                 sx={{
                   padding: '2.5rem 0',
-                  borderBottom: '0.1rem solid #DDD',
+                  borderBottom:
+                    likedItems.length - 1 !== index
+                      ? '0.1rem solid #DDD'
+                      : 'none',
                 }}
               >
                 <Box
