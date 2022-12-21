@@ -99,7 +99,13 @@ const Likes = () => {
                     />
                     <Typography>{likedItem.productName}</Typography>
                   </Box>
-                  <CloseIcon />
+                  <CloseIcon
+                    sx={{
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                  />
                 </Box>
                 <Box
                   sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
