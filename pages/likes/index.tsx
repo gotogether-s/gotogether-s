@@ -7,7 +7,10 @@ import {
   Typography,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { useRequestLikedItemsMutation } from '@api/requestApi'
+import {
+  useRequestLikedItemsMutation,
+  useDeleteLikedItemsMutation,
+} from '@api/requestApi'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
@@ -23,6 +26,7 @@ const Likes = () => {
   const [likedItems, setLikedItems] = useState([])
 
   const [requestLikedItems] = useRequestLikedItemsMutation()
+  const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
   const getLikedItems = async () => {
     try {
@@ -32,6 +36,21 @@ const Likes = () => {
       })
       console.log('res: ', res)
       setLikedItems(res.data.data)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  const requestToRemoveLikedItem = async (wish_id) => {
+    const likedItemsToDelete = []
+    likedItemsToDelete.push(wish_id)
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      const res = await deleteLikedItems({
+        accessToken: accessToken,
+        data: { wish_id: likedItemsToDelete },
+      })
+      console.log('res: ', res)
     } catch (e) {
       console.log('e: ', e)
     }
@@ -105,6 +124,7 @@ const Likes = () => {
                         cursor: 'pointer',
                       },
                     }}
+                    onClick={() => requestToRemoveLikedItem(likedItem.wish_id)}
                   />
                 </Box>
                 <Box
