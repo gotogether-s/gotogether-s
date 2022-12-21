@@ -69,60 +69,58 @@ const Likes = () => {
           </Box>
         </StyledSection>
         <StyledSection>
-          <Box>
-            {likedItems.map((likedItem, index) => (
-              <>
+          {likedItems.map((likedItem, index) => (
+            <Box key={index}>
+              <Box
+                sx={{
+                  padding: '2.5rem 0',
+                  borderBottom: '0.1rem solid #DDD',
+                }}
+              >
                 <Box
                   sx={{
-                    padding: '2.5rem 0',
-                    borderBottom: '0.1rem solid #DDD',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginBottom: '1rem',
                   }}
                 >
                   <Box
                     sx={{
                       display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: '1rem',
+                      gap: '0.5rem',
                     }}
                   >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        gap: '0.5rem',
-                      }}
-                    >
-                      <FormControlLabel
-                        control={<Checkbox sx={{ padding: 0 }} />}
-                        sx={{ margin: 0 }}
-                      />
-                      <Typography>{likedItem.productName}</Typography>
-                    </Box>
-                    <CloseIcon />
-                  </Box>
-                  <Box
-                    sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
-                  >
-                    <Image
-                      src={likedItem.thumbnail}
-                      alt={likedItem.productName}
-                      width="100%"
-                      height="100%"
-                      objectFit="contain"
-                      style={{ borderRadius: '0.75rem' }}
+                    <FormControlLabel
+                      control={<Checkbox sx={{ padding: 0 }} />}
+                      sx={{ margin: 0 }}
                     />
-                    <Box>
-                      <Typography sx={{ fontSize: '1.2rem', color: '#4E4E4E' }}>
-                        예약 시 여행일정 선택
-                      </Typography>
-                      <Typography>
-                        1인 / {likedItem.basicPrice.toLocaleString('ko-KR')} 원
-                      </Typography>
-                    </Box>
+                    <Typography>{likedItem.productName}</Typography>
+                  </Box>
+                  <CloseIcon />
+                </Box>
+                <Box
+                  sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+                >
+                  <Image
+                    src={likedItem.thumbnail}
+                    alt={likedItem.productName}
+                    width="100%"
+                    height="100%"
+                    objectFit="contain"
+                    style={{ borderRadius: '0.75rem' }}
+                  />
+                  <Box>
+                    <Typography sx={{ fontSize: '1.2rem', color: '#4E4E4E' }}>
+                      예약 시 여행일정 선택
+                    </Typography>
+                    <Typography>
+                      1인 / {likedItem.basicPrice.toLocaleString('ko-KR')} 원
+                    </Typography>
                   </Box>
                 </Box>
-              </>
-            ))}
-          </Box>
+              </Box>
+            </Box>
+          ))}
         </StyledSection>
       </Box>
     </>
