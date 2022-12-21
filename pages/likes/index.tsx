@@ -68,7 +68,7 @@ const Likes = () => {
             </Button>
           </Box>
         </StyledSection>
-        <StyledSection>
+        <StyledSection sx={{ marginBottom: 0 }}>
           {likedItems.map((likedItem, index) => (
             <Box key={index}>
               <Box
