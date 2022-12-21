@@ -11,10 +11,12 @@ import {
   useRequestLikedItemsMutation,
   useDeleteLikedItemsMutation,
 } from '@api/requestApi'
+import { useSelector, useDispatch } from 'react-redux'
+import { add, remove } from '@store/likedItemsSlice'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 const Likes = () => {
   const StyledSection = styled('div')(() => ({
@@ -23,7 +25,11 @@ const Likes = () => {
     marginBottom: '1.6rem',
   }))
 
-  const [likedItems, setLikedItems] = useState([])
+  const dispatch = useDispatch()
+
+  const likedItems = useSelector((state) => {
+    return state.likedItems
+  })
 
   const [requestLikedItems] = useRequestLikedItemsMutation()
   const [deleteLikedItems] = useDeleteLikedItemsMutation()
@@ -35,13 +41,13 @@ const Likes = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
-      setLikedItems(res.data.data)
+      dispatch(add(res.data.data))
     } catch (e) {
       console.log('e: ', e)
     }
   }
 
-  const requestToRemoveLikedItem = async (wish_id) => {
+  const requestToRemoveLikedItem = async (wish_id, index) => {
     const likedItemsToDelete = []
     likedItemsToDelete.push(wish_id)
     try {
@@ -51,6 +57,7 @@ const Likes = () => {
         data: { wish_id: likedItemsToDelete },
       })
       console.log('res: ', res)
+      dispatch(remove(index))
     } catch (e) {
       console.log('e: ', e)
     }
@@ -124,7 +131,9 @@ const Likes = () => {
                         cursor: 'pointer',
                       },
                     }}
-                    onClick={() => requestToRemoveLikedItem(likedItem.wish_id)}
+                    onClick={() =>
+                      requestToRemoveLikedItem(likedItem.wish_id, index)
+                    }
                   />
                 </Box>
                 <Box
