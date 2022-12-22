@@ -13,6 +13,7 @@ import {
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
+import { useRouter } from 'next/router'
 import { useRequestReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
@@ -34,6 +35,8 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const router = useRouter()
+
   const [requestReservation] = useRequestReservationMutation()
 
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
@@ -41,6 +44,7 @@ const Book = () => {
     useState([<TravellerInfoForm />])
   const [totalFee, setTotalFee] = useState(0)
   const [bookingClientValuesErrors, setBookingClientValuesErrors] = useState({})
+  const [travellerValuesErrors, setTravellerValuesErrors] = useState([])
   const [depositor, setDepositor] = useState('')
   const [agreement, setAgreement] = useState(false)
 
@@ -151,6 +155,28 @@ const Book = () => {
     return errors
   }
 
+  const validateTravellerValues = (values) => {
+    const errors = []
+    const newObj = {
+      name: '',
+      phoneNumber: '',
+    }
+    for (let i = 0; i < values.length; i++) {
+      if (values[i].name && values[i].phoneNumber) return
+      errors.push(newObj)
+      if (!values[i].name) {
+        errors[i].name = '이름을 입력해주세요!'
+      }
+      if (!values[i].phoneNumber) {
+        errors[i].phoneNumber = '전화번호를 입력해주세요!'
+      } else if (values[i].phoneNumber.length !== 13) {
+        errors[i].phoneNumber = '전화번호는 11자리여야 합니다!'
+      }
+    }
+    console.log('errors', errors)
+    return errors
+  }
+
   const makeReservation = useSelector((state) => {
     return state.makeReservation
   })
@@ -168,7 +194,19 @@ const Book = () => {
         agreement: agreement,
       }),
     )
-    if (Object.keys(bookingClientValuesValidation).length !== 0) return
+    const { reservationPersonListDto } = makeReservation
+
+    const travellerValuesValidation = validateTravellerValues(
+      reservationPersonListDto,
+    )
+    setTravellerValuesErrors(validateTravellerValues(reservationPersonListDto))
+
+    if (
+      Object.keys(bookingClientValuesValidation).length ||
+      (travellerValuesValidation &&
+        Object.keys(travellerValuesValidation).length !== 0)
+    )
+      return
 
     try {
       const accessToken = localStorage.getItem('accessToken')
@@ -177,6 +215,7 @@ const Book = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
+      router.push('payment')
     } catch (e) {
       console.log('e: ', e)
     }
@@ -323,7 +362,13 @@ const Book = () => {
             </Box>
           </Box>
           {TravellerInfoFormComponents.map((element, index) => {
-            return <TravellerInfoForm key={index} number={index + 1} />
+            return (
+              <TravellerInfoForm
+                key={index}
+                number={index + 1}
+                travellerValuesErrors={travellerValuesErrors}
+              />
+            )
           })}
         </StyledSection>
         <StyledSection>
@@ -404,18 +449,21 @@ const Book = () => {
           <FormControlLabel
             control={
               <Checkbox
+                sx={{ padding: '0 0.5rem 0 0' }}
                 name="agreement"
                 checked={agreement}
                 onChange={inputChangeHandler}
               />
             }
             label="예약조건 확인 및 결제진행에 동의"
+            sx={{ margin: 0 }}
           />
           <p
             style={{
               visibility: bookingClientValuesErrors.agreement
                 ? 'visible'
                 : 'hidden',
+              marginBottom: '1.6rem',
             }}
             className={style['error-message']}
           >

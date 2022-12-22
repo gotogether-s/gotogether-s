@@ -1,9 +1,20 @@
 .input-wrapper {
-  margin-bottom: 2rem;
   &:last-child {
     margin-bottom: 0;
   }
   .label {
     padding-bottom: 0.5rem;
   }
+}
+
+.error-message {
+  color: tomato;
+  height: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.success-message {
+  color: green;
+  height: 1.6rem;
+  margin-bottom: 1.6rem;
 }
