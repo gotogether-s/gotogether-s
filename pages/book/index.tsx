@@ -200,7 +200,8 @@ const Book = () => {
 
     if (
       Object.keys(bookingClientValuesValidation).length ||
-      Object.keys(travellerValuesValidation).length !== 0
+      (travellerValuesValidation &&
+        Object.keys(travellerValuesValidation).length !== 0)
     )
       return
 

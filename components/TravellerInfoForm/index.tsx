@@ -163,14 +163,16 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
           <p
             style={{
               visibility:
-                travellerValuesErrors[index] !== undefined &&
+                travellerValuesErrors &&
+                travellerValuesErrors[index] &&
                 travellerValuesErrors[index].name
                   ? 'visible'
                   : 'hidden',
             }}
             className={style['error-message']}
           >
-            {travellerValuesErrors[index] !== undefined &&
+            {travellerValuesErrors &&
+              travellerValuesErrors[index] &&
               travellerValuesErrors[index].name}
           </p>
           <div className={style['input-wrapper']}>
@@ -187,14 +189,16 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
             <p
               style={{
                 visibility:
-                  travellerValuesErrors[index] !== undefined &&
+                  travellerValuesErrors &&
+                  travellerValuesErrors[index] &&
                   travellerValuesErrors[index].phoneNumber
                     ? 'visible'
                     : 'hidden',
               }}
               className={style['error-message']}
             >
-              {travellerValuesErrors[index] !== undefined &&
+              {travellerValuesErrors &&
+                travellerValuesErrors[index] &&
                 travellerValuesErrors[index].phoneNumber}
             </p>
           </div>
