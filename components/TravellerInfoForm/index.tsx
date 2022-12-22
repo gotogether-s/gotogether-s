@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import style from './TravellerInfoForm.module.scss'
 
-const TravellerInfoForm = ({ number }) => {
+const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
   const index = number - 1
 
   const dispatch = useDispatch()
@@ -160,6 +160,19 @@ const TravellerInfoForm = ({ number }) => {
               sx={{ width: '100%' }}
             />
           </div>
+          <p
+            style={{
+              visibility:
+                travellerValuesErrors[index] !== undefined &&
+                travellerValuesErrors[index].name
+                  ? 'visible'
+                  : 'hidden',
+            }}
+            className={style['error-message']}
+          >
+            {travellerValuesErrors[index] !== undefined &&
+              travellerValuesErrors[index].name}
+          </p>
           <div className={style['input-wrapper']}>
             <div className={style['label']}>전화번호</div>
             <TextField
@@ -171,6 +184,19 @@ const TravellerInfoForm = ({ number }) => {
               onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
+            <p
+              style={{
+                visibility:
+                  travellerValuesErrors[index] !== undefined &&
+                  travellerValuesErrors[index].phoneNumber
+                    ? 'visible'
+                    : 'hidden',
+              }}
+              className={style['error-message']}
+            >
+              {travellerValuesErrors[index] !== undefined &&
+                travellerValuesErrors[index].phoneNumber}
+            </p>
           </div>
         </Box>
       </AccordionDetails>
