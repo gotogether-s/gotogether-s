@@ -444,18 +444,21 @@ const Book = () => {
           <FormControlLabel
             control={
               <Checkbox
+                sx={{ padding: '0 0.5rem 0 0' }}
                 name="agreement"
                 checked={agreement}
                 onChange={inputChangeHandler}
               />
             }
             label="예약조건 확인 및 결제진행에 동의"
+            sx={{ margin: 0 }}
           />
           <p
             style={{
               visibility: bookingClientValuesErrors.agreement
                 ? 'visible'
                 : 'hidden',
+              marginBottom: '1.6rem',
             }}
             className={style['error-message']}
           >
