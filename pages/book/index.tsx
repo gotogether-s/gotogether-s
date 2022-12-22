@@ -13,6 +13,7 @@ import {
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
+import { useRouter } from 'next/router'
 import { useRequestReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
@@ -34,6 +35,8 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const router = useRouter()
+
   const [requestReservation] = useRequestReservationMutation()
 
   const [numberOfTravellers, setNumberOfTravellers] = useState(1)
@@ -212,6 +215,7 @@ const Book = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
+      router.push('payment')
     } catch (e) {
       console.log('e: ', e)
     }
