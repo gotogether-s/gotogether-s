@@ -16,6 +16,7 @@ type ALLOWED_PATH =
   | '/newpassword'
   | '/book'
   | '/likes'
+  | '/mybooking'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
   '/product-search',
@@ -27,6 +28,7 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/newpassword',
   '/book',
   '/likes',
+  '/mybooking',
 ]
 
 const pageWithoutPadding = ['/book', '/likes']

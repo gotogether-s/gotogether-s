@@ -1,7 +1,12 @@
+import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
 
 const MyBooking = () => {
-  return <>예약확인페이지는 준비중입니다 😅</>
+  return (
+    <>
+      <NavBar link={`/`} title="예약 확인 및 취소" marginBottom="0" />
+    </>
+  )
 }
 
 export default MyBooking
