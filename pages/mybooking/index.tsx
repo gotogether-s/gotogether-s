@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import { Box, Select, MenuItem } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useGetReservationMutation } from '@api/requestApi'
 import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
 
@@ -24,11 +25,25 @@ const reservationDurationOptions = [
 ]
 
 const MyBooking = () => {
+  const [getReservation] = useGetReservationMutation()
+
   const StyledSection = styled('div')(() => ({
     backgroundColor: '#fff',
     padding: '1.6rem',
     marginBottom: '1.6rem',
   }))
+
+  const readMyBookingInfo = async () => {
+    const accessToken = localStorage.getItem('accessToken')
+    try {
+      const res = await getReservation({
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
 
   const [reservationDuration, setReservationDuration] = useState(
     reservationDurationOptions[0].value,
@@ -37,6 +52,10 @@ const MyBooking = () => {
   const handleChange = (e) => {
     setReservationDuration(e.target.value)
   }
+
+  useEffect(() => {
+    readMyBookingInfo()
+  }, [])
 
   return (
     <>
