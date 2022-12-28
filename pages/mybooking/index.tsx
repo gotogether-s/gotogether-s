@@ -2,6 +2,11 @@ import { styled } from '@mui/material/styles'
 import { Box, Select, MenuItem } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useGetReservationMutation } from '@api/requestApi'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  addMyBookingList,
+  removeMyBookingList,
+} from '@store/myBookingListsSlice'
 import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
 
@@ -25,6 +30,8 @@ const reservationDurationOptions = [
 ]
 
 const MyBooking = () => {
+  const dispatch = useDispatch()
+
   const [getReservation] = useGetReservationMutation()
 
   const StyledSection = styled('div')(() => ({
@@ -40,10 +47,16 @@ const MyBooking = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
+      const { data } = res.data
+      dispatch(addMyBookingList(data))
     } catch (e) {
       console.log('e: ', e)
     }
   }
+
+  const myBookingLists = useSelector((state) => {
+    return state.myBookingLists
+  })
 
   const [reservationDuration, setReservationDuration] = useState(
     reservationDurationOptions[0].value,
