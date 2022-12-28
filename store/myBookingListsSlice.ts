@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const myBookingListSlice = createSlice({
-  name: 'myBookingListSlice',
+const myBookingListsSlice = createSlice({
+  name: 'myBookingListsSlice',
   initialState: [],
   reducers: {
     addMyBookingList: (state, action) => {
@@ -13,7 +13,7 @@ const myBookingListSlice = createSlice({
   },
 })
 
-export default myBookingListSlice
+export default myBookingListsSlice
 
 export const { addMyBookingList, removeMyBookingList } =
-  myBookingListSlice.actions
+  myBookingListsSlice.actions
