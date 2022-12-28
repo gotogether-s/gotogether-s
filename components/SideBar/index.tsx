@@ -30,7 +30,6 @@ const SideBar = () => {
             position: 'absolute',
             height: '100%',
             border: '1px solid #ddd',
-            // transition: 'none !important',
           },
         }}
         variant="persistent"
@@ -43,7 +42,7 @@ const SideBar = () => {
       <Backdrop
         open={sideBarOpen}
         onClick={() => dispatch(click())}
-        sx={{ position: 'absolute' }}
+        sx={{ position: 'absolute', zIndex: 3 }}
         transitionDuration={{ enter: 500, exit: 400 }}
       />
     </>
