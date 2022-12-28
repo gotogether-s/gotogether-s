@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles'
-import { Box, Select, MenuItem } from '@mui/material'
+import { Box, Select, MenuItem, Typography, Chip, Button } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useGetReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,6 +7,8 @@ import {
   addMyBookingList,
   removeMyBookingList,
 } from '@store/myBookingListsSlice'
+import Image from 'next/image'
+import Link from 'next/link'
 import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
 
@@ -89,6 +91,82 @@ const MyBooking = () => {
               ))}
             </Select>
           </Box>
+        </StyledSection>
+        <StyledSection sx={{ marginBottom: 0 }}>
+          {myBookingLists.map((list, index) => (
+            <Box
+              key={index}
+              sx={{
+                padding: '2.5rem 0',
+                borderBottom:
+                  myBookingLists.length - 1 !== index
+                    ? '0.1rem solid #DDD'
+                    : 'none',
+              }}
+            >
+              <Box sx={{ marginBottom: '2rem' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography>{list.productName}</Typography>
+                  <Chip
+                    label="예약 완료"
+                    sx={{ backgroundColor: '#4581F8', color: '#fff' }}
+                  />
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '2rem',
+                }}
+              >
+                <Image
+                  src={list.thumbnail}
+                  alt={list.productName}
+                  width="120%"
+                  height="120%"
+                  objectFit="contain"
+                  style={{ borderRadius: '0.75rem' }}
+                />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1.6rem',
+                  }}
+                >
+                  <Box>
+                    <Typography>{list.airport}</Typography>
+                    <Typography>{list.duration}</Typography>
+                    <Typography>{list.reservationDate}</Typography>
+                  </Box>
+                  <Link href="/">상세보기</Link>
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '1rem',
+                }}
+              >
+                <Button variant="outlined" size="large" fullWidth>
+                  전화걸기
+                </Button>
+                <Button variant="outlined" size="large" fullWidth>
+                  예약 취소
+                </Button>
+              </Box>
+            </Box>
+          ))}
         </StyledSection>
       </Box>
     </>
