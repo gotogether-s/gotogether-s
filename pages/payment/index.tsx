@@ -1,10 +1,13 @@
 import { Box, Typography, Button } from '@mui/material'
 import Image from 'next/image'
 import payment from '@public/payment.png'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import style from './Payment.module.scss'
 
 const Payment = () => {
+  const router = useRouter()
+
   const [paymentSummary, setPaymentSummary] = useState([
     {
       title: '계좌번호 : ',
@@ -74,6 +77,7 @@ const Payment = () => {
         sx={{
           width: '100%',
         }}
+        onClick={() => router.push('mybooking')}
       >
         예약 확인하기
       </Button>
