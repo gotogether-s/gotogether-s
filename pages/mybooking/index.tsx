@@ -3,6 +3,7 @@ import { Box, Select, MenuItem, Typography, Chip, Button } from '@mui/material'
 import { useState, useEffect } from 'react'
 import {
   useGetReservationMutation,
+  useGetReservationWithDurationMutation,
   useDeleteReservationMutation,
 } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -39,6 +40,7 @@ const MyBooking = () => {
   const router = useRouter()
 
   const [getReservation] = useGetReservationMutation()
+  const [getReservationWithDuration] = useGetReservationWithDurationMutation()
   const [deleteReservation] = useDeleteReservationMutation()
 
   const StyledSection = styled('div')(() => ({
@@ -85,8 +87,20 @@ const MyBooking = () => {
     reservationDurationOptions[0].value,
   )
 
-  const changeReservationDuration = (e) => {
+  const changeReservationDuration = async (e) => {
     setReservationDuration(e.target.value)
+    try {
+      const accessToken = localStorage.getItem('accessToken')
+      const res = await getReservationWithDuration({
+        duration: e.target.value,
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+      const { data } = res.data
+      dispatch(addMyBookingList(data))
+    } catch (e) {
+      console.log('e: ', e)
+    }
   }
 
   useEffect(() => {
