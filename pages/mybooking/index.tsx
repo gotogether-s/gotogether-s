@@ -125,7 +125,10 @@ const MyBooking = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography>{list.reservationDate} 예약</Typography>
+                  <Typography>
+                    {list.reservationDate.trim().replace(/\s/g, '-')} (
+                    {list.reservationDayOfWeek}) 예약
+                  </Typography>
                   <Chip
                     label="예약 완료"
                     sx={{ backgroundColor: '#4581F8', color: '#fff' }}
