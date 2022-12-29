@@ -60,6 +60,10 @@ const MyBooking = () => {
     return state.myBookingLists
   })
 
+  const productName = myBookingLists.map((myBookingList) =>
+    myBookingList.productName.trim().replace(/-|_/g, ' '),
+  )
+
   const reservationDate = myBookingLists.map((myBookingList) =>
     myBookingList.duration.trim().replace(/\s/g, '').split('~'),
   )
@@ -145,7 +149,7 @@ const MyBooking = () => {
               >
                 <Image
                   src={list.thumbnail}
-                  alt={list.productName}
+                  alt={productName[index]}
                   width="120%"
                   height="120%"
                   objectFit="contain"
@@ -159,7 +163,7 @@ const MyBooking = () => {
                   }}
                 >
                   <Box>
-                    <Typography>{list.productName}</Typography>
+                    <Typography>{productName[index]}</Typography>
                     <Typography>{list.airport}</Typography>
                     <Typography>
                       출발 {reservationDate[index][0]} (
