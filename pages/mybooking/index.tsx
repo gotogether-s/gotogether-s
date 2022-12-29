@@ -17,6 +17,10 @@ import style from './MyBooking.module.scss'
 
 const reservationDurationOptions = [
   {
+    label: '전체',
+    value: 'all',
+  },
+  {
     label: '최근 3개월',
     value: '90',
   },
@@ -27,10 +31,6 @@ const reservationDurationOptions = [
   {
     label: '최근 1년',
     value: '365',
-  },
-  {
-    label: '전체',
-    value: 'all',
   },
 ]
 
