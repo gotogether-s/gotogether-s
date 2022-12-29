@@ -85,7 +85,7 @@ const MyBooking = () => {
     reservationDurationOptions[0].value,
   )
 
-  const handleChange = (e) => {
+  const changeReservationDuration = (e) => {
     setReservationDuration(e.target.value)
   }
 
@@ -125,7 +125,7 @@ const MyBooking = () => {
               fullWidth
               size="small"
               value={reservationDuration}
-              onChange={handleChange}
+              onChange={changeReservationDuration}
               sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
             >
               {reservationDurationOptions.map((option) => (
