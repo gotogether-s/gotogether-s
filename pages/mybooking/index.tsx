@@ -47,8 +47,7 @@ const MyBooking = () => {
     marginBottom: '1.6rem',
   }))
 
-  const readMyBookingInfo = async () => {
-    const accessToken = localStorage.getItem('accessToken')
+  const readMyBookingInfo = async (accessToken) => {
     try {
       const res = await getReservation({
         accessToken: accessToken,
@@ -91,7 +90,8 @@ const MyBooking = () => {
   }
 
   useEffect(() => {
-    readMyBookingInfo()
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && readMyBookingInfo(accessToken)
   }, [])
 
   const cancelReservation = async (reservation_id, index) => {
