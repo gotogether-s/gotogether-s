@@ -1,7 +1,10 @@
 import { styled } from '@mui/material/styles'
 import { Box, Select, MenuItem, Typography, Chip, Button } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { useGetReservationMutation } from '@api/requestApi'
+import {
+  useGetReservationMutation,
+  useDeleteReservationMutation,
+} from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addMyBookingList,
@@ -34,6 +37,7 @@ const MyBooking = () => {
   const dispatch = useDispatch()
 
   const [getReservation] = useGetReservationMutation()
+  const [deleteReservation] = useDeleteReservationMutation()
 
   const StyledSection = styled('div')(() => ({
     backgroundColor: '#fff',
@@ -87,6 +91,23 @@ const MyBooking = () => {
   useEffect(() => {
     readMyBookingInfo()
   }, [])
+
+  const cancelReservation = async (reservation_id, index) => {
+    const data = {
+      reservation_id: reservation_id,
+    }
+    const accessToken = localStorage.getItem('accessToken')
+    try {
+      const res = await deleteReservation({
+        data: data,
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+      dispatch(removeMyBookingList(index))
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
 
   return (
     <>
@@ -210,7 +231,12 @@ const MyBooking = () => {
                 <Button variant="contained" size="large" fullWidth>
                   상세보기
                 </Button>
-                <Button variant="outlined" size="large" fullWidth>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  fullWidth
+                  onClick={() => cancelReservation(list.reservation_id, index)}
+                >
                   예약 취소
                 </Button>
               </Box>
