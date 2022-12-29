@@ -60,6 +60,19 @@ const MyBooking = () => {
     return state.myBookingLists
   })
 
+  const reservationDate = myBookingLists.map((myBookingList) =>
+    myBookingList.duration.trim().replace(/\s/g, '').split('~'),
+  )
+
+  const getDayName = (dateStr) => {
+    const date = new Date(dateStr)
+    return date.toLocaleDateString('ko-KR', { weekday: 'long' })
+  }
+
+  const reservationDay = reservationDate.map((dates) =>
+    dates.map((date) => getDayName(date).charAt(0)),
+  )
+
   const [reservationDuration, setReservationDuration] = useState(
     reservationDurationOptions[0].value,
   )
@@ -145,7 +158,14 @@ const MyBooking = () => {
                   <Box>
                     <Typography>{list.productName}</Typography>
                     <Typography>{list.airport}</Typography>
-                    <Typography>{list.duration}</Typography>
+                    <Typography>
+                      출발 {reservationDate[index][0]} (
+                      {reservationDay[index][0]})
+                    </Typography>
+                    <Typography>
+                      도착 {reservationDate[index][1]} (
+                      {reservationDay[index][1]})
+                    </Typography>
                   </Box>
                   <Link href="/">상세보기</Link>
                 </Box>
