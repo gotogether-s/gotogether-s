@@ -98,6 +98,15 @@ export const requestApi = createApi({
         },
       }),
     }),
+    getReservationWithDuration: builder.mutation({
+      query: ({ duration, accessToken }) => ({
+        url: `/reservations/period/${duration}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
     deleteReservation: builder.mutation({
       query: ({ data, accessToken }) => ({
         url: '/reservations',
@@ -201,6 +210,7 @@ export const {
   useRequestLogoutMutation,
   useRequestReservationMutation,
   useGetReservationMutation,
+  useGetReservationWithDurationMutation,
   useDeleteReservationMutation,
   useRequestLikedItemsMutation,
   useDeleteLikedItemsMutation,
