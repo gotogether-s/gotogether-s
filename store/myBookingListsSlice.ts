@@ -5,7 +5,7 @@ const myBookingListsSlice = createSlice({
   initialState: [],
   reducers: {
     addMyBookingList: (state, action) => {
-      console.log(action.payload)
+      state.splice(0, state.length)
       const myBookingLists = action.payload
       myBookingLists.map((list) => state.push(list))
     },
