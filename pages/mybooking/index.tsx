@@ -112,7 +112,7 @@ const MyBooking = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography>{list.productName}</Typography>
+                  <Typography>{list.reservationDate} 예약</Typography>
                   <Chip
                     label="예약 완료"
                     sx={{ backgroundColor: '#4581F8', color: '#fff' }}
@@ -143,9 +143,9 @@ const MyBooking = () => {
                   }}
                 >
                   <Box>
+                    <Typography>{list.productName}</Typography>
                     <Typography>{list.airport}</Typography>
                     <Typography>{list.duration}</Typography>
-                    <Typography>{list.reservationDate}</Typography>
                   </Box>
                   <Link href="/">상세보기</Link>
                 </Box>
