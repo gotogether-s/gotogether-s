@@ -130,7 +130,7 @@ const MyBooking = () => {
                   }}
                 >
                   <Typography>
-                    {list.reservationDate.trim().replace(/\s/g, '-')} (
+                    {list.reservationDate.trim().replace(/-/g, '/')} (
                     {list.reservationDayOfWeek}) 예약
                   </Typography>
                   <Chip
