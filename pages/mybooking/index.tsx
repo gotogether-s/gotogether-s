@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles'
 import { Box, Select, MenuItem, Typography, Chip, Button } from '@mui/material'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useState, useEffect } from 'react'
 import { useGetReservationMutation } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,7 +9,6 @@ import {
   removeMyBookingList,
 } from '@store/myBookingListsSlice'
 import Image from 'next/image'
-import Link from 'next/link'
 import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
 
@@ -97,6 +97,7 @@ const MyBooking = () => {
           <Box>
             <Select
               fullWidth
+              size="small"
               value={reservationDuration}
               onChange={handleChange}
               sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
@@ -129,7 +130,7 @@ const MyBooking = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography>
+                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
                     {list.reservationDate.trim().replace(/-/g, '/')} (
                     {list.reservationDayOfWeek}) 예약
                   </Typography>
@@ -142,21 +143,28 @@ const MyBooking = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  gap: '1.6rem',
                   marginBottom: '2rem',
                 }}
               >
-                <Image
-                  src={list.thumbnail}
-                  alt={productName[index]}
-                  width="120%"
-                  height="120%"
-                  objectFit="contain"
-                  style={{ borderRadius: '0.75rem' }}
-                />
                 <Box
                   sx={{
+                    width: '30%',
+                  }}
+                >
+                  <Image
+                    src={list.thumbnail}
+                    alt={productName[index]}
+                    width="120%"
+                    height="120%"
+                    objectFit="contain"
+                    style={{ borderRadius: '0.75rem' }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    width: '70%',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '1.6rem',
@@ -164,17 +172,32 @@ const MyBooking = () => {
                 >
                   <Box>
                     <Typography>{productName[index]}</Typography>
-                    <Typography>{list.airport}</Typography>
-                    <Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                        marginBottom: '0.2rem',
+                      }}
+                    >
+                      {list.airport}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                        marginBottom: '0.2rem',
+                      }}
+                    >
                       출발 {reservationDate[index][0]} (
                       {reservationDay[index][0]})
                     </Typography>
-                    <Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                      }}
+                    >
                       도착 {reservationDate[index][1]} (
                       {reservationDay[index][1]})
                     </Typography>
                   </Box>
-                  <Link href="/">상세보기</Link>
                 </Box>
               </Box>
               <Box
@@ -185,8 +208,8 @@ const MyBooking = () => {
                   gap: '1rem',
                 }}
               >
-                <Button variant="outlined" size="large" fullWidth>
-                  전화걸기
+                <Button variant="contained" size="large" fullWidth>
+                  상세보기
                 </Button>
                 <Button variant="outlined" size="large" fullWidth>
                   예약 취소
