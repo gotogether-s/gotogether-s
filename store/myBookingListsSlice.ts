@@ -9,7 +9,10 @@ const myBookingListsSlice = createSlice({
       const myBookingLists = action.payload
       myBookingLists.map((list) => state.push(list))
     },
-    removeMyBookingList: (state, action) => {},
+    removeMyBookingList: (state, action) => {
+      const index = action.payload
+      state.splice(index, 1)
+    },
   },
 })
 
