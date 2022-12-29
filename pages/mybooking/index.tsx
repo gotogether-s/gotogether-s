@@ -10,6 +10,7 @@ import {
   addMyBookingList,
   removeMyBookingList,
 } from '@store/myBookingListsSlice'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './MyBooking.module.scss'
@@ -35,6 +36,7 @@ const reservationDurationOptions = [
 
 const MyBooking = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const [getReservation] = useGetReservationMutation()
   const [deleteReservation] = useDeleteReservationMutation()
@@ -107,6 +109,10 @@ const MyBooking = () => {
     } catch (e) {
       console.log('e: ', e)
     }
+  }
+
+  const goToMyBookingDetailPage = (reservation_id) => {
+    router.push(`mybooking/${reservation_id}`)
   }
 
   return (
@@ -228,7 +234,12 @@ const MyBooking = () => {
                   gap: '1rem',
                 }}
               >
-                <Button variant="contained" size="large" fullWidth>
+                <Button
+                  variant="contained"
+                  size="large"
+                  fullWidth
+                  onClick={() => goToMyBookingDetailPage(list.reservation_id)}
+                >
                   상세보기
                 </Button>
                 <Button
