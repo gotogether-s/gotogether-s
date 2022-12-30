@@ -67,14 +67,17 @@ const Book = () => {
     productId,
   } = getReservationDetail
 
-  const reservationDate = productOptionList.trim().replace(/\s/g, '').split('~')
+  const bookingDurationDate = productOptionList
+    .trim()
+    .replace(/\s/g, '')
+    .split('~')
 
   const getDayName = (dateStr) => {
     const date = new Date(dateStr)
     return date.toLocaleDateString('ko-KR', { weekday: 'long' })
   }
 
-  const reservationDay = reservationDate.map((date) =>
+  const bookingDurationDay = bookingDurationDate.map((date) =>
     getDayName(date).charAt(0),
   )
 
@@ -269,10 +272,10 @@ const Book = () => {
                 <Typography>{airport}</Typography>
                 <Box>
                   <Typography>
-                    출발 {reservationDate[0]} ({reservationDay[0]})
+                    출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
                   </Typography>
                   <Typography>
-                    도착 {reservationDate[1]} ({reservationDay[1]})
+                    도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
                   </Typography>
                 </Box>
               </Box>
@@ -386,10 +389,10 @@ const Book = () => {
               }}
             >
               <Typography>
-                출발 {reservationDate[0]} ({reservationDay[0]})
+                출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
               </Typography>
               <Typography>
-                도착 {reservationDate[1]} ({reservationDay[1]})
+                도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
               </Typography>
             </Box>
           </Box>
