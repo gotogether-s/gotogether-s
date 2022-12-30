@@ -57,7 +57,11 @@ const Layout = ({ children }: any) => {
   }
 
   const ApplyPadding = () => {
-    if (currentPath && !pageWithoutPadding.includes(currentPath)) {
+    if (
+      currentPath &&
+      !pageWithoutPadding.includes(currentPath) &&
+      !myBookingDetailExp.test(asPath)
+    ) {
       return true
     }
   }
