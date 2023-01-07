@@ -4,6 +4,7 @@ import {
 } from '@api/requestApi'
 import { styled } from '@mui/material/styles'
 import { Box, Typography, Chip, Divider } from '@mui/material'
+import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
@@ -315,6 +316,36 @@ const myBookingDetail = () => {
                 <Typography sx={{ fontWeight: 600 }}>
                   {formattedTotalPrice} 원
                 </Typography>
+              </Box>
+            </Box>
+          </StyledSection>
+        )}
+        {bookingPeopleIsReady && (
+          <StyledSection sx={{ marginBottom: 0 }}>
+            <Box sx={{ paddingBottom: '5rem' }}>
+              <Typography sx={{ fontWeight: 600 }}>결제 방법</Typography>
+              <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>입금자명</Typography>
+                <Typography>{bookingClient.name}</Typography>
+              </Box>
+              <Box>
+                <Box sx={{ display: 'flex', gap: '0.5rem' }}>
+                  <SubdirectoryArrowRightIcon
+                    sx={{ fontSize: '1.8rem', color: '#BEBEBE' }}
+                  />
+                  <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
+                    {reservationDate} ({reservationDayOfWeek}) 예약
+                  </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '0.5rem' }}>
+                  <SubdirectoryArrowRightIcon
+                    sx={{ fontSize: '1.8rem', color: '#BEBEBE' }}
+                  />
+                  <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
+                    입금 대기중
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </StyledSection>
