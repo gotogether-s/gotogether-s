@@ -25,7 +25,7 @@ const myBookingDetail = () => {
   const readBookingDetail = async (accessToken) => {
     try {
       const res = await getReservationWithId({
-        id: id,
+        reservationId: id,
         accessToken: accessToken,
       })
       console.log('res: ', res)
@@ -35,11 +35,6 @@ const myBookingDetail = () => {
       console.log('e: ', e)
     }
   }
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken')
-    if (accessToken && id) readBookingDetail(accessToken)
-  }, [id])
 
   const formatBookingDetailData = (data) => {
     const { duration, reservationDate, totalPrice, totalReservationPeople } =
@@ -81,10 +76,16 @@ const myBookingDetail = () => {
     productName,
     reservationDate,
     reservationDayOfWeek,
-    reservation_id,
     status,
     thumbnail,
   } = myBookingDetail
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken && id) {
+      readBookingDetail(accessToken)
+    }
+  }, [id])
 
   return (
     <>
@@ -101,7 +102,7 @@ const myBookingDetail = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
+                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 600 }}>
                     {reservationDate} ({reservationDayOfWeek}) 예약
                   </Typography>
                   <Chip
