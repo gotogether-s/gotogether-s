@@ -128,7 +128,7 @@ export const requestApi = createApi({
     }),
     getReservationPeople: builder.mutation({
       query: ({ reservationId, accessToken }) => ({
-        url: `/reservations-people/${reservationId}`,
+        url: `/reservation-people/${reservationId}`,
         method: 'GET',
         headers: {
           Authorization: `Bearer ${accessToken}`,
