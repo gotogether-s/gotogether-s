@@ -1,10 +1,14 @@
-import { useGetReservationWithIdMutation } from '@api/requestApi'
+import {
+  useGetReservationWithIdMutation,
+  useGetReservationPeopleMutation,
+} from '@api/requestApi'
 import { styled } from '@mui/material/styles'
-import { Box, Typography, Chip } from '@mui/material'
+import { Box, Typography, Chip, Divider } from '@mui/material'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import { addMyBookingDetail } from '@store/myBookingDetailSlice'
+import { addMyBookingPeople } from '@store/myBookingPeopleSlice'
 import { useState, useEffect } from 'react'
 import NavBar from '@components/NavBar'
 
@@ -20,7 +24,10 @@ const myBookingDetail = () => {
   const dispatch = useDispatch()
 
   const [getReservationWithId] = useGetReservationWithIdMutation()
-  const [dataIsReady, setDataIsReady] = useState(false)
+  const [getReservationPeople] = useGetReservationPeopleMutation()
+
+  const [bookingDetailIsReady, setBookingDetailIsReady] = useState(false)
+  const [bookingPeopleIsReady, setBookingPeopleIsReady] = useState(false)
 
   const readBookingDetail = async (accessToken) => {
     try {
@@ -62,7 +69,7 @@ const myBookingDetail = () => {
     }
 
     dispatch(addMyBookingDetail(formattedData))
-    setDataIsReady(true)
+    setBookingDetailIsReady(true)
   }
 
   const myBookingDetail = useSelector((state) => {
@@ -80,43 +87,63 @@ const myBookingDetail = () => {
     thumbnail,
   } = myBookingDetail
 
+  const readBookingPeople = async (accessToken) => {
+    try {
+      const res = await getReservationPeople({
+        reservationId: id,
+        accessToken: accessToken,
+      })
+      console.log('res: ', res)
+      const { data } = res.data
+      dispatch(addMyBookingPeople(data))
+      setBookingPeopleIsReady(true)
+    } catch (e) {
+      console.log('e: ', e)
+    }
+  }
+
+  const myBookingPeople = useSelector((state) => {
+    return state.myBookingPeople
+  })
+
+  const bookingClient = myBookingPeople.find((list) => list.role === true)
+
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
     if (accessToken && id) {
       readBookingDetail(accessToken)
+      readBookingPeople(accessToken)
     }
   }, [id])
 
   return (
     <>
       <NavBar link={'/mybooking'} title="예약 내역 상세" marginBottom="0" />
-      {dataIsReady && (
-        <Box sx={{ backgroundColor: '#F2F4FA' }}>
+      <Box sx={{ backgroundColor: '#F2F4FA' }}>
+        {bookingDetailIsReady && (
           <StyledSection>
             <Box>
-              <Box sx={{ marginBottom: '2rem' }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 600 }}>
-                    {reservationDate} ({reservationDayOfWeek}) 예약
-                  </Typography>
-                  <Chip
-                    label={status}
-                    sx={{ backgroundColor: '#4581F8', color: '#fff' }}
-                  />
-                </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '2rem',
+                }}
+              >
+                <Typography sx={{ fontSize: '1.8rem', fontWeight: 600 }}>
+                  {reservationDate} ({reservationDayOfWeek}) 예약
+                </Typography>
+                <Chip
+                  label={status}
+                  sx={{ backgroundColor: '#4581F8', color: '#fff' }}
+                />
               </Box>
               <Box
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '1.6rem',
-                  marginBottom: '2rem',
                 }}
               >
                 <Box
@@ -177,8 +204,77 @@ const myBookingDetail = () => {
               </Box>
             </Box>
           </StyledSection>
-        </Box>
-      )}
+        )}
+        {bookingPeopleIsReady &&
+          myBookingPeople.map((list, index) => (
+            <StyledSection key={index}>
+              <Box>
+                <Typography sx={{ fontWeight: 600 }}>
+                  {list.role ? '예약자 정보 (대표)' : '인원 2'}
+                </Typography>
+                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Typography sx={{ fontWeight: 500 }}>이름</Typography>
+                    <Typography>{bookingClient.name}</Typography>
+                  </Box>
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Typography sx={{ fontWeight: 500 }}>
+                      휴대폰 번호
+                    </Typography>
+                    <Typography>{bookingClient.phoneNumber}</Typography>
+                  </Box>
+                </Box>
+                {!list.role && (
+                  <>
+                    <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem',
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: 500 }}>이름</Typography>
+                        <Typography>{list.name}</Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: 500 }}>
+                          휴대폰 번호
+                        </Typography>
+                        <Typography>{list.phoneNumber}</Typography>
+                      </Box>
+                    </Box>
+                  </>
+                )}
+              </Box>
+            </StyledSection>
+          ))}
+      </Box>
     </>
   )
 }
