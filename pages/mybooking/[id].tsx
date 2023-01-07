@@ -59,6 +59,7 @@ const myBookingDetail = () => {
     const pricePerEach = (totalPrice / totalReservationPeople).toLocaleString(
       'ko-KR',
     )
+    const formattedTotalPrice = totalPrice.toLocaleString('ko-KR')
 
     const formattedData = {
       ...data,
@@ -66,6 +67,7 @@ const myBookingDetail = () => {
       bookingDurationDay: bookingDurationDay,
       reservationDate: reservationDate,
       pricePerEach: pricePerEach,
+      formattedTotalPrice: formattedTotalPrice,
     }
 
     dispatch(addMyBookingDetail(formattedData))
@@ -79,12 +81,14 @@ const myBookingDetail = () => {
   const {
     bookingDurationDate,
     bookingDurationDay,
+    formattedTotalPrice,
     pricePerEach,
     productName,
     reservationDate,
     reservationDayOfWeek,
     status,
     thumbnail,
+    totalReservationPeople,
   } = myBookingDetail
 
   const readBookingPeople = async (accessToken) => {
@@ -274,6 +278,47 @@ const myBookingDetail = () => {
               </Box>
             </StyledSection>
           ))}
+        {bookingDetailIsReady && (
+          <StyledSection>
+            <Box>
+              <Typography sx={{ fontWeight: 600 }}>최종 요금</Typography>
+              <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              <Typography sx={{ marginBottom: '0.5rem' }}>
+                {productName}
+              </Typography>
+              <Box sx={{ display: 'flex', gap: '1rem' }}>
+                <Typography
+                  sx={{
+                    fontSize: '1.2rem',
+                    marginBottom: '0.2rem',
+                  }}
+                >
+                  출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: '1.2rem',
+                    marginBottom: '0.2rem',
+                  }}
+                >
+                  도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                </Typography>
+              </Box>
+              <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>성인 x {totalReservationPeople}</Typography>
+                <Typography>{formattedTotalPrice} 원</Typography>
+              </Box>
+              <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography sx={{ fontWeight: 600 }}>합계</Typography>
+                <Typography sx={{ fontWeight: 600 }}>
+                  {formattedTotalPrice} 원
+                </Typography>
+              </Box>
+            </Box>
+          </StyledSection>
+        )}
       </Box>
     </>
   )
