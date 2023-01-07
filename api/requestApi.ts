@@ -98,15 +98,6 @@ export const requestApi = createApi({
         },
       }),
     }),
-    getReservationWithId: builder.mutation({
-      query: ({ id, accessToken }) => ({
-        url: `/reservations/${id}`,
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }),
-    }),
     getReservationWithDuration: builder.mutation({
       query: ({ duration, accessToken }) => ({
         url: `/reservations/period/${duration}`,
@@ -121,6 +112,15 @@ export const requestApi = createApi({
         url: '/reservations',
         method: 'DELETE',
         body: data,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
+    getReservationWithId: builder.mutation({
+      query: ({ reservationId, accessToken }) => ({
+        url: `/reservations/${reservationId}`,
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -219,9 +219,9 @@ export const {
   useRequestLogoutMutation,
   useRequestReservationMutation,
   useGetReservationMutation,
-  useGetReservationWithIdMutation,
   useGetReservationWithDurationMutation,
   useDeleteReservationMutation,
+  useGetReservationWithIdMutation,
   useRequestLikedItemsMutation,
   useDeleteLikedItemsMutation,
   useCustomRecommendUserMutation,
