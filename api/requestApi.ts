@@ -126,6 +126,15 @@ export const requestApi = createApi({
         },
       }),
     }),
+    getReservationPeople: builder.mutation({
+      query: ({ reservationId, accessToken }) => ({
+        url: `/reservations-people/${reservationId}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
     requestLikedItems: builder.mutation({
       query: ({ accessToken }) => ({
         url: '/wishes',
@@ -222,6 +231,7 @@ export const {
   useGetReservationWithDurationMutation,
   useDeleteReservationMutation,
   useGetReservationWithIdMutation,
+  useGetReservationPeopleMutation,
   useRequestLikedItemsMutation,
   useDeleteLikedItemsMutation,
   useCustomRecommendUserMutation,
