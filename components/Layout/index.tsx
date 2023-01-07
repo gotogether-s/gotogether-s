@@ -39,6 +39,7 @@ const Layout = ({ children }: any) => {
   const listExp: RegExp = new RegExp(`/product-list/\?(.*)`)
   const detailExp: RegExp = new RegExp(`/product-detail/\?(.*)`)
   const searchExp: RegExp = new RegExp(`/product-search/\?(.*)`)
+  const myBookingDetailExp: RegExp = new RegExp(`/mybooking/\?(.*)`)
 
   useEffect(() => {
     if (asPath !== currentPath) setCurrentPath(asPath as ALLOWED_PATH)
@@ -48,14 +49,19 @@ const Layout = ({ children }: any) => {
     if (
       currentPath &&
       !pageWithNavbar.includes(currentPath) &&
-      !searchExp.test(asPath)
+      !searchExp.test(asPath) &&
+      !myBookingDetailExp.test(asPath)
     ) {
       return <MainNav />
     }
   }
 
   const ApplyPadding = () => {
-    if (currentPath && !pageWithoutPadding.includes(currentPath)) {
+    if (
+      currentPath &&
+      !pageWithoutPadding.includes(currentPath) &&
+      !myBookingDetailExp.test(asPath)
+    ) {
       return true
     }
   }

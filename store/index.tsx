@@ -12,6 +12,8 @@ import displayModalWindow from './displayModalWindowSlice'
 import likedItems from './likedItemsSlice'
 import wishIdsToDelete from './wishIdsToDeleteSlice'
 import myBookingLists from './myBookingListsSlice'
+import myBookingDetail from './myBookingDetailSlice'
+import myBookingPeople from './myBookingPeopleSlice'
 
 const store = configureStore({
   reducer: {
@@ -28,6 +30,8 @@ const store = configureStore({
     likedItems: likedItems.reducer,
     wishIdsToDelete: wishIdsToDelete.reducer,
     myBookingLists: myBookingLists.reducer,
+    myBookingDetail: myBookingDetail.reducer,
+    myBookingPeople: myBookingPeople.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(requestApi.middleware),
