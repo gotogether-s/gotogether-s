@@ -28,8 +28,8 @@ const Payment = () => {
   ])
 
   return (
-    <Box sx={{ paddingTop: '5rem' }}>
-      <Box sx={{ textAlign: 'center' }}>
+    <Box>
+      <Box sx={{ textAlign: 'center', margin: '5rem 0 2rem' }}>
         <Image
           src={payment}
           alt="payment icon"
@@ -47,13 +47,6 @@ const Payment = () => {
         <Typography>
           고투게더를 이용해주셔서 감사합니다. 무통장 입금을 원하실 경우, 아래
           계좌로 입금해주시면 됩니다.
-        </Typography>
-        <Typography
-          sx={{
-            padding: '2rem 0',
-          }}
-        >
-          예약번호
         </Typography>
       </Box>
       <Box
