@@ -39,7 +39,6 @@ const NewPassword = () => {
         data: password,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setPasswordUpdateResponseMessage('비밀번호 변경에 성공했습니다!')
         router.push('/')

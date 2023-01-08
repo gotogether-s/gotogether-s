@@ -41,7 +41,6 @@ const User = (props) => {
       const res = await getReservation({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       dispatch(updateTheNumberOfBooking(data.length))
     } catch (e) {
@@ -54,7 +53,6 @@ const User = (props) => {
       const res = await requestLikedItems({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       dispatch(updateTheNumberOfLikes(data.length))
     } catch (e) {

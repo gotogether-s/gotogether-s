@@ -35,7 +35,6 @@ const MyInfo = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { name, birth, email } = res.data.data
       updateUserInfo(name, birth, email)
     } catch (e) {

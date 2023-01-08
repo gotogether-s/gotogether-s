@@ -35,7 +35,6 @@ const ConfirmPassword = () => {
         data: password,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setPasswordConfirmResponseMessage('비밀번호가 일치합니다!')
         router.push('/newpassword')
@@ -43,7 +42,6 @@ const ConfirmPassword = () => {
         setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다!')
       }
     } catch (e) {
-      console.log('e: ', e)
       setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다!')
     }
   }
