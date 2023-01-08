@@ -5,6 +5,7 @@ import {
   Checkbox,
   Button,
   Typography,
+  Divider,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import {
@@ -12,11 +13,16 @@ import {
   useDeleteLikedItemsMutation,
 } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, remove, findAndRemove } from '@store/likedItemsSlice'
+import {
+  addLikedItems,
+  removeLikedItem,
+  findAndRemoveLikedItem,
+} from '@store/likedItemsSlice'
 import {
   addWishIdsToDelete,
   removeWishIdsToDelete,
 } from '@store/wishIdsToDeleteSlice'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
@@ -29,6 +35,7 @@ const Likes = () => {
     marginBottom: '1.6rem',
   }))
 
+  const router = useRouter()
   const dispatch = useDispatch()
 
   const [checkedAll, setCheckedAll] = useState(false)
@@ -52,7 +59,7 @@ const Likes = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
-      dispatch(add(res.data.data))
+      dispatch(addLikedItems(res.data.data))
       getInitialChecked(res.data.data)
     } catch (e) {
       console.log('e: ', e)
@@ -67,7 +74,7 @@ const Likes = () => {
         data: { wish_id: wishIdsToDelete },
       })
       console.log('res: ', res)
-      dispatch(findAndRemove(wishIdsToDelete))
+      dispatch(findAndRemoveLikedItem(wishIdsToDelete))
       setCheckedAll(false)
       setChecked([])
     } catch (e) {
@@ -75,7 +82,8 @@ const Likes = () => {
     }
   }
 
-  const requestToRemoveLikedItem = async (wish_id, index) => {
+  const requestToRemoveLikedItem = async (e, wish_id, index) => {
+    e.stopPropagation()
     const wishIds = []
     wishIds.push(wish_id)
     try {
@@ -85,7 +93,7 @@ const Likes = () => {
         data: { wish_id: wishIds },
       })
       console.log('res: ', res)
-      dispatch(remove(index))
+      dispatch(removeLikedItem(index))
     } catch (e) {
       console.log('e: ', e)
     }
@@ -163,17 +171,19 @@ const Likes = () => {
             </Button>
           </Box>
         </StyledSection>
-        <StyledSection sx={{ marginBottom: 0 }}>
+        <StyledSection sx={{ marginBottom: 0, padding: 0 }}>
           {likedItems.map((likedItem, index) => (
             <Box key={index}>
               <Box
                 sx={{
-                  padding: '2.5rem 0',
-                  borderBottom:
-                    likedItems.length - 1 !== index
-                      ? '0.1rem solid #DDD'
-                      : 'none',
+                  padding: '1.6rem',
+                  '&:hover': {
+                    cursor: 'pointer',
+                  },
                 }}
+                onClick={() =>
+                  router.push(`product-details/${likedItem.product_id}`)
+                }
               >
                 <Box
                   sx={{
@@ -208,13 +218,17 @@ const Likes = () => {
                         cursor: 'pointer',
                       },
                     }}
-                    onClick={() =>
-                      requestToRemoveLikedItem(likedItem.wish_id, index)
+                    onClick={(e) =>
+                      requestToRemoveLikedItem(e, likedItem.wish_id, index)
                     }
                   />
                 </Box>
                 <Box
-                  sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                  }}
                 >
                   <Image
                     src={likedItem.thumbnail}
@@ -234,6 +248,9 @@ const Likes = () => {
                   </Box>
                 </Box>
               </Box>
+              {likedItems.length - 1 !== index && (
+                <Divider sx={{ margin: '0 -1.6rem' }} />
+              )}
             </Box>
           ))}
         </StyledSection>
