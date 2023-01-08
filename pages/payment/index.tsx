@@ -1,8 +1,10 @@
 import { Box, Typography, Button } from '@mui/material'
 import Image from 'next/image'
 import payment from '@public/payment.png'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from './Payment.module.scss'
 
 const Payment = () => {
@@ -27,9 +29,30 @@ const Payment = () => {
     },
   ])
 
+  useEffect(() => {
+    dayjs.locale('ko')
+
+    const getPaymentDueDate = dayjs()
+      .add(3, 'day')
+      .format(`YYYY.MM.DD (ddd) H:mm`)
+
+    const newPaymentSummary = paymentSummary.map((list) => {
+      if (list.title === '입금기한 : ') {
+        return {
+          ...list,
+          content: getPaymentDueDate,
+        }
+      } else {
+        return list
+      }
+    })
+
+    setPaymentSummary(newPaymentSummary)
+  }, [])
+
   return (
-    <Box sx={{ paddingTop: '5rem' }}>
-      <Box sx={{ textAlign: 'center' }}>
+    <Box>
+      <Box sx={{ textAlign: 'center', margin: '5rem 0 2rem' }}>
         <Image
           src={payment}
           alt="payment icon"
@@ -45,15 +68,8 @@ const Payment = () => {
           무통장입금 계좌번호 안내
         </Typography>
         <Typography>
-          고투게더를 이용해주셔서 감사합니다. 무통장 입금을 원하실 경우, 아래
-          계좌로 입금해주시면 됩니다.
-        </Typography>
-        <Typography
-          sx={{
-            padding: '2rem 0',
-          }}
-        >
-          예약번호
+          고투게더를 이용해주셔서 감사합니다. 예약일로부터 3일 이내에 아래
+          계좌로 무통장 입금해주시면 예약이 완료됩니다.
         </Typography>
       </Box>
       <Box
