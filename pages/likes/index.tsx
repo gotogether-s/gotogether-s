@@ -82,7 +82,8 @@ const Likes = () => {
     }
   }
 
-  const requestToRemoveLikedItem = async (wish_id, index) => {
+  const requestToRemoveLikedItem = async (e, wish_id, index) => {
+    e.stopPropagation()
     const wishIds = []
     wishIds.push(wish_id)
     try {
@@ -217,8 +218,8 @@ const Likes = () => {
                         cursor: 'pointer',
                       },
                     }}
-                    onClick={() =>
-                      requestToRemoveLikedItem(likedItem.wish_id, index)
+                    onClick={(e) =>
+                      requestToRemoveLikedItem(e, likedItem.wish_id, index)
                     }
                   />
                 </Box>
