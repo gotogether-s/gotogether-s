@@ -4,17 +4,14 @@ const likedItemsSlice = createSlice({
   name: 'likedItemsSlice',
   initialState: [],
   reducers: {
-    add: (state, action) => {
-      const likedItems = action.payload
-      for (let likedItem of likedItems) {
-        state.push(likedItem)
-      }
+    addLikedItems: (state, action) => {
+      return [...action.payload]
     },
-    remove: (state, action) => {
+    removeLikedItem: (state, action) => {
       const index = action.payload
       state.splice(index, 1)
     },
-    findAndRemove: (state, action) => {
+    findAndRemoveLikedItem: (state, action) => {
       const likedItemsToDelete = action.payload
       Array.from(Array(state.length).keys())
         .reverse()
@@ -30,4 +27,5 @@ const likedItemsSlice = createSlice({
 
 export default likedItemsSlice
 
-export const { add, remove, findAndRemove } = likedItemsSlice.actions
+export const { addLikedItems, removeLikedItem, findAndRemoveLikedItem } =
+  likedItemsSlice.actions

@@ -5,6 +5,7 @@ import {
   Checkbox,
   Button,
   Typography,
+  Divider,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import {
@@ -12,7 +13,11 @@ import {
   useDeleteLikedItemsMutation,
 } from '@api/requestApi'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, remove, findAndRemove } from '@store/likedItemsSlice'
+import {
+  addLikedItems,
+  removeLikedItem,
+  findAndRemoveLikedItem,
+} from '@store/likedItemsSlice'
 import {
   addWishIdsToDelete,
   removeWishIdsToDelete,
@@ -52,7 +57,7 @@ const Likes = () => {
         accessToken: accessToken,
       })
       console.log('res: ', res)
-      dispatch(add(res.data.data))
+      dispatch(addLikedItems(res.data.data))
       getInitialChecked(res.data.data)
     } catch (e) {
       console.log('e: ', e)
@@ -67,7 +72,7 @@ const Likes = () => {
         data: { wish_id: wishIdsToDelete },
       })
       console.log('res: ', res)
-      dispatch(findAndRemove(wishIdsToDelete))
+      dispatch(findAndRemoveLikedItem(wishIdsToDelete))
       setCheckedAll(false)
       setChecked([])
     } catch (e) {
@@ -85,7 +90,7 @@ const Likes = () => {
         data: { wish_id: wishIds },
       })
       console.log('res: ', res)
-      dispatch(remove(index))
+      dispatch(removeLikedItem(index))
     } catch (e) {
       console.log('e: ', e)
     }
