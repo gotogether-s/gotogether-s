@@ -22,6 +22,7 @@ import {
   addWishIdsToDelete,
   removeWishIdsToDelete,
 } from '@store/wishIdsToDeleteSlice'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import NavBar from '@components/NavBar'
 import style from './Likes.module.scss'
@@ -34,6 +35,7 @@ const Likes = () => {
     marginBottom: '1.6rem',
   }))
 
+  const router = useRouter()
   const dispatch = useDispatch()
 
   const [checkedAll, setCheckedAll] = useState(false)
@@ -168,13 +170,19 @@ const Likes = () => {
             </Button>
           </Box>
         </StyledSection>
-        <StyledSection sx={{ marginBottom: 0 }}>
+        <StyledSection sx={{ marginBottom: 0, padding: 0 }}>
           {likedItems.map((likedItem, index) => (
             <Box key={index}>
               <Box
                 sx={{
-                  padding: '1rem 0',
+                  padding: '1.6rem',
+                  '&:hover': {
+                    cursor: 'pointer',
+                  },
                 }}
+                onClick={() =>
+                  router.push(`product-details/${likedItem.product_id}`)
+                }
               >
                 <Box
                   sx={{
@@ -215,7 +223,11 @@ const Likes = () => {
                   />
                 </Box>
                 <Box
-                  sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                  }}
                 >
                   <Image
                     src={likedItem.thumbnail}
@@ -236,7 +248,7 @@ const Likes = () => {
                 </Box>
               </Box>
               {likedItems.length - 1 !== index && (
-                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+                <Divider sx={{ margin: '0 -1.6rem' }} />
               )}
             </Box>
           ))}
