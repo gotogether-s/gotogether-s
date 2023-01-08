@@ -61,7 +61,6 @@ const SignIn = () => {
       const res = await requestSignIn({
         data: signInValues,
       })
-      console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setSignInResponseMessage(
           '로그인에 성공했습니다! 홈페이지로 이동합니다!',

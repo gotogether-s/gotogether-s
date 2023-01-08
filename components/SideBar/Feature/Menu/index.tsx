@@ -64,7 +64,6 @@ const Menu = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
     } catch (e) {
       console.log('e: ', e)
     }
@@ -79,7 +78,6 @@ const Menu = () => {
         accessToken: accessToken,
         refreshToken: refreshToken,
       })
-      console.log('res: ', res)
       if (res.data.statusCode === 200) {
         router.push('/')
         localStorage.removeItem('accessToken')

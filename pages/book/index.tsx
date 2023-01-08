@@ -176,7 +176,6 @@ const Book = () => {
         errors[i].phoneNumber = '전화번호는 11자리여야 합니다!'
       }
     }
-    console.log('errors', errors)
     return errors
   }
 
@@ -217,7 +216,6 @@ const Book = () => {
         data: makeReservation,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       router.push('payment')
     } catch (e) {
       console.log('e: ', e)

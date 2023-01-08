@@ -76,7 +76,6 @@ const ProductSearch = () => {
   const requestSearch = async (keyword) => {
     try {
       const res = await searchProducts(keyword)
-      console.log('res: ', res)
       router.push(`/product-search?keyword=${keyword}&page=0`)
       const { content, totalElements } = res.data.data
       const { pageSize } = res.data.data.pageable

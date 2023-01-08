@@ -54,7 +54,6 @@ const MyBooking = () => {
       const res = await getReservation({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       dispatch(addMyBookingList(data))
     } catch (e) {
@@ -95,7 +94,6 @@ const MyBooking = () => {
         duration: e.target.value,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       dispatch(addMyBookingList(data))
     } catch (e) {
@@ -118,7 +116,6 @@ const MyBooking = () => {
         data: data,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       dispatch(removeMyBookingList(index))
     } catch (e) {
       console.log('e: ', e)

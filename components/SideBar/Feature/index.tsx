@@ -44,7 +44,6 @@ const Feature = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { name, email } = res.data.data
       setUserName(name)
       setUserEmail(email)

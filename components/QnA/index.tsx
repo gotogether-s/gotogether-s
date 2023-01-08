@@ -64,7 +64,6 @@ const QnA = () => {
         data: userSurveyResult,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       if (res.data.statusCode === 200) {
         setDisplayMessage(
           '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',

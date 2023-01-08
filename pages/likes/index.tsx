@@ -58,7 +58,6 @@ const Likes = () => {
       const res = await requestLikedItems({
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       dispatch(addLikedItems(res.data.data))
       getInitialChecked(res.data.data)
     } catch (e) {
@@ -73,7 +72,6 @@ const Likes = () => {
         accessToken: accessToken,
         data: { wish_id: wishIdsToDelete },
       })
-      console.log('res: ', res)
       dispatch(findAndRemoveLikedItem(wishIdsToDelete))
       setCheckedAll(false)
       setChecked([])
@@ -92,7 +90,6 @@ const Likes = () => {
         accessToken: accessToken,
         data: { wish_id: wishIds },
       })
-      console.log('res: ', res)
       dispatch(removeLikedItem(index))
     } catch (e) {
       console.log('e: ', e)

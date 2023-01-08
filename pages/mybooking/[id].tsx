@@ -35,7 +35,6 @@ const myBookingDetail = () => {
         reservationId: id,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       formatBookingDetailData(data)
     } catch (e) {
@@ -96,7 +95,6 @@ const myBookingDetail = () => {
         reservationId: id,
         accessToken: accessToken,
       })
-      console.log('res: ', res)
       const { data } = res.data
       dispatch(addMyBookingPeople(data))
     } catch (e) {
