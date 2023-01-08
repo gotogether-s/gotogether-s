@@ -173,11 +173,7 @@ const Likes = () => {
             <Box key={index}>
               <Box
                 sx={{
-                  padding: '2.5rem 0',
-                  borderBottom:
-                    likedItems.length - 1 !== index
-                      ? '0.1rem solid #DDD'
-                      : 'none',
+                  padding: '1rem 0',
                 }}
               >
                 <Box
@@ -239,6 +235,9 @@ const Likes = () => {
                   </Box>
                 </Box>
               </Box>
+              {likedItems.length - 1 !== index && (
+                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              )}
             </Box>
           ))}
         </StyledSection>
