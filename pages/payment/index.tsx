@@ -1,8 +1,10 @@
 import { Box, Typography, Button } from '@mui/material'
 import Image from 'next/image'
 import payment from '@public/payment.png'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from './Payment.module.scss'
 
 const Payment = () => {
@@ -26,6 +28,27 @@ const Payment = () => {
       content: '',
     },
   ])
+
+  useEffect(() => {
+    dayjs.locale('ko')
+
+    const getPaymentDueDate = dayjs()
+      .add(3, 'day')
+      .format(`YYYY.MM.DD (ddd) H:mm`)
+
+    const newPaymentSummary = paymentSummary.map((list) => {
+      if (list.title === '입금기한 : ') {
+        return {
+          ...list,
+          content: getPaymentDueDate,
+        }
+      } else {
+        return list
+      }
+    })
+
+    setPaymentSummary(newPaymentSummary)
+  }, [])
 
   return (
     <Box>
