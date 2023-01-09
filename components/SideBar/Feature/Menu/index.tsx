@@ -42,21 +42,15 @@ const mainMenusLogout = [
 ]
 
 const Menu = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [requestMembersDetail] = useRequestMembersDetailMutation()
   const [requestLogout] = useRequestLogoutMutation()
-
-  const router = useRouter()
 
   const isLogin = useSelector((state) => {
     return state.isLogin.isLogin
   })
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getLoginStatus())
-    const accessToken = localStorage.getItem('accessToken')
-    accessToken && requestUserInfo(accessToken)
-  }, [])
 
   const requestUserInfo = async (accessToken) => {
     try {
@@ -92,6 +86,12 @@ const Menu = () => {
     dispatch(close())
     router.push('/signup')
   }
+
+  useEffect(() => {
+    dispatch(getLoginStatus())
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
 
   return (
     <>
