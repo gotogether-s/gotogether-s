@@ -5,8 +5,16 @@ import { Box, Typography } from '@mui/material'
 import mainLogo from '@public/main_logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const MainNav = () => {
+  const router = useRouter()
+
+  const goToLikesPage = () => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken ? router.push('/likes') : router.push('/signin')
+  }
+
   return (
     <Box
       sx={{
@@ -38,20 +46,18 @@ const MainNav = () => {
             },
           }}
         >
-          <Link href="/likes" passHref>
-            <a>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <FavoriteBorderIcon sx={{ fontSize: 20 }} />
-                <Typography sx={{ fontSize: '1.2rem' }}>찜 목록</Typography>
-              </Box>
-            </a>
-          </Link>
+          <Box onClick={goToLikesPage}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <FavoriteBorderIcon sx={{ fontSize: 20 }} />
+              <Typography sx={{ fontSize: '1.2rem' }}>찜 목록</Typography>
+            </Box>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -62,7 +68,6 @@ const MainNav = () => {
         >
           <Link href="/product-search" passHref>
             <a>
-              {' '}
               <Box
                 sx={{
                   display: 'flex',
