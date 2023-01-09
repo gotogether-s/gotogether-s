@@ -224,9 +224,13 @@ const categoryMenuSlice = createSlice({
           : (s.open = false),
       )
     },
+    closeCategorySubMenu: (state) => {
+      state.map((s) => (s.open = false))
+    },
   },
 })
 
 export default categoryMenuSlice
 
-export const { toggleCategorySubMenu } = categoryMenuSlice.actions
+export const { toggleCategorySubMenu, closeCategorySubMenu } =
+  categoryMenuSlice.actions
