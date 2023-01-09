@@ -18,15 +18,17 @@ const MainNav = () => {
       }}
     >
       <SideBar />
-      <Link href="/">
-        <Image
-          src={mainLogo}
-          alt="gotogether logo"
-          width="120%"
-          height="30%"
-          objectFit="contain"
-          style={{ borderRadius: '0.75rem' }}
-        />
+      <Link href="/" passHref>
+        <a>
+          <Image
+            src={mainLogo}
+            alt="gotogether logo"
+            width="120%"
+            height="30%"
+            objectFit="contain"
+            style={{ borderRadius: '0.75rem' }}
+          />
+        </a>
       </Link>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <Box
@@ -36,17 +38,19 @@ const MainNav = () => {
             },
           }}
         >
-          <Link href="/likes">
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <FavoriteBorderIcon sx={{ fontSize: 20 }} />
-              <Typography sx={{ fontSize: '1.2rem' }}>찜 목록</Typography>
-            </Box>
+          <Link href="/likes" passHref>
+            <a>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <FavoriteBorderIcon sx={{ fontSize: 20 }} />
+                <Typography sx={{ fontSize: '1.2rem' }}>찜 목록</Typography>
+              </Box>
+            </a>
           </Link>
         </Box>
         <Box
@@ -56,17 +60,20 @@ const MainNav = () => {
             },
           }}
         >
-          <Link href="/product-search">
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <SearchIcon sx={{ fontSize: 25 }} />
-              <Typography sx={{ fontSize: '1.2rem' }}>검색</Typography>
-            </Box>
+          <Link href="/product-search" passHref>
+            <a>
+              {' '}
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <SearchIcon sx={{ fontSize: 25 }} />
+                <Typography sx={{ fontSize: '1.2rem' }}>검색</Typography>
+              </Box>
+            </a>
           </Link>
         </Box>
       </Box>
