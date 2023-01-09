@@ -7,12 +7,15 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
+  ListItemText
 } from '@mui/material'
-import { toggleCategorySubMenu } from '@store/categoryMenuSlice'
+import {
+  closeCategorySubMenu,
+  toggleCategorySubMenu
+} from '@store/categoryMenuSlice'
 import { close } from '@store/sideBarStatusSlice'
 import { useRouter } from 'next/router'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Category = () => {
@@ -32,6 +35,17 @@ const Category = () => {
   const moveLink = (link: string) => {
     router.push(link)
   }
+
+  const sideBarOpen = useSelector((state) => {
+    return state.sideBarStatus.sideBarOpen
+  })
+
+  useEffect(() => {
+    if (!sideBarOpen) {
+      setCategoryOpen(false)
+      dispatch(closeCategorySubMenu())
+    }
+  }, [sideBarOpen])
 
   return (
     <List disablePadding>
