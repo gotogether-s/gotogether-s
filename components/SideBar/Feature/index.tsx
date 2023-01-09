@@ -1,11 +1,10 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
 import { getLoginStatus } from '@store/isLoginSlice'
-import { useState, useEffect } from 'react'
-import User from './User'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Menu from './Menu'
-import style from './Feature.module.scss'
+import User from './User'
 
 const Feature = () => {
   const isLogin = useSelector((state) => {
