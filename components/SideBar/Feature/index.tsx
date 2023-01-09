@@ -7,12 +7,10 @@ import Menu from './Menu'
 import User from './User'
 
 const Feature = () => {
-  const isLogin = useSelector((state) => {
-    return state.isLogin.isLogin
-  })
   const dispatch = useDispatch()
 
   const [requestMembersDetail] = useRequestMembersDetailMutation()
+
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
 
@@ -32,11 +30,9 @@ const Feature = () => {
     favoriteLink: '/signin',
   }
 
-  useEffect(() => {
-    dispatch(getLoginStatus())
-    const accessToken = localStorage.getItem('accessToken')
-    accessToken && requestUserInfo(accessToken)
-  }, [])
+  const isLogin = useSelector((state) => {
+    return state.isLogin.isLogin
+  })
 
   const requestUserInfo = async (accessToken) => {
     try {
@@ -50,6 +46,12 @@ const Feature = () => {
       console.log('e: ', e)
     }
   }
+
+  useEffect(() => {
+    dispatch(getLoginStatus())
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
 
   return (
     <Box role="presentation">
