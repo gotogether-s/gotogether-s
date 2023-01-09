@@ -213,8 +213,8 @@ const initialState: categoryMenuState = [
   },
 ]
 
-const categroyMenuSlice = createSlice({
-  name: 'categroyMenuSlice',
+const categoryMenuSlice = createSlice({
+  name: 'categoryMenuSlice',
   initialState: initialState,
   reducers: {
     toggleCategorySubMenu: (state, action) => {
@@ -227,6 +227,6 @@ const categroyMenuSlice = createSlice({
   },
 })
 
-export default categroyMenuSlice
+export default categoryMenuSlice
 
-export const { toggleCategorySubMenu } = categroyMenuSlice.actions
+export const { toggleCategorySubMenu } = categoryMenuSlice.actions
