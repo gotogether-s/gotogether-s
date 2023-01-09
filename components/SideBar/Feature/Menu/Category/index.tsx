@@ -16,7 +16,11 @@ import { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Category = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [categoryOpen, setCategoryOpen] = useState(false)
+
   const toggleCategoryMenu = () => {
     setCategoryOpen(!categoryOpen)
   }
@@ -25,9 +29,6 @@ const Category = () => {
     return state.categoryMenu
   })
 
-  const dispatch = useDispatch()
-
-  const router = useRouter()
   const moveLink = (link: string) => {
     router.push(link)
   }
