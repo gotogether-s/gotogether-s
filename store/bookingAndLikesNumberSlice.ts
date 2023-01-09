@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const bookingAndLikesNumberSlice = createSlice({
   name: 'bookingAndLikesNumberSlice',
-  initialState: { theNumberOfBooking: 0, theNumberOfLikes: 0 },
+  initialState: { theNumberOfBooking: '-', theNumberOfLikes: '-' },
   reducers: {
     updateTheNumberOfBooking: (state, action) => {
       state.theNumberOfBooking = action.payload
