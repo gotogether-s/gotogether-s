@@ -68,6 +68,10 @@ const User = (props) => {
     }
   }, [sideBarStatus])
 
+  const isLogin = useSelector((state) => {
+    return state.isLogin.isLogin
+  })
+
   return (
     <>
       <Link href={myInfoLink}>
@@ -105,7 +109,9 @@ const User = (props) => {
             }}
           >
             <Typography>예약한 상품</Typography>
-            <Typography>{bookingAndLikesNumber.theNumberOfBooking}</Typography>
+            <Typography>
+              {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
+            </Typography>
           </Box>
         </Link>
         <Link href={favoriteLink}>
@@ -125,7 +131,9 @@ const User = (props) => {
             }}
           >
             <Typography>찜한 상품</Typography>
-            <Typography>{bookingAndLikesNumber.theNumberOfLikes}</Typography>
+            <Typography>
+              {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
+            </Typography>
           </Box>
         </Link>
       </Box>
