@@ -1,10 +1,8 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Drawer, Backdrop } from '@mui/material'
-import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { Backdrop, Drawer } from '@mui/material'
 import { click } from '@store/sideBarStatusSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import Feature from './Feature'
-import style from './SideBar.module.scss'
 
 const SideBar = () => {
   const sideBarOpen = useSelector((state) => {
