@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import Feature from './Feature'
 
 const SideBar = () => {
+  const dispatch = useDispatch()
+
   const sideBarOpen = useSelector((state) => {
     return state.sideBarStatus.sideBarOpen
   })
-  const dispatch = useDispatch()
 
   return (
     <>
