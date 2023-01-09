@@ -66,20 +66,18 @@ const MainNav = () => {
             },
           }}
         >
-          <Link href="/product-search" passHref>
-            <a>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <SearchIcon sx={{ fontSize: 25 }} />
-                <Typography sx={{ fontSize: '1.2rem' }}>검색</Typography>
-              </Box>
-            </a>
-          </Link>
+          <Box onClick={() => router.push('/product-search')}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <SearchIcon sx={{ fontSize: 25 }} />
+              <Typography sx={{ fontSize: '1.2rem' }}>검색</Typography>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
