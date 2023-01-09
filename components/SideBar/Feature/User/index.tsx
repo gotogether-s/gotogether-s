@@ -4,21 +4,21 @@ import {
 } from '@api/requestApi'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import {
-  Box,
-  ListItemAvatar,
   Avatar,
+  Box,
   List,
   ListItem,
+  ListItemAvatar,
   ListItemText,
+  Typography,
 } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
 } from '@store/bookingAndLikesNumberSlice'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import style from './User.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
   const { myInfoLink, primary, secondary, myBookingLink, favoriteLink } = props
@@ -87,34 +87,48 @@ const User = (props) => {
           </ListItem>
         </List>
       </Link>
-      <div className={style['box-wrapper']}>
+      <Box sx={{ display: 'flex' }}>
         <Link href={myBookingLink}>
           <Box
-            className={style['status-box']}
             sx={{
+              border: '1px solid #ddd',
+              width: '50%',
+              height: '10rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <div>예약한 상품</div>
-            <div>{bookingAndLikesNumber.theNumberOfBooking}</div>
+            <Typography>예약한 상품</Typography>
+            <Typography>{bookingAndLikesNumber.theNumberOfBooking}</Typography>
           </Box>
         </Link>
         <Link href={favoriteLink}>
           <Box
-            className={style['status-box']}
             sx={{
+              border: '1px solid #ddd',
+              width: '50%',
+              height: '10rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <div>찜한 상품</div>
-            <div>{bookingAndLikesNumber.theNumberOfLikes}</div>
+            <Typography>찜한 상품</Typography>
+            <Typography>{bookingAndLikesNumber.theNumberOfLikes}</Typography>
           </Box>
         </Link>
-      </div>
+      </Box>
     </>
   )
 }
