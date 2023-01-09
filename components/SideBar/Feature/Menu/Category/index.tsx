@@ -46,7 +46,7 @@ const Category = () => {
         </ListItemButton>
       </ListItem>
       <Collapse in={categoryOpen} timeout="auto" unmountOnExit>
-        <List>
+        <List disablePadding>
           {categoryMenus.map((categoryMenu: any, index: number) => (
             <Fragment key={index}>
               <ListItem sx={{ width: '100%' }} disablePadding>

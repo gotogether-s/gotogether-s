@@ -21,7 +21,14 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
-  const { myInfoLink, primary, secondary, myBookingLink, favoriteLink } = props
+  const {
+    myInfoLink,
+    backgroundColor,
+    primary,
+    secondary,
+    myBookingLink,
+    favoriteLink,
+  } = props
 
   const dispatch = useDispatch()
 
@@ -77,6 +84,7 @@ const User = (props) => {
       <Link href={myInfoLink}>
         <List
           sx={{
+            padding: '1.6rem 0',
             '&:hover': {
               cursor: 'pointer',
             },
@@ -84,10 +92,28 @@ const User = (props) => {
         >
           <ListItem>
             <ListItemAvatar>
-              <Avatar />
+              <Avatar
+                sx={{
+                  width: '5rem',
+                  height: '5rem',
+                  marginRight: '2rem',
+                  backgroundColor: `${backgroundColor}`,
+                }}
+              />
             </ListItemAvatar>
-            <ListItemText primary={primary} secondary={secondary} />
-            <ArrowForwardIosIcon />
+            <ListItemText
+              primary={
+                <Typography style={{ fontSize: '1.8rem' }}>
+                  {primary}
+                </Typography>
+              }
+              secondary={
+                <Typography style={{ fontSize: '1.4rem' }}>
+                  {secondary}
+                </Typography>
+              }
+            />
+            <ArrowForwardIosIcon sx={{ fontSize: '1.6rem' }} />
           </ListItem>
         </List>
       </Link>
@@ -95,43 +121,44 @@ const User = (props) => {
         <Link href={myBookingLink}>
           <Box
             sx={{
-              border: '1px solid #ddd',
+              backgroundColor: '#F2F4FA',
               width: '50%',
               height: '10rem',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '0.5rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <Typography>예약한 상품</Typography>
-            <Typography>
+            <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
+            <Typography sx={{ fontSize: '2rem' }}>
               {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
             </Typography>
           </Box>
         </Link>
+        <Box sx={{ borderRight: '1px solid #fff', width: '0.1rem' }}></Box>
         <Link href={favoriteLink}>
           <Box
             sx={{
-              border: '1px solid #ddd',
+              backgroundColor: '#F2F4FA',
               width: '50%',
               height: '10rem',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '0.5rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <Typography>찜한 상품</Typography>
-            <Typography>
+            <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
+            <Typography sx={{ fontSize: '2rem' }}>
               {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
             </Typography>
           </Box>

@@ -16,6 +16,7 @@ const Feature = () => {
 
   const loginUserProps = {
     myInfoLink: '/myinfo',
+    backgroundColor: '#4581f6',
     primary: userName,
     secondary: userEmail,
     myBookingLink: '/mybooking',
@@ -24,7 +25,8 @@ const Feature = () => {
 
   const logoutUserProps = {
     myInfoLink: '/signin',
-    primary: '로그인해주세요',
+    backgroundColor: '#d3d3d3',
+    primary: '로그인하기',
     secondary: null,
     myBookingLink: '/signin',
     favoriteLink: '/signin',
