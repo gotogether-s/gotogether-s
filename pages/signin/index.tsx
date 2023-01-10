@@ -150,6 +150,10 @@ const SignIn = () => {
               paddingTop: '1rem',
               paddingBottom: '1rem',
               fontWeight: '500',
+              '&:hover': {
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+              },
             }}
             onClick={submitSignIn}
           >
