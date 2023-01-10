@@ -133,9 +133,6 @@ const QnA = () => {
                     borderBottom: '1px solid #ddd',
                     backgroundColor:
                       answerIndex === selectedAnswer && '#F2F4FA',
-                    '&:hover': {
-                      backgroundColor: '#F2F4FA',
-                    },
                   }}
                   onClick={() =>
                     getUserAnswer(event, surveyNumber - 1, answerIndex)
