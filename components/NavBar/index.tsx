@@ -1,23 +1,30 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import { Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
-import style from './NavBar.module.scss'
 
 const NavBar = ({ link, title, marginBottom }) => {
   const router = useRouter()
 
   return (
-    <div
-      className={style['navbar-container']}
+    <Box
+      sx={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
+      }}
       style={{ marginBottom: marginBottom ? marginBottom : '3rem' }}
     >
       <ArrowBackIosNewIcon
-        className={style['icon']}
+        sx={{ position: 'absolute', '&:hover': { cursor: 'pointer' } }}
         onClick={() => {
           router.push(`${link}`)
         }}
       />
-      <div className={style['title']}>{title}</div>
-    </div>
+      <Typography sx={{ flexGrow: 1, textAlign: 'center' }}>{title}</Typography>
+    </Box>
   )
 }
 
