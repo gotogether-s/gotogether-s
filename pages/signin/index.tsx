@@ -172,7 +172,7 @@ const SignIn = () => {
         >
           {signInResponseMessage}
         </Typography>
-        <Box sx={{ textAlign: 'center', marginTop: '1rem' }}>
+        <Box sx={{ textAlign: 'center' }}>
           <Link href="/signup">
             <a style={{ color: '#6C6C6C' }}>회원가입</a>
           </Link>
