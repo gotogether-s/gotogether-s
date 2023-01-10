@@ -23,7 +23,7 @@ const NavBar = ({ link, title, marginBottom }) => {
         paddingTop: '2rem',
         paddingBottom: '2rem',
       }}
-      style={{ marginBottom: marginBottom ? marginBottom : '3rem' }}
+      style={{ marginBottom: marginBottom ? marginBottom : '2rem' }}
     >
       <ArrowBackIosNewIcon
         sx={{ position: 'absolute', '&:hover': { cursor: 'pointer' } }}
