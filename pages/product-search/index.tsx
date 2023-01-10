@@ -4,7 +4,13 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CloseIcon from '@mui/icons-material/Close'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import SearchIcon from '@mui/icons-material/Search'
-import { FormControl, InputAdornment, OutlinedInput } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  InputAdornment,
+  OutlinedInput,
+  Typography,
+} from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -16,7 +22,6 @@ import Pagination from 'react-js-pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import style from './Search.module.scss'
 
 const ProductSearch = () => {
   const dispatch = useDispatch()
@@ -118,14 +123,22 @@ const ProductSearch = () => {
             <InputAdornment position="end">
               {!displaySearchResult ? (
                 <SearchIcon
-                  sx={{ fontSize: 25 }}
-                  className={style['clickable-icon']}
+                  sx={{
+                    fontSize: 25,
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
                   onClick={searchProductOrclearInput}
                 />
               ) : (
                 <HighlightOffIcon
-                  sx={{ fontSize: 25 }}
-                  className={style['clickable-icon']}
+                  sx={{
+                    fontSize: 25,
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
                   onClick={clearInput}
                 />
               )}
@@ -135,7 +148,11 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
-          <div className={style['label']}>최근 검색어</div>
+          <Typography
+            sx={{ paddingBottom: '1rem', borderBottom: '1px solid #ddd' }}
+          >
+            최근 검색어
+          </Typography>
           <List
             sx={{
               padding: 0,
@@ -154,21 +171,36 @@ const ProductSearch = () => {
                 }}
                 onClick={() => clickSearchHistory(list)}
               >
-                <div className={style['flex-wrapper']}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                  }}
+                >
                   <AccessTimeIcon />
                   <ListItemText primary={list} sx={{ marginLeft: '1rem' }} />
                   <CloseIcon
-                    className={style['clickable-icon']}
+                    sx={{
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
                     onClick={(e) => removeSearchHistory(e, index)}
                   />
-                </div>
+                </Box>
               </ListItem>
             ))}
           </List>
         </>
       ) : (
         <>
-          <div className={style['label']}>검색결과 {productNumber}</div>
+          <Typography
+            sx={{ paddingBottom: '1rem', borderBottom: '1px solid #ddd' }}
+          >
+            검색결과 {productNumber}
+          </Typography>
           {productNumber ? (
             <>
               <div className="productLists">
@@ -197,7 +229,16 @@ const ProductSearch = () => {
                   </div>
                 ))}
               </div>
-              <div className={style['search-pagination']}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  left: '0',
+                  right: '0',
+                  bottom: '3rem',
+                }}
+              >
                 <Pagination
                   activePage={page}
                   itemsCountPerPage={pageSize}
@@ -207,10 +248,12 @@ const ProductSearch = () => {
                   nextPageText={'›'}
                   onChange={handlePageChange}
                 />
-              </div>
+              </Box>
             </>
           ) : (
-            <p className={style['no-result']}>상품 검색 결과가 없습니다.</p>
+            <Typography sx={{ marginTop: '2rem' }}>
+              상품 검색 결과가 없습니다.
+            </Typography>
           )}
         </>
       )}
