@@ -1,11 +1,19 @@
-import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
 import { useSendSurveyResultMutation } from '@api/requestApi'
+import {
+  Box,
+  Button,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import style from './QnA.module.scss'
+import { useSelector } from 'react-redux'
 
 const QnA = () => {
+  const router = useRouter()
+
   const [sendSurveyResult] = useSendSurveyResultMutation()
 
   const [userSurveyResult, setUserSurveyResult] = useState({
@@ -15,7 +23,6 @@ const QnA = () => {
     religion: '',
     theme: '',
   })
-
   const [surveyNumber, setSurveyNumber] = useState(1)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [displayMessage, setDisplayMessage] = useState('')
@@ -55,8 +62,6 @@ const QnA = () => {
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
 
-  const router = useRouter()
-
   const submitSurvey = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
@@ -65,9 +70,7 @@ const QnA = () => {
         accessToken: accessToken,
       })
       if (res.data.statusCode === 200) {
-        setDisplayMessage(
-          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!',
-        )
+        setDisplayMessage('설문조사에 응해주셔서 감사합니다!')
         setTimeout(() => {
           router.push('/')
         }, 1000)
@@ -93,19 +96,43 @@ const QnA = () => {
   return (
     <>
       {qnaLists.map((qnaList, qnaListindex) => (
-        <div key={qnaListindex} className={style['qna-wrapper']}>
-          <Box className={style['question-wrapper']}>
-            <div className={style['order']}>{surveyNumber} of 5</div>
-            <h2>{qnaList.question}</h2>
+        <Box
+          key={qnaListindex}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              padding: '5rem 0',
+              borderRadius: '1rem',
+              boxShadow: '3px 3px 10px 0px rgb(0 0 0 / 10%)',
+              marginBottom: '2rem',
+            }}
+          >
+            <Typography sx={{ fontSize: '1.4rem', marginBottom: '2rem' }}>
+              {surveyNumber} of 5
+            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Typography sx={{ fontSize: '1.8rem', width: '70%' }}>
+                {qnaList.question}
+              </Typography>
+            </Box>
           </Box>
-          <Box className={style['answer-wrapper']}>
-            <List sx={{ padding: 0 }}>
+          <Box sx={{ margin: '4rem -1.6rem' }}>
+            <List
+              sx={{
+                padding: 0,
+                borderTop: '1px solid #ddd',
+              }}
+            >
               {qnaList.answers.map((answer, answerIndex) => (
                 <ListItemButton
                   key={answerIndex}
                   sx={{
+                    borderBottom: '1px solid #ddd',
                     backgroundColor:
-                      answerIndex === selectedAnswer && '#bcbcbc',
+                      answerIndex === selectedAnswer && '#F2F4FA',
                   }}
                   onClick={() =>
                     getUserAnswer(event, surveyNumber - 1, answerIndex)
@@ -116,14 +143,23 @@ const QnA = () => {
               ))}
             </List>
           </Box>
-        </div>
+        </Box>
       ))}
       <Button
         variant="contained"
         sx={{
-          width: '100%',
-          marginBottom: '1rem',
           display: lastSurvey ? 'none' : 'block',
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={goToNextSurvey}
       >
@@ -131,35 +167,61 @@ const QnA = () => {
       </Button>
       <Button
         variant="outlined"
-        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
+        sx={{
+          display: lastSurvey ? 'none' : 'block',
+          width: '100%',
+          backgroundColor: '#BEBEBE',
+          color: '#fff',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          borderColor: '#BEBEBE',
+          '&:hover': {
+            backgroundColor: '#BEBEBE',
+            borderColor: '#BEBEBE',
+            boxShadow: 'none',
+          },
+        }}
         onClick={skipSurvey}
       >
-        나중에 하기
+        다음에 하기
       </Button>
       <Button
         variant="contained"
         sx={{
-          width: '100%',
-          marginBottom: '1rem',
           display: lastSurvey ? 'block' : 'none',
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={submitSurvey}
       >
         완료
       </Button>
-      <p
-        style={{
+      <Typography
+        sx={{
           visibility: displayMessage ? 'visible' : 'hidden',
+          color:
+            displayMessage !== '설문조사에 응해주셔서 감사합니다!'
+              ? 'tomato'
+              : 'green',
+          fontSize: '1.4rem',
+          height: '1.6rem',
+          lineHeight: 'normal',
         }}
-        className={
-          displayMessage !==
-          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
-            ? style['error-message']
-            : style['success-message']
-        }
       >
         {displayMessage}
-      </p>
+      </Typography>
     </>
   )
 }
