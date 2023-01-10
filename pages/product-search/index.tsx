@@ -1,11 +1,12 @@
 import { useSearchProductsMutation } from '@api/requestApi'
 import NavBar from '@components/NavBar'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import CancelIcon from '@mui/icons-material/Cancel'
 import CloseIcon from '@mui/icons-material/Close'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import SearchIcon from '@mui/icons-material/Search'
 import {
   Box,
+  Divider,
   FormControl,
   InputAdornment,
   OutlinedInput,
@@ -124,6 +125,7 @@ const ProductSearch = () => {
               {!displaySearchResult ? (
                 <SearchIcon
                   sx={{
+                    color: '#B9B9B9',
                     fontSize: 25,
                     '&:hover': {
                       cursor: 'pointer',
@@ -132,9 +134,10 @@ const ProductSearch = () => {
                   onClick={searchProductOrclearInput}
                 />
               ) : (
-                <HighlightOffIcon
+                <CancelIcon
                   sx={{
-                    fontSize: 25,
+                    color: '#B9B9B9',
+                    fontSize: 20,
                     '&:hover': {
                       cursor: 'pointer',
                     },
@@ -148,14 +151,12 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
-          <Typography
-            sx={{ paddingBottom: '1rem', borderBottom: '1px solid #ddd' }}
-          >
-            최근 검색어
-          </Typography>
+          <Typography sx={{ paddingBottom: '1rem' }}>최근 검색어</Typography>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
           <List
             sx={{
               padding: 0,
+              margin: '0 -1.6rem',
             }}
           >
             {searchHistory.map((list: string, index: number) => (
@@ -177,12 +178,14 @@ const ProductSearch = () => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
+                    padding: '0 1.6rem',
                   }}
                 >
-                  <AccessTimeIcon />
+                  <AccessTimeIcon sx={{ fontSize: 20, color: '#C2C2C2' }} />
                   <ListItemText primary={list} sx={{ marginLeft: '1rem' }} />
                   <CloseIcon
                     sx={{
+                      color: '#C2C2C2',
                       '&:hover': {
                         cursor: 'pointer',
                       },
@@ -196,14 +199,13 @@ const ProductSearch = () => {
         </>
       ) : (
         <>
-          <Typography
-            sx={{ paddingBottom: '1rem', borderBottom: '1px solid #ddd' }}
-          >
+          <Typography sx={{ paddingBottom: '1rem' }}>
             검색결과 {productNumber}
           </Typography>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
           {productNumber ? (
             <>
-              <div className="productLists">
+              <div className="productLists" style={{ marginTop: '2rem' }}>
                 {productLists.map(({ ...list }, index) => (
                   <div className="productList" key={index}>
                     <Link href={`/product-details/${list.id}`}>
