@@ -1,9 +1,15 @@
 import { useSendSurveyResultMutation } from '@api/requestApi'
-import { Box, Button, List, ListItemButton, ListItemText } from '@mui/material'
+import {
+  Box,
+  Button,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import style from './QnA.module.scss'
 
 const QnA = () => {
   const router = useRouter()
@@ -92,12 +98,14 @@ const QnA = () => {
   return (
     <>
       {qnaLists.map((qnaList, qnaListindex) => (
-        <div key={qnaListindex} className={style['qna-wrapper']}>
-          <Box className={style['question-wrapper']}>
-            <div className={style['order']}>{surveyNumber} of 5</div>
-            <h2>{qnaList.question}</h2>
+        <Box key={qnaListindex} sx={{ textAlign: 'center' }}>
+          <Box sx={{ backgroundColor: '#dcdcdc', padding: '4rem 0' }}>
+            <Typography sx={{ marginBottom: '1.5rem' }}>
+              {surveyNumber} of 5
+            </Typography>
+            <Typography>{qnaList.question}</Typography>
           </Box>
-          <Box className={style['answer-wrapper']}>
+          <Box sx={{ backgroundColor: '#f1f1f1', marginBottom: '2rem' }}>
             <List sx={{ padding: 0 }}>
               {qnaList.answers.map((answer, answerIndex) => (
                 <ListItemButton
@@ -115,7 +123,7 @@ const QnA = () => {
               ))}
             </List>
           </Box>
-        </div>
+        </Box>
       ))}
       <Button
         variant="contained"
@@ -146,19 +154,22 @@ const QnA = () => {
       >
         완료
       </Button>
-      <p
-        style={{
+      <Typography
+        sx={{
           visibility: displayMessage ? 'visible' : 'hidden',
+          color:
+            displayMessage !==
+            '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
+              ? 'tomato'
+              : 'green',
+          fontSize: '1.4rem',
+          height: '1.6rem',
+          paddingTop: '0.3rem',
+          lineHeight: 'normal',
         }}
-        className={
-          displayMessage !==
-          '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
-            ? style['error-message']
-            : style['success-message']
-        }
       >
         {displayMessage}
-      </p>
+      </Typography>
     </>
   )
 }
