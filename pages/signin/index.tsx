@@ -83,8 +83,10 @@ const SignIn = () => {
     <>
       <NavBar link="/" title="로그인" />
       <Box>
-        <Box sx={{ marginBottom: '2rem' }}>
-          <Typography sx={{ paddingBottom: '1rem' }}>이메일</Typography>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+            이메일
+          </Typography>
           <TextField
             name="email"
             size="small"
@@ -98,13 +100,21 @@ const SignIn = () => {
             style={{
               visibility: signInValuesErrors.email ? 'visible' : 'hidden',
             }}
-            sx={{ color: 'tomato', height: '1.6rem' }}
+            sx={{
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.5rem',
+              lineHeight: 'normal',
+            }}
           >
             {signInValuesErrors.email}
           </Typography>
         </Box>
-        <Box sx={{ marginBottom: '2rem' }}>
-          <Typography sx={{ paddingBottom: '1rem' }}>비밀번호</Typography>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+            비밀번호
+          </Typography>
           <TextField
             name="password"
             size="small"
@@ -118,7 +128,13 @@ const SignIn = () => {
             style={{
               visibility: signInValuesErrors.password ? 'visible' : 'hidden',
             }}
-            sx={{ color: 'tomato', height: '1.6rem' }}
+            sx={{
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.5rem',
+              lineHeight: 'normal',
+            }}
           >
             {signInValuesErrors.password}
           </Typography>
@@ -127,7 +143,14 @@ const SignIn = () => {
           <Button
             variant="contained"
             type="submit"
-            sx={{ width: '100%' }}
+            sx={{
+              width: '100%',
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              fontWeight: '500',
+            }}
             onClick={submitSignIn}
           >
             로그인
@@ -135,7 +158,10 @@ const SignIn = () => {
         </Box>
         <Typography
           sx={{
+            fontSize: '1.4rem',
             height: '1.6rem',
+            paddingTop: '0.5rem',
+            lineHeight: 'normal',
             visibility: signInResponseMessage !== '' ? 'visible' : 'hidden',
             color:
               signInResponseMessage !==
@@ -146,9 +172,9 @@ const SignIn = () => {
         >
           {signInResponseMessage}
         </Typography>
-        <Box sx={{ textAlign: 'center', marginTop: '2rem' }}>
+        <Box sx={{ textAlign: 'center', marginTop: '1rem' }}>
           <Link href="/signup">
-            <a>회원가입</a>
+            <a style={{ color: '#6C6C6C' }}>회원가입</a>
           </Link>
         </Box>
       </Box>
