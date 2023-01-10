@@ -1,8 +1,8 @@
-import { Box, List, ListItemButton, ListItemText, Button } from '@mui/material'
 import { useSendSurveyResultMutation } from '@api/requestApi'
+import { Box, Button, List, ListItemButton, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import style from './QnA.module.scss'
 
 const QnA = () => {
