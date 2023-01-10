@@ -97,10 +97,8 @@ const SignIn = () => {
             onBlur={removeInputSpaces}
           />
           <Typography
-            style={{
-              visibility: signInValuesErrors.email ? 'visible' : 'hidden',
-            }}
             sx={{
+              visibility: signInValuesErrors.email ? 'visible' : 'hidden',
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
@@ -125,10 +123,8 @@ const SignIn = () => {
             onBlur={removeInputSpaces}
           />
           <Typography
-            style={{
-              visibility: signInValuesErrors.password ? 'visible' : 'hidden',
-            }}
             sx={{
+              visibility: signInValuesErrors.password ? 'visible' : 'hidden',
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
