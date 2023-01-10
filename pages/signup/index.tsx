@@ -16,10 +16,21 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
   const router = useRouter()
+
   const [requestSignUp] = useRequestSignUpMutation()
   const [validateEmail] = useValidateEmailMutation()
 
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(null)
+  const [duplicateEmailIsDone, setDuplicateEmailIsDone] = useState(false)
+  const [signUpValues, setSignUpValues] = useState({
+    name: '',
+    dateOfBirth: '',
+    email: '',
+    passwordInitial: '',
+    passwordConfirm: '',
+  })
+  const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
+  const [signUpResponseMessage, setSignUpResponseMessage] = useState('')
 
   const handleCalendarValueChange = (newCalendarValue: Dayjs | null) => {
     setCalendarValue(newCalendarValue)
@@ -28,16 +39,6 @@ const SignUp = () => {
       dateOfBirth: newCalendarValue.format('YYYY-MM-DD'),
     })
   }
-
-  const [signUpValues, setSignUpValues] = useState({
-    name: '',
-    dateOfBirth: '',
-    email: '',
-    passwordInitial: '',
-    passwordConfirm: '',
-  })
-
-  const [duplicateEmailIsDone, setDuplicateEmailIsDone] = useState(false)
 
   const handleSignUpValuesChange = (e) => {
     const { name, value } = e.target
@@ -54,8 +55,6 @@ const SignUp = () => {
       [name]: value.trim().replace(/\s/g, ''),
     })
   }
-
-  const [signUpValuesErrors, setSignUpValuesErrors] = useState({})
 
   const validateSignUp = (signUpValues, requestDuplicateEmail, response) => {
     const errors = {}
@@ -129,8 +128,6 @@ const SignUp = () => {
     }
   }
 
-  const [signUpResponseMessage, setSignUpResponseMessage] = useState('')
-
   const submitSignUp = async (e) => {
     e.preventDefault()
     const signUpValidation = validateSignUp(signUpValues)
@@ -138,7 +135,6 @@ const SignUp = () => {
     setSignUpResponseMessage('')
 
     if (Object.keys(signUpValidation).length !== 0) return
-
     const signUpData = {
       name: signUpValues.name,
       birth: signUpValues.dateOfBirth,
