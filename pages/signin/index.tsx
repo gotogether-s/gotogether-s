@@ -1,11 +1,11 @@
-import { TextField, Button } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
-import { close } from '@store/sideBarStatusSlice'
 import { useRequestSignInMutation } from '@api/requestApi'
-import { useState } from 'react'
-import Link from 'next/link'
 import NavBar from '@components/NavBar'
+import { Button, TextField } from '@mui/material'
+import { close } from '@store/sideBarStatusSlice'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import style from './SignIn.module.scss'
 
 const isEmail = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
