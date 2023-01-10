@@ -83,7 +83,7 @@ const SignIn = () => {
     <>
       <NavBar link="/" title="로그인" />
       <Box>
-        <Box sx={{ marginBottom: '1.6rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             이메일
           </Typography>
@@ -111,7 +111,7 @@ const SignIn = () => {
             {signInValuesErrors.email}
           </Typography>
         </Box>
-        <Box sx={{ marginBottom: '1.6rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             비밀번호
           </Typography>
