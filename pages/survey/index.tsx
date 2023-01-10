@@ -6,7 +6,7 @@ const Survey = () => {
   return (
     <>
       <NavBar link="/" title="여행지 추천 받기" />
-      <Box>
+      <Box sx={{ paddingBottom: '2rem' }}>
         <Box
           sx={{
             display: 'flex',
@@ -57,8 +57,8 @@ const Survey = () => {
             여행상품이 보여집니다.
           </ListItem>
         </List>
+        <QnA />
       </Box>
-      <QnA />
     </>
   )
 }
