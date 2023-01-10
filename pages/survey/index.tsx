@@ -7,22 +7,15 @@ const Survey = () => {
     <>
       <NavBar link="/" title="여행지 추천 받기" />
       <Box sx={{ paddingBottom: '2rem' }}>
-        <Box
+        <Typography
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
+            fontSize: '1.8rem',
+            fontWeight: 600,
+            textAlign: 'center',
           }}
         >
-          <Typography
-            sx={{
-              fontWeight: 600,
-              textAlign: 'center',
-              width: '70%',
-            }}
-          >
-            나에게 꼭 맞는 여행지 추천을 위해 항목을 선택해주세요
-          </Typography>
-        </Box>
+          나에게 꼭 맞는 여행지 추천을 위해 <br /> 항목을 선택해주세요
+        </Typography>
         <List
           sx={{
             listStyleType: 'disc',
