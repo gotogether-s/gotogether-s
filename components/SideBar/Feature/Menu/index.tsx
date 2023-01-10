@@ -1,16 +1,15 @@
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import {
-  useRequestMembersDetailMutation,
   useRequestLogoutMutation,
+  useRequestMembersDetailMutation,
 } from '@api/requestApi'
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
-import { close } from '@store/sideBarStatusSlice'
+import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import { getLoginStatus } from '@store/isLoginSlice'
-import { useEffect } from 'react'
+import { close } from '@store/sideBarStatusSlice'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Category from './Category'
-import style from './Menu.module.scss'
 
 const mainMenusLogin = [
   {
@@ -43,21 +42,15 @@ const mainMenusLogout = [
 ]
 
 const Menu = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [requestMembersDetail] = useRequestMembersDetailMutation()
   const [requestLogout] = useRequestLogoutMutation()
-
-  const router = useRouter()
 
   const isLogin = useSelector((state) => {
     return state.isLogin.isLogin
   })
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getLoginStatus())
-    const accessToken = localStorage.getItem('accessToken')
-    accessToken && requestUserInfo(accessToken)
-  }, [])
 
   const requestUserInfo = async (accessToken) => {
     try {
@@ -93,6 +86,12 @@ const Menu = () => {
     dispatch(close())
     router.push('/signup')
   }
+
+  useEffect(() => {
+    dispatch(getLoginStatus())
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
 
   return (
     <>

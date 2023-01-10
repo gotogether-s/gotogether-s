@@ -4,24 +4,31 @@ import {
 } from '@api/requestApi'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import {
-  Box,
-  ListItemAvatar,
   Avatar,
+  Box,
   List,
   ListItem,
+  ListItemAvatar,
   ListItemText,
+  Typography,
 } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
 } from '@store/bookingAndLikesNumberSlice'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import style from './User.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
-  const { myInfoLink, primary, secondary, myBookingLink, favoriteLink } = props
+  const {
+    myInfoLink,
+    backgroundColor,
+    primary,
+    secondary,
+    myBookingLink,
+    favoriteLink,
+  } = props
 
   const dispatch = useDispatch()
 
@@ -68,11 +75,16 @@ const User = (props) => {
     }
   }, [sideBarStatus])
 
+  const isLogin = useSelector((state) => {
+    return state.isLogin.isLogin
+  })
+
   return (
     <>
       <Link href={myInfoLink}>
         <List
           sx={{
+            padding: '1.6rem 0',
             '&:hover': {
               cursor: 'pointer',
             },
@@ -80,41 +92,78 @@ const User = (props) => {
         >
           <ListItem>
             <ListItemAvatar>
-              <Avatar />
+              <Avatar
+                sx={{
+                  width: '5rem',
+                  height: '5rem',
+                  marginRight: '2rem',
+                  backgroundColor: `${backgroundColor}`,
+                }}
+              />
             </ListItemAvatar>
-            <ListItemText primary={primary} secondary={secondary} />
-            <ArrowForwardIosIcon />
+            <ListItemText
+              primary={
+                <Typography style={{ fontSize: '1.8rem' }}>
+                  {primary}
+                </Typography>
+              }
+              secondary={
+                <Typography style={{ fontSize: '1.4rem' }}>
+                  {secondary}
+                </Typography>
+              }
+            />
+            <ArrowForwardIosIcon sx={{ fontSize: '1.6rem' }} />
           </ListItem>
         </List>
       </Link>
-      <div className={style['box-wrapper']}>
+      <Box sx={{ display: 'flex' }}>
         <Link href={myBookingLink}>
           <Box
-            className={style['status-box']}
             sx={{
+              backgroundColor: '#F2F4FA',
+              width: '50%',
+              height: '10rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <div>예약한 상품</div>
-            <div>{bookingAndLikesNumber.theNumberOfBooking}</div>
+            <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
+            <Typography sx={{ fontSize: '2rem' }}>
+              {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
+            </Typography>
           </Box>
         </Link>
+        <Box sx={{ borderRight: '1px solid #fff', width: '0.1rem' }}></Box>
         <Link href={favoriteLink}>
           <Box
-            className={style['status-box']}
             sx={{
+              backgroundColor: '#F2F4FA',
+              width: '50%',
+              height: '10rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <div>찜한 상품</div>
-            <div>{bookingAndLikesNumber.theNumberOfLikes}</div>
+            <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
+            <Typography sx={{ fontSize: '2rem' }}>
+              {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
+            </Typography>
           </Box>
         </Link>
-      </div>
+      </Box>
     </>
   )
 }

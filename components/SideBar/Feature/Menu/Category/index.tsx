@@ -1,23 +1,29 @@
+import AddIcon from '@mui/icons-material/Add'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
-import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import {
+  Collapse,
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
-  Collapse,
+  ListItemText
 } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
-import { toggleCategorySubMenu } from '@store/categoryMenuSlice'
+import {
+  closeCategorySubMenu,
+  toggleCategorySubMenu
+} from '@store/categoryMenuSlice'
 import { close } from '@store/sideBarStatusSlice'
-import { useState, Fragment } from 'react'
-import style from './Category.module.scss'
 import { useRouter } from 'next/router'
+import { Fragment, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Category = () => {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [categoryOpen, setCategoryOpen] = useState(false)
+
   const toggleCategoryMenu = () => {
     setCategoryOpen(!categoryOpen)
   }
@@ -26,12 +32,20 @@ const Category = () => {
     return state.categoryMenu
   })
 
-  const dispatch = useDispatch()
-
-  const router = useRouter()
   const moveLink = (link: string) => {
     router.push(link)
   }
+
+  const sideBarOpen = useSelector((state) => {
+    return state.sideBarStatus.sideBarOpen
+  })
+
+  useEffect(() => {
+    if (!sideBarOpen) {
+      setCategoryOpen(false)
+      dispatch(closeCategorySubMenu())
+    }
+  }, [sideBarOpen])
 
   return (
     <List disablePadding>
@@ -46,7 +60,7 @@ const Category = () => {
         </ListItemButton>
       </ListItem>
       <Collapse in={categoryOpen} timeout="auto" unmountOnExit>
-        <List>
+        <List disablePadding>
           {categoryMenus.map((categoryMenu: any, index: number) => (
             <Fragment key={index}>
               <ListItem sx={{ width: '100%' }} disablePadding>

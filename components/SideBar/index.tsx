@@ -1,16 +1,15 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Drawer, Backdrop } from '@mui/material'
-import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { Backdrop, Drawer } from '@mui/material'
 import { click } from '@store/sideBarStatusSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import Feature from './Feature'
-import style from './SideBar.module.scss'
 
 const SideBar = () => {
+  const dispatch = useDispatch()
+
   const sideBarOpen = useSelector((state) => {
     return state.sideBarStatus.sideBarOpen
   })
-  const dispatch = useDispatch()
 
   return (
     <>
@@ -29,7 +28,7 @@ const SideBar = () => {
             width: '80%',
             position: 'absolute',
             height: '100%',
-            border: '1px solid #ddd',
+            borderLeft: '1px solid #ddd',
           },
         }}
         variant="persistent"
