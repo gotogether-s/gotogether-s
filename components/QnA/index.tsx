@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import style from './QnA.module.scss'
 
 const QnA = () => {
+  const router = useRouter()
+
   const [sendSurveyResult] = useSendSurveyResultMutation()
 
   const [userSurveyResult, setUserSurveyResult] = useState({
@@ -15,7 +17,6 @@ const QnA = () => {
     religion: '',
     theme: '',
   })
-
   const [surveyNumber, setSurveyNumber] = useState(1)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [displayMessage, setDisplayMessage] = useState('')
@@ -54,8 +55,6 @@ const QnA = () => {
     setSelectedAnswer(null)
     setQnaLists(getQnaLists.slice(surveyNumber, surveyNumber + 1))
   }
-
-  const router = useRouter()
 
   const submitSurvey = async () => {
     try {
