@@ -104,7 +104,7 @@ const SignIn = () => {
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
-              paddingTop: '0.5rem',
+              paddingTop: '0.3rem',
               lineHeight: 'normal',
             }}
           >
@@ -132,7 +132,7 @@ const SignIn = () => {
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
-              paddingTop: '0.5rem',
+              paddingTop: '0.3rem',
               lineHeight: 'normal',
             }}
           >
