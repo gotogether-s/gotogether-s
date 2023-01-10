@@ -106,13 +106,13 @@ const QnA = () => {
         >
           <Box
             sx={{
-              padding: '4rem 0',
+              padding: '5rem 0',
               borderRadius: '1rem',
               boxShadow: '3px 3px 10px 0px rgb(0 0 0 / 10%)',
               marginBottom: '2rem',
             }}
           >
-            <Typography sx={{ fontSize: '1.4rem' }}>
+            <Typography sx={{ fontSize: '1.4rem', marginBottom: '2rem' }}>
               {surveyNumber} of 5
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
