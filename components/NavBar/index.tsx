@@ -23,13 +23,27 @@ const NavBar = ({ link, title, marginBottom }) => {
         paddingTop: '2rem',
         paddingBottom: '2rem',
       }}
-      style={{ marginBottom: marginBottom ? marginBottom : '3rem' }}
+      style={{ marginBottom: marginBottom ? marginBottom : '2rem' }}
     >
       <ArrowBackIosNewIcon
-        sx={{ position: 'absolute', '&:hover': { cursor: 'pointer' } }}
+        sx={{
+          position: 'absolute',
+          width: '2rem',
+          height: '2rem',
+          '&:hover': { cursor: 'pointer' },
+        }}
         onClick={clickArrowBack}
       />
-      <Typography sx={{ flexGrow: 1, textAlign: 'center' }}>{title}</Typography>
+      <Typography
+        sx={{
+          flexGrow: 1,
+          textAlign: 'center',
+          fontSize: '1.8rem',
+          fontWeight: '500',
+        }}
+      >
+        {title}
+      </Typography>
     </Box>
   )
 }

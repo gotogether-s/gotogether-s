@@ -83,8 +83,8 @@ const SignIn = () => {
     <>
       <NavBar link="/" title="로그인" />
       <Box>
-        <Box sx={{ marginBottom: '1.6rem' }}>
-          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             이메일
           </Typography>
           <TextField
@@ -104,15 +104,15 @@ const SignIn = () => {
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
-              paddingTop: '0.5rem',
+              paddingTop: '0.3rem',
               lineHeight: 'normal',
             }}
           >
             {signInValuesErrors.email}
           </Typography>
         </Box>
-        <Box sx={{ marginBottom: '1.6rem' }}>
-          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             비밀번호
           </Typography>
           <TextField
@@ -132,7 +132,7 @@ const SignIn = () => {
               color: 'tomato',
               fontSize: '1.4rem',
               height: '1.6rem',
-              paddingTop: '0.5rem',
+              paddingTop: '0.3rem',
               lineHeight: 'normal',
             }}
           >
@@ -150,6 +150,10 @@ const SignIn = () => {
               paddingTop: '1rem',
               paddingBottom: '1rem',
               fontWeight: '500',
+              '&:hover': {
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+              },
             }}
             onClick={submitSignIn}
           >
@@ -172,7 +176,7 @@ const SignIn = () => {
         >
           {signInResponseMessage}
         </Typography>
-        <Box sx={{ textAlign: 'center', marginTop: '1rem' }}>
+        <Box sx={{ textAlign: 'center' }}>
           <Link href="/signup">
             <a style={{ color: '#6C6C6C' }}>회원가입</a>
           </Link>
