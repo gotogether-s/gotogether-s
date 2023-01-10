@@ -98,21 +98,43 @@ const QnA = () => {
   return (
     <>
       {qnaLists.map((qnaList, qnaListindex) => (
-        <Box key={qnaListindex} sx={{ textAlign: 'center' }}>
-          <Box sx={{ backgroundColor: '#dcdcdc', padding: '4rem 0' }}>
-            <Typography sx={{ marginBottom: '1.5rem' }}>
+        <Box
+          key={qnaListindex}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              padding: '4rem 0',
+              borderRadius: '1rem',
+              boxShadow: '3px 3px 10px 0px rgb(0 0 0 / 10%)',
+              marginBottom: '2rem',
+            }}
+          >
+            <Typography sx={{ fontSize: '1.4rem' }}>
               {surveyNumber} of 5
             </Typography>
-            <Typography>{qnaList.question}</Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Typography sx={{ fontSize: '1.8rem', width: '70%' }}>
+                {qnaList.question}
+              </Typography>
+            </Box>
           </Box>
-          <Box sx={{ backgroundColor: '#f1f1f1', marginBottom: '2rem' }}>
-            <List sx={{ padding: 0 }}>
+          <Box sx={{ margin: '4rem -1.6rem' }}>
+            <List
+              sx={{
+                padding: 0,
+                borderTop: '1px solid #ddd',
+              }}
+            >
               {qnaList.answers.map((answer, answerIndex) => (
                 <ListItemButton
                   key={answerIndex}
                   sx={{
+                    borderBottom: '1px solid #ddd',
                     backgroundColor:
-                      answerIndex === selectedAnswer && '#bcbcbc',
+                      answerIndex === selectedAnswer && '#F2F4FA',
                   }}
                   onClick={() =>
                     getUserAnswer(event, surveyNumber - 1, answerIndex)
@@ -128,9 +150,18 @@ const QnA = () => {
       <Button
         variant="contained"
         sx={{
-          width: '100%',
-          marginBottom: '1rem',
           display: lastSurvey ? 'none' : 'block',
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={goToNextSurvey}
       >
@@ -138,17 +169,42 @@ const QnA = () => {
       </Button>
       <Button
         variant="outlined"
-        sx={{ width: '100%', display: lastSurvey ? 'none' : 'block' }}
+        sx={{
+          display: lastSurvey ? 'none' : 'block',
+          width: '100%',
+          backgroundColor: '#BEBEBE',
+          color: '#fff',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          borderColor: '#BEBEBE',
+          '&:hover': {
+            backgroundColor: '#BEBEBE',
+            borderColor: '#BEBEBE',
+            boxShadow: 'none',
+          },
+        }}
         onClick={skipSurvey}
       >
-        나중에 하기
+        다음에 하기
       </Button>
       <Button
         variant="contained"
         sx={{
-          width: '100%',
-          marginBottom: '1rem',
           display: lastSurvey ? 'block' : 'none',
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginBottom: '1rem',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={submitSurvey}
       >
@@ -158,13 +214,11 @@ const QnA = () => {
         sx={{
           visibility: displayMessage ? 'visible' : 'hidden',
           color:
-            displayMessage !==
-            '설문조사에 응해주셔서 감사합니다! 홈페이지로 이동합니다!'
+            displayMessage !== '설문조사에 응해주셔서 감사합니다!'
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',
           height: '1.6rem',
-          paddingTop: '0.3rem',
           lineHeight: 'normal',
         }}
       >
