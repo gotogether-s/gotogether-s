@@ -1,9 +1,17 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import { Box, Typography } from '@mui/material'
+import { close } from '@store/sideBarStatusSlice'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 
 const NavBar = ({ link, title, marginBottom }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
+
+  const clickArrowBack = () => {
+    dispatch(close())
+    router.push(`${link}`)
+  }
 
   return (
     <Box
@@ -19,9 +27,7 @@ const NavBar = ({ link, title, marginBottom }) => {
     >
       <ArrowBackIosNewIcon
         sx={{ position: 'absolute', '&:hover': { cursor: 'pointer' } }}
-        onClick={() => {
-          router.push(`${link}`)
-        }}
+        onClick={clickArrowBack}
       />
       <Typography sx={{ flexGrow: 1, textAlign: 'center' }}>{title}</Typography>
     </Box>
