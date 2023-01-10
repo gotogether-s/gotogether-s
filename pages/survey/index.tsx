@@ -5,7 +5,7 @@ import style from './Survey.module.scss'
 const Survey = () => {
   return (
     <>
-      <NavBar link="/" />
+      <NavBar link="/" title="여행지 추천 받기" />
       <div className={style['intro']}>
         <h1>나에게 꼭 맞는 여행지 추천을 위해 항목을 선택해주세요</h1>
         <ul>
