@@ -19,14 +19,10 @@ import 'swiper/css/pagination'
 import style from './Search.module.scss'
 
 const ProductSearch = () => {
-  const [searchProducts] = useSearchProductsMutation()
+  const dispatch = useDispatch()
   const router = useRouter()
 
-  const dispatch = useDispatch()
-
-  const searchHistory = useSelector((state) => {
-    return state.searchHistory
-  })
+  const [searchProducts] = useSearchProductsMutation()
 
   const [keyword, setKeyword] = useState('')
   const [displaySearchResult, setDisplaySearchResult] = useState(false)
@@ -35,6 +31,10 @@ const ProductSearch = () => {
   const [totalElements, setTotalElements] = useState(1)
   const [pageSize, setPageSize] = useState()
   const [page, setPage] = useState<number>(1)
+
+  const searchHistory = useSelector((state) => {
+    return state.searchHistory
+  })
 
   const getInputValue = (e) => {
     setKeyword(e.target.value)
@@ -88,17 +88,17 @@ const ProductSearch = () => {
     }
   }
 
+  const handlePageChange = (page: number) => {
+    setPage(page)
+    router.push(`/product-search?keyword=${keyword}&page=${page - 1}`)
+  }
+
   useEffect(() => {
     if (keyword === '') {
       setDisplaySearchResult(false)
       router.push('/product-search')
     }
   }, [keyword])
-
-  const handlePageChange = (page: number) => {
-    setPage(page)
-    router.push(`/product-search?keyword=${keyword}&page=${page - 1}`)
-  }
 
   useEffect(() => {
     handlePageChange(page)
