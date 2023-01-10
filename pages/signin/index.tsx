@@ -1,18 +1,17 @@
-import { TextField, Button } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
-import { close } from '@store/sideBarStatusSlice'
 import { useRequestSignInMutation } from '@api/requestApi'
-import { useState } from 'react'
-import Link from 'next/link'
 import NavBar from '@components/NavBar'
-import style from './SignIn.module.scss'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { close } from '@store/sideBarStatusSlice'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const isEmail = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignIn = () => {
-  const router = useRouter()
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const [requestSignIn] = useRequestSignInMutation()
 
@@ -50,7 +49,6 @@ const SignIn = () => {
   }
 
   const submitSignIn = async (e) => {
-    e.preventDefault()
     const signInValidation = validateSignIn(signInValues)
     setSignInValuesErrors(validateSignIn(signInValues))
     setSignInResponseMessage('')
@@ -84,9 +82,11 @@ const SignIn = () => {
   return (
     <>
       <NavBar link="/" title="로그인" />
-      <form onSubmit={submitSignIn}>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>이메일</div>
+      <Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+            이메일
+          </Typography>
           <TextField
             name="email"
             size="small"
@@ -96,17 +96,25 @@ const SignIn = () => {
             onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
-          <p
+          <Typography
             style={{
               visibility: signInValuesErrors.email ? 'visible' : 'hidden',
             }}
-            className={style['error-message']}
+            sx={{
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.5rem',
+              lineHeight: 'normal',
+            }}
           >
             {signInValuesErrors.email}
-          </p>
-        </div>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>비밀번호</div>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '1rem' }}>
+            비밀번호
+          </Typography>
           <TextField
             name="password"
             size="small"
@@ -116,39 +124,60 @@ const SignIn = () => {
             onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
           />
-          <p
+          <Typography
             style={{
               visibility: signInValuesErrors.password ? 'visible' : 'hidden',
             }}
-            className={style['error-message']}
+            sx={{
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.5rem',
+              lineHeight: 'normal',
+            }}
           >
             {signInValuesErrors.password}
-          </p>
-        </div>
-        <div className={style['button-wrapper']}>
-          <Button variant="contained" type="submit" sx={{ width: '100%' }}>
+          </Typography>
+        </Box>
+        <Box sx={{ textAlign: 'center' }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              width: '100%',
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              fontWeight: '500',
+            }}
+            onClick={submitSignIn}
+          >
             로그인
           </Button>
-        </div>
-        <p
-          className={
-            signInResponseMessage !==
-            '로그인에 성공했습니다! 홈페이지로 이동합니다!'
-              ? style['error-message']
-              : style['success-message']
-          }
-          style={{
+        </Box>
+        <Typography
+          sx={{
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.5rem',
+            lineHeight: 'normal',
             visibility: signInResponseMessage !== '' ? 'visible' : 'hidden',
+            color:
+              signInResponseMessage !==
+              '로그인에 성공했습니다! 홈페이지로 이동합니다!'
+                ? 'tomato'
+                : 'green',
           }}
         >
           {signInResponseMessage}
-        </p>
-        <div className={style['signup-link-wrapper']}>
+        </Typography>
+        <Box sx={{ textAlign: 'center', marginTop: '1rem' }}>
           <Link href="/signup">
-            <a>회원가입</a>
+            <a style={{ color: '#6C6C6C' }}>회원가입</a>
           </Link>
-        </div>
-      </form>
+        </Box>
+      </Box>
     </>
   )
 }

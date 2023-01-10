@@ -1,23 +1,36 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import { Box, Typography } from '@mui/material'
+import { close } from '@store/sideBarStatusSlice'
 import { useRouter } from 'next/router'
-import style from './NavBar.module.scss'
+import { useDispatch } from 'react-redux'
 
 const NavBar = ({ link, title, marginBottom }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
 
+  const clickArrowBack = () => {
+    dispatch(close())
+    router.push(`${link}`)
+  }
+
   return (
-    <div
-      className={style['navbar-container']}
+    <Box
+      sx={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
+      }}
       style={{ marginBottom: marginBottom ? marginBottom : '3rem' }}
     >
       <ArrowBackIosNewIcon
-        className={style['icon']}
-        onClick={() => {
-          router.push(`${link}`)
-        }}
+        sx={{ position: 'absolute', '&:hover': { cursor: 'pointer' } }}
+        onClick={clickArrowBack}
       />
-      <div className={style['title']}>{title}</div>
-    </div>
+      <Typography sx={{ flexGrow: 1, textAlign: 'center' }}>{title}</Typography>
+    </Box>
   )
 }
 
