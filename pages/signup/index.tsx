@@ -3,14 +3,13 @@ import {
   useValidateEmailMutation,
 } from '@api/requestApi'
 import NavBar from '@components/NavBar'
-import { Button, TextField } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import { Dayjs } from 'dayjs'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import style from './SignUp.module.scss'
 
 const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
@@ -165,9 +164,11 @@ const SignUp = () => {
   return (
     <>
       <NavBar link="/" title="회원가입" />
-      <form onSubmit={submitSignUp}>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>이름</div>
+      <Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            이름
+          </Typography>
           <TextField
             name="name"
             size="small"
@@ -177,17 +178,23 @@ const SignUp = () => {
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: signUpValuesErrors.name ? 'visible' : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {signUpValuesErrors.name}
-          </p>
-        </div>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>생년월일</div>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            생년월일
+          </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <MobileDatePicker
               inputFormat="YYYY/MM/DD"
@@ -203,18 +210,24 @@ const SignUp = () => {
               )}
             />
           </LocalizationProvider>
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: signUpValuesErrors.dateOfBirth ? 'visible' : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {signUpValuesErrors.dateOfBirth}
-          </p>
-        </div>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>이메일</div>
-          <div className={style['flex-wrapper']}>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            이메일
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <TextField
               name="email"
               size="small"
@@ -226,27 +239,44 @@ const SignUp = () => {
             />
             <Button
               variant="contained"
-              sx={{ width: '30%' }}
+              sx={{
+                width: '30%',
+                border: '1px solid #4581F8',
+                backgroundColor: 'transparent',
+                color: '#4581F8',
+                boxShadow: 'none',
+                fontWeight: '500',
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
+                },
+              }}
               onClick={requestDuplicateEmail}
             >
               중복확인
             </Button>
-          </div>
-          <p
-            style={{
+          </Box>
+          <Typography
+            sx={{
               visibility: signUpValuesErrors.email ? 'visible' : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
+              color:
+                signUpValuesErrors.email !== '사용할수있는 이메일입니다!'
+                  ? 'tomato'
+                  : 'green',
             }}
-            className={
-              signUpValuesErrors.email !== '사용할수있는 이메일입니다!'
-                ? style['error-message']
-                : style['success-message']
-            }
           >
             {signUpValuesErrors.email}
-          </p>
-        </div>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>비밀번호</div>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            비밀번호
+          </Typography>
           <TextField
             name="passwordInitial"
             size="small"
@@ -256,19 +286,25 @@ const SignUp = () => {
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: signUpValuesErrors.passwordInitial
                 ? 'visible'
                 : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {signUpValuesErrors.passwordInitial}
-          </p>
-        </div>
-        <div className={style['input-wrapper']}>
-          <div className={style['label']}>비밀번호 확인</div>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1.6rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            비밀번호 확인
+          </Typography>
           <TextField
             name="passwordConfirm"
             size="small"
@@ -278,36 +314,59 @@ const SignUp = () => {
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: signUpValuesErrors.passwordConfirm
                 ? 'visible'
                 : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {signUpValuesErrors.passwordConfirm}
-          </p>
-        </div>
-        <div className={style['button-wrapper']}>
-          <Button variant="contained" type="submit" sx={{ width: '100%' }}>
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              width: '100%',
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              fontWeight: '500',
+              '&:hover': {
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+              },
+            }}
+            onClick={submitSignUp}
+          >
             회원가입
           </Button>
-        </div>
-        <p
-          className={
-            signUpResponseMessage !==
-            '회원가입에 성공했습니다! 설문 페이지로 이동합니다!'
-              ? style['error-message']
-              : style['success-message']
-          }
-          style={{
+        </Box>
+        <Typography
+          sx={{
             visibility: signUpResponseMessage !== '' ? 'visible' : 'hidden',
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.5rem',
+            lineHeight: 'normal',
+            color:
+              signUpResponseMessage !==
+              '회원가입에 성공했습니다! 설문 페이지로 이동합니다!'
+                ? 'tomato'
+                : 'green',
           }}
         >
           {signUpResponseMessage}
-        </p>
-      </form>
+        </Typography>
+      </Box>
     </>
   )
 }
