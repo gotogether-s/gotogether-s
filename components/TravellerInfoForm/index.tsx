@@ -1,18 +1,18 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
-  Box,
-  FormControlLabel,
-  Checkbox,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
+  Box,
+  Checkbox,
+  FormControlLabel,
   TextField,
   Typography,
 } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateReservationPersonInfo } from '@store/makeReservationSlice'
 import { openModal } from '@store/displayModalWindowSlice'
-import { useState, useEffect } from 'react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { updateReservationPersonInfo } from '@store/makeReservationSlice'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './TravellerInfoForm.module.scss'
 
 const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
