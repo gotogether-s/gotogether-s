@@ -1,32 +1,34 @@
+import { useSearchProductsMutation } from '@api/requestApi'
+import NavBar from '@components/NavBar'
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import CancelIcon from '@mui/icons-material/Cancel'
+import CloseIcon from '@mui/icons-material/Close'
+import SearchIcon from '@mui/icons-material/Search'
+import {
+  Box,
+  Divider,
+  FormControl,
+  InputAdornment,
+  OutlinedInput,
+  Typography,
+} from '@mui/material'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
-import SearchIcon from '@mui/icons-material/Search'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import CloseIcon from '@mui/icons-material/Close'
-import Pagination from 'react-js-pagination'
-import { useSearchProductsMutation } from '@api/requestApi'
-import { FormControl, OutlinedInput, InputAdornment } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
 import { add, remove } from '@store/searchHistorySlice'
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import NavBar from '@components/NavBar'
-import style from './Search.module.scss'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import Pagination from 'react-js-pagination'
+import { useDispatch, useSelector } from 'react-redux'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
 const ProductSearch = () => {
-  const [searchProducts] = useSearchProductsMutation()
+  const dispatch = useDispatch()
   const router = useRouter()
 
-  const dispatch = useDispatch()
-
-  const searchHistory = useSelector((state) => {
-    return state.searchHistory
-  })
+  const [searchProducts] = useSearchProductsMutation()
 
   const [keyword, setKeyword] = useState('')
   const [displaySearchResult, setDisplaySearchResult] = useState(false)
@@ -35,6 +37,10 @@ const ProductSearch = () => {
   const [totalElements, setTotalElements] = useState(1)
   const [pageSize, setPageSize] = useState()
   const [page, setPage] = useState<number>(1)
+
+  const searchHistory = useSelector((state) => {
+    return state.searchHistory
+  })
 
   const getInputValue = (e) => {
     setKeyword(e.target.value)
@@ -88,17 +94,17 @@ const ProductSearch = () => {
     }
   }
 
+  const handlePageChange = (page: number) => {
+    setPage(page)
+    router.push(`/product-search?keyword=${keyword}&page=${page - 1}`)
+  }
+
   useEffect(() => {
     if (keyword === '') {
       setDisplaySearchResult(false)
       router.push('/product-search')
     }
   }, [keyword])
-
-  const handlePageChange = (page: number) => {
-    setPage(page)
-    router.push(`/product-search?keyword=${keyword}&page=${page - 1}`)
-  }
 
   useEffect(() => {
     handlePageChange(page)
@@ -118,14 +124,24 @@ const ProductSearch = () => {
             <InputAdornment position="end">
               {!displaySearchResult ? (
                 <SearchIcon
-                  sx={{ fontSize: 25 }}
-                  className={style['clickable-icon']}
+                  sx={{
+                    color: '#B9B9B9',
+                    fontSize: 25,
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
                   onClick={searchProductOrclearInput}
                 />
               ) : (
-                <HighlightOffIcon
-                  sx={{ fontSize: 25 }}
-                  className={style['clickable-icon']}
+                <CancelIcon
+                  sx={{
+                    color: '#B9B9B9',
+                    fontSize: 20,
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
+                  }}
                   onClick={clearInput}
                 />
               )}
@@ -135,10 +151,12 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
-          <div className={style['label']}>최근 검색어</div>
+          <Typography sx={{ paddingBottom: '1rem' }}>최근 검색어</Typography>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
           <List
             sx={{
               padding: 0,
+              margin: '0 -1.6rem',
             }}
           >
             {searchHistory.map((list: string, index: number) => (
@@ -154,24 +172,40 @@ const ProductSearch = () => {
                 }}
                 onClick={() => clickSearchHistory(list)}
               >
-                <div className={style['flex-wrapper']}>
-                  <AccessTimeIcon />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    padding: '0 1.6rem',
+                  }}
+                >
+                  <AccessTimeIcon sx={{ fontSize: 20, color: '#C2C2C2' }} />
                   <ListItemText primary={list} sx={{ marginLeft: '1rem' }} />
                   <CloseIcon
-                    className={style['clickable-icon']}
+                    sx={{
+                      color: '#C2C2C2',
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
                     onClick={(e) => removeSearchHistory(e, index)}
                   />
-                </div>
+                </Box>
               </ListItem>
             ))}
           </List>
         </>
       ) : (
         <>
-          <div className={style['label']}>검색결과 {productNumber}</div>
+          <Typography sx={{ paddingBottom: '1rem' }}>
+            검색결과 {productNumber}
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
           {productNumber ? (
             <>
-              <div className="productLists">
+              <div className="productLists" style={{ marginTop: '2rem' }}>
                 {productLists.map(({ ...list }, index) => (
                   <div className="productList" key={index}>
                     <Link href={`/product-details/${list.id}`}>
@@ -197,7 +231,16 @@ const ProductSearch = () => {
                   </div>
                 ))}
               </div>
-              <div className={style['search-pagination']}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  left: '0',
+                  right: '0',
+                  bottom: '3rem',
+                }}
+              >
                 <Pagination
                   activePage={page}
                   itemsCountPerPage={pageSize}
@@ -207,10 +250,14 @@ const ProductSearch = () => {
                   nextPageText={'›'}
                   onChange={handlePageChange}
                 />
-              </div>
+              </Box>
             </>
           ) : (
-            <p className={style['no-result']}>상품 검색 결과가 없습니다.</p>
+            <Typography
+              sx={{ marginTop: '2rem', color: '#5F5F5F', fontSize: '1.4rem' }}
+            >
+              상품 검색 결과가 없습니다.
+            </Typography>
           )}
         </>
       )}
