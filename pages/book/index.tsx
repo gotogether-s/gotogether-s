@@ -35,6 +35,7 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
 
   const [requestReservation] = useRequestReservationMutation()
@@ -84,8 +85,6 @@ const Book = () => {
   const getBookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
   })
-
-  const dispatch = useDispatch()
 
   const inputChangeHandler = (e) => {
     const { name, value, checked } = e.target
