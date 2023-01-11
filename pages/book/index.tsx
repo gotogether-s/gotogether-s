@@ -26,7 +26,6 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import style from './Book.module.scss'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
@@ -284,8 +283,10 @@ const Book = () => {
         </StyledSection>
         <StyledSection>
           <Typography>예약자 정보 (대표)</Typography>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>이름</div>
+          <Box sx={{ marginBottom: '1rem' }}>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              이름
+            </Typography>
             <TextField
               name="name"
               size="small"
@@ -295,19 +296,25 @@ const Book = () => {
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
-            <p
-              style={{
+            <Typography
+              sx={{
                 visibility: bookingClientValuesErrors.name
                   ? 'visible'
                   : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
               }}
-              className={style['error-message']}
             >
               {bookingClientValuesErrors.name}
-            </p>
-          </div>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>전화번호</div>
+            </Typography>
+          </Box>
+          <Box sx={{ marginBottom: '1rem' }}>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              전화번호
+            </Typography>
             <TextField
               name="phoneNumber"
               size="small"
@@ -317,17 +324,21 @@ const Book = () => {
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
-            <p
-              style={{
+            <Typography
+              sx={{
                 visibility: bookingClientValuesErrors.phoneNumber
                   ? 'visible'
                   : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
               }}
-              className={style['error-message']}
             >
               {bookingClientValuesErrors.phoneNumber}
-            </p>
-          </div>
+            </Typography>
+          </Box>
         </StyledSection>
         <StyledSection>
           <Typography>인원</Typography>
@@ -430,16 +441,20 @@ const Book = () => {
             onBlur={removeInputSpaces}
             sx={{ width: '100%' }}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: bookingClientValuesErrors.depositor
                 ? 'visible'
                 : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {bookingClientValuesErrors.depositor}
-          </p>
+          </Typography>
         </StyledSection>
         <StyledSection
           sx={{
@@ -458,17 +473,20 @@ const Book = () => {
             label="예약조건 확인 및 결제진행에 동의"
             sx={{ margin: 0 }}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: bookingClientValuesErrors.agreement
                 ? 'visible'
                 : 'hidden',
-              marginBottom: '1.6rem',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {bookingClientValuesErrors.agreement}
-          </p>
+          </Typography>
           <Button
             variant="contained"
             sx={{
