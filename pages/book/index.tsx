@@ -11,8 +11,8 @@ import {
   CardContent,
   CardMedia,
   Checkbox,
+  Divider,
   FormControlLabel,
-  Radio,
   TextField,
   Typography,
 } from '@mui/material'
@@ -264,25 +264,33 @@ const Book = () => {
               }}
             >
               <Box>
-                <Typography>{productName}</Typography>
-                <Typography>{airport}</Typography>
+                <Typography sx={{ fontWeight: 500 }}>{productName}</Typography>
+                <Typography sx={{ fontSize: '1.3rem' }}>{airport}</Typography>
                 <Box>
-                  <Typography>
+                  <Typography sx={{ fontSize: '1.3rem' }}>
                     출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
                   </Typography>
-                  <Typography>
+                  <Typography sx={{ fontSize: '1.3rem' }}>
                     도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
                   </Typography>
                 </Box>
               </Box>
-              <Typography>
-                1인 / {basicPrice.toLocaleString('ko-KR')} 원
+              <Typography sx={{ fontSize: '1.3rem' }}>
+                1인 /{' '}
+                <Box sx={{ display: 'inline', fontWeight: 500 }}>
+                  {basicPrice.toLocaleString('ko-KR')} 원
+                </Box>
               </Typography>
             </CardContent>
           </Card>
         </StyledSection>
         <StyledSection>
-          <Typography>예약자 정보 (대표)</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            예약자 정보 (대표)
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box sx={{ marginBottom: '1rem' }}>
             <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
               이름
@@ -341,7 +349,12 @@ const Book = () => {
           </Box>
         </StyledSection>
         <StyledSection>
-          <Typography>인원</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            인원
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography>인원수</Typography>
             <Box sx={{ display: 'flex', gap: '1.6rem' }}>
@@ -383,7 +396,12 @@ const Book = () => {
           })}
         </StyledSection>
         <StyledSection>
-          <Typography>최종 요금</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            최종 요금
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box
             sx={{
               padding: '1rem 0',
@@ -393,13 +411,13 @@ const Book = () => {
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                gap: '1rem',
               }}
             >
-              <Typography>
+              <Typography sx={{ fontSize: '1.3rem' }}>
                 출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
               </Typography>
-              <Typography>
+              <Typography sx={{ fontSize: '1.3rem' }}>
                 도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
               </Typography>
             </Box>
@@ -408,7 +426,7 @@ const Book = () => {
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '1rem 0',
+              padding: '0.5rem 0',
             }}
           >
             <Typography>성인 x{numberOfTravellers}</Typography>
@@ -418,20 +436,24 @@ const Book = () => {
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '1rem 0',
+              padding: '0.5rem 0 0',
             }}
           >
-            <Typography>합계</Typography>
+            <Typography sx={{ fontWeight: 500 }}>합계</Typography>
             <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
           </Box>
         </StyledSection>
         <StyledSection>
-          <Typography>결제 방법</Typography>
-          <FormControlLabel
-            control={<Radio defaultChecked />}
-            label="무통장입금"
-          />
-          <Typography>입금자명</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            결제
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
+
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            입금자명
+          </Typography>
           <TextField
             name="depositor"
             size="small"
@@ -441,6 +463,7 @@ const Book = () => {
             onBlur={removeInputSpaces}
             sx={{ width: '100%' }}
           />
+
           <Typography
             sx={{
               visibility: bookingClientValuesErrors.depositor
@@ -454,6 +477,9 @@ const Book = () => {
             }}
           >
             {bookingClientValuesErrors.depositor}
+          </Typography>
+          <Typography sx={{ fontSize: '1.3rem' }}>
+            *KEB하나은행 267-910020-36604 (주)더샤이니
           </Typography>
         </StyledSection>
         <StyledSection
@@ -491,6 +517,16 @@ const Book = () => {
             variant="contained"
             sx={{
               width: '100%',
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              fontWeight: '500',
+              margin: '1rem 0',
+              '&:hover': {
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+              },
             }}
             onClick={clickReservationRequest}
           >
