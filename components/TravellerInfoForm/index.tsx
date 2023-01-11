@@ -67,10 +67,6 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
     }
   }
 
-  useEffect(() => {
-    getClientInfo(duplicateClientInfo)
-  }, [duplicateClientInfo])
-
   const inputChangeHandler = (e) => {
     const { name, value } = e.target
     dispatch(updateReservationPersonInfo({ [name]: value, index: index }))
@@ -102,6 +98,10 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
       )
     }
   }
+
+  useEffect(() => {
+    getClientInfo(duplicateClientInfo)
+  }, [duplicateClientInfo])
 
   return (
     <Accordion
