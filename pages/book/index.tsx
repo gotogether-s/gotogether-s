@@ -1,31 +1,31 @@
+import { useRequestReservationMutation } from '@api/requestApi'
+import ModalWindow from '@components/ModalWindow'
+import NavBar from '@components/NavBar'
+import TravellerInfoForm from '@components/TravellerInfoForm'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import {
   Box,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  TextField,
   Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Checkbox,
   FormControlLabel,
   Radio,
-  Checkbox,
+  TextField,
+  Typography,
 } from '@mui/material'
-import RemoveIcon from '@mui/icons-material/Remove'
-import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
-import { useRouter } from 'next/router'
-import { useRequestReservationMutation } from '@api/requestApi'
-import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
-  updateReservationDetail,
   createReservationPersonList,
   deleteReservationPersonList,
+  updateReservationDetail,
 } from '@store/makeReservationSlice'
-import { useState, useEffect } from 'react'
-import NavBar from '@components/NavBar'
-import ModalWindow from '@components/ModalWindow'
-import TravellerInfoForm from '@components/TravellerInfoForm'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './Book.module.scss'
 
 const StyledSection = styled('div')(() => ({
