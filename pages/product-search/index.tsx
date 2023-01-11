@@ -253,7 +253,9 @@ const ProductSearch = () => {
               </Box>
             </>
           ) : (
-            <Typography sx={{ marginTop: '2rem' }}>
+            <Typography
+              sx={{ marginTop: '2rem', color: '#5F5F5F', fontSize: '1.4rem' }}
+            >
               상품 검색 결과가 없습니다.
             </Typography>
           )}
