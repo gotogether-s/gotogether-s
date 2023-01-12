@@ -1,11 +1,10 @@
-import { Box, Typography, Button } from '@mui/material'
-import Image from 'next/image'
+import { Box, Button, Divider, Typography } from '@mui/material'
 import payment from '@public/payment.png'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
-import style from './Payment.module.scss'
+import { useEffect, useState } from 'react'
 
 const Payment = () => {
   const router = useRouter()
@@ -40,7 +39,7 @@ const Payment = () => {
       if (list.title === '입금기한 : ') {
         return {
           ...list,
-          content: getPaymentDueDate,
+          content: `~ ${getPaymentDueDate}`,
         }
       } else {
         return list
@@ -62,36 +61,65 @@ const Payment = () => {
         />
         <Typography
           sx={{
+            fontSize: '1.8rem',
+            fontWeight: 500,
             padding: '1rem 0',
           }}
         >
           무통장입금 계좌번호 안내
         </Typography>
-        <Typography>
-          고투게더를 이용해주셔서 감사합니다. 예약일로부터 3일 이내에 아래
-          계좌로 무통장 입금해주시면 예약이 완료됩니다.
+        <Typography
+          sx={{
+            fontSize: '1.4rem',
+            color: '#8D8D8D',
+          }}
+        >
+          고투게더를 이용해주셔서 감사합니다. <br /> 예약일로부터 3일 이내에
+          아래 계좌로 <br /> 입금해주시면 예약이 완료됩니다.
         </Typography>
       </Box>
-      <Box
-        sx={{
-          border: '1px solid #ddd',
-          padding: '2rem 0',
-          marginBottom: '2rem',
-        }}
-      >
-        <Box sx={{ width: '80%', margin: '0 auto' }}>
-          {paymentSummary.map((list, index) => (
-            <Box key={index} sx={{ display: 'flex', flexDirection: 'row' }}>
-              <Typography sx={{ width: '35%' }}>{list.title}</Typography>
-              <Typography>{list.content}</Typography>
-            </Box>
-          ))}
-        </Box>
+      <Divider sx={{ margin: '0 -1.6rem' }} />
+      <Box sx={{ width: '80%', margin: '0 auto', padding: '2rem 0' }}>
+        {paymentSummary.map((list, index) => (
+          <Box
+            key={index}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginBottom: '0.5rem',
+            }}
+          >
+            <Typography
+              sx={{ fontSize: '1.5rem', fontWeight: 500, width: '35%' }}
+            >
+              {list.title}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '1.5rem',
+                color: list.title !== '입금기한 : ' ? '#4E4E4E' : '#4581F8',
+              }}
+            >
+              {list.content}
+            </Typography>
+          </Box>
+        ))}
       </Box>
+      <Divider sx={{ margin: '0 -1.6rem' }} />
       <Button
         variant="contained"
         sx={{
           width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          marginTop: '4rem',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={() => router.push('mybooking')}
       >
