@@ -27,15 +27,18 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Likes = () => {
-  const StyledSection = styled('div')(() => ({
-    backgroundColor: '#fff',
-    padding: '1.6rem',
-    marginBottom: '1.6rem',
-  }))
+const StyledSection = styled('div')(() => ({
+  backgroundColor: '#fff',
+  padding: '1.6rem',
+  marginBottom: '1.6rem',
+}))
 
-  const router = useRouter()
+const Likes = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const [requestLikedItems] = useRequestLikedItemsMutation()
+  const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
   const [checkedAll, setCheckedAll] = useState(false)
   const [checked, setChecked] = useState([])
@@ -47,9 +50,6 @@ const Likes = () => {
   const wishIdsToDelete = useSelector((state) => {
     return state.wishIdsToDelete
   })
-
-  const [requestLikedItems] = useRequestLikedItemsMutation()
-  const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
   const getLikedItems = async () => {
     try {
