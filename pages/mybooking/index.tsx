@@ -162,17 +162,31 @@ const MyBooking = () => {
                 <Box
                   sx={{
                     display: 'flex',
-                    alignItems: 'center',
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
-                    {list.reservationDate.trim().replace(/-/g, '/')} (
-                    {list.reservationDayOfWeek}) 예약
-                  </Typography>
+                  <Box>
+                    <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
+                      {productName[index]}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                        marginBottom: '0.2rem',
+                        color: '#939393',
+                      }}
+                    >
+                      예약일: {list.reservationDate.trim().replace(/-/g, '/')} (
+                      {list.reservationDayOfWeek})
+                    </Typography>
+                  </Box>
                   <Chip
                     label="예약 완료"
-                    sx={{ backgroundColor: '#4581F8', color: '#fff' }}
+                    sx={{
+                      backgroundColor: '#4581F8',
+                      padding: '0.5rem 0.6rem',
+                      color: '#fff',
+                    }}
                   />
                 </Box>
               </Box>
@@ -203,36 +217,46 @@ const MyBooking = () => {
                     width: '70%',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '1.6rem',
+                    gap: '0.75rem',
+                    justifyContent: 'space-around',
                   }}
                 >
+                  <Typography
+                    sx={{
+                      fontSize: '1.2rem',
+                    }}
+                  >
+                    {list.airport}
+                  </Typography>
                   <Box>
-                    <Typography>{productName[index]}</Typography>
-                    <Typography
+                    <Box
                       sx={{
-                        fontSize: '1.2rem',
-                        marginBottom: '0.2rem',
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        gap: '0.5rem',
                       }}
                     >
-                      {list.airport}
-                    </Typography>
-                    <Typography
+                      <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                        출발
+                      </Typography>
+                      <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                        {reservationDate[index][0]} ({reservationDay[index][0]})
+                      </Typography>
+                    </Box>
+                    <Box
                       sx={{
-                        fontSize: '1.2rem',
-                        marginBottom: '0.2rem',
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        gap: '0.5rem',
                       }}
                     >
-                      출발 {reservationDate[index][0]} (
-                      {reservationDay[index][0]})
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '1.2rem',
-                      }}
-                    >
-                      도착 {reservationDate[index][1]} (
-                      {reservationDay[index][1]})
-                    </Typography>
+                      <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                        도착
+                      </Typography>
+                      <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                        {reservationDate[index][1]} ({reservationDay[index][1]})
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
@@ -249,6 +273,18 @@ const MyBooking = () => {
                   size="large"
                   fullWidth
                   onClick={() => goToMyBookingDetailPage(list.reservation_id)}
+                  sx={{
+                    width: '100%',
+                    backgroundColor: '#4581F8',
+                    boxShadow: 'none',
+                    paddingTop: '1rem',
+                    paddingBottom: '1rem',
+                    fontWeight: '500',
+                    '&:hover': {
+                      backgroundColor: '#4581F8',
+                      boxShadow: 'none',
+                    },
+                  }}
                 >
                   상세보기
                 </Button>
@@ -257,6 +293,19 @@ const MyBooking = () => {
                   size="large"
                   fullWidth
                   onClick={() => cancelReservation(list.reservation_id, index)}
+                  sx={{
+                    width: '100%',
+                    border: '1px solid #4581F8',
+                    color: '#4581F8',
+                    boxShadow: 'none',
+                    paddingTop: '1rem',
+                    paddingBottom: '1rem',
+                    fontWeight: '500',
+                    '&:hover': {
+                      backgroundColor: '#fff',
+                      boxShadow: 'none',
+                    },
+                  }}
                 >
                   예약 취소
                 </Button>
