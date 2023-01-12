@@ -20,9 +20,9 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const myBookingDetail = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
   const { id } = router.query
-  const dispatch = useDispatch()
 
   const [getReservationWithId] = useGetReservationWithIdMutation()
   const [getReservationPeople] = useGetReservationPeopleMutation()
