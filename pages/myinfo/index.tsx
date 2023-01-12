@@ -24,13 +24,8 @@ const MyInfo = () => {
     },
   ])
 
-  useEffect(() => {
-    requestUserInfo()
-  }, [])
-
-  const requestUserInfo = async () => {
+  const requestUserInfo = async (accessToken) => {
     try {
-      const accessToken = localStorage.getItem('accessToken')
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
@@ -57,6 +52,11 @@ const MyInfo = () => {
   const changePassword = () => {
     router.push('/confirmpassword')
   }
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
 
   return (
     <>
