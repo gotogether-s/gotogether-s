@@ -1,9 +1,8 @@
-import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
-import { useState, useEffect } from 'react'
 import NavBar from '@components/NavBar'
-import style from './MyInfo.module.scss'
+import { Button, List, ListItem, ListItemText, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const MyInfo = () => {
   const router = useRouter()
