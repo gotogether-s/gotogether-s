@@ -115,6 +115,7 @@ const SignIn = () => {
           </Typography>
           <TextField
             name="password"
+            type="password"
             size="small"
             placeholder="비밀번호를 입력해주세요"
             value={signInValues.password}

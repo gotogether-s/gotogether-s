@@ -279,6 +279,7 @@ const SignUp = () => {
           </Typography>
           <TextField
             name="passwordInitial"
+            type="password"
             size="small"
             placeholder="비밀번호를 입력해주세요"
             sx={{ width: '100%' }}
@@ -307,6 +308,7 @@ const SignUp = () => {
           </Typography>
           <TextField
             name="passwordConfirm"
+            type="password"
             size="small"
             placeholder="비밀번호를 다시 입력해주세요"
             sx={{ width: '100%' }}
