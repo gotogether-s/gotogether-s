@@ -1,6 +1,13 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import NavBar from '@components/NavBar'
-import { Button, List, ListItem, ListItemText, Typography } from '@mui/material'
+import {
+  Button,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -67,13 +74,15 @@ const MyInfo = () => {
           sx={{
             padding: '0',
             margin: '3rem 0',
-            borderBottom: '0.1rem solid #ddd',
           }}
         >
           <ListItem disablePadding>
             <ListItemText
+              sx={{ margin: 0 }}
               primary={
-                <Typography sx={{ fontSize: '1.5rem' }}>{obj.label}</Typography>
+                <Typography sx={{ fontSize: '1.5rem', color: '#4E4E4E' }}>
+                  {obj.label}
+                </Typography>
               }
               secondary={
                 <Typography
@@ -86,12 +95,22 @@ const MyInfo = () => {
               }
             />
           </ListItem>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
         </List>
       ))}
       <Button
         variant="contained"
         sx={{
           width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={changePassword}
       >
