@@ -1,17 +1,17 @@
 import {
-  useGetReservationWithIdMutation,
   useGetReservationPeopleMutation,
+  useGetReservationWithIdMutation,
 } from '@api/requestApi'
-import { styled } from '@mui/material/styles'
-import { Box, Typography, Chip, Divider } from '@mui/material'
+import NavBar from '@components/NavBar'
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, Chip, Divider, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { addMyBookingDetail } from '@store/myBookingDetailSlice'
 import { addMyBookingPeople } from '@store/myBookingPeopleSlice'
-import { useState, useEffect } from 'react'
-import NavBar from '@components/NavBar'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
