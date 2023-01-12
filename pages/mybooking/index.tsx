@@ -1,20 +1,19 @@
-import { styled } from '@mui/material/styles'
-import { Box, Select, MenuItem, Typography, Chip, Button } from '@mui/material'
-import { useState, useEffect } from 'react'
 import {
+  useDeleteReservationMutation,
   useGetReservationMutation,
   useGetReservationWithDurationMutation,
-  useDeleteReservationMutation,
 } from '@api/requestApi'
-import { useSelector, useDispatch } from 'react-redux'
+import NavBar from '@components/NavBar'
+import { Box, Button, Chip, MenuItem, Select, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import {
   addMyBookingList,
   removeMyBookingList,
 } from '@store/myBookingListsSlice'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
-import NavBar from '@components/NavBar'
-import style from './MyBooking.module.scss'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const reservationDurationOptions = [
   {
