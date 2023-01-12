@@ -1,8 +1,8 @@
-import { TextField, Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useChangePasswordMutation } from '@api/requestApi'
-import { useState } from 'react'
 import NavBar from '@components/NavBar'
+import { Button, TextField } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import style from './NewPassword.module.scss'
 
 const NewPassword = () => {
