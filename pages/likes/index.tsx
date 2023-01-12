@@ -1,42 +1,44 @@
-import { styled } from '@mui/material/styles'
 import {
-  Box,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Typography,
-  Divider,
-} from '@mui/material'
+  useDeleteLikedItemsMutation,
+  useRequestLikedItemsMutation,
+} from '@api/requestApi'
+import NavBar from '@components/NavBar'
 import CloseIcon from '@mui/icons-material/Close'
 import {
-  useRequestLikedItemsMutation,
-  useDeleteLikedItemsMutation,
-} from '@api/requestApi'
-import { useSelector, useDispatch } from 'react-redux'
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Typography,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
 import {
   addLikedItems,
-  removeLikedItem,
   findAndRemoveLikedItem,
+  removeLikedItem,
 } from '@store/likedItemsSlice'
 import {
   addWishIdsToDelete,
   removeWishIdsToDelete,
 } from '@store/wishIdsToDeleteSlice'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
-import NavBar from '@components/NavBar'
-import style from './Likes.module.scss'
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+const StyledSection = styled('div')(() => ({
+  backgroundColor: '#fff',
+  padding: '1.6rem',
+  marginBottom: '1.6rem',
+}))
 
 const Likes = () => {
-  const StyledSection = styled('div')(() => ({
-    backgroundColor: '#fff',
-    padding: '1.6rem',
-    marginBottom: '1.6rem',
-  }))
-
-  const router = useRouter()
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const [requestLikedItems] = useRequestLikedItemsMutation()
+  const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
   const [checkedAll, setCheckedAll] = useState(false)
   const [checked, setChecked] = useState([])
@@ -48,9 +50,6 @@ const Likes = () => {
   const wishIdsToDelete = useSelector((state) => {
     return state.wishIdsToDelete
   })
-
-  const [requestLikedItems] = useRequestLikedItemsMutation()
-  const [deleteLikedItems] = useDeleteLikedItemsMutation()
 
   const getLikedItems = async () => {
     try {
@@ -147,6 +146,9 @@ const Likes = () => {
             <FormControlLabel
               control={
                 <Checkbox
+                  sx={{
+                    color: '#B9B9B9',
+                  }}
                   checked={checkedAll}
                   onChange={() => handleCheckedAllChange(likedItems)}
                 />
@@ -156,11 +158,16 @@ const Likes = () => {
             <Button
               variant="outlined"
               sx={{
-                color: '#222',
-                border: '1px solid #BEBEBE',
-                borderRadius: '3rem',
-                padding: '0.5rem 1.5rem',
-                height: '100%',
+                width: '12rem',
+                border: '1px solid #4581F8',
+                backgroundColor: 'transparent',
+                color: '#4581F8',
+                boxShadow: 'none',
+                fontWeight: '500',
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
+                },
               }}
               onClick={requestToRemoveSelectedLikedItems}
             >
@@ -168,85 +175,101 @@ const Likes = () => {
             </Button>
           </Box>
         </StyledSection>
-        <StyledSection sx={{ marginBottom: 0, padding: 0 }}>
+        <StyledSection sx={{ marginBottom: 0 }}>
           {likedItems.map((likedItem, index) => (
             <Box key={index}>
               <Box
                 sx={{
-                  padding: '1.6rem',
-                  '&:hover': {
-                    cursor: 'pointer',
-                  },
+                  display: 'flex',
+                  gap: '0.5rem',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  marginBottom: '0.75rem',
                 }}
-                onClick={() =>
-                  router.push(`product-details/${likedItem.product_id}`)
-                }
               >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      sx={{ padding: 0, color: '#B9B9B9' }}
+                      checked={checked[index]}
+                      onChange={() =>
+                        handleCheckedChange(likedItem.wish_id, index)
+                      }
+                    />
+                  }
+                  sx={{ margin: 0 }}
+                />
                 <Box
                   sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    marginBottom: '1rem',
+                    gap: '1.6rem',
+                    width: '100%',
                   }}
                 >
+                  <Box sx={{ width: '30%' }}>
+                    <Image
+                      src={likedItem.thumbnail}
+                      alt={likedItem.productName}
+                      width="100%"
+                      height="100%"
+                      objectFit="cover"
+                      style={{ borderRadius: '0.75rem' }}
+                    />
+                  </Box>
                   <Box
                     sx={{
+                      width: '70%',
                       display: 'flex',
-                      gap: '0.5rem',
+                      flexDirection: 'column',
+                      justifyContent: 'space-evenly',
                     }}
                   >
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          sx={{ padding: 0 }}
-                          checked={checked[index]}
-                          onChange={() =>
-                            handleCheckedChange(likedItem.wish_id, index)
-                          }
-                        />
+                    <Box>
+                      <Typography
+                        sx={{ fontWeight: 500, lineHeight: 'normal' }}
+                      >
+                        {likedItem.productName}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '1.2rem',
+                          marginBottom: '0.2rem',
+                          color: '#939393',
+                        }}
+                      >
+                        1인 / {likedItem.basicPrice.toLocaleString('ko-KR')} 원
+                      </Typography>
+                    </Box>
+                    <Typography
+                      sx={{
+                        fontSize: '1.3rem',
+                        color: '#4581F8',
+                        '&:hover': {
+                          cursor: 'pointer',
+                        },
+                      }}
+                      onClick={() =>
+                        router.push(`product-details/${likedItem.product_id}`)
                       }
-                      sx={{ margin: 0 }}
-                    />
-                    <Typography>{likedItem.productName}</Typography>
+                    >
+                      상세보기 &gt;
+                    </Typography>
                   </Box>
-                  <CloseIcon
-                    sx={{
-                      '&:hover': {
-                        cursor: 'pointer',
-                      },
-                    }}
-                    onClick={(e) =>
-                      requestToRemoveLikedItem(e, likedItem.wish_id, index)
-                    }
-                  />
                 </Box>
-                <Box
+                <CloseIcon
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
+                    color: '#B9B9B9',
+                    '&:hover': {
+                      cursor: 'pointer',
+                    },
                   }}
-                >
-                  <Image
-                    src={likedItem.thumbnail}
-                    alt={likedItem.productName}
-                    width="100%"
-                    height="100%"
-                    objectFit="contain"
-                    style={{ borderRadius: '0.75rem' }}
-                  />
-                  <Box>
-                    <Typography sx={{ fontSize: '1.2rem', color: '#4E4E4E' }}>
-                      예약 시 여행일정 선택
-                    </Typography>
-                    <Typography>
-                      1인 / {likedItem.basicPrice.toLocaleString('ko-KR')} 원
-                    </Typography>
-                  </Box>
-                </Box>
+                  onClick={(e) =>
+                    requestToRemoveLikedItem(e, likedItem.wish_id, index)
+                  }
+                />
               </Box>
               {likedItems.length - 1 !== index && (
-                <Divider sx={{ margin: '0 -1.6rem' }} />
+                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
               )}
             </Box>
           ))}
