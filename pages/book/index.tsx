@@ -520,7 +520,7 @@ const Book = () => {
           >
             {bookingClientValuesErrors.depositor}
           </Typography>
-          <Typography sx={{ fontSize: '1.3rem' }}>
+          <Typography sx={{ fontSize: '1.3rem', color: '#B9B9B9' }}>
             *KEB하나은행 267-910020-36604 (주)더샤이니
           </Typography>
         </StyledSection>
