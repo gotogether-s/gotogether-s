@@ -266,13 +266,33 @@ const Book = () => {
               <Box>
                 <Typography sx={{ fontWeight: 500 }}>{productName}</Typography>
                 <Typography sx={{ fontSize: '1.3rem' }}>{airport}</Typography>
-                <Box>
-                  <Typography sx={{ fontSize: '1.3rem' }}>
-                    출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '0.5rem',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                    출발
                   </Typography>
-                  <Typography sx={{ fontSize: '1.3rem' }}>
-                    도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                  <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                    {bookingDurationDate[0]} ({bookingDurationDay[0]})
                   </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '0.5rem',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                    도착
+                  </Typography>
+                  <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                    {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                  </Box>
                 </Box>
               </Box>
               <Typography sx={{ fontSize: '1.3rem' }}>
@@ -414,12 +434,34 @@ const Book = () => {
                 gap: '1rem',
               }}
             >
-              <Typography sx={{ fontSize: '1.3rem' }}>
-                출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
-              </Typography>
-              <Typography sx={{ fontSize: '1.3rem' }}>
-                도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
-              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '0.5rem',
+                }}
+              >
+                <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                  출발
+                </Typography>
+                <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                  {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '0.5rem',
+                }}
+              >
+                <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                  도착
+                </Typography>
+                <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                  {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                </Box>
+              </Box>
             </Box>
           </Box>
           <Box
