@@ -4,7 +4,15 @@ import {
   useGetReservationWithDurationMutation,
 } from '@api/requestApi'
 import NavBar from '@components/NavBar'
-import { Box, Button, Chip, MenuItem, Select, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Chip,
+  Divider,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 import {
   addMyBookingList,
@@ -148,169 +156,182 @@ const MyBooking = () => {
         </StyledSection>
         <StyledSection sx={{ marginBottom: 0 }}>
           {myBookingLists.map((list, index) => (
-            <Box
-              key={index}
-              sx={{
-                padding: '2.5rem 0',
-                borderBottom:
-                  myBookingLists.length - 1 !== index
-                    ? '0.1rem solid #DDD'
-                    : 'none',
-              }}
-            >
-              <Box sx={{ marginBottom: '2rem' }}>
+            <>
+              <Box
+                key={index}
+                sx={{
+                  padding: '1.6rem 0',
+                }}
+              >
+                <Box sx={{ marginBottom: '2rem' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Box>
+                      <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
+                        {productName[index]}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '1.2rem',
+                          marginBottom: '0.2rem',
+                          color: '#939393',
+                        }}
+                      >
+                        예약일: {list.reservationDate.trim().replace(/-/g, '/')}{' '}
+                        ({list.reservationDayOfWeek})
+                      </Typography>
+                    </Box>
+                    <Chip
+                      label="예약 완료"
+                      sx={{
+                        backgroundColor: '#4581F8',
+                        padding: '0.5rem 0.6rem',
+                        color: '#fff',
+                      }}
+                    />
+                  </Box>
+                </Box>
                 <Box
                   sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: '1.6rem',
+                    marginBottom: '2rem',
                   }}
                 >
-                  <Box>
-                    <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
-                      {productName[index]}
-                    </Typography>
+                  <Box
+                    sx={{
+                      width: '30%',
+                    }}
+                  >
+                    <Image
+                      src={list.thumbnail}
+                      alt={productName[index]}
+                      width="120%"
+                      height="120%"
+                      objectFit="contain"
+                      style={{ borderRadius: '0.75rem' }}
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      width: '70%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.75rem',
+                      justifyContent: 'space-around',
+                    }}
+                  >
                     <Typography
                       sx={{
                         fontSize: '1.2rem',
-                        marginBottom: '0.2rem',
-                        color: '#939393',
                       }}
                     >
-                      예약일: {list.reservationDate.trim().replace(/-/g, '/')} (
-                      {list.reservationDayOfWeek})
+                      {list.airport}
                     </Typography>
+                    <Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          gap: '0.5rem',
+                        }}
+                      >
+                        <Typography
+                          sx={{ fontSize: '1.3rem', fontWeight: 500 }}
+                        >
+                          출발
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: '1.3rem', color: '#4581F8' }}
+                        >
+                          {reservationDate[index][0]} (
+                          {reservationDay[index][0]})
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          gap: '0.5rem',
+                        }}
+                      >
+                        <Typography
+                          sx={{ fontSize: '1.3rem', fontWeight: 500 }}
+                        >
+                          도착
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: '1.3rem', color: '#4581F8' }}
+                        >
+                          {reservationDate[index][1]} (
+                          {reservationDay[index][1]})
+                        </Typography>
+                      </Box>
+                    </Box>
                   </Box>
-                  <Chip
-                    label="예약 완료"
-                    sx={{
-                      backgroundColor: '#4581F8',
-                      padding: '0.5rem 0.6rem',
-                      color: '#fff',
-                    }}
-                  />
-                </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '1.6rem',
-                  marginBottom: '2rem',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '30%',
-                  }}
-                >
-                  <Image
-                    src={list.thumbnail}
-                    alt={productName[index]}
-                    width="120%"
-                    height="120%"
-                    objectFit="contain"
-                    style={{ borderRadius: '0.75rem' }}
-                  />
                 </Box>
                 <Box
                   sx={{
-                    width: '70%',
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.75rem',
-                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '1rem',
                   }}
                 >
-                  <Typography
+                  <Button
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    onClick={() => goToMyBookingDetailPage(list.reservation_id)}
                     sx={{
-                      fontSize: '1.2rem',
+                      width: '100%',
+                      backgroundColor: '#4581F8',
+                      boxShadow: 'none',
+                      paddingTop: '1rem',
+                      paddingBottom: '1rem',
+                      fontWeight: '500',
+                      '&:hover': {
+                        backgroundColor: '#4581F8',
+                        boxShadow: 'none',
+                      },
                     }}
                   >
-                    {list.airport}
-                  </Typography>
-                  <Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        gap: '0.5rem',
-                      }}
-                    >
-                      <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                        출발
-                      </Typography>
-                      <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                        {reservationDate[index][0]} ({reservationDay[index][0]})
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        gap: '0.5rem',
-                      }}
-                    >
-                      <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                        도착
-                      </Typography>
-                      <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                        {reservationDate[index][1]} ({reservationDay[index][1]})
-                      </Typography>
-                    </Box>
-                  </Box>
+                    상세보기
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    fullWidth
+                    onClick={() =>
+                      cancelReservation(list.reservation_id, index)
+                    }
+                    sx={{
+                      width: '100%',
+                      border: '1px solid #4581F8',
+                      color: '#4581F8',
+                      boxShadow: 'none',
+                      paddingTop: '1rem',
+                      paddingBottom: '1rem',
+                      fontWeight: '500',
+                      '&:hover': {
+                        backgroundColor: '#fff',
+                        boxShadow: 'none',
+                      },
+                    }}
+                  >
+                    예약 취소
+                  </Button>
                 </Box>
               </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '1rem',
-                }}
-              >
-                <Button
-                  variant="contained"
-                  size="large"
-                  fullWidth
-                  onClick={() => goToMyBookingDetailPage(list.reservation_id)}
-                  sx={{
-                    width: '100%',
-                    backgroundColor: '#4581F8',
-                    boxShadow: 'none',
-                    paddingTop: '1rem',
-                    paddingBottom: '1rem',
-                    fontWeight: '500',
-                    '&:hover': {
-                      backgroundColor: '#4581F8',
-                      boxShadow: 'none',
-                    },
-                  }}
-                >
-                  상세보기
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  fullWidth
-                  onClick={() => cancelReservation(list.reservation_id, index)}
-                  sx={{
-                    width: '100%',
-                    border: '1px solid #4581F8',
-                    color: '#4581F8',
-                    boxShadow: 'none',
-                    paddingTop: '1rem',
-                    paddingBottom: '1rem',
-                    fontWeight: '500',
-                    '&:hover': {
-                      backgroundColor: '#fff',
-                      boxShadow: 'none',
-                    },
-                  }}
-                >
-                  예약 취소
-                </Button>
-              </Box>
-            </Box>
+              {myBookingLists.length - 1 !== index && (
+                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+              )}
+            </>
           ))}
         </StyledSection>
       </Box>
