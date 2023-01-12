@@ -1,32 +1,31 @@
-import { styled } from '@mui/material/styles'
 import {
-  Box,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Typography,
-  Divider,
-} from '@mui/material'
+  useDeleteLikedItemsMutation,
+  useRequestLikedItemsMutation,
+} from '@api/requestApi'
+import NavBar from '@components/NavBar'
 import CloseIcon from '@mui/icons-material/Close'
 import {
-  useRequestLikedItemsMutation,
-  useDeleteLikedItemsMutation,
-} from '@api/requestApi'
-import { useSelector, useDispatch } from 'react-redux'
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Typography,
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
 import {
   addLikedItems,
-  removeLikedItem,
   findAndRemoveLikedItem,
+  removeLikedItem,
 } from '@store/likedItemsSlice'
 import {
   addWishIdsToDelete,
   removeWishIdsToDelete,
 } from '@store/wishIdsToDeleteSlice'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
-import NavBar from '@components/NavBar'
-import style from './Likes.module.scss'
-import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Likes = () => {
   const StyledSection = styled('div')(() => ({
