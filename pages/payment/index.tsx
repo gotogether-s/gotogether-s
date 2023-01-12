@@ -1,11 +1,10 @@
-import { Box, Typography, Button } from '@mui/material'
-import Image from 'next/image'
+import { Box, Button, Typography } from '@mui/material'
 import payment from '@public/payment.png'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
-import style from './Payment.module.scss'
+import { useEffect, useState } from 'react'
 
 const Payment = () => {
   const router = useRouter()
