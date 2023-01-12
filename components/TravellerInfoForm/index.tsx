@@ -1,19 +1,18 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
-  Box,
-  FormControlLabel,
-  Checkbox,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
+  Box,
+  Checkbox,
+  FormControlLabel,
   TextField,
   Typography,
 } from '@mui/material'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateReservationPersonInfo } from '@store/makeReservationSlice'
 import { openModal } from '@store/displayModalWindowSlice'
-import { useState, useEffect } from 'react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import style from './TravellerInfoForm.module.scss'
+import { updateReservationPersonInfo } from '@store/makeReservationSlice'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
   const index = number - 1
@@ -67,10 +66,6 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
     }
   }
 
-  useEffect(() => {
-    getClientInfo(duplicateClientInfo)
-  }, [duplicateClientInfo])
-
   const inputChangeHandler = (e) => {
     const { name, value } = e.target
     dispatch(updateReservationPersonInfo({ [name]: value, index: index }))
@@ -102,6 +97,10 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
       )
     }
   }
+
+  useEffect(() => {
+    getClientInfo(duplicateClientInfo)
+  }, [duplicateClientInfo])
 
   return (
     <Accordion
@@ -139,17 +138,23 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
                   onChange={updateDuplicateClientInfoState}
                 />
               }
-              label="예약자 정보와 동일"
+              label={
+                <Typography sx={{ fontSize: '1.4rem' }}>
+                  예약자 정보와 동일
+                </Typography>
+              }
               sx={{
-                margin: '0 0 1rem 0',
+                margin: '0 0 0.5rem',
                 '& .MuiButtonBase-root': {
                   padding: '0 0.5rem 0 0',
                 },
               }}
             />
           </Box>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>이름</div>
+          <Box sx={{ marginBottom: '1rem' }}>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              이름
+            </Typography>
             <TextField
               name="name"
               size="small"
@@ -159,24 +164,30 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
               onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
-          </div>
-          <p
-            style={{
-              visibility:
-                travellerValuesErrors &&
+            <Typography
+              sx={{
+                visibility:
+                  travellerValuesErrors &&
+                  travellerValuesErrors[index] &&
+                  travellerValuesErrors[index].name
+                    ? 'visible'
+                    : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
+              }}
+            >
+              {travellerValuesErrors &&
                 travellerValuesErrors[index] &&
-                travellerValuesErrors[index].name
-                  ? 'visible'
-                  : 'hidden',
-            }}
-            className={style['error-message']}
-          >
-            {travellerValuesErrors &&
-              travellerValuesErrors[index] &&
-              travellerValuesErrors[index].name}
-          </p>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>전화번호</div>
+                travellerValuesErrors[index].name}
+            </Typography>
+          </Box>
+          <Box>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              전화번호
+            </Typography>
             <TextField
               name="phoneNumber"
               size="small"
@@ -186,22 +197,26 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
               onBlur={removeInputSpaces}
               sx={{ width: '100%' }}
             />
-            <p
-              style={{
+            <Typography
+              sx={{
                 visibility:
                   travellerValuesErrors &&
                   travellerValuesErrors[index] &&
                   travellerValuesErrors[index].phoneNumber
                     ? 'visible'
                     : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
               }}
-              className={style['error-message']}
             >
               {travellerValuesErrors &&
                 travellerValuesErrors[index] &&
                 travellerValuesErrors[index].phoneNumber}
-            </p>
-          </div>
+            </Typography>
+          </Box>
         </Box>
       </AccordionDetails>
     </Accordion>

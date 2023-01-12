@@ -1,32 +1,31 @@
+import { useRequestReservationMutation } from '@api/requestApi'
+import ModalWindow from '@components/ModalWindow'
+import NavBar from '@components/NavBar'
+import TravellerInfoForm from '@components/TravellerInfoForm'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import {
   Box,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  TextField,
   Button,
-  FormControlLabel,
-  Radio,
+  Card,
+  CardContent,
+  CardMedia,
   Checkbox,
+  Divider,
+  FormControlLabel,
+  TextField,
+  Typography,
 } from '@mui/material'
-import RemoveIcon from '@mui/icons-material/Remove'
-import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material/styles'
-import { useRouter } from 'next/router'
-import { useRequestReservationMutation } from '@api/requestApi'
-import { useSelector, useDispatch } from 'react-redux'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
-  updateReservationDetail,
   createReservationPersonList,
   deleteReservationPersonList,
+  updateReservationDetail,
 } from '@store/makeReservationSlice'
-import { useState, useEffect } from 'react'
-import NavBar from '@components/NavBar'
-import ModalWindow from '@components/ModalWindow'
-import TravellerInfoForm from '@components/TravellerInfoForm'
-import style from './Book.module.scss'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
@@ -35,6 +34,7 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const Book = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
 
   const [requestReservation] = useRequestReservationMutation()
@@ -84,8 +84,6 @@ const Book = () => {
   const getBookingClientInfo = useSelector((state) => {
     return state.bookingClientInfo
   })
-
-  const dispatch = useDispatch()
 
   const inputChangeHandler = (e) => {
     const { name, value, checked } = e.target
@@ -266,27 +264,57 @@ const Book = () => {
               }}
             >
               <Box>
-                <Typography>{productName}</Typography>
-                <Typography>{airport}</Typography>
-                <Box>
-                  <Typography>
-                    출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                <Typography sx={{ fontWeight: 500 }}>{productName}</Typography>
+                <Typography sx={{ fontSize: '1.3rem' }}>{airport}</Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '0.5rem',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                    출발
                   </Typography>
-                  <Typography>
-                    도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                  <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                    {bookingDurationDate[0]} ({bookingDurationDay[0]})
                   </Typography>
                 </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '0.5rem',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                    도착
+                  </Typography>
+                  <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                    {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                  </Box>
+                </Box>
               </Box>
-              <Typography>
-                1인 / {basicPrice.toLocaleString('ko-KR')} 원
+              <Typography sx={{ fontSize: '1.3rem' }}>
+                1인 /{' '}
+                <Box sx={{ display: 'inline', fontWeight: 500 }}>
+                  {basicPrice.toLocaleString('ko-KR')} 원
+                </Box>
               </Typography>
             </CardContent>
           </Card>
         </StyledSection>
         <StyledSection>
-          <Typography>예약자 정보 (대표)</Typography>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>이름</div>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            예약자 정보 (대표)
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
+          <Box sx={{ marginBottom: '1rem' }}>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              이름
+            </Typography>
             <TextField
               name="name"
               size="small"
@@ -296,19 +324,25 @@ const Book = () => {
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
-            <p
-              style={{
+            <Typography
+              sx={{
                 visibility: bookingClientValuesErrors.name
                   ? 'visible'
                   : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
               }}
-              className={style['error-message']}
             >
               {bookingClientValuesErrors.name}
-            </p>
-          </div>
-          <div className={style['input-wrapper']}>
-            <div className={style['label']}>전화번호</div>
+            </Typography>
+          </Box>
+          <Box sx={{ marginBottom: '1rem' }}>
+            <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+              전화번호
+            </Typography>
             <TextField
               name="phoneNumber"
               size="small"
@@ -318,20 +352,29 @@ const Book = () => {
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
             />
-            <p
-              style={{
+            <Typography
+              sx={{
                 visibility: bookingClientValuesErrors.phoneNumber
                   ? 'visible'
                   : 'hidden',
+                color: 'tomato',
+                fontSize: '1.4rem',
+                height: '1.6rem',
+                paddingTop: '0.3rem',
+                lineHeight: 'normal',
               }}
-              className={style['error-message']}
             >
               {bookingClientValuesErrors.phoneNumber}
-            </p>
-          </div>
+            </Typography>
+          </Box>
         </StyledSection>
         <StyledSection>
-          <Typography>인원</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            인원
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography>인원수</Typography>
             <Box sx={{ display: 'flex', gap: '1.6rem' }}>
@@ -373,7 +416,12 @@ const Book = () => {
           })}
         </StyledSection>
         <StyledSection>
-          <Typography>최종 요금</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            최종 요금
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box
             sx={{
               padding: '1rem 0',
@@ -383,22 +431,44 @@ const Book = () => {
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                gap: '1rem',
               }}
             >
-              <Typography>
-                출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
-              </Typography>
-              <Typography>
-                도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
-              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '0.5rem',
+                }}
+              >
+                <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                  출발
+                </Typography>
+                <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                  {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '0.5rem',
+                }}
+              >
+                <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
+                  도착
+                </Typography>
+                <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
+                  {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                </Box>
+              </Box>
             </Box>
           </Box>
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '1rem 0',
+              padding: '0.5rem 0',
             }}
           >
             <Typography>성인 x{numberOfTravellers}</Typography>
@@ -408,20 +478,24 @@ const Book = () => {
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
-              padding: '1rem 0',
+              padding: '0.5rem 0 0',
             }}
           >
-            <Typography>합계</Typography>
+            <Typography sx={{ fontWeight: 500 }}>합계</Typography>
             <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
           </Box>
         </StyledSection>
         <StyledSection>
-          <Typography>결제 방법</Typography>
-          <FormControlLabel
-            control={<Radio defaultChecked />}
-            label="무통장입금"
-          />
-          <Typography>입금자명</Typography>
+          <Typography
+            sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
+          >
+            결제
+          </Typography>
+          <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
+
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            입금자명
+          </Typography>
           <TextField
             name="depositor"
             size="small"
@@ -431,16 +505,24 @@ const Book = () => {
             onBlur={removeInputSpaces}
             sx={{ width: '100%' }}
           />
-          <p
-            style={{
+
+          <Typography
+            sx={{
               visibility: bookingClientValuesErrors.depositor
                 ? 'visible'
                 : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {bookingClientValuesErrors.depositor}
-          </p>
+          </Typography>
+          <Typography sx={{ fontSize: '1.3rem', color: '#B9B9B9' }}>
+            *KEB하나은행 267-910020-36604 (주)더샤이니
+          </Typography>
         </StyledSection>
         <StyledSection
           sx={{
@@ -459,21 +541,34 @@ const Book = () => {
             label="예약조건 확인 및 결제진행에 동의"
             sx={{ margin: 0 }}
           />
-          <p
-            style={{
+          <Typography
+            sx={{
               visibility: bookingClientValuesErrors.agreement
                 ? 'visible'
                 : 'hidden',
-              marginBottom: '1.6rem',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
             }}
-            className={style['error-message']}
           >
             {bookingClientValuesErrors.agreement}
-          </p>
+          </Typography>
           <Button
             variant="contained"
             sx={{
               width: '100%',
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              fontWeight: '500',
+              margin: '1rem 0',
+              '&:hover': {
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+              },
             }}
             onClick={clickReservationRequest}
           >
