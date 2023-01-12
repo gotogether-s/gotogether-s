@@ -15,6 +15,12 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+const StyledSection = styled('div')(() => ({
+  backgroundColor: '#fff',
+  padding: '1.6rem',
+  marginBottom: '1.6rem',
+}))
+
 const reservationDurationOptions = [
   {
     label: '전체',
@@ -42,11 +48,9 @@ const MyBooking = () => {
   const [getReservationWithDuration] = useGetReservationWithDurationMutation()
   const [deleteReservation] = useDeleteReservationMutation()
 
-  const StyledSection = styled('div')(() => ({
-    backgroundColor: '#fff',
-    padding: '1.6rem',
-    marginBottom: '1.6rem',
-  }))
+  const [reservationDuration, setReservationDuration] = useState(
+    reservationDurationOptions[0].value,
+  )
 
   const readMyBookingInfo = async (accessToken) => {
     try {
@@ -81,10 +85,6 @@ const MyBooking = () => {
     dates.map((date) => getDayName(date).charAt(0)),
   )
 
-  const [reservationDuration, setReservationDuration] = useState(
-    reservationDurationOptions[0].value,
-  )
-
   const changeReservationDuration = async (e) => {
     setReservationDuration(e.target.value)
     try {
@@ -99,11 +99,6 @@ const MyBooking = () => {
       console.log('e: ', e)
     }
   }
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken')
-    accessToken && readMyBookingInfo(accessToken)
-  }, [])
 
   const cancelReservation = async (reservation_id, index) => {
     const data = {
@@ -124,6 +119,11 @@ const MyBooking = () => {
   const goToMyBookingDetailPage = (reservation_id) => {
     router.push(`mybooking/${reservation_id}`)
   }
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && readMyBookingInfo(accessToken)
+  }, [])
 
   return (
     <>
