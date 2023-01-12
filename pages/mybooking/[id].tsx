@@ -1,17 +1,17 @@
 import {
-  useGetReservationWithIdMutation,
   useGetReservationPeopleMutation,
+  useGetReservationWithIdMutation,
 } from '@api/requestApi'
-import { styled } from '@mui/material/styles'
-import { Box, Typography, Chip, Divider } from '@mui/material'
+import NavBar from '@components/NavBar'
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, Chip, Divider, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { addMyBookingDetail } from '@store/myBookingDetailSlice'
 import { addMyBookingPeople } from '@store/myBookingPeopleSlice'
-import { useState, useEffect } from 'react'
-import NavBar from '@components/NavBar'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const StyledSection = styled('div')(() => ({
   backgroundColor: '#fff',
@@ -20,9 +20,9 @@ const StyledSection = styled('div')(() => ({
 }))
 
 const myBookingDetail = () => {
+  const dispatch = useDispatch()
   const router = useRouter()
   const { id } = router.query
-  const dispatch = useDispatch()
 
   const [getReservationWithId] = useGetReservationWithIdMutation()
   const [getReservationPeople] = useGetReservationPeopleMutation()
@@ -54,7 +54,7 @@ const myBookingDetail = () => {
     const bookingDurationDay = bookingDurationDate.map((date) =>
       getDayName(date).charAt(0),
     )
-    reservationDate.trim().replace(/-/g, '/')
+    const formattedReservationDate = reservationDate.trim().replace(/-/g, '/')
     const pricePerEach = (totalPrice / totalReservationPeople).toLocaleString(
       'ko-KR',
     )
@@ -64,7 +64,7 @@ const myBookingDetail = () => {
       ...data,
       bookingDurationDate: bookingDurationDate,
       bookingDurationDay: bookingDurationDay,
-      reservationDate: reservationDate,
+      reservationDate: formattedReservationDate,
       pricePerEach: pricePerEach,
       formattedTotalPrice: formattedTotalPrice,
     }
@@ -77,6 +77,7 @@ const myBookingDetail = () => {
   })
 
   const {
+    airport,
     bookingDurationDate,
     bookingDurationDay,
     formattedTotalPrice,
@@ -135,17 +136,31 @@ const myBookingDetail = () => {
                 <Box
                   sx={{
                     display: 'flex',
-                    alignItems: 'center',
                     justifyContent: 'space-between',
                     marginBottom: '2rem',
                   }}
                 >
-                  <Typography sx={{ fontSize: '1.8rem', fontWeight: 600 }}>
-                    {reservationDate} ({reservationDayOfWeek}) 예약
-                  </Typography>
+                  <Box>
+                    <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
+                      {productName}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                        marginBottom: '0.2rem',
+                        color: '#939393',
+                      }}
+                    >
+                      예약일: {reservationDate} ({reservationDayOfWeek})
+                    </Typography>
+                  </Box>
                   <Chip
                     label={status}
-                    sx={{ backgroundColor: '#4581F8', color: '#fff' }}
+                    sx={{
+                      backgroundColor: '#4581F8',
+                      padding: '0.5rem 0.6rem',
+                      color: '#fff',
+                    }}
                   />
                 </Box>
                 <Box
@@ -174,29 +189,54 @@ const myBookingDetail = () => {
                       width: '70%',
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '1.6rem',
+                      gap: '0.75rem',
+                      justifyContent: 'space-around',
                     }}
                   >
+                    <Typography
+                      sx={{
+                        fontSize: '1.2rem',
+                      }}
+                    >
+                      {airport}
+                    </Typography>
                     <Box>
-                      <Typography sx={{ fontWeight: '500' }}>
-                        {productName}
-                      </Typography>
-                      <Typography
+                      <Box
                         sx={{
-                          fontSize: '1.2rem',
-                          marginBottom: '0.2rem',
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          gap: '0.5rem',
                         }}
                       >
-                        출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
-                      </Typography>
-                      <Typography
+                        <Typography
+                          sx={{ fontSize: '1.3rem', fontWeight: 500 }}
+                        >
+                          출발
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: '1.3rem', color: '#4581F8' }}
+                        >
+                          {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                        </Typography>
+                      </Box>
+                      <Box
                         sx={{
-                          fontSize: '1.2rem',
-                          marginBottom: '0.2rem',
+                          display: 'flex',
+                          alignItems: 'baseline',
+                          gap: '0.5rem',
                         }}
                       >
-                        도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
-                      </Typography>
+                        <Typography
+                          sx={{ fontSize: '1.3rem', fontWeight: 500 }}
+                        >
+                          도착
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: '1.3rem', color: '#4581F8' }}
+                        >
+                          {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                        </Typography>
+                      </Box>
                     </Box>
                     <Typography
                       sx={{
@@ -234,7 +274,9 @@ const myBookingDetail = () => {
                       }}
                     >
                       <Typography sx={{ fontWeight: 500 }}>이름</Typography>
-                      <Typography>{bookingClient.name}</Typography>
+                      <Typography sx={{ color: '#4E4E4E' }}>
+                        {bookingClient.name}
+                      </Typography>
                     </Box>
                     <Box
                       sx={{ display: 'flex', justifyContent: 'space-between' }}
@@ -242,7 +284,9 @@ const myBookingDetail = () => {
                       <Typography sx={{ fontWeight: 500 }}>
                         휴대폰 번호
                       </Typography>
-                      <Typography>{bookingClient.phoneNumber}</Typography>
+                      <Typography sx={{ color: '#4E4E4E' }}>
+                        {bookingClient.phoneNumber}
+                      </Typography>
                     </Box>
                   </Box>
                   {!list.role && (
@@ -262,7 +306,9 @@ const myBookingDetail = () => {
                           }}
                         >
                           <Typography sx={{ fontWeight: 500 }}>이름</Typography>
-                          <Typography>{list.name}</Typography>
+                          <Typography sx={{ color: '#4E4E4E' }}>
+                            {list.name}
+                          </Typography>
                         </Box>
                         <Box
                           sx={{
@@ -273,7 +319,9 @@ const myBookingDetail = () => {
                           <Typography sx={{ fontWeight: 500 }}>
                             휴대폰 번호
                           </Typography>
-                          <Typography>{list.phoneNumber}</Typography>
+                          <Typography sx={{ color: '#4E4E4E' }}>
+                            {list.phoneNumber}
+                          </Typography>
                         </Box>
                       </Box>
                     </>
@@ -285,38 +333,30 @@ const myBookingDetail = () => {
               <Box>
                 <Typography sx={{ fontWeight: 600 }}>최종 요금</Typography>
                 <Divider sx={{ margin: '1.6rem -1.6rem' }} />
-                <Typography sx={{ marginBottom: '0.5rem' }}>
-                  {productName}
-                </Typography>
-                <Box sx={{ display: 'flex', gap: '1rem' }}>
-                  <Typography
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '1rem',
+                  }}
+                >
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Typography>성인 x {totalReservationPeople}</Typography>
+                    <Typography>{formattedTotalPrice} 원</Typography>
+                  </Box>
+                  <Box
                     sx={{
-                      fontSize: '1.2rem',
-                      marginBottom: '0.2rem',
+                      display: 'flex',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    출발 {bookingDurationDate[0]} ({bookingDurationDay[0]})
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: '1.2rem',
-                      marginBottom: '0.2rem',
-                    }}
-                  >
-                    도착 {bookingDurationDate[1]} ({bookingDurationDay[1]})
-                  </Typography>
-                </Box>
-                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography>성인 x {totalReservationPeople}</Typography>
-                  <Typography>{formattedTotalPrice} 원</Typography>
-                </Box>
-                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography sx={{ fontWeight: 600 }}>합계</Typography>
-                  <Typography sx={{ fontWeight: 600 }}>
-                    {formattedTotalPrice} 원
-                  </Typography>
+                    <Typography sx={{ fontWeight: 600 }}>합계</Typography>
+                    <Typography sx={{ fontWeight: 600 }}>
+                      {formattedTotalPrice} 원
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             </StyledSection>
@@ -324,9 +364,13 @@ const myBookingDetail = () => {
               <Box sx={{ paddingBottom: '5rem' }}>
                 <Typography sx={{ fontWeight: 600 }}>결제 방법</Typography>
                 <Divider sx={{ margin: '1.6rem -1.6rem' }} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography>입금자명</Typography>
-                  <Typography>{bookingClient.name}</Typography>
+                <Box sx={{ display: 'flex', gap: '0.5rem' }}>
+                  <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
+                    입금자명
+                  </Typography>
+                  <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
+                    {bookingClient.name}
+                  </Typography>
                 </Box>
                 <Box>
                   <Box sx={{ display: 'flex', gap: '0.5rem' }}>
