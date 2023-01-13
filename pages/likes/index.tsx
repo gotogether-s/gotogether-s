@@ -51,9 +51,8 @@ const Likes = () => {
     return state.wishIdsToDelete
   })
 
-  const getLikedItems = async () => {
+  const getLikedItems = async (accessToken) => {
     try {
-      const accessToken = localStorage.getItem('accessToken')
       const res = await requestLikedItems({
         accessToken: accessToken,
       })
@@ -128,7 +127,8 @@ const Likes = () => {
   }
 
   useEffect(() => {
-    getLikedItems()
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && getLikedItems(accessToken)
   }, [])
 
   return (
