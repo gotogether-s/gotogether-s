@@ -1,12 +1,12 @@
-import { TextField, Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useConfirmPasswordMutation } from '@api/requestApi'
-import { useState } from 'react'
 import NavBar from '@components/NavBar'
-import style from './ConfirmPassword.module.scss'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const ConfirmPassword = () => {
   const router = useRouter()
+
   const [confirmPassword] = useConfirmPasswordMutation()
 
   const [passwordValue, setPasswordValue] = useState('')
@@ -57,41 +57,66 @@ const ConfirmPassword = () => {
   return (
     <>
       <NavBar link="/" title="비밀번호 수정" />
-      <div className={style['input-wrapper']}>
-        <div className={style['label']}>기존 비밀번호</div>
+      <Box sx={{ marginBottom: '1rem' }}>
+        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+          기존 비밀번호
+        </Typography>
         <TextField
           name="password"
+          type="password"
           size="small"
           placeholder="기존 비밀번호를 입력해주세요"
           sx={{ width: '100%' }}
           value={passwordValue}
           onChange={handlePasswordValueChange}
         />
-        <p
-          style={{
+        <Typography
+          sx={{
             visibility: passwordValueError.password ? 'visible' : 'hidden',
+            color: 'tomato',
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.3rem',
+            lineHeight: 'normal',
           }}
-          className={style['error-message']}
         >
           {passwordValueError.password}
-        </p>
-      </div>
-      <Button onClick={goToNext} variant="contained" sx={{ width: '100%' }}>
+        </Typography>
+      </Box>
+      <Button
+        onClick={goToNext}
+        variant="contained"
+        sx={{
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
+        }}
+      >
         다음
       </Button>
-      <p
-        className={
-          passwordConfirmResponseMessage !== '비밀번호가 일치합니다!'
-            ? style['error-message']
-            : style['success-message']
-        }
-        style={{
+      <Typography
+        sx={{
           visibility:
             passwordConfirmResponseMessage !== '' ? 'visible' : 'hidden',
+          color:
+            passwordConfirmResponseMessage !== '비밀번호가 일치합니다!'
+              ? 'tomato'
+              : 'green',
+          fontSize: '1.4rem',
+          height: '1.6rem',
+          paddingTop: '0.3rem',
+          lineHeight: 'normal',
         }}
       >
         {passwordConfirmResponseMessage}
-      </p>
+      </Typography>
     </>
   )
 }

@@ -1,9 +1,8 @@
-import { TextField, Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useChangePasswordMutation } from '@api/requestApi'
-import { useState } from 'react'
 import NavBar from '@components/NavBar'
-import style from './NewPassword.module.scss'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const NewPassword = () => {
   const router = useRouter()
@@ -76,66 +75,94 @@ const NewPassword = () => {
   return (
     <>
       <NavBar link="/" title="비밀번호 수정" />
-      <div className={style['input-wrapper']}>
-        <div className={style['label']}>새 비밀번호</div>
+      <Box sx={{ marginBottom: '1rem' }}>
+        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+          새 비밀번호
+        </Typography>
         <TextField
           name="password"
+          type="password"
           size="small"
           placeholder="새 비밀번호를 입력해주세요"
           value={newPasswordValues.password}
           sx={{ width: '100%' }}
           onChange={handleNewPasswordValuesChange}
         />
-        <p
-          style={{
+        <Typography
+          sx={{
             visibility: passwordValuesErrors.password ? 'visible' : 'hidden',
+            color: 'tomato',
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.3rem',
+            lineHeight: 'normal',
           }}
-          className={style['error-message']}
         >
           {passwordValuesErrors.password}
-        </p>
-      </div>
-      <div className={style['input-wrapper']}>
-        <div className={style['label']}>새 비밀번호 확인</div>
+        </Typography>
+      </Box>
+      <Box sx={{ marginBottom: '1rem' }}>
+        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+          새 비밀번호 확인
+        </Typography>
         <TextField
           name="passwordConfirm"
+          type="password"
           size="small"
           placeholder="새 비밀번호를 다시 입력해주세요"
           value={newPasswordValues.passwordConfirm}
           sx={{ width: '100%' }}
           onChange={handleNewPasswordValuesChange}
         />
-        <p
-          style={{
+        <Typography
+          sx={{
             visibility: passwordValuesErrors.passwordConfirm
               ? 'visible'
               : 'hidden',
+            color: 'tomato',
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.3rem',
+            lineHeight: 'normal',
           }}
-          className={style['error-message']}
         >
           {passwordValuesErrors.passwordConfirm}
-        </p>
-      </div>
+        </Typography>
+      </Box>
       <Button
         onClick={requestPasswordChange}
         variant="contained"
-        sx={{ width: '100%' }}
+        sx={{
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
+        }}
       >
         확인
       </Button>
-      <p
-        className={
-          passwordUpdateResponseMessage !== '비밀번호 변경에 성공했습니다!'
-            ? style['error-message']
-            : style['success-message']
-        }
-        style={{
+      <Typography
+        sx={{
           visibility:
             passwordUpdateResponseMessage !== '' ? 'visible' : 'hidden',
+          color:
+            passwordUpdateResponseMessage !== '비밀번호 변경에 성공했습니다!'
+              ? 'tomato'
+              : 'green',
+          fontSize: '1.4rem',
+          height: '1.6rem',
+          paddingTop: '0.3rem',
+          lineHeight: 'normal',
         }}
       >
         {passwordUpdateResponseMessage}
-      </p>
+      </Typography>
     </>
   )
 }

@@ -1,9 +1,15 @@
-import { List, ListItem, ListItemText, Typography, Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
-import { useState, useEffect } from 'react'
 import NavBar from '@components/NavBar'
-import style from './MyInfo.module.scss'
+import {
+  Button,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@mui/material'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const MyInfo = () => {
   const router = useRouter()
@@ -25,13 +31,8 @@ const MyInfo = () => {
     },
   ])
 
-  useEffect(() => {
-    requestUserInfo()
-  }, [])
-
-  const requestUserInfo = async () => {
+  const requestUserInfo = async (accessToken) => {
     try {
-      const accessToken = localStorage.getItem('accessToken')
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
@@ -59,6 +60,11 @@ const MyInfo = () => {
     router.push('/confirmpassword')
   }
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && requestUserInfo(accessToken)
+  }, [])
+
   return (
     <>
       <NavBar link="/" title="내 정보" />
@@ -68,13 +74,15 @@ const MyInfo = () => {
           sx={{
             padding: '0',
             margin: '3rem 0',
-            borderBottom: '0.1rem solid #ddd',
           }}
         >
           <ListItem disablePadding>
             <ListItemText
+              sx={{ margin: 0 }}
               primary={
-                <Typography sx={{ fontSize: '1.5rem' }}>{obj.label}</Typography>
+                <Typography sx={{ fontSize: '1.5rem', color: '#4E4E4E' }}>
+                  {obj.label}
+                </Typography>
               }
               secondary={
                 <Typography
@@ -87,12 +95,22 @@ const MyInfo = () => {
               }
             />
           </ListItem>
+          <Divider sx={{ margin: '0 -1.6rem' }} />
         </List>
       ))}
       <Button
         variant="contained"
         sx={{
           width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
         }}
         onClick={changePassword}
       >
