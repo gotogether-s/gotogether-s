@@ -130,7 +130,18 @@ const NewPassword = () => {
       <Button
         onClick={requestPasswordChange}
         variant="contained"
-        sx={{ width: '100%' }}
+        sx={{
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
+        }}
       >
         확인
       </Button>

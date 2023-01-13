@@ -82,7 +82,22 @@ const ConfirmPassword = () => {
           {passwordValueError.password}
         </Typography>
       </Box>
-      <Button onClick={goToNext} variant="contained" sx={{ width: '100%' }}>
+      <Button
+        onClick={goToNext}
+        variant="contained"
+        sx={{
+          width: '100%',
+          backgroundColor: '#4581F8',
+          boxShadow: 'none',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          fontWeight: '500',
+          '&:hover': {
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+          },
+        }}
+      >
         다음
       </Button>
       <Typography
