@@ -16,7 +16,9 @@ import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
 } from '@store/bookingAndLikesNumberSlice'
+import { close } from '@store/sideBarStatusSlice'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -31,6 +33,7 @@ const User = (props) => {
   } = props
 
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const [getReservation] = useGetReservationMutation()
   const [requestLikedItems] = useRequestLikedItemsMutation()
@@ -79,6 +82,16 @@ const User = (props) => {
     return state.isLogin.isLogin
   })
 
+  const goToMyBooking = () => {
+    router.push(`${myBookingLink}`)
+    dispatch(close())
+  }
+
+  const goToLikes = () => {
+    router.push(`${favoriteLink}`)
+    dispatch(close())
+  }
+
   return (
     <>
       <Link href={myInfoLink}>
@@ -118,51 +131,49 @@ const User = (props) => {
         </List>
       </Link>
       <Box sx={{ display: 'flex' }}>
-        <Link href={myBookingLink}>
-          <Box
-            sx={{
-              backgroundColor: '#F2F4FA',
-              width: '50%',
-              height: '10rem',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              '&:hover': {
-                cursor: 'pointer',
-              },
-            }}
-          >
-            <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
-            <Typography sx={{ fontSize: '2rem' }}>
-              {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
-            </Typography>
-          </Box>
-        </Link>
+        <Box
+          sx={{
+            backgroundColor: '#F2F4FA',
+            width: '50%',
+            height: '10rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            '&:hover': {
+              cursor: 'pointer',
+            },
+          }}
+          onClick={goToMyBooking}
+        >
+          <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
+          <Typography sx={{ fontSize: '2rem' }}>
+            {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
+          </Typography>
+        </Box>
         <Box sx={{ borderRight: '1px solid #fff', width: '0.1rem' }}></Box>
-        <Link href={favoriteLink}>
-          <Box
-            sx={{
-              backgroundColor: '#F2F4FA',
-              width: '50%',
-              height: '10rem',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              '&:hover': {
-                cursor: 'pointer',
-              },
-            }}
-          >
-            <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
-            <Typography sx={{ fontSize: '2rem' }}>
-              {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
-            </Typography>
-          </Box>
-        </Link>
+        <Box
+          sx={{
+            backgroundColor: '#F2F4FA',
+            width: '50%',
+            height: '10rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            '&:hover': {
+              cursor: 'pointer',
+            },
+          }}
+          onClick={goToLikes}
+        >
+          <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
+          <Typography sx={{ fontSize: '2rem' }}>
+            {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
+          </Typography>
+        </Box>
       </Box>
     </>
   )
