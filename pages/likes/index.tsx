@@ -175,98 +175,146 @@ const Likes = () => {
             </Button>
           </Box>
         </StyledSection>
-        <StyledSection sx={{ marginBottom: 0 }}>
-          {likedItems.map((likedItem, index) => (
-            <Box key={index}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: '0.5rem',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: '0.75rem',
-                }}
-              >
-                <Checkbox
-                  sx={{ padding: 0, color: '#B9B9B9' }}
-                  checked={checked[index]}
-                  onChange={() => handleCheckedChange(likedItem.wish_id, index)}
-                />
+        {likedItems.length ? (
+          <StyledSection sx={{ marginBottom: 0 }}>
+            {likedItems.map((likedItem, index) => (
+              <Box key={index}>
                 <Box
                   sx={{
                     display: 'flex',
-                    gap: '1.6rem',
-                    width: '100%',
+                    gap: '0.5rem',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '0.75rem',
                   }}
                 >
-                  <Box sx={{ width: '30%' }}>
-                    <Image
-                      src={likedItem.thumbnail}
-                      alt={likedItem.productName}
-                      width="100%"
-                      height="100%"
-                      objectFit="cover"
-                      style={{ borderRadius: '0.75rem' }}
-                    />
-                  </Box>
+                  <Checkbox
+                    sx={{ padding: 0, color: '#B9B9B9' }}
+                    checked={checked[index]}
+                    onChange={() =>
+                      handleCheckedChange(likedItem.wish_id, index)
+                    }
+                  />
                   <Box
                     sx={{
-                      width: '70%',
                       display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-evenly',
+                      gap: '1.6rem',
+                      width: '100%',
                     }}
                   >
-                    <Box>
-                      <Typography
-                        sx={{ fontWeight: 500, lineHeight: 'normal' }}
-                      >
-                        {likedItem.productName}
-                      </Typography>
+                    <Box sx={{ width: '30%' }}>
+                      <Image
+                        src={likedItem.thumbnail}
+                        alt={likedItem.productName}
+                        width="100%"
+                        height="100%"
+                        objectFit="cover"
+                        style={{ borderRadius: '0.75rem' }}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        width: '70%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-evenly',
+                      }}
+                    >
+                      <Box>
+                        <Typography
+                          sx={{ fontWeight: 500, lineHeight: 'normal' }}
+                        >
+                          {likedItem.productName}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: '1.2rem',
+                            marginBottom: '0.2rem',
+                            color: '#939393',
+                          }}
+                        >
+                          1인 / {likedItem.basicPrice.toLocaleString('ko-KR')}{' '}
+                          원
+                        </Typography>
+                      </Box>
                       <Typography
                         sx={{
-                          fontSize: '1.2rem',
-                          marginBottom: '0.2rem',
-                          color: '#939393',
+                          fontSize: '1.3rem',
+                          color: '#4581F8',
+                          '&:hover': {
+                            cursor: 'pointer',
+                          },
                         }}
+                        onClick={() =>
+                          router.push(`product-details/${likedItem.product_id}`)
+                        }
                       >
-                        1인 / {likedItem.basicPrice.toLocaleString('ko-KR')} 원
+                        상세보기 &gt;
                       </Typography>
                     </Box>
-                    <Typography
-                      sx={{
-                        fontSize: '1.3rem',
-                        color: '#4581F8',
-                        '&:hover': {
-                          cursor: 'pointer',
-                        },
-                      }}
-                      onClick={() =>
-                        router.push(`product-details/${likedItem.product_id}`)
-                      }
-                    >
-                      상세보기 &gt;
-                    </Typography>
                   </Box>
+                  <CloseIcon
+                    sx={{
+                      color: '#B9B9B9',
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={(e) =>
+                      requestToRemoveLikedItem(e, likedItem.wish_id, index)
+                    }
+                  />
                 </Box>
-                <CloseIcon
-                  sx={{
-                    color: '#B9B9B9',
-                    '&:hover': {
-                      cursor: 'pointer',
-                    },
-                  }}
-                  onClick={(e) =>
-                    requestToRemoveLikedItem(e, likedItem.wish_id, index)
-                  }
-                />
+                {likedItems.length - 1 !== index && (
+                  <Divider sx={{ margin: '1.6rem -1.6rem' }} />
+                )}
               </Box>
-              {likedItems.length - 1 !== index && (
-                <Divider sx={{ margin: '1.6rem -1.6rem' }} />
-              )}
+            ))}
+          </StyledSection>
+        ) : (
+          <StyledSection sx={{ marginBottom: 0 }}>
+            <Box sx={{ textAlign: 'center', paddingTop: '5rem' }}>
+              <Typography
+                sx={{
+                  fontSize: '2rem',
+                  fontWeight: '500',
+                  color: '#4581F8',
+                  marginBottom: '1rem',
+                }}
+              >
+                아직 찜한 상품이 없습니다
+              </Typography>
+              <Typography
+                sx={{
+                  textAlgin: 'center',
+                  fontSize: '1.4rem',
+                  color: '#8D8D8D',
+                  marginBottom: '5rem',
+                }}
+              >
+                홈페이지로 돌아가서 더 많은 여행 상품을 찾아보세요.
+              </Typography>
+              <Button
+                variant="contained"
+                sx={{
+                  width: '100%',
+                  backgroundColor: '#4581F8',
+                  boxShadow: 'none',
+                  paddingTop: '1rem',
+                  paddingBottom: '1rem',
+                  fontWeight: '500',
+                  '&:hover': {
+                    backgroundColor: '#4581F8',
+                    boxShadow: 'none',
+                  },
+                }}
+                onClick={() => router.push('/')}
+              >
+                홈으로
+              </Button>
             </Box>
-          ))}
-        </StyledSection>
+          </StyledSection>
+        )}
       </Box>
     </>
   )
