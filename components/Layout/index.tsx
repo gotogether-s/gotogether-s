@@ -90,8 +90,6 @@ const Layout = ({ children }: any) => {
       <Container
         maxWidth="sm"
         sx={{
-          borderLeft: '1px solid #ddd',
-          borderRight: '1px solid #ddd',
           minHeight: '100vh',
         }}
       >
