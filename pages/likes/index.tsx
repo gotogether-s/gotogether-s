@@ -27,13 +27,13 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const StyledSection = styled('div')(() => ({
-  backgroundColor: '#fff',
-  padding: '1.6rem',
-  marginBottom: '1.6rem',
-}))
-
 const Likes = () => {
+  const StyledSection = styled('div')(() => ({
+    backgroundColor: '#fff',
+    padding: '1.6rem',
+    marginBottom: '1.6rem',
+  }))
+
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -51,9 +51,8 @@ const Likes = () => {
     return state.wishIdsToDelete
   })
 
-  const getLikedItems = async () => {
+  const getLikedItems = async (accessToken) => {
     try {
-      const accessToken = localStorage.getItem('accessToken')
       const res = await requestLikedItems({
         accessToken: accessToken,
       })
@@ -128,7 +127,8 @@ const Likes = () => {
   }
 
   useEffect(() => {
-    getLikedItems()
+    const accessToken = localStorage.getItem('accessToken')
+    accessToken && getLikedItems(accessToken)
   }, [])
 
   return (
@@ -187,17 +187,10 @@ const Likes = () => {
                   marginBottom: '0.75rem',
                 }}
               >
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      sx={{ padding: 0, color: '#B9B9B9' }}
-                      checked={checked[index]}
-                      onChange={() =>
-                        handleCheckedChange(likedItem.wish_id, index)
-                      }
-                    />
-                  }
-                  sx={{ margin: 0 }}
+                <Checkbox
+                  sx={{ padding: 0, color: '#B9B9B9' }}
+                  checked={checked[index]}
+                  onChange={() => handleCheckedChange(likedItem.wish_id, index)}
                 />
                 <Box
                   sx={{
