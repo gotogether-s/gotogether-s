@@ -1,9 +1,9 @@
-import { Container } from '@mui/system'
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import Footer from '@components/Footer/Footer'
 import MainNav from '@components/MainNav'
 import TopButton from '@components/TopButton/TopButton'
-import Footer from '@components/Footer/Footer'
+import { Container } from '@mui/system'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import style from './Layout.module.scss'
 
 type ALLOWED_PATH =
