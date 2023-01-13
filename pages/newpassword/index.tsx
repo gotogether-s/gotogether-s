@@ -81,6 +81,7 @@ const NewPassword = () => {
         </Typography>
         <TextField
           name="password"
+          type="password"
           size="small"
           placeholder="새 비밀번호를 입력해주세요"
           value={newPasswordValues.password}
@@ -106,6 +107,7 @@ const NewPassword = () => {
         </Typography>
         <TextField
           name="passwordConfirm"
+          type="password"
           size="small"
           placeholder="새 비밀번호를 다시 입력해주세요"
           value={newPasswordValues.passwordConfirm}

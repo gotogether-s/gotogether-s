@@ -63,6 +63,7 @@ const ConfirmPassword = () => {
         </Typography>
         <TextField
           name="password"
+          type="password"
           size="small"
           placeholder="기존 비밀번호를 입력해주세요"
           sx={{ width: '100%' }}
