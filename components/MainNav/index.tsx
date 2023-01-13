@@ -18,7 +18,6 @@ const MainNav = () => {
   return (
     <Box
       sx={{
-        borderBottom: '1px solid #ddd',
         padding: '1rem 1.6rem',
         display: 'flex',
         alignItems: 'center',
