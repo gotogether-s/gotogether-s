@@ -1,6 +1,7 @@
 import Footer from '@components/Footer/Footer'
 import MainNav from '@components/MainNav'
 import TopButton from '@components/TopButton/TopButton'
+import { Box } from '@mui/material'
 import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -86,10 +87,17 @@ const Layout = ({ children }: any) => {
 
   return (
     <>
-      <Container maxWidth="sm" className={style['layout-container']}>
+      <Container
+        maxWidth="sm"
+        sx={{
+          borderLeft: '1px solid #ddd',
+          borderRight: '1px solid #ddd',
+          minHeight: '100vh',
+        }}
+      >
         {displayMainNav()}
         {displayTopButton()}
-        <div
+        <Box
           className={
             ApplyPadding()
               ? style['children-container-with-padding']
@@ -97,7 +105,7 @@ const Layout = ({ children }: any) => {
           }
         >
           {children}
-        </div>
+        </Box>
         {displayFooter()}
       </Container>
     </>
