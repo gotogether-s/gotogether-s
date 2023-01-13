@@ -28,7 +28,6 @@ const SideBar = () => {
             width: '80%',
             position: 'absolute',
             height: '100%',
-            borderLeft: '1px solid #ddd',
           },
         }}
         variant="persistent"
