@@ -187,17 +187,10 @@ const Likes = () => {
                   marginBottom: '0.75rem',
                 }}
               >
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      sx={{ padding: 0, color: '#B9B9B9' }}
-                      checked={checked[index]}
-                      onChange={() =>
-                        handleCheckedChange(likedItem.wish_id, index)
-                      }
-                    />
-                  }
-                  sx={{ margin: 0 }}
+                <Checkbox
+                  sx={{ padding: 0, color: '#B9B9B9' }}
+                  checked={checked[index]}
+                  onChange={() => handleCheckedChange(likedItem.wish_id, index)}
                 />
                 <Box
                   sx={{
