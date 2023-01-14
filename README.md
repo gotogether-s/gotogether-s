@@ -1,21 +1,23 @@
-<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank"><img src="./public/main_logo.svg" width="300px"><p align="center" style="color: #939393">좋은 사람들과의 잊을 수 없는
+<br/>
+
+<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank" style="color: #939393"><img src="./public/main_logo.svg" width="300px"><p align="center">좋은 사람들과의 잊을 수 없는
 여행</p></a></div>
 
-<p align="center">
+<br/>
+
+<div align="center">
 
 ![last commit](https://img.shields.io/github/last-commit/gotogether-s/gotogether-s?color=green)
 ![most language](https://img.shields.io/github/languages/top/gotogether-s/gotogether-s)
 [![release](https://img.shields.io/badge/release-v0.0.0-yellow)](https://github.com/gotogether-s/gotogether-s/tree/main)
 
-</p>
+</div>
 
 🇰🇷  **For Korean User**: 스크롤다운을 하면 한국어로된 프로젝트 설명을 보실 수 있습니다.
 
 # 🏝 Go Together (한국어)
 
 ## 📑 목차
-
-### [Korean](<#🔍-Job-Search-(Korean)>)
 
 - [🚀 프로젝트 실행하기](#-프로젝트-실행하기)
 - [🗓 프로젝트 제작기간](#-프로젝트-제작기간)
