@@ -88,7 +88,7 @@ const Layout = ({ children }: any) => {
   return (
     <>
       <Container
-        maxWidth="sm"
+        maxWidth="md"
         sx={{
           minHeight: '100vh',
         }}
