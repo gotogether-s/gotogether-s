@@ -70,12 +70,6 @@ export default function productId(data: data) {
     const reservationData = res.data.data.filter(
       (resData: any) => resData.product_id === data.id,
     )
-    console.log(reservationData.length)
-    if (reservationData.length) {
-      console.log(true)
-    } else {
-      console.log(false)
-    }
     if (accessToken && selectDeperatureValue && !reservationData.length) {
       dispatch(reset())
       dispatch(
