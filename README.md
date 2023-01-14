@@ -1,6 +1,6 @@
 <br/>
 
-<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank" style="color: #939393"><img src="./public/main_logo.svg" width="300px"><p align="center">좋은 사람들과의 잊을 수 없는
+<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank" style="color: #939393"><img src="./public/main_logo.svg" width="300px"><p align="center" style="color: #939393">좋은 사람들과의 잊을 수 없는
 여행</p></a></div>
 
 <div align="center">
@@ -13,7 +13,7 @@
 
 <br/>
 
-<p style="color: #5A5A5A; text-decoration: underline; font-style: italic;">🇰🇷 For Korean User: 스크롤다운을 하면 한국어로된 프로젝트 설명을 보실 수 있습니다.</p>
+_🇰🇷 For Korean User: 스크롤다운을 하면 한국어로된 프로젝트 설명을 보실 수 있습니다._
 
 # 🏝 고투게더 (한국어)
 
