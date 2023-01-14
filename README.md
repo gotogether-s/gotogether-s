@@ -42,25 +42,23 @@ _🇰🇷 For Korean User: 스크롤다운을 하면 한국어로된 프로젝�
 
 ## 🚀 프로젝트 실행하기
 
-### .env
-
-```
-NEXT_PUBLIC_API_URL=https://gotogether24.tk
-NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
-```
-
 1. 리포 클론하기: `git clone https://github.com/gotogether-s/gotogether-s.git`
 2. 해당 디렉토리로 이동하기: `cd <YOUR_PROJECT_NAME>`.
 3. 패키지 설치하기: `yarn install`
 4. 프로젝트 실행하기
    - 사용자 로컬호스트: `yarn run dev`
    - 빌드후 사용: `yarn build` then `yarn run dev`
+5. 프로젝트 실행시 env 인증키가 필요하신 분은 아래로 연락을 주시면 제공해드리겠습니다.
+   _프로젝트를 실행하고 싶으시면 [배포 사이트 링크](https://gotogether-s.vercel.app/)를, 프로젝트 코드가 필요하시면 [깃허브 링크](https://github.com/gotogether-s/gotogether-s)를 참고해주세요._
+
+- 변승훈: [toffg6450@naver.com](toffg6450@naver.com)
+- 조현아: [hyeonah.hello@gmail.com](hyeonah.hello@gmail.com)
 
 <br />
 
 ## 🗓 프로젝트 제작기간
 
-**버전 1** : 2022년 9월 6일 - 2023년 1월 13일
+**버전 1** : 2022년 9월 6일 - 진행중
 
 <br />
 
