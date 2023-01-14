@@ -1,6 +1,6 @@
 <br/>
 
-<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank" style="color: #939393"><img src="./public/main_logo.svg" width="300px"><p align="center" style="color: #939393">좋은 사람들과의 잊을 수 없는
+<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank"><img src="./public/main_logo.svg" width="300px"><p align="center">좋은 사람들과의 잊을 수 없는
 여행</p></a></div>
 
 <div align="center">
@@ -41,7 +41,7 @@ _🇰🇷 For Korean User: 스크롤다운을 하면 한국어로된 프로젝�
 
 ## 🚀 프로젝트 실행하기
 
-#### .env
+### .env
 
 ```
 NEXT_PUBLIC_API_URL=https://gotogether24.tk
@@ -59,7 +59,7 @@ NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
 
 ## 🗓 프로젝트 제작기간
 
-**버전 1**: 2022년 9월 6일 - 2023년 1월 13일
+**버전 1** : 2022년 9월 6일 - 2023년 1월 13일
 
 <br />
 
@@ -111,11 +111,11 @@ NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
 
 ## 🪄 기술 스택
 
-#### 디자인
+### 디자인
 
 - **와이어프레임, 목업 제작**: Adobe XD
 
-#### 프론트앤드
+### 프론트앤드
 
 🔗  프론트엔드 리포: [gotogether-s 보러가기](https://github.com/gotogether-s/gotogether-s)
 
@@ -126,7 +126,7 @@ NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
 - **API 요청시** : getServerSideProps, axios
 - **스타일 적용** : MUI, Scss, CSS Module
 
-#### 백앤드
+### 백앤드
 
 🔗  백엔드 리포: [gotogether-s-BE 보러가기](https://github.com/gotogether-s/gotogether-s-BE)
 
@@ -135,7 +135,7 @@ NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
 - **CI/CD & INFRASTRUCTURE** : Jenkins, Docker, EC2, RDS, S3
 - **기타** : POSTMAN, ERD Cloud
 
-#### 기타
+### 기타
 
 - **이슈관리** : Github Issue
 - **문서화** : Notion
@@ -145,14 +145,14 @@ NEXT_PUBLIC_KAKAO_URL=81b8b8b3ffdd255436d5d0aa9d08b9c6
 
 ## ✂️ 업무 분배
 
-#### 프론트앤드
+### 프론트앤드
 
 |                      변승훈                      |                                                                           조현아                                                                            |
 | :----------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | [@SeungHun6450](https://github.com/SeungHun6450) |                                                          [@hyeonahc](https://github.com/hyeonahc)                                                           |
 |                       ...                        | 레이아웃, 네비게이션, 사이드바 <br/> 회원가입, 로그인, 계정확인, 비밀번호 변경 <br/> 설문조사, 상품 검색, 상품 예약, 결제, 404 <br/> 예약한 상품, 찜한 상품 |
 
-#### 백앤드
+### 백앤드
 
 |                    김현준                    |                이현승                 |                      김대곤                      |                   진우림                   |
 | :------------------------------------------: | :-----------------------------------: | :----------------------------------------------: | :----------------------------------------: |
