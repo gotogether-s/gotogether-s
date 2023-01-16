@@ -15,7 +15,10 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { useDispatch } from 'react-redux'
 import { reservation, reset } from '@store/reservationDetailSlice'
 import { useRouter } from 'next/router'
-import { useAddFavoriteMutation } from '@api/requestApi'
+import {
+  useAddFavoriteMutation,
+  useGetReservationMutation,
+} from '@api/requestApi'
 
 type data = {
   ages: string
@@ -57,10 +60,17 @@ export default function productId(data: data) {
   const [selectDeperatureValue, setSelectDeperatureValue] = useState<string>('')
 
   const dispatch = useDispatch()
+  const [getReservation]: any = useGetReservationMutation()
 
-  const moveBook = () => {
+  const moveBook = async () => {
     const accessToken = localStorage.getItem('accessToken')
-    if (accessToken && selectDeperatureValue) {
+    const res = await getReservation({
+      accessToken: accessToken,
+    })
+    const reservationData = res.data.data.filter(
+      (resData: any) => resData.product_id === data.id,
+    )
+    if (accessToken && selectDeperatureValue && !reservationData.length) {
       dispatch(reset())
       dispatch(
         reservation({
@@ -75,6 +85,8 @@ export default function productId(data: data) {
       router.push('/book')
     } else if (selectDeperatureValue == '') {
       setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
+    } else if (reservationData.length) {
+      setExistReservationModalIsOpen(!existResevationModalIsOpen)
     } else {
       setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
     }
@@ -87,6 +99,8 @@ export default function productId(data: data) {
   const [needLoginModalIsOpen, setNeedLoginModalIsOpenIsOpen] =
     useState<boolean>(false)
   const [needDeperatureModalIsOpen, setNeedDeperatureModalIsOpen] =
+    useState<boolean>(false)
+  const [existResevationModalIsOpen, setExistReservationModalIsOpen] =
     useState<boolean>(false)
   const [addFavorite]: any = useAddFavoriteMutation()
 
@@ -117,6 +131,9 @@ export default function productId(data: data) {
   }
   const closeNeedLoginModal = () => {
     setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+  }
+  const closeExistResevationModalIsOpen = () => {
+    setExistReservationModalIsOpen(!existResevationModalIsOpen)
   }
   const closeNeedDeperatureModal = () => {
     setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
@@ -279,6 +296,24 @@ export default function productId(data: data) {
                 </div>
                 <div className="stay" onClick={closeNeedLoginModal}>
                   쇼핑 계속하기
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {existResevationModalIsOpen && (
+          <div
+            className="needDeperatureContainer"
+            onClick={closeExistResevationModalIsOpen}
+          >
+            <div
+              className="needDeperatureModalBody"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="contents">이미 예약된 상품입니다!</div>
+              <div className="select">
+                <div className="ok" onClick={closeExistResevationModalIsOpen}>
+                  확인
                 </div>
               </div>
             </div>
