@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useAgeRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -84,21 +84,24 @@ const AgesRecommend = () => {
         {age.map(({ ...ages }: data, index: number) => (
           <SwiperSlide key={index}>
             <Link href={`/product-details/${ages.id}`}>
-              <img src={ages.thumbnail} alt="img" className={style.img} />
-            </Link>
-            <span className={style.nation}>{ages.country}</span>
-            <div className={style.title}>{ages.productName}</div>
-            <div className={style.hashTags}>
-              <div className={style.hashTag1}>#{ages.ages} &nbsp;</div>
-              <div className={style.hashTag2}>#{ages.companion}&nbsp;</div>
-            </div>
-            {ages.basicPrice == 0 ? (
-              <div className={style.price}>가격 문의</div>
-            ) : (
-              <div className={style.price}>
-                {ages.basicPrice.toLocaleString('ko-KR')}원
+              <div className={style.click}>
+                <img src={ages.thumbnail} alt="img" className={style.img} />
+                <br />
+                <span className={style.nation}>{ages.country}</span>
+                <div className={style.title}>{ages.productName}</div>
+                <div className={style.hashTags}>
+                  <div className={style.hashTag1}>#{ages.ages} &nbsp;</div>
+                  <div className={style.hashTag2}>#{ages.companion}&nbsp;</div>
+                </div>
+                {ages.basicPrice == 0 ? (
+                  <div className={style.price}>가격 문의</div>
+                ) : (
+                  <div className={style.price}>
+                    {ages.basicPrice.toLocaleString('ko-KR')}원
+                  </div>
+                )}
               </div>
-            )}
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

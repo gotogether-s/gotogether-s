@@ -1,48 +1,50 @@
-.img {
-  width: 15.2rem;
-  height: 15.2rem;
-  border-radius: 0.8rem;
+.click {
   cursor: pointer;
+}
+.img {
+  width: 30.4vw;
+  height: 30.4vw;
+  border-radius: 1.6vw;
+  // margin-bottom: 0vw;
 }
 .nation {
   width: 100%;
   background-color: #466ff5;
   color: #fff;
-  font-size: 1.2rem;
-  border-radius: 2.7rem;
-  padding: 0.2rem 0.7rem;
-  line-height: 0.2rem;
+  font-size: 2.4vw;
+  border-radius: 5.4vw;
+  padding: 0.4vw 1.4vw;
 }
 .title {
-  margin-top: 0.4rem;
+  margin-top: 0.8vw;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2.4vw;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 .hashTags {
   display: flex;
-  width: 16rem;
+  width: 32vw;
   .hashTag1 {
-    width: 6rem;
+    width: 6vw;
     color: #4581f8;
-    font-size: 1rem;
+    font-size: 2vw;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
   .hashTag2 {
-    width: 8rem;
+    width: 16vw;
     color: #4581f8;
-    font-size: 1rem;
+    font-size: 2vw;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 }
 .price {
-  font-size: 1.2rem;
+  font-size: 2.4vw;
   font-weight: 700;
-  margin-top: 0.6rem;
+  margin-top: 1.2vw;
 }

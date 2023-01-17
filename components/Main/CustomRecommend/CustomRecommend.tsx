@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import {
-  useCustomRecommendUserMutation,
   useCustomRecommendMutation,
+  useCustomRecommendUserMutation,
 } from '@api/requestApi'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -52,21 +52,24 @@ const CustomRecommend = () => {
           customs.map(({ ...custom }: data, index: number) => (
             <SwiperSlide key={index}>
               <Link href={`/product-details/${custom.id}`}>
-                <img src={custom.thumbnail} alt="img" className={style.img} />
-              </Link>
-              <span className={style.nation}>{custom.country}</span>
-              <div className={style.title}>{custom.productName}</div>
-              <div className={style.hashTags}>
-                <div className={style.hashTag1}>#{custom.ages} &nbsp;</div>
-                <div className={style.hashTag2}>#{custom.theme}&nbsp;</div>
-              </div>
-              {custom.basicPrice == 0 ? (
-                <div className={style.price}>가격 문의</div>
-              ) : (
-                <div className={style.price}>
-                  {custom.basicPrice.toLocaleString('ko-KR')}원
+                <div className={style.click}>
+                  <img src={custom.thumbnail} alt="img" className={style.img} />
+                  <br />
+                  <span className={style.nation}>{custom.country}</span>
+                  <div className={style.title}>{custom.productName}</div>
+                  <div className={style.hashTags}>
+                    <div className={style.hashTag1}>#{custom.ages} &nbsp;</div>
+                    <div className={style.hashTag2}>#{custom.theme}&nbsp;</div>
+                  </div>
+                  {custom.basicPrice == 0 ? (
+                    <div className={style.price}>가격 문의</div>
+                  ) : (
+                    <div className={style.price}>
+                      {custom.basicPrice.toLocaleString('ko-KR')}원
+                    </div>
+                  )}
                 </div>
-              )}
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useCompanionRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -88,27 +88,32 @@ const CompanionRecommend = () => {
           companions.map(({ ...companion }: data, index: number) => (
             <SwiperSlide key={index}>
               <Link href={`/product-details/${companion.id}`}>
-                <img
-                  src={companion.thumbnail}
-                  alt="img"
-                  className={style.img}
-                />
+                <div className={style.click}>
+                  <img
+                    src={companion.thumbnail}
+                    alt="img"
+                    className={style.img}
+                  />
+                  <br />
+                  <span className={style.nation}>{companion.country}</span>
+                  <div className={style.title}>{companion.productName}</div>
+                  <div className={style.hashTags}>
+                    <div className={style.hashTag1}>
+                      #{companion.ages} &nbsp;
+                    </div>
+                    <div className={style.hashTag2}>
+                      #{companion.companion}&nbsp;
+                    </div>
+                  </div>
+                  {companion.basicPrice == 0 ? (
+                    <div className={style.price}>가격 문의</div>
+                  ) : (
+                    <div className={style.price}>
+                      {companion.basicPrice.toLocaleString('ko-KR')}원
+                    </div>
+                  )}
+                </div>
               </Link>
-              <span className={style.nation}>{companion.country}</span>
-              <div className={style.title}>{companion.productName}</div>
-              <div className={style.hashTags}>
-                <div className={style.hashTag1}>#{companion.ages} &nbsp;</div>
-                <div className={style.hashTag2}>
-                  #{companion.companion}&nbsp;
-                </div>
-              </div>
-              {companion.basicPrice == 0 ? (
-                <div className={style.price}>가격 문의</div>
-              ) : (
-                <div className={style.price}>
-                  {companion.basicPrice.toLocaleString('ko-KR')}원
-                </div>
-              )}
             </SwiperSlide>
           ))}
       </Swiper>

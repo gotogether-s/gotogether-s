@@ -94,7 +94,6 @@ const Layout = ({ children }: any) => {
         }}
       >
         {displayMainNav()}
-        {displayTopButton()}
         <Box
           className={
             ApplyPadding()
@@ -103,8 +102,9 @@ const Layout = ({ children }: any) => {
           }
         >
           {children}
+          {displayTopButton()}
+          {displayFooter()}
         </Box>
-        {displayFooter()}
       </Container>
     </>
   )

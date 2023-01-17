@@ -1,18 +1,18 @@
 .category {
   display: flex;
-  margin-top: 2.1rem;
+  margin-top: 4vw;
+  justify-content: space-evenly;
   .bundle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 1.6rem;
     .categoryName {
-      font-size: 1.2rem;
-      margin-top: 0.4rem;
+      font-size: 2.4vw;
+      margin-top: 0.8vw;
     }
   }
   .img {
-    width: 5.3rem;
-    height: 5.3rem;
+    width: 10.6vw;
+    height: 10.6vw;
   }
 }
