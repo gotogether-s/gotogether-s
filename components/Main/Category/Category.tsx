@@ -72,7 +72,7 @@ const Category = () => {
                     transform="translate(0.062 0.062)"
                     fill="none"
                     stroke="#4e4e4e"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                   >
                     <circle cx="26.5" cy="26.5" r="26.5" stroke="none" />
                     <circle cx="26.5" cy="26.5" r="25.75" fill="none" />
@@ -153,8 +153,8 @@ const Category = () => {
                     transform="translate(0)"
                     fill="none"
                     stroke="#4e4e4e"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                    strokeLinecap="round"
+                    strokeWidth="1.5"
                   />
                   <g
                     id="Ellipse_33"
@@ -162,8 +162,8 @@ const Category = () => {
                     transform="translate(8.117 7.176)"
                     fill="none"
                     stroke="#4581f8"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                    strokeLinecap="round"
+                    strokeWidth="1.5"
                   >
                     <ellipse
                       cx="14.388"
@@ -186,8 +186,8 @@ const Category = () => {
                     transform="translate(18.413 17.472)"
                     fill="#4581f8"
                     stroke="#4581f8"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
+                    strokeLinecap="round"
+                    strokeWidth="1.5"
                   >
                     <ellipse
                       cx="4.092"
@@ -247,7 +247,7 @@ const Category = () => {
                     transform="translate(20.98 36.971)"
                     fill="#4581f8"
                     stroke="#4581f8"
-                    stroke-width="0.2"
+                    strokeWidth="0.2"
                   />
                   <g id="Group_173027" data-name="Group 173027">
                     <path
@@ -257,7 +257,7 @@ const Category = () => {
                       transform="translate(51.126 21.867) rotate(-37)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <g
                       id="Ellipse_88"
@@ -265,7 +265,7 @@ const Category = () => {
                       transform="translate(10.66 10.661)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     >
                       <circle cx="26.5" cy="26.5" r="26.5" stroke="none" />
                       <circle cx="26.5" cy="26.5" r="25.75" fill="none" />
@@ -318,7 +318,7 @@ const Category = () => {
                       transform="translate(3.857)"
                       fill="none"
                       stroke="#4581f8"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     >
                       <ellipse
                         cx="8.879"
@@ -342,7 +342,7 @@ const Category = () => {
                       transform="translate(-2120.201 -630.763)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                   </g>
                   <g id="Group_522" data-name="Group 522">
@@ -352,7 +352,7 @@ const Category = () => {
                       transform="translate(3.857)"
                       fill="none"
                       stroke="#4581f8"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     >
                       <ellipse
                         cx="8.879"
@@ -376,7 +376,7 @@ const Category = () => {
                       transform="translate(-2120.201 -630.763)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                   </g>
                 </g>
@@ -443,7 +443,7 @@ const Category = () => {
                       transform="translate(11.94 43.095)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <path
                       id="Path_1095"
@@ -452,7 +452,7 @@ const Category = () => {
                       transform="translate(28.942 43.095)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <path
                       id="Path_1092"
@@ -461,7 +461,7 @@ const Category = () => {
                       transform="translate(0 20.213)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                     <path
                       id="Path_1093"
@@ -470,7 +470,7 @@ const Category = () => {
                       transform="translate(36.127 20.213)"
                       fill="none"
                       stroke="#4e4e4e"
-                      stroke-width="1.5"
+                      strokeWidth="1.5"
                     />
                   </g>
                   <g
@@ -479,7 +479,7 @@ const Category = () => {
                     transform="translate(48.673 23.046)"
                     fill="none"
                     stroke="#4581f8"
-                    stroke-width="1"
+                    strokeWidth="1"
                   >
                     <circle cx="3.979" cy="3.979" r="3.979" stroke="none" />
                     <circle cx="3.979" cy="3.979" r="3.479" fill="none" />

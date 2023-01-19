@@ -25,19 +25,19 @@
   width: 40vw !important;
   height: 26.4vw !important;
 }
-@media (min-width: 320px) {
+@media all and (min-width: 200px) and (max-width: 320px) {
   .swiper-list {
-    height: 62vw !important;
+    height: 61vw !important;
   }
 }
-@media (min-width: 360px) {
+@media all and (min-width: 320px) and (max-width: 360px) {
+  .swiper-list {
+    height: 61vw !important;
+  }
+}
+@media all and (min-width: 360px) and (max-width: 425px) {
   .swiper-list {
     height: 59vw !important;
-  }
-}
-@media (min-width: 425px) {
-  .swiper-list {
-    height: 56vw !important;
   }
 }
 @media (min-width: 640px) {

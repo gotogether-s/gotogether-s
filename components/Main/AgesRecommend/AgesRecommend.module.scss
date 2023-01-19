@@ -20,16 +20,16 @@
 }
 .hashTags {
   display: flex;
-  width: 32vw;
+  width: 100%;
   .hashTag1 {
-    width: 6vw;
+    width: 40%;
     color: #4581f8;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
   .hashTag2 {
-    width: 16vw;
+    width: 60%;
     color: #4581f8;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -95,22 +95,23 @@
     }
   }
 }
-@media (min-width: 320px) {
+@media all and (min-width: 200px) and (max-width: 360px) {
   .img {
     width: 35vw;
     height: 35vw;
   }
 }
-@media (min-width: 360px) {
+@media all and (min-width: 360px) and (max-width: 425px) {
   .img {
     width: 36vw;
     height: 36vw;
   }
 }
-@media (min-width: 425px) {
+@media all and (min-width: 425px) and (max-width: 768px) {
   .img {
-    width: 36vw;
-    height: 36vw;
+    width: 37vw;
+    height: 37vw;
+    margin-bottom: 0.9rem;
   }
 }
 @media (max-width: 768px) {
