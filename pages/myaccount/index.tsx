@@ -8,25 +8,30 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/myAccount.json'
+import ko from '@public/locales/ko/myAccount.json'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 const MyAccount = () => {
   const router = useRouter()
 
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [requestMembersDetail] = useRequestMembersDetailMutation()
 
   const [userInfo, setUserInfo] = useState([
     {
-      label: '이름',
+      label: translate['이름'],
       value: '',
     },
     {
-      label: '생년월일',
+      label: translate['생년월일'],
       value: '',
     },
     {
-      label: '이메일',
+      label: translate['이메일'],
       value: '',
     },
   ])
@@ -45,9 +50,9 @@ const MyAccount = () => {
 
   const updateUserInfo = (name, birth, email) => {
     const newUserInfo = userInfo.map((obj) => {
-      if (obj.label === '이름') {
+      if (obj.label === translate['이름']) {
         return { ...obj, value: name }
-      } else if (obj.label === '생년월일') {
+      } else if (obj.label === translate['생년월일']) {
         return { ...obj, value: birth }
       } else {
         return { ...obj, value: email }
@@ -67,7 +72,7 @@ const MyAccount = () => {
 
   return (
     <>
-      <NavBar link="/" title="내 정보" />
+      <NavBar link="/" title={translate['내 계정']} />
       {userInfo.map((obj, index) => (
         <List
           key={index}
@@ -114,7 +119,7 @@ const MyAccount = () => {
         }}
         onClick={changePassword}
       >
-        비밀번호 변경
+        {translate['비밀번호 변경']}
       </Button>
     </>
   )
