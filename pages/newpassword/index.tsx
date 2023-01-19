@@ -1,11 +1,16 @@
 import { useChangePasswordMutation } from '@api/requestApi'
 import NavBar from '@components/NavBar'
 import { Box, Button, TextField, Typography } from '@mui/material'
+import en from '@public/locales/en/newPassword.json'
+import ko from '@public/locales/ko/newPassword.json'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const NewPassword = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [changePassword] = useChangePasswordMutation()
 
@@ -39,17 +44,19 @@ const NewPassword = () => {
         accessToken: accessToken,
       })
       if (res.data.statusCode === 200) {
-        setPasswordUpdateResponseMessage('비밀번호 변경에 성공했습니다')
+        setPasswordUpdateResponseMessage(
+          translate['비밀번호 변경에 성공했습니다'],
+        )
         router.push('/')
       } else {
         setPasswordUpdateResponseMessage(
-          '비밀번호 변경에 실패했습니다. 다시 시도해주세요.',
+          translate['비밀번호 변경에 실패했습니다. 다시 시도해주세요.'],
         )
       }
     } catch (e) {
       console.log('e: ', e)
       setPasswordUpdateResponseMessage(
-        '비밀번호 변경에 실패했습니다. 다시 시도해주세요.',
+        translate['비밀번호 변경에 실패했습니다. 다시 시도해주세요.'],
       )
     }
   }
@@ -57,33 +64,33 @@ const NewPassword = () => {
   const validatePassword = (values) => {
     const errors = {}
     if (!values.password) {
-      errors.password = '비밀번호를 입력해주세요'
+      errors.password = translate['비밀번호를 입력해주세요']
     }
     if (!values.passwordConfirm) {
-      errors.passwordConfirm = '비밀번호를 다시 입력해주세요'
+      errors.passwordConfirm = translate['비밀번호를 다시 입력해주세요']
     }
     if (
       values.password &&
       values.passwordConfirm &&
       values.password !== values.passwordConfirm
     ) {
-      errors.passwordConfirm = '비밀번호가 일치하지 않습니다'
+      errors.passwordConfirm = translate['비밀번호가 일치하지 않습니다']
     }
     return errors
   }
 
   return (
     <>
-      <NavBar link="/" title="비밀번호 수정" />
+      <NavBar link="/" title={translate['비밀번호 수정']} />
       <Box sx={{ marginBottom: '1rem' }}>
         <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-          새 비밀번호
+          {translate['새 비밀번호']}
         </Typography>
         <TextField
           name="password"
           type="password"
           size="small"
-          placeholder="새 비밀번호를 입력해주세요"
+          placeholder={translate['새 비밀번호를 입력해주세요']}
           value={newPasswordValues.password}
           sx={{ width: '100%' }}
           onChange={handleNewPasswordValuesChange}
@@ -103,13 +110,13 @@ const NewPassword = () => {
       </Box>
       <Box sx={{ marginBottom: '1rem' }}>
         <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-          새 비밀번호 확인
+          {translate['새 비밀번호 확인']}
         </Typography>
         <TextField
           name="passwordConfirm"
           type="password"
           size="small"
-          placeholder="새 비밀번호를 다시 입력해주세요"
+          placeholder={translate['새 비밀번호를 다시 입력해주세요']}
           value={newPasswordValues.passwordConfirm}
           sx={{ width: '100%' }}
           onChange={handleNewPasswordValuesChange}
@@ -145,14 +152,15 @@ const NewPassword = () => {
           },
         }}
       >
-        확인
+        {translate['확인']}
       </Button>
       <Typography
         sx={{
           visibility:
             passwordUpdateResponseMessage !== '' ? 'visible' : 'hidden',
           color:
-            passwordUpdateResponseMessage !== '비밀번호 변경에 성공했습니다'
+            passwordUpdateResponseMessage !==
+            translate['비밀번호 변경에 성공했습니다']
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',
