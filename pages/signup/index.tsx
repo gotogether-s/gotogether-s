@@ -59,43 +59,44 @@ const SignUp = () => {
     const errors = {}
     if (requestDuplicateEmail) {
       if (!signUpValues.email) {
-        errors.email = '이메일을 입력해주세요!'
+        errors.email = '이메일을 입력해주세요'
       } else if (!regex.test(signUpValues.email)) {
-        errors.email = '올바른 이메일 형식이 아닙니다!'
+        errors.email = '올바른 이메일 형식이 아닙니다'
       } else if (response === 200) {
-        errors.email = '사용할수있는 이메일입니다!'
+        errors.email = '사용할수 있는 이메일입니다'
       } else if (response === 400) {
-        errors.email = '이미 사용중인 이메일입니다!'
+        errors.email = '이미 사용중인 이메일입니다'
       } else if (response === 'failed') {
-        errors.email = '이메일 중복검사 요청에 실패했습니다!'
+        errors.email = '이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.'
       }
       return errors
     }
     if (!signUpValues.name) {
-      errors.name = '이름을 입력해주세요!'
+      errors.name = '이름을 입력해주세요'
     }
     if (!signUpValues.dateOfBirth) {
-      errors.dateOfBirth = '생년월일을 입력해주세요!'
+      errors.dateOfBirth = '생년월일을 입력해주세요'
     }
     if (!signUpValues.email) {
-      errors.email = '이메일을 입력해주세요!'
+      errors.email = '이메일을 입력해주세요'
     } else if (!regex.test(signUpValues.email)) {
-      errors.email = '올바른 이메일 형식이 아닙니다!'
+      errors.email = '올바른 이메일 형식이 아닙니다'
     } else if (!duplicateEmailIsDone) {
-      errors.email = '이메일 중복확인을 완료해주세요!'
+      errors.email = '이메일 중복확인을 완료해주세요'
     }
     if (!signUpValues.passwordInitial) {
-      errors.passwordInitial = '비밀번호를 입력해주세요!'
+      errors.passwordInitial = '비밀번호를 입력해주세요'
     }
     if (!signUpValues.passwordConfirm) {
-      errors.passwordConfirm = '확인을 위해 비밀번호를 다시 입력해주세요!'
+      errors.passwordConfirm = '확인을 위해 비밀번호를 다시 입력해주세요'
     }
     if (
       signUpValues.passwordInitial &&
       signUpValues.passwordConfirm &&
       signUpValues.passwordInitial !== signUpValues.passwordConfirm
     ) {
-      errors.passwordConfirm = '비밀번호가 일치하지 않습니다!'
+      errors.passwordConfirm =
+        '비밀번호가 일치하지 않습니다. 다시 시도해주세요.'
     }
     return errors
   }
@@ -147,17 +148,17 @@ const SignUp = () => {
       })
       if (res.data.statusCode === 200) {
         setSignUpResponseMessage(
-          '회원가입에 성공했습니다! 로그인 페이지로 이동합니다!',
+          '회원가입에 성공했습니다. 로그인 페이지로 이동합니다.',
         )
         setTimeout(() => {
           router.push('/signin')
         }, 1000)
       } else if (res.data.statusCode === 400) {
-        setSignUpResponseMessage('회원가입에 실패했습니다!')
+        setSignUpResponseMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
       }
     } catch (e) {
       console.log('e: ', e)
-      setSignUpResponseMessage('회원가입에 실패했습니다!')
+      setSignUpResponseMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
     }
   }
 
@@ -197,13 +198,13 @@ const SignUp = () => {
           </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <MobileDatePicker
-              inputFormat="YYYY/MM/DD"
+              inputFormat="MM/DD/YYYY"
               value={calendarValue}
               onChange={handleCalendarValueChange}
               renderInput={(params) => (
                 <TextField
                   size="small"
-                  placeholder="YYYY/MM/DD"
+                  placeholder="월/날짜/연도 순으로 생년월일을 입력해주세요"
                   sx={{ width: '100%' }}
                   {...params}
                 />
@@ -265,7 +266,7 @@ const SignUp = () => {
               paddingTop: '0.3rem',
               lineHeight: 'normal',
               color:
-                signUpValuesErrors.email !== '사용할수있는 이메일입니다!'
+                signUpValuesErrors.email !== '사용할수있는 이메일입니다'
                   ? 'tomato'
                   : 'green',
             }}
@@ -361,7 +362,7 @@ const SignUp = () => {
             lineHeight: 'normal',
             color:
               signUpResponseMessage !==
-              '회원가입에 성공했습니다! 설문 페이지로 이동합니다!'
+              '회원가입에 성공했습니다. 로그인 페이지로 이동합니다.'
                 ? 'tomato'
                 : 'green',
           }}
