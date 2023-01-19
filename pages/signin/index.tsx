@@ -43,12 +43,12 @@ const SignIn = () => {
   const validateSignIn = (values) => {
     const errors = {}
     if (!values.email) {
-      errors.email = translate['이메일을 입력해주세요!']
+      errors.email = translate['이메일을 입력해주세요']
     } else if (!isEmail.test(signInValues.email)) {
-      errors.email = translate['올바른 이메일 형식이 아닙니다!']
+      errors.email = translate['올바른 이메일 형식이 아닙니다']
     }
     if (!values.password) {
-      errors.password = translate['비밀번호를 입력해주세요!']
+      errors.password = translate['비밀번호를 입력해주세요']
     }
     return errors
   }
@@ -66,7 +66,7 @@ const SignIn = () => {
       })
       if (res.data.statusCode === 200) {
         setSignInResponseMessage(
-          translate['로그인 성공! 홈페이지로 이동합니다.'],
+          translate['로그인에 성공했습니다. 홈페이지로 이동합니다.'],
         )
         const { accessToken, refreshToken } = res.data.data
         window.localStorage.setItem('accessToken', accessToken)
@@ -175,7 +175,7 @@ const SignIn = () => {
             visibility: signInResponseMessage !== '' ? 'visible' : 'hidden',
             color:
               signInResponseMessage !==
-              translate['로그인 성공! 홈페이지로 이동합니다.']
+              translate['로그인에 성공했습니다. 홈페이지로 이동합니다.']
                 ? 'tomato'
                 : 'green',
           }}
