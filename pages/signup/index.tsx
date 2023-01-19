@@ -67,13 +67,15 @@ const SignUp = () => {
         errors.email = translate['에러: 이메일을 입력해주세요']
       } else if (!regex.test(signUpValues.email)) {
         errors.email = translate['올바른 이메일 형식이 아닙니다']
-      } else if (response === 200) {
-        errors.email = translate['사용할수 있는 이메일입니다']
-      } else if (response === 400) {
-        errors.email = translate['이미 사용중인 이메일입니다']
-      } else if (response === 'failed') {
-        errors.email =
-          translate['이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.']
+      } else if (response) {
+        if (response === 'success') {
+          errors.email = translate['사용할수 있는 이메일입니다']
+        } else if (response === 'taken') {
+          errors.email = translate['이미 사용중인 이메일입니다']
+        } else if (response === 'failed') {
+          errors.email =
+            translate['이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.']
+        }
       }
       return errors
     }
@@ -119,19 +121,20 @@ const SignUp = () => {
       const res = await validateEmail({
         data: email,
       })
-      if (res.data.statusCode === 200) {
-        setSignUpValuesErrors(validateSignUp(signUpValues, true, 200))
+
+      if ('data' in res && res.data.statusCode === 200) {
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 'success'))
         setDuplicateEmailIsDone(true)
-      } else if (res.data.statusCode === 400) {
-        setSignUpValuesErrors(validateSignUp(signUpValues, true, 400))
+      } else if (
+        'error' in res &&
+        res.error.data.errorMessage === '사용할 수 없는 이메일입니다.'
+      ) {
+        setSignUpValuesErrors(validateSignUp(signUpValues, true, 'taken'))
+        setDuplicateEmailIsDone(false)
       }
     } catch (e) {
       console.log('e: ', e)
-      if (e.response.status === 400) {
-        setSignUpValuesErrors(validateSignUp(signUpValues, true, 400))
-      } else {
-        setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
-      }
+      setSignUpValuesErrors(validateSignUp(signUpValues, true, 'failed'))
     }
   }
 
