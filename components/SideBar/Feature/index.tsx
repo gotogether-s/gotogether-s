@@ -1,6 +1,9 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
+import en from '@public/locales/en/sidebar.json'
+import ko from '@public/locales/ko/sidebar.json'
 import { getLoginStatus } from '@store/isLoginSlice'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Menu from './Menu'
@@ -8,6 +11,10 @@ import User from './User'
 
 const Feature = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [requestMembersDetail] = useRequestMembersDetailMutation()
 
@@ -26,7 +33,7 @@ const Feature = () => {
   const logoutUserProps = {
     myInfoLink: '/signin',
     backgroundColor: '#d3d3d3',
-    primary: '로그인하기',
+    primary: translate['로그인하기'],
     secondary: null,
     myBookingLink: '/signin',
     favoriteLink: '/signin',

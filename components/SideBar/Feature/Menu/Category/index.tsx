@@ -7,11 +7,13 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText
+  ListItemText,
 } from '@mui/material'
+import en from '@public/locales/en/sidebar.json'
+import ko from '@public/locales/ko/sidebar.json'
 import {
   closeCategorySubMenu,
-  toggleCategorySubMenu
+  toggleCategorySubMenu,
 } from '@store/categoryMenuSlice'
 import { close } from '@store/sideBarStatusSlice'
 import { useRouter } from 'next/router'
@@ -21,6 +23,9 @@ import { useDispatch, useSelector } from 'react-redux'
 const Category = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [categoryOpen, setCategoryOpen] = useState(false)
 
@@ -51,7 +56,7 @@ const Category = () => {
     <List disablePadding>
       <ListItem disablePadding>
         <ListItemButton onClick={toggleCategoryMenu}>
-          <ListItemText primary="카테고리" />
+          <ListItemText primary={translate['카테고리']} />
           {categoryOpen ? (
             <ExpandLess sx={{ fontSize: 25 }} />
           ) : (
@@ -70,7 +75,7 @@ const Category = () => {
                     dispatch(toggleCategorySubMenu(index))
                   }}
                 >
-                  <ListItemText primary={categoryMenu.label} />
+                  <ListItemText primary={translate[`${categoryMenu.label}`]} />
                   {categoryMenu.open ? (
                     <RemoveIcon sx={{ fontSize: 15 }} />
                   ) : (
@@ -90,7 +95,7 @@ const Category = () => {
                     sx={{ pl: 6 }}
                     onClick={() => dispatch(close())}
                   >
-                    <ListItemText primary={subMenu.label} />
+                    <ListItemText primary={translate[`${subMenu.label}`]} />
                   </ListItemButton>
                 </Collapse>
               ))}

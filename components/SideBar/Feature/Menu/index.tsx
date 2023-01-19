@@ -3,6 +3,8 @@ import {
   useRequestMembersDetailMutation,
 } from '@api/requestApi'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import en from '@public/locales/en/sidebar.json'
+import ko from '@public/locales/ko/sidebar.json'
 import { getLoginStatus } from '@store/isLoginSlice'
 import { close } from '@store/sideBarStatusSlice'
 import Link from 'next/link'
@@ -11,39 +13,42 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Category from './Category'
 
-const mainMenusLogin = [
-  {
-    label: '내 정보',
-    link: '/myinfo',
-  },
-  {
-    label: '주문/예약 확인 및 취소',
-    link: '/mybooking',
-  },
-  {
-    label: '여행지 추천 받기',
-    link: '/survey',
-  },
-]
-
-const mainMenusLogout = [
-  {
-    label: '내 정보',
-    link: '/signin',
-  },
-  {
-    label: '주문/예약 확인 및 취소',
-    link: '/signin',
-  },
-  {
-    label: '여행지 추천 받기',
-    link: '/survey',
-  },
-]
-
 const Menu = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
+  const mainMenusLogin = [
+    {
+      label: translate['내 계정'],
+      link: '/myinfo',
+    },
+    {
+      label: translate['예약 확인 및 취소'],
+      link: '/mybooking',
+    },
+    {
+      label: translate['여행지 추천 받기'],
+      link: '/survey',
+    },
+  ]
+
+  const mainMenusLogout = [
+    {
+      label: translate['내 계정'],
+      link: '/signin',
+    },
+    {
+      label: translate['예약 확인 및 취소'],
+      link: '/signin',
+    },
+    {
+      label: translate['여행지 추천 받기'],
+      link: '/survey',
+    },
+  ]
 
   const [requestMembersDetail] = useRequestMembersDetailMutation()
   const [requestLogout] = useRequestLogoutMutation()
@@ -112,7 +117,7 @@ const Menu = () => {
           <List onClick={clickLogoutMenu} sx={{ padding: '0' }}>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="로그아웃" />
+                <ListItemText primary={translate['로그아웃']} />
               </ListItemButton>
             </ListItem>
           </List>
@@ -134,7 +139,7 @@ const Menu = () => {
           <List onClick={clickSignupMenu} sx={{ padding: '0' }}>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="회원가입" />
+                <ListItemText primary={translate['회원가입']} />
               </ListItemButton>
             </ListItem>
           </List>

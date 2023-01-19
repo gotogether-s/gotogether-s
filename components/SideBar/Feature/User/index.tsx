@@ -12,6 +12,8 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/sidebar.json'
+import ko from '@public/locales/ko/sidebar.json'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
@@ -34,6 +36,9 @@ const User = (props) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [getReservation] = useGetReservationMutation()
   const [requestLikedItems] = useRequestLikedItemsMutation()
@@ -147,7 +152,9 @@ const User = (props) => {
           }}
           onClick={goToMyBooking}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['예약한 상품']}
+          </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
             {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
           </Typography>
@@ -169,7 +176,9 @@ const User = (props) => {
           }}
           onClick={goToLikes}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['찜한 상품']}
+          </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
             {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
           </Typography>
