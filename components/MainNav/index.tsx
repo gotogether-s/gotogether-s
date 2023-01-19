@@ -2,6 +2,8 @@ import SideBar from '@components/SideBar'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Typography } from '@mui/material'
+import en from '@public/locales/en/mainNav.json'
+import ko from '@public/locales/ko/mainNav.json'
 import mainLogo from '@public/main_logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,6 +11,9 @@ import { useRouter } from 'next/router'
 
 const MainNav = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const goToLikesPage = () => {
     const accessToken = localStorage.getItem('accessToken')
@@ -54,7 +59,9 @@ const MainNav = () => {
               }}
             >
               <FavoriteBorderIcon sx={{ fontSize: 20 }} />
-              <Typography sx={{ fontSize: '1.2rem' }}>찜 목록</Typography>
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                {translate['찜 목록']}
+              </Typography>
             </Box>
           </Box>
         </Box>
@@ -74,7 +81,9 @@ const MainNav = () => {
               }}
             >
               <SearchIcon sx={{ fontSize: 25 }} />
-              <Typography sx={{ fontSize: '1.2rem' }}>검색</Typography>
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                {translate['검색']}
+              </Typography>
             </Box>
           </Box>
         </Box>
