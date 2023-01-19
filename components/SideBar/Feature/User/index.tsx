@@ -12,8 +12,8 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
-import en from '@public/locales/en/sidebar.json'
-import ko from '@public/locales/ko/sidebar.json'
+import en from '@public/locales/en/sideBar.json'
+import ko from '@public/locales/ko/sideBar.json'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,

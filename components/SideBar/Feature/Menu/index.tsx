@@ -3,8 +3,8 @@ import {
   useRequestMembersDetailMutation,
 } from '@api/requestApi'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import en from '@public/locales/en/sidebar.json'
-import ko from '@public/locales/ko/sidebar.json'
+import en from '@public/locales/en/sideBar.json'
+import ko from '@public/locales/ko/sideBar.json'
 import { getLoginStatus } from '@store/isLoginSlice'
 import { close } from '@store/sideBarStatusSlice'
 import Link from 'next/link'
