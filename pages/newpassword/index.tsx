@@ -39,17 +39,17 @@ const NewPassword = () => {
         accessToken: accessToken,
       })
       if (res.data.statusCode === 200) {
-        setPasswordUpdateResponseMessage('비밀번호 변경에 성공했습니다!')
+        setPasswordUpdateResponseMessage('비밀번호 변경에 성공했습니다')
         router.push('/')
       } else {
         setPasswordUpdateResponseMessage(
-          '비밀번호 변경에 실패했습니다! 다시 시도해주세요!',
+          '비밀번호 변경에 실패했습니다. 다시 시도해주세요.',
         )
       }
     } catch (e) {
       console.log('e: ', e)
       setPasswordUpdateResponseMessage(
-        '비밀번호 변경에 실패했습니다! 다시 시도해주세요!',
+        '비밀번호 변경에 실패했습니다. 다시 시도해주세요.',
       )
     }
   }
@@ -57,17 +57,17 @@ const NewPassword = () => {
   const validatePassword = (values) => {
     const errors = {}
     if (!values.password) {
-      errors.password = '비밀번호를 입력해주세요!'
+      errors.password = '비밀번호를 입력해주세요'
     }
     if (!values.passwordConfirm) {
-      errors.passwordConfirm = '비밀번호를 다시 입력해주세요!'
+      errors.passwordConfirm = '비밀번호를 다시 입력해주세요'
     }
     if (
       values.password &&
       values.passwordConfirm &&
       values.password !== values.passwordConfirm
     ) {
-      errors.passwordConfirm = '비밀번호가 일치하지 않습니다!'
+      errors.passwordConfirm = '비밀번호가 일치하지 않습니다'
     }
     return errors
   }
@@ -152,7 +152,7 @@ const NewPassword = () => {
           visibility:
             passwordUpdateResponseMessage !== '' ? 'visible' : 'hidden',
           color:
-            passwordUpdateResponseMessage !== '비밀번호 변경에 성공했습니다!'
+            passwordUpdateResponseMessage !== '비밀번호 변경에 성공했습니다'
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',
