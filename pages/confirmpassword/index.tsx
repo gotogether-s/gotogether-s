@@ -116,7 +116,7 @@ const ConfirmPassword = () => {
             passwordConfirmResponseMessage !== '' ? 'visible' : 'hidden',
           color:
             passwordConfirmResponseMessage !==
-            translate['비밀번호가 일치합니다!']
+            translate['비밀번호가 일치합니다']
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',
