@@ -21,7 +21,7 @@
   "이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.": "Sorry, something went wrong. Please try again.",
   "에러: 비밀번호를 입력해주세요": "Please enter your password",
   "확인을 위해 비밀번호를 다시 입력해주세요": "Please enter your password again for verification",
-  "비밀번호가 일치하지 않습니다. 다시 시도해주세요.": "Please make sure your password match",
+  "비밀번호가 일치하지 않습니다. 다시 시도해주세요.": "Please make sure your passwords match",
   "회원가입에 성공했습니다. 로그인 페이지로 이동합니다.": "Success! Please sign in.",
   "회원가입에 실패했습니다. 다시 시도해주세요.": "Sorry, something went wrong. Please try again."
 }
