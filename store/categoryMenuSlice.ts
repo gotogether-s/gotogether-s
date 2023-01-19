@@ -12,11 +12,11 @@ const initialState: categoryMenuState = [
     open: false,
     subMenus: [
       {
-        label: '전체',
+        label: '국가 전체',
         link: '/product-list/continents?category=&page=0&sort=',
       },
       {
-        label: '괌&사이판&하와이',
+        label: '괌/사이판/하와이',
         link: encodeURI(
           '/product-list/continents?category=괌,사이판,하와이&page=0&sort=',
         ),
@@ -96,7 +96,7 @@ const initialState: categoryMenuState = [
     open: false,
     subMenus: [
       {
-        label: '전체',
+        label: '연령대별 전체',
         link: '/product-list/ages?category=&page=0&sort=',
       },
       {
@@ -133,7 +133,10 @@ const initialState: categoryMenuState = [
     label: '유형별 여행',
     open: false,
     subMenus: [
-      { label: '전체', link: '/product-list/companion?category=&page=0&sort=' },
+      {
+        label: '유형별 전체',
+        link: '/product-list/companion?category=&page=0&sort=',
+      },
       {
         label: '남자끼리',
         link: encodeURI(
@@ -176,7 +179,10 @@ const initialState: categoryMenuState = [
     label: '테마별 여행',
     open: false,
     subMenus: [
-      { label: '전체', link: '/product-list/themes?category=&page=0&sort=' },
+      {
+        label: '테마별 전체',
+        link: '/product-list/themes?category=&page=0&sort=',
+      },
       {
         label: '문화탐방',
         link: encodeURI('/product-list/themes?category=문화탐방&page=0&sort='),
