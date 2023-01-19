@@ -7,6 +7,7 @@ import '@styles/productLists.scss'
 import '@styles/reset.css'
 import '@styles/swiperOverride.scss'
 import theme from '@styles/theme'
+import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store from 'store'
@@ -29,4 +30,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
