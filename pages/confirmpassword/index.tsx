@@ -40,10 +40,13 @@ const ConfirmPassword = () => {
         data: password,
         accessToken: accessToken,
       })
-      if (res.data.statusCode === 200) {
+      if ('data' in res && res.data.responseMessage === '패스워드 확인 성공') {
         setPasswordConfirmResponseMessage(translate['비밀번호가 일치합니다'])
         router.push('/newpassword')
-      } else if (res.data.statusCode === 400) {
+      } else if (
+        'data' in res &&
+        res.data.responseMessage === '패스워드 확인 실패'
+      ) {
         setPasswordConfirmResponseMessage(
           translate['비밀번호가 일치하지 않습니다'],
         )
