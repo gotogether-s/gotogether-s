@@ -36,20 +36,20 @@ const ConfirmPassword = () => {
         accessToken: accessToken,
       })
       if (res.data.statusCode === 200) {
-        setPasswordConfirmResponseMessage('비밀번호가 일치합니다!')
+        setPasswordConfirmResponseMessage('비밀번호가 일치합니다')
         router.push('/newpassword')
       } else if (res.data.statusCode === 400) {
-        setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다!')
+        setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다')
       }
     } catch (e) {
-      setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다!')
+      setPasswordConfirmResponseMessage('비밀번호가 일치하지 않습니다')
     }
   }
 
   const validatePassword = (passwordValue) => {
     const errors = {}
     if (!passwordValue) {
-      errors.password = '비밀번호를 입력해주세요!'
+      errors.password = '비밀번호를 입력해주세요'
     }
     return errors
   }
