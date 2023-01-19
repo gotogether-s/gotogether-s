@@ -1,0 +1,14 @@
+{
+  "로그인": "Sign in",
+  "이메일": "Email",
+  "이메일을 입력해주세요": "Enter your email",
+  "비밀번호": "password",
+  "비밀번호를 입력해주세요": "Enter your password",
+  "아직 회원이 아니신가요?": "Not a member?",
+  "회원가입": "Sign up",
+  "에러: 이메일을 입력해주세요": "Please enter your email",
+  "에러: 비밀번호를 입력해주세요": "Please enter your password",
+  "올바른 이메일 형식이 아닙니다": "Please enter a valid email address",
+  "로그인에 성공했습니다. 홈페이지로 이동합니다.": "Success! We're going back to homepage.",
+  "로그인에 실패했습니다. 다시 시도해주세요.": "Sorry, incorrect email or password. Please try again."
+}
