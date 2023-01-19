@@ -43,7 +43,6 @@ const GolfRecommend = () => {
               <Link href={`/product-details/${golf.id}`}>
                 <div className={style.click}>
                   <img src={golf.thumbnail} alt="img" className={style.img} />
-                  <br />
                   <span className={style.nation}>{golf.country}</span>
                   <div className={style.title}>{golf.productName}</div>
                   <div className={style.hashTags}>

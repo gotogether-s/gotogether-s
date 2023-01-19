@@ -94,7 +94,6 @@ const CompanionRecommend = () => {
                     alt="img"
                     className={style.img}
                   />
-                  <br />
                   <span className={style.nation}>{companion.country}</span>
                   <div className={style.title}>{companion.productName}</div>
                   <div className={style.hashTags}>

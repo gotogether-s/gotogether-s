@@ -47,7 +47,6 @@ const CultureRecommend = () => {
                     alt="img"
                     className={style.img}
                   />
-                  <br />
                   <span className={style.nation}>{culture.country}</span>
                   <div className={style.title}>{culture.productName}</div>
                   <div className={style.hashTags}>

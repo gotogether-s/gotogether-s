@@ -7,12 +7,18 @@
     flex-direction: column;
     align-items: center;
     .categoryName {
-      font-size: 2.4vw;
+      font-size: 1.2rem;
       margin-top: 0.8vw;
     }
   }
-  .img {
-    width: 10.6vw;
-    height: 10.6vw;
+}
+@media (min-width: 768px) {
+  .category {
+    .bundle {
+      .categoryName {
+        font-size: 1.9rem;
+        margin-top: 0.8vw;
+      }
+    }
   }
 }

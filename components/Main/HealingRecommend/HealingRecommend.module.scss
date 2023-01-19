@@ -2,23 +2,18 @@
   cursor: pointer;
 }
 .img {
-  width: 30.4vw;
-  height: 30.4vw;
   border-radius: 1.6vw;
-  // margin-bottom: 0vw;
 }
 .nation {
   width: 100%;
   background-color: #466ff5;
   color: #fff;
-  font-size: 2.4vw;
   border-radius: 5.4vw;
   padding: 0.4vw 1.4vw;
 }
 .title {
   margin-top: 0.8vw;
   font-weight: 700;
-  font-size: 2.4vw;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -29,7 +24,6 @@
   .hashTag1 {
     width: 6vw;
     color: #4581f8;
-    font-size: 2vw;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -37,14 +31,79 @@
   .hashTag2 {
     width: 16vw;
     color: #4581f8;
-    font-size: 2vw;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 }
 .price {
-  font-size: 2.4vw;
   font-weight: 700;
   margin-top: 1.2vw;
+}
+@media (min-width: 320px) {
+  .img {
+    width: 35vw;
+    height: 35vw;
+  }
+}
+@media (min-width: 360px) {
+  .img {
+    width: 36vw;
+    height: 36vw;
+  }
+}
+@media (min-width: 425px) {
+  .img {
+    width: 36vw;
+    height: 36vw;
+  }
+}
+@media (max-width: 768px) {
+  .nation {
+    font-size: 1rem;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .hashTags {
+    .hashTag1 {
+      font-size: 1rem;
+    }
+    .hashTag2 {
+      font-size: 1rem;
+    }
+  }
+  .price {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 768px) {
+  .img {
+    width: 37vw;
+    height: 37vw;
+    margin-bottom: 0.9rem;
+  }
+  .nation {
+    font-size: 1.5rem;
+  }
+  .title {
+    font-size: 1.9rem;
+  }
+  .hashTags {
+    .hashTag1 {
+      font-size: 1.5rem;
+    }
+    .hashTag2 {
+      font-size: 1.5rem;
+    }
+  }
+  .price {
+    font-size: 1.9rem;
+  }
+}
+@media (min-width: 1024px) {
+  .img {
+    width: 33vw;
+    height: 33vw;
+  }
 }

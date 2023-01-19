@@ -35,14 +35,13 @@ const HealingRecommend = () => {
   if (!healing) return <>상품을 준비중입니다...</>
   return (
     <>
-      <Swiper spaceBetween={0} slidesPerView={2.3} className="swiper-list">
+      <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
         {healing &&
           healing.map(({ ...heal }: data, index: number) => (
             <SwiperSlide key={index}>
               <Link href={`/product-details/${heal.id}`}>
                 <div className={style.click}>
                   <img src={heal.thumbnail} alt="img" className={style.img} />
-                  <br />
                   <span className={style.nation}>{heal.country}</span>
                   <div className={style.title}>{heal.productName}</div>
                   <div className={style.hashTags}>

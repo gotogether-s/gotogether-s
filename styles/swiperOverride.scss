@@ -15,14 +15,43 @@
   width: 100% !important;
 }
 .swiper-list {
-  min-height: 40vw !important;
-  max-height: 56vw !important;
   margin-left: 3.2vw !important;
 }
 .swiper-continent-all {
+  min-height: 20vw !important;
   margin-left: 3.2vw !important;
 }
 .swiper-continent {
   width: 40vw !important;
   height: 26.4vw !important;
+}
+@media (min-width: 320px) {
+  .swiper-list {
+    height: 62vw !important;
+  }
+}
+@media (min-width: 360px) {
+  .swiper-list {
+    height: 59vw !important;
+  }
+}
+@media (min-width: 425px) {
+  .swiper-list {
+    height: 56vw !important;
+  }
+}
+@media (min-width: 640px) {
+  .swiper-list {
+    height: 52vw !important;
+  }
+}
+@media (min-width: 768px) {
+  .swiper-list {
+    height: 54vw !important;
+  }
+}
+@media (min-width: 1024px) {
+  .swiper-list {
+    height: 49vw !important;
+  }
 }

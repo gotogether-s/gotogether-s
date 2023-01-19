@@ -86,7 +86,6 @@ const AgesRecommend = () => {
             <Link href={`/product-details/${ages.id}`}>
               <div className={style.click}>
                 <img src={ages.thumbnail} alt="img" className={style.img} />
-                <br />
                 <span className={style.nation}>{ages.country}</span>
                 <div className={style.title}>{ages.productName}</div>
                 <div className={style.hashTags}>

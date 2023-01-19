@@ -54,7 +54,6 @@ const CustomRecommend = () => {
               <Link href={`/product-details/${custom.id}`}>
                 <div className={style.click}>
                   <img src={custom.thumbnail} alt="img" className={style.img} />
-                  <br />
                   <span className={style.nation}>{custom.country}</span>
                   <div className={style.title}>{custom.productName}</div>
                   <div className={style.hashTags}>

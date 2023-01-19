@@ -5,15 +5,43 @@
   margin-bottom: 6.4vw;
   .main {
     margin-left: 3.2vw;
-    font-size: 4vw;
     font-weight: 700;
   }
   a {
     color: #4581f8;
     margin-right: 3.2vw;
-    font-size: 3.2vw;
-    font-weight: 700;
+    font-weight: 500;
     text-align: center;
     text-decoration: none;
+  }
+}
+@media (min-width: 360px) {
+  .mainAndMore {
+    .main {
+      font-size: 1.8rem;
+    }
+    a {
+      font-size: 1.4rem;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .mainAndMore {
+    .main {
+      font-size: 2.8rem;
+    }
+    a {
+      font-size: 2.4rem;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .mainAndMore {
+    .main {
+      font-size: 4rem;
+    }
+    a {
+      font-size: 3.6rem;
+    }
   }
 }
