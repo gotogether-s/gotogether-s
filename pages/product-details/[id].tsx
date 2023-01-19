@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import CloseIcon from '@mui/icons-material/Close'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  TwitterShareButton,
-  LineShareButton,
-  LineIcon,
-} from 'react-share'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { useDispatch } from 'react-redux'
-import { reservation, reset } from '@store/reservationDetailSlice'
-import { useRouter } from 'next/router'
 import {
   useAddFavoriteMutation,
   useGetReservationMutation,
 } from '@api/requestApi'
+import CloseIcon from '@mui/icons-material/Close'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { reservation, reset } from '@store/reservationDetailSlice'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useDispatch } from 'react-redux'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type data = {
   ages: string
@@ -64,31 +64,35 @@ export default function productId(data: data) {
 
   const moveBook = async () => {
     const accessToken = localStorage.getItem('accessToken')
-    const res = await getReservation({
-      accessToken: accessToken,
-    })
-    const reservationData = res.data.data.filter(
-      (resData: any) => resData.product_id === data.id,
-    )
-    if (accessToken && selectDeperatureValue && !reservationData.length) {
-      dispatch(reset())
-      dispatch(
-        reservation({
-          productId: data.id,
-          productName: data.productName,
-          airport: data.airport,
-          productOptionList: selectDeperatureValue,
-          basicPrice: data.basicPrice,
-          thumbnail: data.thumbnail,
-        }),
-      )
-      router.push('/book')
-    } else if (selectDeperatureValue == '') {
-      setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
-    } else if (reservationData.length) {
-      setExistReservationModalIsOpen(!existResevationModalIsOpen)
-    } else {
+    if (!accessToken) {
       setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+    } else {
+      const res = await getReservation({
+        accessToken: accessToken,
+      })
+      const reservationData = res.data.data.filter(
+        (resData: any) => resData.product_id === data.id,
+      )
+      if (accessToken && selectDeperatureValue && !reservationData.length) {
+        dispatch(reset())
+        dispatch(
+          reservation({
+            productId: data.id,
+            productName: data.productName,
+            airport: data.airport,
+            productOptionList: selectDeperatureValue,
+            basicPrice: data.basicPrice,
+            thumbnail: data.thumbnail,
+          }),
+        )
+        router.push('/book')
+      } else if (selectDeperatureValue == '') {
+        setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
+      } else if (reservationData.length) {
+        setExistReservationModalIsOpen(!existResevationModalIsOpen)
+      } else {
+        setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+      }
     }
   }
 
@@ -196,7 +200,7 @@ export default function productId(data: data) {
 
   const [showMore, setShowMore] = useState<boolean>(false)
   const [visible, setVisible] = useState<string>('hidden')
-  const [maxHeight, setMaxHeight] = useState<string>('40rem')
+  const [maxHeight, setMaxHeight] = useState<string>('100vw')
 
   useEffect(() => {
     localStorage.getItem('accessToken')
@@ -206,7 +210,7 @@ export default function productId(data: data) {
       setMaxHeight('100%')
     } else {
       setVisible('hidden')
-      setMaxHeight('40rem')
+      setMaxHeight('100vw')
     }
   }, [showMore, visible, maxHeight])
 
@@ -418,7 +422,12 @@ export default function productId(data: data) {
                   </div>
                   <div className="site">
                     <LineShareButton url={currentUrl}>
-                      <LineIcon size={48} round={true} borderRadius={24} />
+                      <LineIcon
+                        size={48}
+                        round={true}
+                        borderRadius={24}
+                        className="iconSize"
+                      />
                     </LineShareButton>
                     <div className="siteName">라인</div>
                   </div>
@@ -443,7 +452,12 @@ export default function productId(data: data) {
 
                   <div className="site">
                     <FacebookShareButton url={currentUrl}>
-                      <FacebookIcon size={48} round={true} borderRadius={24} />
+                      <FacebookIcon
+                        size={48}
+                        round={true}
+                        borderRadius={24}
+                        className="iconSize"
+                      />
                     </FacebookShareButton>
                     <div className="siteName">페이스북</div>
                   </div>
@@ -453,6 +467,7 @@ export default function productId(data: data) {
                         size={48}
                         round={true}
                         borderRadius={24}
+                        className="iconSize"
                       ></TwitterIcon>
                     </TwitterShareButton>
                     <div className="siteName">트위터</div>
@@ -476,8 +491,8 @@ export default function productId(data: data) {
         style={{
           overflow: `${visible}`,
           maxHeight: `${maxHeight}`,
-          margin: '0 -1.7rem 1rem -1.7rem',
-          width: '36rem',
+          marginBottom: '1rem',
+          width: '100%',
         }}
       >
         <div className="explicate">

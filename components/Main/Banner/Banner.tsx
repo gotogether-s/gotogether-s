@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
+import { Autoplay, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Autoplay } from 'swiper'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -33,7 +33,7 @@ const Banner = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="/">
+          <Link href="/product-details/58">
             <a>
               <img src="./banner3.png" alt="img" className={style.img} />
             </a>

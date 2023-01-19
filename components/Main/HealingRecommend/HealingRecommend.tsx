@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useHealingRecommendMutation } from '@api/requestApi'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -40,21 +40,25 @@ const HealingRecommend = () => {
           healing.map(({ ...heal }: data, index: number) => (
             <SwiperSlide key={index}>
               <Link href={`/product-details/${heal.id}`}>
-                <img src={heal.thumbnail} alt="img" className={style.img} />
-              </Link>
-              <span className={style.nation}>{heal.country}</span>
-              <div className={style.title}>{heal.productName}</div>
-              <div className={style.hashTags}>
-                <div className={style.hashTag1}>#{heal.ages} &nbsp;</div>
-                <div className={style.hashTag2}>#{heal.companion}&nbsp;</div>
-              </div>
-              {heal.basicPrice == 0 ? (
-                <div className={style.price}>가격 문의</div>
-              ) : (
-                <div className={style.price}>
-                  {heal.basicPrice.toLocaleString('ko-KR')}원
+                <div className={style.click}>
+                  <img src={heal.thumbnail} alt="img" className={style.img} />
+                  <span className={style.nation}>{heal.country}</span>
+                  <div className={style.title}>{heal.productName}</div>
+                  <div className={style.hashTags}>
+                    <div className={style.hashTag1}>#{heal.ages} &nbsp;</div>
+                    <div className={style.hashTag2}>
+                      #{heal.companion}&nbsp;
+                    </div>
+                  </div>
+                  {heal.basicPrice == 0 ? (
+                    <div className={style.price}>가격 문의</div>
+                  ) : (
+                    <div className={style.price}>
+                      {heal.basicPrice.toLocaleString('ko-KR')}원
+                    </div>
+                  )}
                 </div>
-              )}
+              </Link>
             </SwiperSlide>
           ))}
       </Swiper>
