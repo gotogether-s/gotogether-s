@@ -22,7 +22,7 @@ const Feature = () => {
   const [userEmail, setUserEmail] = useState('')
 
   const loginUserProps = {
-    myInfoLink: '/myinfo',
+    myAccountLink: '/myaccount',
     backgroundColor: '#4581f6',
     primary: userName,
     secondary: userEmail,
@@ -31,7 +31,7 @@ const Feature = () => {
   }
 
   const logoutUserProps = {
-    myInfoLink: '/signin',
+    myAccountLink: '/signin',
     backgroundColor: '#d3d3d3',
     primary: translate['로그인하기'],
     secondary: null,

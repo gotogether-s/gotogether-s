@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
   const {
-    myInfoLink,
+    myAccountLink,
     backgroundColor,
     primary,
     secondary,
@@ -99,7 +99,7 @@ const User = (props) => {
 
   return (
     <>
-      <Link href={myInfoLink}>
+      <Link href={myAccountLink}>
         <List
           sx={{
             padding: '1.6rem 0',

@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-const MyInfo = () => {
+const MyAccount = () => {
   const router = useRouter()
 
   const [requestMembersDetail] = useRequestMembersDetailMutation()
@@ -120,4 +120,4 @@ const MyInfo = () => {
   )
 }
 
-export default MyInfo
+export default MyAccount

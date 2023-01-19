@@ -23,7 +23,7 @@ const Menu = () => {
   const mainMenusLogin = [
     {
       label: translate['내 계정'],
-      link: '/myinfo',
+      link: '/myaccount',
     },
     {
       label: translate['예약 확인 및 취소'],

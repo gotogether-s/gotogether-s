@@ -12,7 +12,7 @@ type ALLOWED_PATH =
   | '/signin'
   | '/signup'
   | '/survey'
-  | '/myinfo'
+  | '/myaccount'
   | '/confirmpassword'
   | '/newpassword'
   | '/book'
@@ -24,7 +24,7 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/signin',
   '/signup',
   '/survey',
-  '/myinfo',
+  '/myaccount',
   '/confirmpassword',
   '/newpassword',
   '/book',
