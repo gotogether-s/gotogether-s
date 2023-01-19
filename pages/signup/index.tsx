@@ -7,6 +7,8 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
+import en from '@public/locales/en/signup.json'
+import ko from '@public/locales/ko/signup.json'
 import { Dayjs } from 'dayjs'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -15,6 +17,9 @@ const regex = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
 
 const SignUp = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [requestSignUp] = useRequestSignUpMutation()
   const [validateEmail] = useValidateEmailMutation()
@@ -59,36 +64,38 @@ const SignUp = () => {
     const errors = {}
     if (requestDuplicateEmail) {
       if (!signUpValues.email) {
-        errors.email = '이메일을 입력해주세요'
+        errors.email = translate['에러: 이메일을 입력해주세요']
       } else if (!regex.test(signUpValues.email)) {
-        errors.email = '올바른 이메일 형식이 아닙니다'
+        errors.email = translate['올바른 이메일 형식이 아닙니다']
       } else if (response === 200) {
-        errors.email = '사용할수 있는 이메일입니다'
+        errors.email = translate['사용할수 있는 이메일입니다']
       } else if (response === 400) {
-        errors.email = '이미 사용중인 이메일입니다'
+        errors.email = translate['이미 사용중인 이메일입니다']
       } else if (response === 'failed') {
-        errors.email = '이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.'
+        errors.email =
+          translate['이메일 중복검사 요청에 실패했습니다. 다시 시도해주세요.']
       }
       return errors
     }
     if (!signUpValues.name) {
-      errors.name = '이름을 입력해주세요'
+      errors.name = translate['에러: 이름을 입력해주세요']
     }
     if (!signUpValues.dateOfBirth) {
-      errors.dateOfBirth = '생년월일을 입력해주세요'
+      errors.dateOfBirth = translate['생년월일을 입력해주세요']
     }
     if (!signUpValues.email) {
-      errors.email = '이메일을 입력해주세요'
+      errors.email = translate['에러: 이메일을 입력해주세요']
     } else if (!regex.test(signUpValues.email)) {
-      errors.email = '올바른 이메일 형식이 아닙니다'
+      errors.email = translate['올바른 이메일 형식이 아닙니다']
     } else if (!duplicateEmailIsDone) {
-      errors.email = '이메일 중복확인을 완료해주세요'
+      errors.email = translate['이메일 중복확인을 완료해주세요']
     }
     if (!signUpValues.passwordInitial) {
-      errors.passwordInitial = '비밀번호를 입력해주세요'
+      errors.passwordInitial = translate['에러: 비밀번호를 입력해주세요']
     }
     if (!signUpValues.passwordConfirm) {
-      errors.passwordConfirm = '확인을 위해 비밀번호를 다시 입력해주세요'
+      errors.passwordConfirm =
+        translate['확인을 위해 비밀번호를 다시 입력해주세요']
     }
     if (
       signUpValues.passwordInitial &&
@@ -96,7 +103,7 @@ const SignUp = () => {
       signUpValues.passwordInitial !== signUpValues.passwordConfirm
     ) {
       errors.passwordConfirm =
-        '비밀번호가 일치하지 않습니다. 다시 시도해주세요.'
+        translate['비밀번호가 일치하지 않습니다. 다시 시도해주세요.']
     }
     return errors
   }
@@ -148,32 +155,36 @@ const SignUp = () => {
       })
       if (res.data.statusCode === 200) {
         setSignUpResponseMessage(
-          '회원가입에 성공했습니다. 로그인 페이지로 이동합니다.',
+          translate['회원가입에 성공했습니다. 로그인 페이지로 이동합니다.'],
         )
         setTimeout(() => {
           router.push('/signin')
         }, 1000)
       } else if (res.data.statusCode === 400) {
-        setSignUpResponseMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
+        setSignUpResponseMessage(
+          translate['회원가입에 실패했습니다. 다시 시도해주세요.'],
+        )
       }
     } catch (e) {
       console.log('e: ', e)
-      setSignUpResponseMessage('회원가입에 실패했습니다. 다시 시도해주세요.')
+      setSignUpResponseMessage(
+        translate['회원가입에 실패했습니다. 다시 시도해주세요.'],
+      )
     }
   }
 
   return (
     <>
-      <NavBar link="/" title="회원가입" />
+      <NavBar link="/" title={translate['회원가입']} />
       <Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            이름
+            {translate['이름']}
           </Typography>
           <TextField
             name="name"
             size="small"
-            placeholder="이름을 입력해주세요"
+            placeholder={translate['이름을 입력해주세요']}
             sx={{ width: '100%' }}
             value={signUpValues.name}
             onChange={handleSignUpValuesChange}
@@ -194,7 +205,7 @@ const SignUp = () => {
         </Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            생년월일
+            {translate['생년월일']}
           </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <MobileDatePicker
@@ -204,7 +215,9 @@ const SignUp = () => {
               renderInput={(params) => (
                 <TextField
                   size="small"
-                  placeholder="월/날짜/연도 순으로 생년월일을 입력해주세요"
+                  placeholder={
+                    translate['월/날짜/연도 순으로 생년월일을 입력해주세요']
+                  }
                   sx={{ width: '100%' }}
                   {...params}
                 />
@@ -226,13 +239,13 @@ const SignUp = () => {
         </Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            이메일
+            {translate['이메일']}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <TextField
               name="email"
               size="small"
-              placeholder="이메일을 입력해주세요"
+              placeholder={translate['이메일을 입력해주세요']}
               sx={{ width: '70%' }}
               value={signUpValues.email}
               onChange={handleSignUpValuesChange}
@@ -254,7 +267,7 @@ const SignUp = () => {
               }}
               onClick={requestDuplicateEmail}
             >
-              중복확인
+              {translate['중복확인']}
             </Button>
           </Box>
           <Typography
@@ -266,7 +279,8 @@ const SignUp = () => {
               paddingTop: '0.3rem',
               lineHeight: 'normal',
               color:
-                signUpValuesErrors.email !== '사용할수있는 이메일입니다'
+                signUpValuesErrors.email !==
+                translate['사용할수 있는 이메일입니다']
                   ? 'tomato'
                   : 'green',
             }}
@@ -276,13 +290,13 @@ const SignUp = () => {
         </Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            비밀번호
+            {translate['비밀번호']}
           </Typography>
           <TextField
             name="passwordInitial"
             type="password"
             size="small"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder={translate['비밀번호를 입력해주세요']}
             sx={{ width: '100%' }}
             value={signUpValues.passwordInitial}
             onChange={handleSignUpValuesChange}
@@ -305,13 +319,13 @@ const SignUp = () => {
         </Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            비밀번호 확인
+            {translate['비밀번호 확인']}
           </Typography>
           <TextField
             name="passwordConfirm"
             type="password"
             size="small"
-            placeholder="비밀번호를 다시 입력해주세요"
+            placeholder={translate['비밀번호를 다시 입력해주세요']}
             sx={{ width: '100%' }}
             value={signUpValues.passwordConfirm}
             onChange={handleSignUpValuesChange}
@@ -350,7 +364,7 @@ const SignUp = () => {
             }}
             onClick={submitSignUp}
           >
-            회원가입
+            {translate['회원가입']}
           </Button>
         </Box>
         <Typography
@@ -362,7 +376,7 @@ const SignUp = () => {
             lineHeight: 'normal',
             color:
               signUpResponseMessage !==
-              '회원가입에 성공했습니다. 로그인 페이지로 이동합니다.'
+              translate['회원가입에 성공했습니다. 로그인 페이지로 이동합니다.']
                 ? 'tomato'
                 : 'green',
           }}
