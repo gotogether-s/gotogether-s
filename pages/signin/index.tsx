@@ -43,12 +43,12 @@ const SignIn = () => {
   const validateSignIn = (values) => {
     const errors = {}
     if (!values.email) {
-      errors.email = translate['이메일을 입력해주세요']
+      errors.email = translate['에러: 이메일을 입력해주세요']
     } else if (!isEmail.test(signInValues.email)) {
       errors.email = translate['올바른 이메일 형식이 아닙니다']
     }
     if (!values.password) {
-      errors.password = translate['비밀번호를 입력해주세요']
+      errors.password = translate['에러: 비밀번호를 입력해주세요']
     }
     return errors
   }
