@@ -157,7 +157,7 @@ const MyBooking = () => {
         {myBookingLists.length ? (
           <StyledSection sx={{ marginBottom: 0 }}>
             {myBookingLists.map((list, index) => (
-              <>
+              <Box key={index}>
                 <Box
                   key={index}
                   sx={{
@@ -337,7 +337,7 @@ const MyBooking = () => {
                 {myBookingLists.length - 1 !== index && (
                   <Divider sx={{ margin: '1.6rem -1.6rem' }} />
                 )}
-              </>
+              </Box>
             ))}
           </StyledSection>
         ) : (
