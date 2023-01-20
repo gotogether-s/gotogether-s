@@ -13,7 +13,7 @@ const Survey = () => {
 
   return (
     <>
-      <NavBar link="/" title="여행지 추천 받기" />
+      <NavBar link="/" title={translate['여행지 추천 받기']} />
       <Box sx={{ paddingBottom: '2rem' }}>
         <Typography
           sx={{
