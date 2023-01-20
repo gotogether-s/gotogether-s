@@ -198,8 +198,8 @@ const initialState: categoryMenuState = [
         ),
       },
       {
-        label: '오지여행',
-        link: encodeURI('/product-list/themes?category=오지여행&page=0&sort='),
+        label: '오지탐험',
+        link: encodeURI('/product-list/themes?category=오지탐험&page=0&sort='),
       },
       {
         label: '트레킹여행',
