@@ -163,7 +163,6 @@ const Saved = () => {
             <Button
               variant="outlined"
               sx={{
-                width: '12rem',
                 border: '1px solid #4581F8',
                 backgroundColor: 'transparent',
                 color: '#4581F8',
