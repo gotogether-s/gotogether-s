@@ -14,6 +14,8 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import en from '@public/locales/en/myBooking.json'
+import ko from '@public/locales/ko/myBooking.json'
 import {
   addMyBookingList,
   removeMyBookingList,
@@ -29,32 +31,35 @@ const StyledSection = styled('div')(() => ({
   marginBottom: '1.6rem',
 }))
 
-const reservationDurationOptions = [
-  {
-    label: '전체',
-    value: 'all',
-  },
-  {
-    label: '최근 3개월',
-    value: '90',
-  },
-  {
-    label: '최근 6개월',
-    value: '180',
-  },
-  {
-    label: '최근 1년',
-    value: '365',
-  },
-]
-
 const MyBooking = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [getReservation] = useGetReservationMutation()
   const [getReservationWithDuration] = useGetReservationWithDurationMutation()
   const [deleteReservation] = useDeleteReservationMutation()
+
+  const reservationDurationOptions = [
+    {
+      label: translate['전체'],
+      value: 'all',
+    },
+    {
+      label: translate['최근 3개월'],
+      value: '90',
+    },
+    {
+      label: translate['최근 6개월'],
+      value: '180',
+    },
+    {
+      label: translate['최근 1년'],
+      value: '365',
+    },
+  ]
 
   const [reservationDuration, setReservationDuration] = useState(
     reservationDurationOptions[0].value,
@@ -135,7 +140,11 @@ const MyBooking = () => {
 
   return (
     <>
-      <NavBar link={`/`} title="예약 확인 및 취소" marginBottom="0" />
+      <NavBar
+        link={`/`}
+        title={translate['예약 확인 및 취소']}
+        marginBottom="0"
+      />
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         <StyledSection>
           <Box>
@@ -184,13 +193,13 @@ const MyBooking = () => {
                             color: '#939393',
                           }}
                         >
-                          예약일:{' '}
+                          {translate['예약일']}:{' '}
                           {list.reservationDate.trim().replace(/-/g, '/')} (
                           {list.reservationDayOfWeek})
                         </Typography>
                       </Box>
                       <Chip
-                        label="예약 완료"
+                        label={translate['예약 완료']}
                         sx={{
                           backgroundColor: '#4581F8',
                           padding: '0.5rem 0.6rem',
@@ -248,7 +257,7 @@ const MyBooking = () => {
                           <Typography
                             sx={{ fontSize: '1.3rem', fontWeight: 500 }}
                           >
-                            출발
+                            {translate['출발']}
                           </Typography>
                           <Typography
                             sx={{ fontSize: '1.3rem', color: '#4581F8' }}
@@ -267,7 +276,7 @@ const MyBooking = () => {
                           <Typography
                             sx={{ fontSize: '1.3rem', fontWeight: 500 }}
                           >
-                            도착
+                            {translate['도착']}
                           </Typography>
                           <Typography
                             sx={{ fontSize: '1.3rem', color: '#4581F8' }}
@@ -307,7 +316,7 @@ const MyBooking = () => {
                         },
                       }}
                     >
-                      상세보기
+                      {translate['상세보기']}
                     </Button>
                     <Button
                       variant="outlined"
@@ -330,7 +339,7 @@ const MyBooking = () => {
                         },
                       }}
                     >
-                      예약 취소
+                      {translate['예약 취소']}
                     </Button>
                   </Box>
                 </Box>
