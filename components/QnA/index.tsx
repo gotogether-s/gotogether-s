@@ -126,7 +126,7 @@ const QnA = () => {
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Typography sx={{ fontSize: '1.8rem', width: '70%' }}>
-                {translate[`${qnaList.question}`]}
+                {translate[qnaList.question]}
               </Typography>
             </Box>
           </Box>
@@ -150,7 +150,7 @@ const QnA = () => {
                   }
                 >
                   <ListItemText
-                    primary={translate[`${answer}`]}
+                    primary={translate[answer]}
                     sx={{ textAlign: 'center' }}
                   />
                 </ListItemButton>

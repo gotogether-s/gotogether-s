@@ -75,7 +75,7 @@ const Category = () => {
                     dispatch(toggleCategorySubMenu(index))
                   }}
                 >
-                  <ListItemText primary={translate[`${categoryMenu.label}`]} />
+                  <ListItemText primary={translate[categoryMenu.label]} />
                   {categoryMenu.open ? (
                     <RemoveIcon sx={{ fontSize: 15 }} />
                   ) : (
@@ -95,7 +95,7 @@ const Category = () => {
                     sx={{ pl: 6 }}
                     onClick={() => dispatch(close())}
                   >
-                    <ListItemText primary={translate[`${subMenu.label}`]} />
+                    <ListItemText primary={translate[subMenu.label]} />
                   </ListItemButton>
                 </Collapse>
               ))}
