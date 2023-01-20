@@ -14,7 +14,7 @@ const Survey = () => {
             textAlign: 'center',
           }}
         >
-          나에게 꼭 맞는 여행지 추천을 위해 <br /> 항목을 선택해주세요
+          나에게 꼭 맞는 여행지 추천을 위해 항목을 선택해주세요
         </Typography>
         <List
           sx={{
