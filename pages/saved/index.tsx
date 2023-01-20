@@ -13,6 +13,8 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import en from '@public/locales/en/saved.json'
+import ko from '@public/locales/ko/saved.json'
 import {
   addLikedItems,
   findAndRemoveLikedItem,
@@ -36,6 +38,9 @@ const Saved = () => {
 
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [requestLikedItems] = useRequestLikedItemsMutation()
   const [deleteLikedItems] = useDeleteLikedItemsMutation()
@@ -133,7 +138,7 @@ const Saved = () => {
 
   return (
     <>
-      <NavBar link={`/`} title="찜" marginBottom="0" />
+      <NavBar link={`/`} title={translate['찜']} marginBottom="0" />
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         <StyledSection>
           <Box
@@ -153,7 +158,7 @@ const Saved = () => {
                   onChange={() => handleCheckedAllChange(likedItems)}
                 />
               }
-              label="전체 선택"
+              label={translate['전체 선택']}
             />
             <Button
               variant="outlined"
@@ -171,7 +176,7 @@ const Saved = () => {
               }}
               onClick={requestToRemoveSelectedLikedItems}
             >
-              선택 상품 삭제
+              {translate['선택 상품 삭제']}
             </Button>
           </Box>
         </StyledSection>
@@ -233,8 +238,9 @@ const Saved = () => {
                             color: '#939393',
                           }}
                         >
-                          1인 / {likedItem.basicPrice.toLocaleString('ko-KR')}{' '}
-                          원
+                          {translate['1인']} /{' '}
+                          {likedItem.basicPrice.toLocaleString('ko-KR')}{' '}
+                          {translate['원']}
                         </Typography>
                       </Box>
                       <Typography
@@ -249,7 +255,7 @@ const Saved = () => {
                           router.push(`product-details/${likedItem.product_id}`)
                         }
                       >
-                        상세보기 &gt;
+                        {translate['상세보기']} &gt;
                       </Typography>
                     </Box>
                   </Box>
@@ -282,7 +288,7 @@ const Saved = () => {
                   marginBottom: '1rem',
                 }}
               >
-                아직 찜한 상품이 없습니다
+                {translate['아직 찜한 상품이 없습니다']}
               </Typography>
               <Typography
                 sx={{
@@ -292,7 +298,11 @@ const Saved = () => {
                   marginBottom: '5rem',
                 }}
               >
-                홈페이지로 돌아가서 더 많은 여행 상품을 찾아보세요.
+                {
+                  translate[
+                    '홈페이지로 돌아가서 더 많은 여행 상품을 찾아보세요.'
+                  ]
+                }
               </Typography>
               <Button
                 variant="contained"
@@ -310,7 +320,7 @@ const Saved = () => {
                 }}
                 onClick={() => router.push('/')}
               >
-                홈으로
+                {translate['홈으로']}
               </Button>
             </Box>
           </StyledSection>
