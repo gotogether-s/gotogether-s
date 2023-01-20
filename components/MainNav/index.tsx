@@ -17,7 +17,7 @@ const MainNav = () => {
 
   const goToLikesPage = () => {
     const accessToken = localStorage.getItem('accessToken')
-    accessToken ? router.push('/likes') : router.push('/signin')
+    accessToken ? router.push('/saved') : router.push('/signin')
   }
 
   return (

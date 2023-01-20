@@ -27,7 +27,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Likes = () => {
+const Saved = () => {
   const StyledSection = styled('div')(() => ({
     backgroundColor: '#fff',
     padding: '1.6rem',
@@ -320,4 +320,4 @@ const Likes = () => {
   )
 }
 
-export default Likes
+export default Saved

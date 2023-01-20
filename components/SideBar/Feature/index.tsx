@@ -27,7 +27,7 @@ const Feature = () => {
     primary: userName,
     secondary: userEmail,
     myBookingLink: '/mybooking',
-    favoriteLink: '/likes',
+    favoriteLink: '/saved',
   }
 
   const logoutUserProps = {
