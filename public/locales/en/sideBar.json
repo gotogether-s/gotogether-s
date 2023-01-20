@@ -1,17 +1,21 @@
 {
   "로그인하기": "Sign In",
+
   "예약한 상품": "My Bookings",
   "찜한 상품": "Saved",
+
   "내 계정": "Manage Account",
   "예약 확인 및 취소": "My Bookings",
   "여행지 추천 받기": "Travel Preferences Survey",
   "로그아웃": "Sign Out",
   "회원가입": "Sign Up",
+
   "카테고리": "Vacation Packages",
   "국가별 여행": "By Region",
   "연령대별 여행": "By Age Group",
   "유형별 여행": "By Group Type",
   "테마별 여행": "By Theme",
+
   "국가 전체": "All Regions",
   "괌/사이판/하와이": "Guam/Saipan/Hawaii",
   "동남아시아": "South East Asia",
@@ -27,6 +31,7 @@
   "중앙아시아": "Central Asia",
   "코카서스": "Caucasus",
   "호주/뉴질랜드": "Australia/New Zealand",
+
   "연령대별 전체": "All Age Groups",
   "10대": "Teen",
   "20대": "20s",
@@ -35,6 +40,7 @@
   "50대": "50s",
   "60대": "60s",
   "70대 이상": "Over 70",
+
   "유형별 전체": "All Group Types",
   "남자끼리": "Men Only",
   "여자끼리": "Women Only",
@@ -42,6 +48,7 @@
   "친구나 동료": "With Friends",
   "연인이나 부부": "Couples",
   "자녀를 동반 가족": "Family",
+
   "테마별 전체": "All themes",
   "문화탐방": "Cultural Travel",
   "골프여행": "Golf Holidays",
