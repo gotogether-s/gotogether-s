@@ -7,12 +7,17 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/QnA.json'
+import ko from '@public/locales/ko/QnA.json'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const QnA = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [sendSurveyResult] = useSendSurveyResultMutation()
 
@@ -115,7 +120,7 @@ const QnA = () => {
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Typography sx={{ fontSize: '1.8rem', width: '70%' }}>
-                {qnaList.question}
+                {translate[`${qnaList.question}`]}
               </Typography>
             </Box>
           </Box>
@@ -138,7 +143,10 @@ const QnA = () => {
                     getUserAnswer(event, surveyNumber - 1, answerIndex)
                   }
                 >
-                  <ListItemText primary={answer} sx={{ textAlign: 'center' }} />
+                  <ListItemText
+                    primary={translate[`${answer}`]}
+                    sx={{ textAlign: 'center' }}
+                  />
                 </ListItemButton>
               ))}
             </List>
@@ -163,7 +171,7 @@ const QnA = () => {
         }}
         onClick={goToNextSurvey}
       >
-        다음
+        {translate['다음']}
       </Button>
       <Button
         variant="outlined"
@@ -186,7 +194,7 @@ const QnA = () => {
         }}
         onClick={skipSurvey}
       >
-        다음에 하기
+        {translate['다음에 하기']}
       </Button>
       <Button
         variant="contained"
@@ -206,7 +214,7 @@ const QnA = () => {
         }}
         onClick={submitSurvey}
       >
-        완료
+        {translate['완료']}
       </Button>
       <Typography
         sx={{
