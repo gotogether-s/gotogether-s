@@ -41,12 +41,12 @@ const QnA = () => {
     getQnaLists.slice(surveyNumber - 1, surveyNumber),
   )
 
-  const getUserAnswer = (e, userSurveyResultIndex, answerIndex) => {
+  const getUserAnswer = (e, userSurveyResultIndex, answer, answerIndex) => {
     const key = Object.keys(userSurveyResult)[userSurveyResultIndex]
-    const value = e.target.textContent
+
     setUserSurveyResult({
       ...userSurveyResult,
-      [key]: value,
+      [key]: answer,
     })
     setSelectedAnswer(answerIndex)
   }
@@ -70,26 +70,28 @@ const QnA = () => {
   const submitSurvey = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
+
       const res = await sendSurveyResult({
         data: userSurveyResult,
         accessToken: accessToken,
       })
-      if (res.data.statusCode === 200) {
+
+      if ('data' in res && res.data.statusCode === 200) {
         setDisplayMessage('설문조사에 응해주셔서 감사합니다!')
         setTimeout(() => {
           router.push('/')
         }, 1000)
-      } else if (res.data.statusCode === 400) {
+      } else {
         setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
         setTimeout(() => {
-          router.push('/survey')
+          router.reload()
         }, 1000)
       }
     } catch (e) {
       console.log('e: ', e)
       setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
       setTimeout(() => {
-        router.push('/survey')
+        router.reload()
       }, 1000)
     }
   }
@@ -140,7 +142,7 @@ const QnA = () => {
                       answerIndex === selectedAnswer && '#F2F4FA',
                   }}
                   onClick={() =>
-                    getUserAnswer(event, surveyNumber - 1, answerIndex)
+                    getUserAnswer(event, surveyNumber - 1, answer, answerIndex)
                   }
                 >
                   <ListItemText
