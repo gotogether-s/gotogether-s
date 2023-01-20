@@ -5,7 +5,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
-  Typography
+  Typography,
 } from '@mui/material'
 import en from '@public/locales/en/QnA.json'
 import ko from '@public/locales/ko/QnA.json'
@@ -54,7 +54,7 @@ const QnA = () => {
   const goToNextSurvey = () => {
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
-      setDisplayMessage('문항 선택 후 다음 질문으로 넘어가주세요')
+      setDisplayMessage(translate['문항 선택 후 다음 질문으로 넘어가주세요'])
       return
     }
     setSurveyNumber(surveyNumber + 1)
@@ -77,22 +77,26 @@ const QnA = () => {
       })
 
       if ('data' in res && res.data.statusCode === 200) {
-        setDisplayMessage('설문조사에 응해주셔서 감사합니다')
+        setDisplayMessage(translate['설문조사에 응해주셔서 감사합니다'])
         setTimeout(() => {
           router.push('/')
-        }, 1000)
+        }, 3000)
       } else {
-        setDisplayMessage('설문조사 제출에 실패했습니다. 다시 시도해주세요.')
+        setDisplayMessage(
+          translate['설문조사 제출에 실패했습니다. 다시 시도해주세요.'],
+        )
         setTimeout(() => {
           router.reload()
-        }, 1000)
+        }, 2000)
       }
     } catch (e) {
       console.log('e: ', e)
-      setDisplayMessage('설문조사 제출에 실패했습니다. 다시 시도해주세요.')
+      setDisplayMessage(
+        translate['설문조사 제출에 실패했습니다. 다시 시도해주세요.'],
+      )
       setTimeout(() => {
         router.reload()
-      }, 1000)
+      }, 2000)
     }
   }
 
@@ -222,7 +226,7 @@ const QnA = () => {
         sx={{
           visibility: displayMessage ? 'visible' : 'hidden',
           color:
-            displayMessage !== '설문조사에 응해주셔서 감사합니다!'
+            displayMessage !== translate['설문조사에 응해주셔서 감사합니다']
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',
