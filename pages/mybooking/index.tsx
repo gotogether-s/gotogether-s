@@ -360,7 +360,7 @@ const MyBooking = () => {
                   marginBottom: '1rem',
                 }}
               >
-                아직 예약한 상품이 없습니다
+                {translate['아직 예약한 상품이 없습니다']}
               </Typography>
               <Typography
                 sx={{
@@ -370,7 +370,11 @@ const MyBooking = () => {
                   marginBottom: '5rem',
                 }}
               >
-                홈페이지로 돌아가서 더 많은 여행 상품을 찾아보세요.
+                {
+                  translate[
+                    '홈페이지로 돌아가서 더 많은 여행 상품을 찾아보세요.'
+                  ]
+                }
               </Typography>
               <Button
                 variant="contained"
@@ -388,7 +392,7 @@ const MyBooking = () => {
                 }}
                 onClick={() => router.push('/')}
               >
-                홈으로
+                {translate['홈으로']}
               </Button>
             </Box>
           </StyledSection>
