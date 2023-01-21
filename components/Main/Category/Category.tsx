@@ -1,7 +1,15 @@
-import style from './Category.module.scss'
+import en from '@public/locales/en/category.json'
+import ko from '@public/locales/ko/category.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import style from './Category.module.scss'
 
 const Category = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   type Props = {
     name: string
     api: string
@@ -45,7 +53,7 @@ const Category = () => {
               <img className={style.img} src="./all.png" alt="" />
             </a>
           </Link>
-          <div className={style.categoryName}>전체</div>
+          <div className={style.categoryName}>{translate['전체']}</div>
         </div>
         <div className={style.bundle}>
           <Link
@@ -56,7 +64,7 @@ const Category = () => {
               <img className={style.img} src="./continents.png" alt="" />
             </a>
           </Link>
-          <div className={style.categoryName}>국가별</div>
+          <div className={style.categoryName}>{translate['국가별']}</div>
         </div>
         <div className={style.bundle}>
           <Link
@@ -67,7 +75,7 @@ const Category = () => {
               <img className={style.img} src="./ages.png" alt="" />
             </a>
           </Link>
-          <div className={style.categoryName}>연령대별</div>
+          <div className={style.categoryName}>{translate['연령대별']}</div>
         </div>
         <div className={style.bundle}>
           <Link
@@ -78,7 +86,7 @@ const Category = () => {
               <img className={style.img} src="./companion.png" alt="" />
             </a>
           </Link>
-          <div className={style.categoryName}>유형별</div>
+          <div className={style.categoryName}>{translate['유형별']}</div>
         </div>
         <div className={style.bundle}>
           <Link
@@ -89,7 +97,7 @@ const Category = () => {
               <img className={style.img} src="./themes.png" alt="" />
             </a>
           </Link>
-          <div className={style.categoryName}>테마별</div>
+          <div className={style.categoryName}>{translate['테마별']}</div>
         </div>
       </div>
     </>
