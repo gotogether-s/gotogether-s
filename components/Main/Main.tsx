@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react'
+import en from '@public/locales/en/main.json'
+import ko from '@public/locales/ko/main.json'
 import axios from 'axios'
-import style from './Main.module.scss'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import Banner from './Banner/Banner'
-import Category from './Category/Category'
-import Recommend from './Recommend/Recommend'
 import Bundary from './Bundary/Bundary'
+import Category from './Category/Category'
+import style from './Main.module.scss'
+import Recommend from './Recommend/Recommend'
 import SemiBanner from './SemiBanner/SemiBanner'
-import Footer from '../Footer/Footer'
 
 const Main = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [username, setUsername] = useState<string>('')
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
@@ -40,14 +47,18 @@ const Main = () => {
         <Bundary />
         {username ? (
           <Recommend
-            title={username + '님을 위한 추천 상품'}
+            title={
+              locale === 'ko'
+                ? username + '님을 위한 추천 상품'
+                : translate['님을 위한 추천 상품'] + username
+            }
             name={username + '님을 위한 추천 상품'}
             api="custom"
             apiAddress="custom"
           />
         ) : (
           <Recommend
-            title="오늘의 추천 상품"
+            title={translate['오늘의 추천 상품']}
             name="오늘의 추천 상품"
             api="custom"
             apiAddress="custom"
@@ -56,7 +67,7 @@ const Main = () => {
 
         <Bundary />
         <Recommend
-          title="추천여행지"
+          title={translate['추천여행지']}
           name="국가별 여행"
           api="continents"
           apiAddress="continents"
@@ -64,7 +75,7 @@ const Main = () => {
 
         <Bundary />
         <Recommend
-          title="연령대별 여행 추천"
+          title={translate['연령대별 여행 추천']}
           name="연령대별 여행"
           api="ages"
           apiAddress="ages"
@@ -72,7 +83,7 @@ const Main = () => {
 
         <SemiBanner />
         <Recommend
-          title="유형별 여행 추천"
+          title={translate['유형별 여행 추천']}
           name="유형별 여행"
           api="companion"
           apiAddress="companion"
@@ -80,7 +91,7 @@ const Main = () => {
 
         <Bundary />
         <Recommend
-          title="골프여행 추천"
+          title={translate['골프여행 추천']}
           name="테마별 여행"
           api="golf"
           apiAddress="themes"
@@ -88,7 +99,7 @@ const Main = () => {
 
         <Bundary />
         <Recommend
-          title="문화탐방 여행 추천"
+          title={translate['문화탐방 여행 추천']}
           name="테마별 여행"
           api="culture"
           apiAddress="themes"
@@ -96,7 +107,7 @@ const Main = () => {
 
         <Bundary />
         <Recommend
-          title="휴양지 추천"
+          title={translate['휴양지 추천']}
           name="테마별 여행"
           api="healing"
           apiAddress="themes"
