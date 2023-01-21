@@ -353,10 +353,10 @@ export default function productLists(data: data) {
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={3.1} spaceBetween={8}>
+        <Swiper slidesPerView={4} spaceBetween={8}>
           {title == 'all' ? (
             <>
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category1 == '' ? (
                     <div
@@ -390,7 +390,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category2 == '' ? (
                     <div
@@ -420,7 +420,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category3 == '' ? (
                     <div
@@ -454,7 +454,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category4 == '' ? (
                     <div
@@ -657,7 +657,7 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'ages' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrasesA">연령대 선택</div>
+                    <div className="sharePhrases">연령대 선택</div>
                   </div>
                   <div className="middle">
                     {ages &&
