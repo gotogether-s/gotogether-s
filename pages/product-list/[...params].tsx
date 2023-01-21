@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import axios from 'axios'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -353,7 +353,7 @@ export default function productLists(data: data) {
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={3.1}>
+        <Swiper slidesPerView={3.1} spaceBetween={8}>
           {title == 'all' ? (
             <>
               <SwiperSlide>
@@ -776,38 +776,42 @@ export default function productLists(data: data) {
           data.content.map((list: listData, index: number) => (
             <div className="productList" key={index}>
               <Link href={`/product-details/${list.id}`}>
-                <img src={list.thumbnail} alt="img" className="imgClick" />
-              </Link>
-              <span className="nation">{list.country}</span>
-              <div className="title">{list.productName}</div>
-              <div className="hashTags">
-                <div className="hashTag1">#{list.ages} &nbsp;</div>
-                <div className="hashTag2">#{list.theme} &nbsp;</div>
-              </div>
-              {list.basicPrice == 0 ? (
-                <div className="price">가격 문의</div>
-              ) : (
-                <div className="price">
-                  {list.basicPrice.toLocaleString('ko-KR')}원
+                <div className="clickProductDetail">
+                  <img src={list.thumbnail} alt="img" className="imgClick" />
+                  <span className="nation">{list.country}</span>
+                  <div className="title">{list.productName}</div>
+                  <div className="hashTags">
+                    <div className="hashTag1">#{list.ages} &nbsp;</div>
+                    <div className="hashTag2">#{list.theme} &nbsp;</div>
+                  </div>
+                  {list.basicPrice == 0 ? (
+                    <div className="price">가격 문의</div>
+                  ) : (
+                    <div className="price">
+                      {list.basicPrice.toLocaleString('ko-KR')}원
+                    </div>
+                  )}
                 </div>
-              )}
+              </Link>
             </div>
           ))}
       </div>
 
-      {data.totalElements ? (
-        <Pagination
-          activePage={page}
-          itemsCountPerPage={data.pageable.pageSize}
-          totalItemsCount={data.totalElements}
-          pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={handlePageChange}
-        />
-      ) : (
-        <>상품을 준비중입니다...</>
-      )}
+      <div className="paginationPosition">
+        {data.totalElements ? (
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={data.pageable.pageSize}
+            totalItemsCount={data.totalElements}
+            pageRangeDisplayed={5}
+            prevPageText={'‹'}
+            nextPageText={'›'}
+            onChange={handlePageChange}
+          />
+        ) : (
+          <>상품을 준비중입니다...</>
+        )}
+      </div>
     </>
   )
 }

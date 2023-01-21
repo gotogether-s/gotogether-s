@@ -2,17 +2,17 @@
   cursor: pointer;
 }
 .img {
-  border-radius: 1.6vw;
+  border-radius: 0.8rem;
 }
 .nation {
   width: 100%;
   background-color: #466ff5;
   color: #fff;
-  border-radius: 5.4vw;
-  padding: 0.4vw 1.4vw;
+  border-radius: 2.7rem;
+  padding: 0.2rem 0.7rem;
 }
 .title {
-  margin-top: 0.8vw;
+  margin-top: 0.8rem;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -38,19 +38,15 @@
 }
 .price {
   font-weight: 700;
-  margin-top: 1.2vw;
+  margin-top: 0.6rem;
 }
 .group {
-  height: 9vw !important;
-  margin-top: -3.2vw;
-  margin-bottom: 4vw;
+  margin-top: -1.6rem;
+  margin-bottom: 2rem;
   margin-left: 3.2vw;
-  height: 7vw;
-  .selectcompanion {
+  .selectCompanion {
     width: auto !important;
     .selectGroup {
-      width: 11.6vw;
-      height: 7vw;
       text-align: center;
       line-height: 7vw;
       background-color: #fff;
@@ -58,7 +54,7 @@
       cursor: pointer;
       font-size: 2.8vw;
       font-weight: 700;
-      border: solid 0.2vw #cbcbcb;
+      border: solid 0.1rem #cbcbcb;
       border-radius: 3.2vw;
       padding-top: 1.2vw;
       padding-left: 3.2vw;
@@ -82,7 +78,7 @@
       line-height: 7vw;
       text-align: center;
       background-color: #4581f8;
-      border: solid 0.2vw #4581f8;
+      border: solid 0.1rem #4581f8;
       color: #fff;
       font-size: 2.8vw;
       font-weight: 700;
@@ -157,9 +153,59 @@
     font-size: 1.9rem;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   .img {
-    width: 33vw;
-    height: 33vw;
+    width: 33.3rem;
+    height: 33.3rem;
+  }
+  .nation {
+    font-size: 1.7rem;
+  }
+  .title {
+    font-size: 2.1rem;
+  }
+  .hashTags {
+    .hashTag1 {
+      font-size: 1.7rem;
+    }
+    .hashTag2 {
+      font-size: 1.7rem;
+    }
+  }
+  .price {
+    font-size: 2.1rem;
+  }
+  .group {
+    margin-bottom: 4rem;
+    margin-left: 3.2vw;
+    .selectCompanion {
+      .selectGroup {
+        line-height: 6.2rem;
+        font-size: 2.5rem;
+        border-radius: 2.9rem;
+        padding-top: 1.2rem;
+        padding-left: 2.9rem;
+        padding-right: 2.9rem;
+        padding-bottom: 1.2rem;
+        &:hover {
+          line-height: 6.2rem;
+          font-size: 2.5rem;
+          border-radius: 2.9rem;
+          padding-top: 1.2rem;
+          padding-left: 2.9rem;
+          padding-right: 2.9rem;
+          padding-bottom: 1.2rem;
+        }
+      }
+      .choice {
+        line-height: 6.2rem;
+        font-size: 2.5rem;
+        border-radius: 2.9rem;
+        padding-top: 1.2rem;
+        padding-left: 2.9rem;
+        padding-right: 2.9rem;
+        padding-bottom: 1.2rem;
+      }
+    }
   }
 }

@@ -46,6 +46,7 @@ const Category = () => {
               width="10.6vw"
               height="10.6vw"
               viewBox="0 0 101 101"
+              className={style.iconSize}
             >
               <g
                 id="Group_173025"
@@ -126,6 +127,7 @@ const Category = () => {
               width="10.6vw"
               height="10.6vw"
               viewBox="0 0 101 101"
+              className={style.iconSize}
             >
               <g
                 id="Group_173018"
@@ -220,6 +222,7 @@ const Category = () => {
               width="10.6vw"
               height="10.6vw"
               viewBox="0 0 101 101"
+              className={style.iconSize}
             >
               <g
                 id="Group_173021"
@@ -287,6 +290,7 @@ const Category = () => {
               width="10.6vw"
               height="10.6vw"
               viewBox="0 0 101 101"
+              className={style.iconSize}
             >
               <g
                 id="Group_173020"
@@ -395,6 +399,7 @@ const Category = () => {
               width="10.6vw"
               height="10.6vw"
               viewBox="0 0 101 101"
+              className={style.iconSize}
             >
               <g
                 id="Group_173017"

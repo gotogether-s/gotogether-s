@@ -2,17 +2,17 @@
   cursor: pointer;
 }
 .img {
-  border-radius: 1.6vw;
+  border-radius: 0.8rem;
 }
 .nation {
   width: 100%;
   background-color: #466ff5;
   color: #fff;
-  border-radius: 5.4vw;
-  padding: 0.4vw 1.4vw;
+  border-radius: 2.7rem;
+  padding: 0.2rem 0.7rem;
 }
 .title {
-  margin-top: 0.8vw;
+  margin-top: 0.8rem;
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -38,7 +38,7 @@
 }
 .price {
   font-weight: 700;
-  margin-top: 1.2vw;
+  margin-top: 0.6rem;
 }
 @media all and (min-width: 200px) and (max-width: 360px) {
   .img {
@@ -102,9 +102,26 @@
     font-size: 1.9rem;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   .img {
-    width: 33vw;
-    height: 33vw;
+    width: 33.3rem;
+    height: 33.3rem;
+  }
+  .nation {
+    font-size: 1.7rem;
+  }
+  .title {
+    font-size: 2.1rem;
+  }
+  .hashTags {
+    .hashTag1 {
+      font-size: 1.7rem;
+    }
+    .hashTag2 {
+      font-size: 1.7rem;
+    }
+  }
+  .price {
+    font-size: 2.1rem;
   }
 }
