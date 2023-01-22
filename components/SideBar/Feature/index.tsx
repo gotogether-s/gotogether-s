@@ -1,14 +1,10 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import { Box } from '@mui/material'
-import { getLoginStatus } from '@store/isLoginSlice'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import Menu from './Menu'
 import User from './User'
 
 const Feature = () => {
-  const dispatch = useDispatch()
-
   const [requestMembersDetail] = useRequestMembersDetailMutation()
 
   const [userName, setUserName] = useState('')
@@ -32,10 +28,6 @@ const Feature = () => {
     favoriteLink: '/signin',
   }
 
-  const isLogin = useSelector((state) => {
-    return state.isLogin.isLogin
-  })
-
   const requestUserInfo = async (accessToken) => {
     try {
       const res = await requestMembersDetail({
@@ -50,14 +42,17 @@ const Feature = () => {
   }
 
   useEffect(() => {
-    dispatch(getLoginStatus())
     const accessToken = localStorage.getItem('accessToken')
     accessToken && requestUserInfo(accessToken)
   }, [])
 
   return (
     <Box role="presentation">
-      {isLogin ? <User {...loginUserProps} /> : <User {...logoutUserProps} />}
+      {localStorage.getItem('accessToken') ? (
+        <User {...loginUserProps} />
+      ) : (
+        <User {...logoutUserProps} />
+      )}
       <Menu />
     </Box>
   )
