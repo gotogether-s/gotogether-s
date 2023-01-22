@@ -3,12 +3,11 @@ import {
   useRequestMembersDetailMutation,
 } from '@api/requestApi'
 import { List, ListItem, ListItemButton, ListItemText } from '@mui/material'
-import { getLoginStatus } from '@store/isLoginSlice'
 import { close } from '@store/sideBarStatusSlice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Category from './Category'
 
 const mainMenusLogin = [
@@ -47,10 +46,6 @@ const Menu = () => {
 
   const [requestMembersDetail] = useRequestMembersDetailMutation()
   const [requestLogout] = useRequestLogoutMutation()
-
-  const isLogin = useSelector((state) => {
-    return state.isLogin.isLogin
-  })
 
   const requestUserInfo = async (accessToken) => {
     try {
@@ -95,7 +90,7 @@ const Menu = () => {
 
   return (
     <>
-      {isLogin ? (
+      {localStorage.getItem('accessToken') ? (
         <>
           <List onClick={() => dispatch(close())} sx={{ padding: '0' }}>
             {mainMenusLogin.map((mainMenu: any, index: number) => (
