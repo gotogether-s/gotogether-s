@@ -1,5 +1,7 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { Box, MenuItem, Select } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -59,6 +61,11 @@ type query = {
     params: string
   }
 }
+
+type orderOptions = {
+  label: string
+  value: string
+}[]
 
 export default function productLists(data: data) {
   const router = useRouter()
@@ -168,16 +175,29 @@ export default function productLists(data: data) {
     }
   }
 
-  const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortChange(e.target.value)
+  const changeSort = (e: any) => {
+    setOrderOptionDuration(e.target.value)
     if (router.query.params == 'all') {
-      router.push(
-        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${e.target.value}`,
-      )
-    } else
-      router.push(
-        `/product-list/${router.query.params}?category=${router.query.category}&page=${page}&sort=${e.target.value}`,
-      )
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=${e.target.value}`,
+        )
+      }
+    } else {
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=${e.target.value}`,
+        )
+      }
+    }
   }
   const prevChangeContinent = (e: string) => {
     setPrevContinentChange(e)
@@ -323,6 +343,31 @@ export default function productLists(data: data) {
     setPage(1)
     setModalIsOpen(!modalIsOpen)
   }
+
+  const StyledSection = styled('div')(() => ({
+    backgroundColor: '#fff',
+    padding: '1.6rem',
+    marginBottom: '1.6rem',
+  }))
+
+  const orderOptions: orderOptions = [
+    {
+      label: '기본순',
+      value: 'all',
+    },
+    {
+      label: '높은 가격순',
+      value: 'basicPrice,desc',
+    },
+    {
+      label: '낮은 가격순',
+      value: 'basicPrice',
+    },
+  ]
+
+  const [orderOptionDuration, setOrderOptionDuration] = useState(
+    orderOptions[0].value,
+  )
 
   return (
     <>
@@ -763,11 +808,23 @@ export default function productLists(data: data) {
           총 상품
           <span className="productCount">&nbsp;{data.totalElements}</span>개
         </div>
-        <select className="selectBox" onChange={changeSort} value={sortChange}>
-          <option value="">기본순</option>
-          <option value="basicPrice,desc">높은 가격순</option>
-          <option value="basicPrice">낮은 가격순</option>
-        </select>
+        <StyledSection className="selectBoxMui">
+          <Box>
+            <Select
+              fullWidth
+              size="small"
+              value={orderOptionDuration}
+              onChange={changeSort}
+              sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
+            >
+              {orderOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
+        </StyledSection>
       </div>
       <div className="totalFilterLine" />
 

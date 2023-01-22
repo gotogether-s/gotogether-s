@@ -182,10 +182,6 @@
     .productCount {
       font-size: 1.6rem;
     }
-    .selectBox {
-      height: 4rem;
-      font-size: 1.6rem;
-    }
   }
   .productLists {
     .productList {
@@ -324,10 +320,6 @@
       font-size: 1.8rem;
     }
     .productCount {
-      font-size: 1.8rem;
-    }
-    .selectBox {
-      height: 4rem;
       font-size: 1.8rem;
     }
   }
@@ -470,10 +462,6 @@
       font-size: 2rem;
     }
     .productCount {
-      font-size: 2rem;
-    }
-    .selectBox {
-      height: 4rem;
       font-size: 2rem;
     }
   }
@@ -655,12 +643,8 @@
     font-weight: 500;
     color: #4581f8;
   }
-  .selectBox {
-    height: 4rem;
-    text-align: left;
-    border-radius: 0.8rem;
-    font-weight: 500;
-    margin-right: 1.6rem;
+  .selectBoxMui {
+    margin: 0;
   }
 }
 .totalFilterLine {
