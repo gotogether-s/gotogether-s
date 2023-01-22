@@ -1,8 +1,13 @@
 import { Box, Button, Typography } from '@mui/material'
+import en from '@public/locales/en/notFound.json'
+import ko from '@public/locales/ko/notFound.json'
 import { useRouter } from 'next/router'
 
 const NotFound = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   return (
     <Box sx={{ paddingTop: '5rem' }}>
@@ -22,8 +27,15 @@ const NotFound = () => {
             marginBottom: '1rem',
           }}
         >
-          페이지를 찾을 수 없습니다 <br />
-          (404 Not Found)
+          {translate['페이지를 찾을 수 없습니다']}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: '1.4rem',
+            color: '#8D8D8D',
+          }}
+        >
+          {translate['페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다.']}
         </Typography>
         <Typography
           sx={{
@@ -32,8 +44,7 @@ const NotFound = () => {
             marginBottom: '5rem',
           }}
         >
-          페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다. <br /> 입력하신
-          주소가 정확한지 확인해 주시기 바랍니다.
+          {translate['입력하신 주소가 정확한지 확인해 주시기 바랍니다.']}
         </Typography>
         <Button
           variant="contained"
@@ -52,7 +63,7 @@ const NotFound = () => {
           }}
           onClick={() => router.back()}
         >
-          이전화면
+          {translate['이전화면']}
         </Button>
         <Button
           variant="outlined"
@@ -71,7 +82,7 @@ const NotFound = () => {
           }}
           onClick={() => router.push('/')}
         >
-          홈으로
+          {translate['홈으로']}
         </Button>
       </Box>
     </Box>

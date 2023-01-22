@@ -1,0 +1,41 @@
+{
+  "예약": "Book Your Vacation",
+
+  "예약자 정보를 먼저 입력해주세요": "Please enter your details first",
+  "확인": "Confirm",
+
+  "출발": "Depart",
+  "도착": "Return",
+  "1인": "each person",
+  "원": "KRW",
+
+  "예약자 정보 (대표)": "Enter Your Details",
+  "이름": "Name",
+  "이름을 입력해주세요": "Enter your name",
+  "전화번호": "Phone Number",
+  "전화번호 11자리를 입력해주세요": "Enter 11 digits of phone number",
+
+  "인원": "Guests",
+  "인원수": "the number of guests",
+  "여행자 정보": "Guest Details",
+  "예약자 정보와 동일": "I'm the main guest",
+
+  "최종 요금": "Your Price Summary",
+  "성인": "Adult",
+  "합계": "Total",
+  "￦": "KRW",
+
+  "결제": "Payment",
+  "입금자명": "depositor name",
+  "입금자명을 입력해주세요": "Enter depositor name",
+  "KEB하나은행 267-910020-36604 (주)더샤이니": "KEB Hana Bank 267-910020-36604 The Shiny Inc.",
+
+  "예약조건 확인 및 결제진행에 동의": "Confirm reservation terms and conditions and proceed with the payment",
+  "예약 완료": "Book Now",
+
+  "에러: 이름을 입력해주세요": "Please enter your name",
+  "전화번호를 입력해주세요": "Please enter your phone number",
+  "전화번호는 11자리여야 합니다": "Phone number must be 11 digits",
+  "에러: 입금자명을 입력해주세요": "Please enter depositor name",
+  "예약조건 확인 및 결제진행에 동의해주세요": "Please check reservation terms and condition"
+}

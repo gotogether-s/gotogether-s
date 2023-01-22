@@ -15,6 +15,8 @@ import {
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import en from '@public/locales/en/productSearch.json'
+import ko from '@public/locales/ko/productSearch.json'
 import { add, remove } from '@store/searchHistorySlice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -27,6 +29,9 @@ import 'swiper/css/pagination'
 const ProductSearch = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [searchProducts] = useSearchProductsMutation()
 
@@ -112,10 +117,10 @@ const ProductSearch = () => {
 
   return (
     <>
-      <NavBar link="/" title="상품검색" marginBottom="1rem" />
+      <NavBar link="/" title={translate['상품검색']} marginBottom="1rem" />
       <FormControl sx={{ width: '100%', marginBottom: '3rem' }} size="small">
         <OutlinedInput
-          placeholder="상품을 검색해주세요"
+          placeholder={translate['상품을 검색해주세요']}
           value={keyword}
           autoFocus={true}
           onChange={getInputValue}
@@ -151,7 +156,9 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
-          <Typography sx={{ paddingBottom: '1rem' }}>최근 검색어</Typography>
+          <Typography sx={{ paddingBottom: '1rem' }}>
+            {translate['최근 검색어']}
+          </Typography>
           <Divider sx={{ margin: '0 -1.6rem' }} />
           <List
             sx={{
@@ -200,7 +207,7 @@ const ProductSearch = () => {
       ) : (
         <>
           <Typography sx={{ paddingBottom: '1rem' }}>
-            검색결과 {productNumber}
+            {translate['검색결과']} {productNumber}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem' }} />
           {productNumber ? (
@@ -222,10 +229,11 @@ const ProductSearch = () => {
                       <div className="hashTag2">#{list.theme} &nbsp;</div>
                     </div>
                     {list.basicPrice == 0 ? (
-                      <div className="price">가격 문의</div>
+                      <div className="price">{translate['가격 문의']}</div>
                     ) : (
                       <div className="price">
-                        {list.basicPrice.toLocaleString('ko-KR')}원
+                        {list.basicPrice.toLocaleString('ko-KR')}{' '}
+                        {translate['원']}
                       </div>
                     )}
                   </div>
@@ -256,7 +264,7 @@ const ProductSearch = () => {
             <Typography
               sx={{ marginTop: '2rem', color: '#5F5F5F', fontSize: '1.4rem' }}
             >
-              상품 검색 결과가 없습니다.
+              {translate['상품 검색 결과가 없습니다.']}
             </Typography>
           )}
         </>

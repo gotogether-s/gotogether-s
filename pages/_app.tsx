@@ -1,15 +1,16 @@
-import type { AppProps } from 'next/app'
-import { ThemeProvider } from '@mui/material/styles'
-import theme from '@styles/theme'
-import { Provider } from 'react-redux'
-import store from 'store'
 import Layout from '@components/Layout'
-import '@styles/reset.css'
+import { ThemeProvider } from '@mui/material/styles'
 import '@styles/global.scss'
 import '@styles/muiOverride.scss'
-import '@styles/swiperOverride.scss'
-import '@styles/productLists.scss'
 import '@styles/productDetail.scss'
+import '@styles/productLists.scss'
+import '@styles/reset.css'
+import '@styles/swiperOverride.scss'
+import theme from '@styles/theme'
+import { appWithTranslation } from 'next-i18next'
+import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
+import store from 'store'
 
 declare global {
   interface Window {
@@ -29,4 +30,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

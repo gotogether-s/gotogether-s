@@ -12,6 +12,8 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/sideBar.json'
+import ko from '@public/locales/ko/sideBar.json'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
@@ -24,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
   const {
-    myInfoLink,
+    myAccountLink,
     backgroundColor,
     primary,
     secondary,
@@ -34,6 +36,9 @@ const User = (props) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [getReservation] = useGetReservationMutation()
   const [requestLikedItems] = useRequestLikedItemsMutation()
@@ -90,7 +95,7 @@ const User = (props) => {
 
   return (
     <>
-      <Link href={myInfoLink}>
+      <Link href={myAccountLink}>
         <List
           sx={{
             padding: '1.6rem 0',
@@ -143,7 +148,9 @@ const User = (props) => {
           }}
           onClick={goToMyBooking}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['예약한 상품']}
+          </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
             {localStorage.getItem('accessToken')
               ? bookingAndLikesNumber.theNumberOfBooking
@@ -167,7 +174,9 @@ const User = (props) => {
           }}
           onClick={goToLikes}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['찜한 상품']}
+          </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
             {localStorage.getItem('accessToken')
               ? bookingAndLikesNumber.theNumberOfLikes

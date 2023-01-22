@@ -12,11 +12,11 @@ type ALLOWED_PATH =
   | '/signin'
   | '/signup'
   | '/survey'
-  | '/myinfo'
+  | '/myaccount'
   | '/confirmpassword'
   | '/newpassword'
   | '/book'
-  | '/likes'
+  | '/saved'
   | '/mybooking'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
@@ -24,15 +24,15 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/signin',
   '/signup',
   '/survey',
-  '/myinfo',
+  '/myaccount',
   '/confirmpassword',
   '/newpassword',
   '/book',
-  '/likes',
+  '/saved',
   '/mybooking',
 ]
 
-const pageWithoutPadding = ['/book', '/likes', '/mybooking']
+const pageWithoutPadding = ['/book', '/saved', '/mybooking']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()

@@ -9,8 +9,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/book.json'
+import ko from '@public/locales/ko/book.json'
 import { openModal } from '@store/displayModalWindowSlice'
 import { updateReservationPersonInfo } from '@store/makeReservationSlice'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -18,6 +21,10 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
   const index = number - 1
 
   const dispatch = useDispatch()
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [duplicateClientInfo, setDuplicateClientInfo] = useState(false)
 
@@ -121,7 +128,9 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
         aria-controls="panel1a-content"
         sx={{ backgroundColor: '#F2F4FA', marginBottom: '0' }}
       >
-        <Typography>여행자 정보 {number}</Typography>
+        <Typography>
+          {translate['여행자 정보']} {number}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ padding: '1.6rem' }}>
         <Box>
@@ -140,7 +149,7 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
               }
               label={
                 <Typography sx={{ fontSize: '1.4rem' }}>
-                  예약자 정보와 동일
+                  {translate['예약자 정보와 동일']}
                 </Typography>
               }
               sx={{
@@ -153,12 +162,12 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
           </Box>
           <Box sx={{ marginBottom: '1rem' }}>
             <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-              이름
+              {translate['이름']}
             </Typography>
             <TextField
               name="name"
               size="small"
-              placeholder="이름을 입력해주세요"
+              placeholder={translate['이름을 입력해주세요']}
               value={reservationPersonListDto[number - 1].name}
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
@@ -186,12 +195,12 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
           </Box>
           <Box>
             <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-              전화번호
+              {translate['전화번호']}
             </Typography>
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호 11자리를 입력해주세요"
+              placeholder={translate['전화번호 11자리를 입력해주세요']}
               value={reservationPersonListDto[number - 1].phoneNumber}
               onChange={inputChangeHandler}
               onBlur={removeInputSpaces}
