@@ -1,62 +1,587 @@
 .productDetail {
+  @media all and (min-width: 200px) and (max-width: 320px) {
+    .basicInformation {
+      .nation {
+        font-size: 1.2rem;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.4rem;
+        }
+      }
+      .price {
+        font-size: 1.8rem;
+      }
+    }
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goFavorite {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goLogin {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .ok {
+            width: 10.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 20rem;
+        height: 15rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 14rem;
+        }
+        .bottom {
+          width: 24rem;
+          height: 3.5rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 1.6rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .site {
+        height: 6.56rem;
+        .siteName {
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+        .icon {
+          width: 4.8rem;
+          height: 4.8rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .kakao {
+          width: 6rem;
+          font-size: 1rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naverBand {
+          margin-top: 0rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  @media all and (min-width: 320px) and (max-width: 768px) {
+    .basicInformation {
+      .nation {
+        font-size: 1.4rem;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.6rem;
+        }
+      }
+      .price {
+        font-size: 2rem;
+      }
+    }
+    .departureDate {
+      .departure {
+        font-size: 1.4rem;
+      }
+    }
+    .inforTitle {
+      font-size: 2rem;
+    }
+    .titleContent {
+      font-size: 1.6rem;
+    }
+    .share {
+      font-size: 1.6rem;
+    }
+    .more {
+      .pharse {
+        font-size: 1.6rem;
+      }
+    }
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goFavorite {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goLogin {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .ok {
+            width: 10.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 20rem;
+        height: 15rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 14rem;
+        }
+        .bottom {
+          width: 24rem;
+          height: 3.5rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 1.6rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+      .site {
+        height: 6.56rem;
+        .siteName {
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+        .icon {
+          width: 4.8rem;
+          height: 4.8rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .kakao {
+          width: 6rem;
+          font-size: 1rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naverBand {
+          margin-top: 0rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .basicInformation {
+      .nation {
+        font-size: 2.1rem;
+      }
+      .title {
+        font-size: 3rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 2.4rem;
+        }
+      }
+      .price {
+        font-size: 3rem;
+      }
+    }
+    .wish_reser {
+      .wish {
+        font-size: 2.2rem;
+      }
+      .reservation {
+        font-size: 2.2rem;
+      }
+    }
+    .departureDate {
+      .departure {
+        font-size: 1.9rem;
+      }
+    }
+    .inforTitle {
+      font-size: 3rem;
+    }
+    .titleContent {
+      font-size: 2.4rem;
+    }
+    .share {
+      font-size: 2.2rem;
+    }
+    .more {
+      .pharse {
+        font-size: 2.2rem;
+      }
+    }
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .goFavorite {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+          .stay {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .goLogin {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+          .stay {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .ok {
+            width: 14rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 30rem;
+        height: 20rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+            font-size: 2rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 19rem;
+        }
+        .bottom {
+          width: 34rem;
+          height: 3.5rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 2rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 3rem;
+        margin-top: 1.6rem;
+      }
+      .site {
+        height: 8.5rem;
+        .iconSize {
+          width: 6rem;
+          height: 6rem;
+        }
+        .siteName {
+          width: 6rem;
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1.4rem;
+        }
+        .icon {
+          width: 6rem;
+          height: 6rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .kakao {
+          width: 8rem;
+          font-size: 1.4rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1.4rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .naverBand {
+          margin-top: 0rem;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
   .thumbnail {
     .img {
-      margin: 0 -1.7rem 1rem -1.7rem;
-      width: 36rem;
-      height: 36rem;
+      width: 100%;
+      height: 100%;
       cursor: pointer;
     }
   }
   .basicInformation {
-    margin: 1.977rem 0 0 0;
+    margin: 1.977rem 0 0 1.6rem;
     .nation {
       width: auto;
       background-color: #4581f8;
       color: #fff;
-      font-size: 1.4rem;
       text-align: center;
       border-radius: 2.7rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.9rem;
     }
     .title {
       margin-top: 0.8rem;
       font-weight: 700;
-      font-size: 2rem;
     }
     .hashTags {
       display: flex;
       margin-top: 0.8rem;
       .hashTag {
         color: #919191;
-        font-size: 1.6rem;
       }
     }
     .price {
       color: #466ff5;
-      font-size: 2rem;
       font-weight: 700;
       margin-top: 0.8rem;
     }
   }
   .line {
-    width: 35.8rem;
+    width: 100%;
     height: 0.2rem;
-    margin: 1.8rem -1.6rem 1rem -1.6rem;
+    margin: 1.8rem 0 1rem 0;
     background-color: #eaeaea;
   }
   .nextArea {
-    width: 35.8rem;
+    width: 100%;
     height: 1.6rem;
-    margin: 2rem -1.6rem;
+    margin: 2rem 0;
     background-color: #f2f4fa;
   }
 
   .wish_reser {
     display: flex;
     align-items: center;
-    margin-top: 1.6rem;
+    margin: 1.6rem 1.6rem 0 1.6rem;
     .wish {
-      width: 7.5rem;
+      width: 28vw;
       height: 4.8rem;
       font-weight: 500;
       color: #ffffff;
@@ -68,7 +593,7 @@
       cursor: pointer;
     }
     .reservation {
-      width: 24.5rem;
+      width: 62vw;
       height: 4.8rem;
       color: #4581f8;
       background-color: #fff;
@@ -82,10 +607,9 @@
   }
 
   .departureDate {
-    margin-top: 3.1rem;
+    margin: 3.1rem 1.6rem 0 1.6rem;
     .departure {
       color: #242424;
-      font-size: 1.4rem;
     }
     .selectDepartureDate {
       margin-top: 1.2rem;
@@ -98,13 +622,12 @@
     }
   }
   .inforTitle {
-    font-size: 2rem;
     font-weight: 700;
-    margin: 2rem 0 1.6rem 0;
+    margin: 2rem 1.6rem 1.6rem 1.6rem;
   }
   .titleContent {
     display: flex;
-    margin: 1rem 0;
+    margin: 1rem 1.6rem 0 1.6rem;
     .title {
       width: 15%;
       color: #878787;
@@ -128,14 +651,11 @@
     z-index: 2;
     .favoriteModalBody {
       position: absolute;
-      width: 32.8rem;
-      height: 14.8rem;
       text-align: center;
       background-color: #fff;
       border-radius: 1.2rem;
       box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
       .contents {
-        font-size: 1.6rem;
         color: #222;
         margin: 3rem 0;
       }
@@ -143,22 +663,16 @@
         display: flex;
         justify-content: center;
         .goFavorite {
-          width: 14.4rem;
-          height: 2.4rem;
           color: #4581f8;
           background-color: #fff;
-          font-size: 1.6rem;
           border: 0.1rem solid #4581f8;
           border-radius: 0.6rem;
           padding: 1.2rem 0;
           margin-right: 0.8rem;
         }
         .stay {
-          width: 14.4rem;
-          height: 2.4rem;
           color: #fff;
           background-color: #4581f8;
-          font-size: 1.6rem;
           border: 0.1rem solid #4581f8;
           border-radius: 0.6rem;
           padding: 1.2rem 0;
@@ -179,14 +693,11 @@
     z-index: 2;
     .needLoginModalBody {
       position: absolute;
-      width: 32.8rem;
-      height: 14.8rem;
       text-align: center;
       background-color: #fff;
       border-radius: 1.2rem;
       box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
       .contents {
-        font-size: 1.6rem;
         color: #222;
         margin: 3rem 0;
       }
@@ -194,22 +705,16 @@
         display: flex;
         justify-content: center;
         .goLogin {
-          width: 14.4rem;
-          height: 2.4rem;
           color: #4581f8;
           background-color: #fff;
-          font-size: 1.6rem;
           border: 0.1rem solid #4581f8;
           border-radius: 0.6rem;
           padding: 1.2rem 0;
           margin-right: 0.8rem;
         }
         .stay {
-          width: 14.4rem;
-          height: 2.4rem;
           color: #fff;
           background-color: #4581f8;
-          font-size: 1.6rem;
           border: 0.1rem solid #4581f8;
           border-radius: 0.6rem;
           padding: 1.2rem 0;
@@ -230,14 +735,11 @@
     z-index: 2;
     .needDeperatureModalBody {
       position: absolute;
-      width: 32.8rem;
-      height: 14.8rem;
       text-align: center;
       background-color: #fff;
       border-radius: 1.2rem;
       box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
       .contents {
-        font-size: 1.6rem;
         color: #222;
         margin: 3rem 0;
       }
@@ -245,11 +747,8 @@
         display: flex;
         justify-content: center;
         .ok {
-          width: 10.4rem;
-          height: 2.4rem;
           color: #fff;
           background-color: #4581f8;
-          font-size: 1.6rem;
           border: 0.1rem solid #4581f8;
           border-radius: 0.6rem;
           padding: 1.2rem 0;
@@ -260,11 +759,10 @@
   .share {
     color: #4581f8;
     height: 4.8rem;
-    margin-top: 2rem;
+    margin: 2rem 1.6rem 0 1.6rem;
     border: 0.1rem solid #4581f8;
     border-radius: 0.6rem;
     font-weight: 500;
-    font-size: 1.6rem;
     line-height: 4.8rem;
     text-align: center;
     cursor: pointer;
@@ -282,10 +780,6 @@
     z-index: 2;
     .shareModalBody {
       position: absolute;
-      margin-bottom: 10rem;
-      width: 20rem;
-      height: 15rem;
-      padding: 4rem;
       text-align: center;
       background-color: #fff;
       border-radius: 0.5rem;
@@ -294,40 +788,25 @@
         margin-bottom: 1rem;
         .sharePhrases {
           position: absolute;
-          top: 1.5rem;
-          left: 1.5rem;
-          margin-bottom: 10rem;
           font-weight: 700;
         }
         .closeButton {
           position: absolute;
-          top: 1.5rem;
-          right: 1.5rem;
           background-color: transparent;
           &:hover {
             cursor: pointer;
           }
         }
       }
-      .middle {
-        height: 14rem;
-      }
       .bottom {
         display: flex;
-        width: 24rem;
-        height: 3.5rem;
-        margin-left: -2rem;
         .input {
-          width: 80%;
-          font-size: 1.6rem;
           font-weight: 700;
         }
         .button {
           background-color: #fff;
           border: 0.1rem solid #22242626;
-          width: 25%;
           cursor: pointer;
-          font-size: 1.4rem;
           font-weight: 700;
           &:hover {
             background-color: #ebe9e9;
@@ -344,68 +823,45 @@
     .GridContainer {
       display: grid;
       grid-template-columns: repeat(4, 4.8rem);
-      grid-column-gap: 0.8rem;
       justify-content: center;
       align-items: center;
-      margin-bottom: 1.6rem;
     }
     .site {
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 6.56rem;
       .siteName {
-        margin-top: -0.4rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
         font-weight: 700;
       }
       .icon {
-        width: 4.8rem;
-        height: 4.8rem;
         border-radius: 100%;
         cursor: pointer;
       }
       .kakaoImg {
-        margin-top: 0.1rem;
-        width: 4.65rem;
-        height: 4.65rem;
         border-radius: 100%;
         cursor: pointer;
       }
       .kakao {
-        width: 6rem;
-        font-size: 1rem;
         font-weight: 700;
       }
       .naverImg {
-        margin-top: 0.15rem;
-        width: 4.65rem;
-        height: 4.65rem;
         cursor: pointer;
       }
       .naver {
-        margin-top: -0.02rem;
-        font-size: 1rem;
         font-weight: 700;
       }
       .naverBandImg {
-        margin-top: 0.1rem;
         border-radius: 100%;
-        width: 4.65rem;
-        height: 4.65rem;
         cursor: pointer;
       }
       .naverBand {
-        margin-top: 0rem;
-        font-size: 1rem;
         font-weight: 700;
       }
     }
   }
   .explicate {
     padding-bottom: 2rem;
-    width: 36rem;
+    width: 100%;
     height: auto;
   }
   .more {
@@ -422,10 +878,9 @@
     &:before {
       content: '';
       position: absolute;
-      margin: 0 -1.7rem 1rem -1.7rem;
       left: 0;
       display: block;
-      width: 36rem;
+      width: 100%;
       top: 3.6rem;
       height: 3rem;
       background: linear-gradient(
@@ -437,16 +892,15 @@
       );
     }
     .pharse {
-      font-size: 1.6rem;
       font-weight: 500;
       color: #4581f8;
       margin-right: 0.5rem;
     }
   }
   .introNextArea {
-    width: 35.8rem;
+    width: 100%;
     height: 1.6rem;
-    margin: -6rem -1.6rem 0 -1.6rem;
+    margin-top: -6rem;
     background-color: #f2f4fa;
   }
 }

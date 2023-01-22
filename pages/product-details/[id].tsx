@@ -5,6 +5,8 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Box, MenuItem, Select } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import en from '@public/locales/en/productDetails.json'
 import ko from '@public/locales/ko/productDetails.json'
 import { reservation, reset } from '@store/reservationDetailSlice'
@@ -63,38 +65,50 @@ export default function productId(data: data) {
 
   const departure = data.productOptionList.출발일
 
-  const [selectDeperatureValue, setSelectDeperatureValue] = useState<string>('')
+  const [selectDeperatureValue, setSelectDeperatureValue] =
+    useState<string>('none')
 
   const dispatch = useDispatch()
   const [getReservation]: any = useGetReservationMutation()
 
   const moveBook = async () => {
     const accessToken = localStorage.getItem('accessToken')
-    const res = await getReservation({
-      accessToken: accessToken,
-    })
-    const reservationData = res.data.data.filter(
-      (resData: any) => resData.product_id === data.id,
-    )
-    if (accessToken && selectDeperatureValue && !reservationData.length) {
-      dispatch(reset())
-      dispatch(
-        reservation({
-          productId: data.id,
-          productName: data.productName,
-          airport: data.airport,
-          productOptionList: selectDeperatureValue,
-          basicPrice: data.basicPrice,
-          thumbnail: data.thumbnail,
-        }),
-      )
-      router.push('/book')
-    } else if (selectDeperatureValue == '') {
-      setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
-    } else if (reservationData.length) {
-      setExistReservationModalIsOpen(!existResevationModalIsOpen)
-    } else {
+    if (!accessToken) {
       setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+    } else {
+      const res = await getReservation({
+        accessToken: accessToken,
+      })
+      const reservationData = res.data.data.filter(
+        (resData: any) => resData.product_id === data.id,
+      )
+      if (
+        accessToken &&
+        selectDeperatureValue !== 'none' &&
+        !reservationData.length
+      ) {
+        dispatch(reset())
+        dispatch(
+          reservation({
+            productId: data.id,
+            productName: data.productName,
+            airport: data.airport,
+            productOptionList: selectDeperatureValue,
+            basicPrice: data.basicPrice,
+            thumbnail: data.thumbnail,
+          }),
+        )
+        router.push('/book')
+      } else if (
+        selectDeperatureValue === '' ||
+        selectDeperatureValue === 'none'
+      ) {
+        setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
+      } else if (reservationData.length) {
+        setExistReservationModalIsOpen(!existResevationModalIsOpen)
+      } else {
+        setNeedLoginModalIsOpenIsOpen(!needLoginModalIsOpen)
+      }
     }
   }
 
@@ -145,9 +159,11 @@ export default function productId(data: data) {
     setNeedDeperatureModalIsOpen(!needDeperatureModalIsOpen)
   }
 
-  const selectDeperature = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectDeperature = (e: any) => {
     setSelectDeperatureValue(e.target.value)
-    dispatch(reservation({ productOptionList: e.target.value }))
+    if (e.target.value === 'none') {
+      dispatch(reservation({ productOptionList: '' }))
+    } else dispatch(reservation({ productOptionList: e.target.value }))
   }
 
   const moveFavorite = () => {
@@ -202,7 +218,7 @@ export default function productId(data: data) {
 
   const [showMore, setShowMore] = useState<boolean>(false)
   const [visible, setVisible] = useState<string>('hidden')
-  const [maxHeight, setMaxHeight] = useState<string>('40rem')
+  const [maxHeight, setMaxHeight] = useState<string>('100vw')
 
   useEffect(() => {
     localStorage.getItem('accessToken')
@@ -212,9 +228,15 @@ export default function productId(data: data) {
       setMaxHeight('100%')
     } else {
       setVisible('hidden')
-      setMaxHeight('40rem')
+      setMaxHeight('100vw')
     }
   }, [showMore, visible, maxHeight])
+
+  const StyledSection = styled('div')(() => ({
+    backgroundColor: '#fff',
+    padding: '1.6rem',
+    marginBottom: '1.6rem',
+  }))
 
   return (
     <div className="productDetail">
@@ -363,21 +385,25 @@ export default function productId(data: data) {
 
       <div className="departureDate">
         <div className="departure">{translate['출발일 (필수)']}</div>
-        <div className="selectDepartureDate">
-          <select
-            name="departure"
-            className="select"
-            onChange={selectDeperature}
-          >
-            <option value="">{translate['출발일 선택하기']}</option>
-            {departure &&
-              departure.map((data: productOptionList, index: number) => (
-                <option key={index} value={data.value}>
-                  {data.value}
-                </option>
-              ))}
-          </select>
-        </div>
+        <StyledSection className="selectBoxMui">
+          <Box>
+            <Select
+              fullWidth
+              size="small"
+              value={selectDeperatureValue}
+              onChange={selectDeperature}
+              sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
+            >
+              <MenuItem value="none">{translate['출발일 선택하기']}</MenuItem>
+              {departure &&
+                departure.map((option: productOptionList) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.value}
+                  </MenuItem>
+                ))}
+            </Select>
+          </Box>
+        </StyledSection>
       </div>
       <div className="nextArea" />
 
@@ -432,7 +458,12 @@ export default function productId(data: data) {
                   </div>
                   <div className="site">
                     <LineShareButton url={currentUrl}>
-                      <LineIcon size={48} round={true} borderRadius={24} />
+                      <LineIcon
+                        size={48}
+                        round={true}
+                        borderRadius={24}
+                        className="iconSize"
+                      />
                     </LineShareButton>
                     <div className="siteName">{translate['라인']}</div>
                   </div>
@@ -457,7 +488,12 @@ export default function productId(data: data) {
 
                   <div className="site">
                     <FacebookShareButton url={currentUrl}>
-                      <FacebookIcon size={48} round={true} borderRadius={24} />
+                      <FacebookIcon
+                        size={48}
+                        round={true}
+                        borderRadius={24}
+                        className="iconSize"
+                      />
                     </FacebookShareButton>
                     <div className="siteName">{translate['페이스북']}</div>
                   </div>
@@ -467,6 +503,7 @@ export default function productId(data: data) {
                         size={48}
                         round={true}
                         borderRadius={24}
+                        className="iconSize"
                       ></TwitterIcon>
                     </TwitterShareButton>
                     <div className="siteName">{translate['트위터']}</div>
@@ -490,8 +527,8 @@ export default function productId(data: data) {
         style={{
           overflow: `${visible}`,
           maxHeight: `${maxHeight}`,
-          margin: '0 -1.7rem 1rem -1.7rem',
-          width: '36rem',
+          marginBottom: '1rem',
+          width: '100%',
         }}
       >
         <div className="explicate">

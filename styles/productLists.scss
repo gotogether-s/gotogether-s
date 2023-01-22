@@ -1,78 +1,632 @@
+@media all and (min-width: 200px) and (max-width: 360px) {
+  .category {
+    font-size: 1.8rem;
+  }
+  .selectBox_group {
+    .selectBoxArrow {
+      width: 8rem;
+      height: 3.6rem;
+      .selectBox {
+        width: 6.5rem;
+        font-size: 1.2rem;
+      }
+      .arrowDown {
+        margin-left: 5.7rem;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .selectedBoxArrow {
+    width: 8rem;
+    height: 3.6rem;
+    .selectedBox {
+      width: 5rem;
+      font-size: 1.2rem;
+      margin-left: 0.4rem;
+    }
+    .arrowDown {
+      margin-left: 5.7rem;
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+  .totalFilter {
+    .productTotal {
+      font-size: 1.4rem;
+    }
+    .productCount {
+      font-size: 1.4rem;
+    }
+    .selectBox {
+      height: 4rem;
+      font-size: 1.4rem;
+    }
+  }
+  .productLists {
+    .productList {
+      margin-right: 0.8rem;
+      width: 35vw;
+      .imgClick {
+        width: 35vw;
+        height: 35vw;
+      }
+      .nation {
+        font-size: 0.8rem;
+      }
+      .title {
+        width: 35vw;
+        font-size: 1.2rem;
+      }
+      .hashTags {
+        width: 35vw;
+        .hashTag1 {
+          font-size: 0.8rem;
+        }
+        .hashTag2 {
+          font-size: 0.8rem;
+        }
+      }
+      .price {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .container {
+    .modalBody {
+      width: 88vw;
+      height: calc(100% - 5.2rem);
+      .top {
+        .sharePhrases {
+          font-size: 1.7rem;
+        }
+        .sharePhrasesA {
+          width: 17rem;
+          font-size: 2rem;
+        }
+      }
+      .middle {
+        .select {
+          width: 38vw;
+          height: 4.8rem;
+          .name {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .selected {
+          width: 38vw;
+          height: 4.8rem;
+          display: flex;
+          .selectName {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+      .bottom {
+        width: 88vw;
+        .result {
+          height: 4.8rem;
+          font-size: 1.6rem;
+          line-height: 4.8rem;
+        }
+      }
+    }
+  }
+  ul.pagination li {
+    width: 2rem;
+    height: 2rem;
+  }
+  ul.pagination li a {
+    font-size: 1.2rem;
+  }
+  ul.pagination li:first-child > a {
+    font-size: 2rem;
+    height: 3.4rem;
+  }
+  ul.pagination li:last-child > a {
+    font-size: 2rem;
+    height: 3.4rem;
+  }
+  ul.pagination li:nth-child(2) > a {
+    font-size: 2rem;
+    height: 3.4rem;
+  }
+  ul.pagination li:nth-last-child(2) > a {
+    font-size: 2rem;
+    height: 3.4rem;
+  }
+}
+@media all and (min-width: 360px) and (max-width: 768px) {
+  .category {
+    font-size: 2rem;
+  }
+  .selectBoxArrow {
+    width: 9rem;
+    height: 3.6rem;
+    cursor: pointer;
+    .selectBox {
+      width: 6.5rem;
+      font-size: 1.4rem;
+    }
+    .arrowDown {
+      margin-left: 7rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .selectedBoxArrow {
+    width: 8rem;
+    height: 3.6rem;
+    .selectedBox {
+      width: 6rem;
+      font-size: 1.6rem;
+      margin-left: 0.6rem;
+    }
+    .arrowDown {
+      margin-left: 6rem;
+      margin-top: 0.5rem;
+      font-size: 1.4rem;
+    }
+  }
+  .totalFilter {
+    .productTotal {
+      font-size: 1.6rem;
+    }
+    .productCount {
+      font-size: 1.6rem;
+    }
+  }
+  .productLists {
+    .productList {
+      margin-right: 0.8rem;
+      width: 38vw;
+      .imgClick {
+        width: 38vw;
+        height: 38vw;
+      }
+      .nation {
+        font-size: 1.2rem;
+      }
+      .title {
+        width: 38vw;
+        font-size: 1.4rem;
+      }
+      .hashTags {
+        width: 38vw;
+        .hashTag1 {
+          font-size: 1rem;
+        }
+        .hashTag2 {
+          font-size: 1rem;
+        }
+      }
+      .price {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  .container {
+    .modalBody {
+      width: 88vw;
+      height: calc(100% - 5.2rem);
+      .top {
+        .sharePhrases {
+          font-size: 2.1rem;
+        }
+        .sharePhrasesA {
+          width: 17rem;
+          font-size: 2rem;
+        }
+      }
+      .middle {
+        .select {
+          width: 38vw;
+          height: 5rem;
+          .name {
+            font-size: 1.8rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .selected {
+          width: 38vw;
+          height: 5rem;
+          display: flex;
+          .selectName {
+            font-size: 1.8rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+      .bottom {
+        width: 88vw;
+        .result {
+          height: 4.8rem;
+          font-size: 1.8rem;
+          line-height: 4.8rem;
+        }
+      }
+    }
+  }
+  ul.pagination li {
+    width: 3rem;
+    height: 3rem;
+  }
+  ul.pagination li a {
+    font-size: 1.6rem;
+  }
+  ul.pagination li:first-child > a {
+    font-size: 3rem;
+    height: 5.2rem;
+  }
+  ul.pagination li:last-child > a {
+    font-size: 3rem;
+    height: 5.2rem;
+  }
+  ul.pagination li:nth-child(2) > a {
+    font-size: 3rem;
+    height: 5.2rem;
+  }
+  ul.pagination li:nth-last-child(2) > a {
+    font-size: 3rem;
+    height: 5.2rem;
+  }
+}
+@media all and (min-width: 768px) and (max-width: 900px) {
+  .category {
+    font-size: 3rem;
+  }
+  .selectBoxArrow {
+    width: 12rem;
+    height: 5rem;
+    cursor: pointer;
+    .selectBox {
+      width: 10rem;
+      font-size: 1.8rem;
+    }
+    .arrowDown {
+      margin-left: 9rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .selectedBoxArrow {
+    width: 12rem;
+    height: 5rem;
+    .selectedBox {
+      width: 6.5rem;
+      font-size: 1.8rem;
+      margin-left: 0.8rem;
+    }
+    .arrowDown {
+      margin-left: 9rem;
+      margin-top: 0.5rem;
+      font-size: 1.6rem;
+    }
+  }
+  .totalFilter {
+    .productTotal {
+      font-size: 1.8rem;
+    }
+    .productCount {
+      font-size: 1.8rem;
+    }
+  }
+  .productLists {
+    width: 100%;
+    .productList {
+      margin-right: 0.8rem;
+      width: 41vw;
+      .imgClick {
+        width: 41vw;
+        height: 41vw;
+        margin-bottom: 0.5rem;
+      }
+      .nation {
+        font-size: 1.6rem;
+      }
+      .title {
+        width: 41vw;
+        font-size: 1.9rem;
+      }
+      .hashTags {
+        width: 41vw;
+        .hashTag1 {
+          font-size: 1.6rem;
+        }
+        .hashTag2 {
+          font-size: 1.6rem;
+        }
+      }
+      .price {
+        font-size: 1.9rem;
+      }
+    }
+  }
+  .container {
+    .modalBody {
+      width: 88vw;
+      height: calc(100% - 5.2rem);
+      .top {
+        .sharePhrases {
+          font-size: 2.6rem;
+        }
+        .sharePhrasesA {
+          width: 17rem;
+          font-size: 2rem;
+        }
+      }
+      .middle {
+        .select {
+          width: 38vw;
+          height: 5rem;
+          .name {
+            font-size: 2rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .selected {
+          width: 38vw;
+          height: 5rem;
+          display: flex;
+          .selectName {
+            font-size: 2rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+      .bottom {
+        width: 88vw;
+        .result {
+          height: 5.2rem;
+          font-size: 2rem;
+          line-height: 5.2rem;
+        }
+      }
+    }
+  }
+  ul.pagination li {
+    width: 4rem;
+    height: 4rem;
+  }
+  ul.pagination li a {
+    font-size: 2rem;
+  }
+  ul.pagination li:first-child > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:last-child > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:nth-child(2) > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:nth-last-child(2) > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+}
+@media (min-width: 900px) {
+  .category {
+    font-size: 4rem;
+  }
+  .selectBoxArrow {
+    width: 14rem;
+    height: 6rem;
+    cursor: pointer;
+    .selectBox {
+      width: 12rem;
+      font-size: 2.2rem;
+    }
+    .arrowDown {
+      margin-left: 11rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .selectedBoxArrow {
+    width: 14rem;
+    height: 6rem;
+    .selectedBox {
+      width: 10rem;
+      font-size: 2.2rem;
+      margin-left: 0.8rem;
+    }
+    .arrowDown {
+      margin-left: 11rem;
+      margin-top: 0.5rem;
+      font-size: 1.8rem;
+    }
+  }
+  .totalFilter {
+    .productTotal {
+      font-size: 2rem;
+    }
+    .productCount {
+      font-size: 2rem;
+    }
+  }
+  .productLists {
+    width: 100%;
+    .productList {
+      margin-right: 0.8rem;
+      width: 39rem;
+      .imgClick {
+        width: 39rem;
+        height: 39rem;
+        margin-bottom: 0.5rem;
+      }
+      .nation {
+        font-size: 1.8rem;
+      }
+      .title {
+        width: 39rem;
+        font-size: 1.9rem;
+      }
+      .hashTags {
+        width: 39rem;
+        .hashTag1 {
+          font-size: 1.6rem;
+        }
+        .hashTag2 {
+          font-size: 1.6rem;
+        }
+      }
+      .price {
+        font-size: 1.9rem;
+      }
+    }
+  }
+  .container {
+    .modalBody {
+      width: 79rem;
+      height: calc(100% - 5.2rem);
+      .top {
+        .sharePhrases {
+          font-size: 3rem;
+        }
+        .sharePhrasesA {
+          width: 17rem;
+          font-size: 2rem;
+        }
+      }
+      .middle {
+        .select {
+          width: 34.2rem;
+          height: 5rem;
+          .name {
+            font-size: 2.2rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .selected {
+          width: 34.2rem;
+          height: 5rem;
+          display: flex;
+          .selectName {
+            font-size: 2.2rem;
+            margin-left: 1rem;
+            line-height: 4.8rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+      .bottom {
+        width: 79rem;
+        .result {
+          height: 4.8rem;
+          font-size: 2.2rem;
+          line-height: 4.8rem;
+        }
+      }
+    }
+  }
+  ul.pagination li {
+    width: 5rem;
+    height: 5rem;
+  }
+  ul.pagination li a {
+    font-size: 2rem;
+  }
+  ul.pagination li:first-child > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:last-child > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:nth-child(2) > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+  ul.pagination li:nth-last-child(2) > a {
+    font-size: 4rem;
+    height: 6.8rem;
+  }
+}
 .category {
-  font-size: 2rem;
   font-weight: 700;
-  margin: 1.4rem 0 0 0;
+  margin: 1.4rem 0 0 1.6rem;
 }
 .categoryLine {
-  width: 35.8rem;
+  width: 100%;
   height: 0.2rem;
-  margin: 1.8rem -1.6rem 1rem -1.6rem;
+  margin: 1.8rem 0 1rem 0;
   background-color: #eaeaea;
 }
 
 .selectBox_group {
+  margin-left: 1.6rem;
   .selectBoxArrow {
     display: flex;
     align-items: center;
-    width: 9.6rem;
-    height: 3.6rem;
+    justify-content: center;
     border: 0.1rem solid #d3d3d3;
     border-radius: 2.2rem;
-    margin-right: 0.8rem;
     cursor: pointer;
     .selectBox {
       position: relative;
-      width: 6.5rem;
       background-color: #fff;
       border: none;
-      margin-left: 0.2rem;
       color: #939393;
       text-overflow: ellipsis;
       white-space: nowrap;
       font-weight: 500;
-      font-size: 1.4rem;
-      margin-left: 0.5rem;
     }
     .arrowDown {
       position: absolute;
-      margin-left: 7rem;
-      margin-top: 0.5rem;
       color: #939393;
     }
   }
   .selectedBoxArrow {
     display: flex;
     align-items: center;
-    width: 9.6rem;
-    height: 3.6rem;
     border: 0.1rem solid #4581f8;
     border-radius: 2.2rem;
-    margin-right: 0.8rem;
     .selectedBox {
       position: relative;
-      width: 6.5rem;
       background-color: #fff;
       border: none;
-      margin-left: 0.2rem;
       color: #4581f8;
       text-overflow: ellipsis;
       white-space: nowrap;
       font-weight: 500;
-      font-size: 1.4rem;
-      margin-left: 0.5rem;
     }
     .arrowDown {
       position: absolute;
-      margin-left: 7rem;
-      margin-top: 0.5rem;
       color: #4581f8;
     }
   }
 }
 .selectBoxLsine {
-  width: 35.8rem;
+  width: 100%;
   height: 0.2rem;
-  margin: 1rem -1.6rem 1rem -1.6rem;
+  margin: 1rem 0 1rem -1.6rem;
+  padding-right: 1.6rem;
   background-color: #eaeaea;
 }
 
@@ -80,6 +634,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 1.6rem;
   .productTotal {
     color: #222222;
     font-weight: 500;
@@ -88,34 +643,29 @@
     font-weight: 500;
     color: #4581f8;
   }
-  .selectBox {
-    height: 4rem;
-    text-align: left;
-    border-radius: 0.8rem;
-    font-size: 1.4rem;
-    font-weight: 500;
+  .selectBoxMui {
+    margin: 0;
   }
 }
 .totalFilterLine {
-  width: 35.8rem;
+  width: 100%;
   height: 0.2rem;
-  margin: 1rem -1.6rem 2rem -1.6rem;
+  margin: 1rem 0 2rem 0;
   background-color: #eaeaea;
 }
-
+.clickProductDetail {
+  cursor: pointer;
+}
 .productLists {
   display: flex;
   flex-wrap: wrap;
-  width: 33.6rem;
+  justify-content: space-evenly;
+  width: 100%;
   .productList {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 0.8rem;
-    width: 16rem;
     .imgClick {
-      width: 16rem;
-      height: 16rem;
       border-radius: 0.8rem;
       cursor: pointer;
     }
@@ -123,44 +673,37 @@
       width: auto;
       background-color: #4581f8;
       color: #fff;
-      font-size: 1.2rem;
       text-align: center;
       border-radius: 2.7rem;
       padding: 0.2rem 0.7rem;
       margin-top: 0.7rem;
     }
     .title {
-      width: 16rem;
       margin-top: 0.5rem;
       font-weight: 700;
-      font-size: 1.4rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .hashTags {
       display: flex;
-      width: 12rem;
       margin-top: 0.2rem;
       .hashTag1 {
-        width: 6rem;
+        width: 33%;
         color: #4581f8;
-        font-size: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
       .hashTag2 {
-        width: 8rem;
+        width: 67%;
         color: #4581f8;
-        font-size: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
     }
     .price {
-      font-size: 1.4rem;
       font-weight: 700;
       margin-top: 0.7rem;
       margin-bottom: 2.1rem;
@@ -198,12 +741,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
   .modalBody {
     position: absolute;
     bottom: 0;
-    width: 35.9rem;
-    height: calc(100% - 5.2rem);
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -219,12 +760,9 @@
       margin-top: 3.6rem;
       margin-left: 1.6rem;
       .sharePhrases {
-        font-size: 1.9rem;
         font-weight: 700;
       }
       .sharePhrasesA {
-        width: 17rem;
-        font-size: 2rem;
         font-weight: 700;
       }
     }
@@ -232,37 +770,29 @@
       display: flex;
       flex-wrap: wrap;
       overflow-y: auto;
-      margin: 2.4rem 1.6rem 0 1.6rem;
+      margin: 2.4rem 1.6rem 7rem 1.6rem;
       justify-content: space-between;
       .select {
-        width: 15.8rem;
-        height: 4.8rem;
-        border: 0.1rem solid #d2d2d2;
         border-radius: 0.8rem;
         margin-bottom: 1.2rem;
+        border: 0.1rem solid #d2d2d2;
         display: flex;
         .name {
-          margin-left: 1rem;
           cursor: pointer;
           display: block;
           text-align: center;
-          line-height: 4.8rem;
           font-weight: 500;
         }
       }
       .selected {
-        width: 15.8rem;
-        height: 4.8rem;
         border: 0.1rem solid #4581f8;
         border-radius: 0.8rem;
         margin-bottom: 1.2rem;
         display: flex;
         .selectName {
-          margin-left: 1rem;
           cursor: pointer;
           display: block;
           text-align: center;
-          line-height: 4.8rem;
           font-weight: 500;
           color: #4581f8;
         }
@@ -271,72 +801,56 @@
     .bottom {
       position: fixed;
       bottom: 0;
-      width: 36rem;
       background-color: #4581f8;
       border-radius: 0.6rem;
       .result {
-        height: 4.8rem;
         color: #fff;
         font-weight: 700;
-        font-size: 1.6rem;
-        line-height: 4.8rem;
         text-align: center;
         cursor: pointer;
       }
     }
   }
 }
-.pagination {
+
+.paginationPosition {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul.pagination li {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #e2e2e2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-}
-
-ul.pagination li:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
-ul.pagination li:last-child {
-  border-radius: 0 5px 5px 0;
-}
-
-ul.pagination li a {
-  text-decoration: none;
-  color: #4581f8;
-  font-size: 1rem;
-}
-
-ul.pagination li.active a {
-  color: #fff;
-}
-
-ul.pagination li.active {
-  background-color: #4581f8;
-}
-
-ul.pagination li a:hover,
-ul.pagination li a.active {
-  color: #4581f8;
-}
-
-.page-selection {
-  width: 48px;
-  height: 30px;
-  color: #4581f8;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  ul.pagination li:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+  ul.pagination li:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+  ul.pagination li a {
+    text-decoration: none;
+    color: #4581f8;
+  }
+  ul.pagination li.active > a:any-link {
+    color: #fff;
+  }
+  ul.pagination li.active {
+    background-color: #4581f8;
+  }
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: #4581f8;
+  }
 }

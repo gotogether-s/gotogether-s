@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { Box, MenuItem, Select } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import axios from 'axios'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -59,6 +61,11 @@ type query = {
     params: string
   }
 }
+
+type orderOptions = {
+  label: string
+  value: string
+}[]
 
 export default function productLists(data: data) {
   const router = useRouter()
@@ -168,16 +175,29 @@ export default function productLists(data: data) {
     }
   }
 
-  const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortChange(e.target.value)
+  const changeSort = (e: any) => {
+    setOrderOptionDuration(e.target.value)
     if (router.query.params == 'all') {
-      router.push(
-        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${e.target.value}`,
-      )
-    } else
-      router.push(
-        `/product-list/${router.query.params}?category=${router.query.category}&page=${page}&sort=${e.target.value}`,
-      )
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=${e.target.value}`,
+        )
+      }
+    } else {
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=${e.target.value}`,
+        )
+      }
+    }
   }
   const prevChangeContinent = (e: string) => {
     setPrevContinentChange(e)
@@ -324,6 +344,31 @@ export default function productLists(data: data) {
     setModalIsOpen(!modalIsOpen)
   }
 
+  const StyledSection = styled('div')(() => ({
+    backgroundColor: '#fff',
+    padding: '1.6rem',
+    marginBottom: '1.6rem',
+  }))
+
+  const orderOptions: orderOptions = [
+    {
+      label: '기본순',
+      value: 'all',
+    },
+    {
+      label: '높은 가격순',
+      value: 'basicPrice,desc',
+    },
+    {
+      label: '낮은 가격순',
+      value: 'basicPrice',
+    },
+  ]
+
+  const [orderOptionDuration, setOrderOptionDuration] = useState(
+    orderOptions[0].value,
+  )
+
   return (
     <>
       {title == 'custom' && username ? (
@@ -353,10 +398,10 @@ export default function productLists(data: data) {
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={3.1}>
+        <Swiper slidesPerView={4} spaceBetween={8}>
           {title == 'all' ? (
             <>
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category1 == '' ? (
                     <div
@@ -390,7 +435,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category2 == '' ? (
                     <div
@@ -420,7 +465,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category3 == '' ? (
                     <div
@@ -454,7 +499,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category4 == '' ? (
                     <div
@@ -657,7 +702,7 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'ages' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrasesA">연령대 선택</div>
+                    <div className="sharePhrases">연령대 선택</div>
                   </div>
                   <div className="middle">
                     {ages &&
@@ -763,11 +808,23 @@ export default function productLists(data: data) {
           총 상품
           <span className="productCount">&nbsp;{data.totalElements}</span>개
         </div>
-        <select className="selectBox" onChange={changeSort} value={sortChange}>
-          <option value="">기본순</option>
-          <option value="basicPrice,desc">높은 가격순</option>
-          <option value="basicPrice">낮은 가격순</option>
-        </select>
+        <StyledSection className="selectBoxMui">
+          <Box>
+            <Select
+              fullWidth
+              size="small"
+              value={orderOptionDuration}
+              onChange={changeSort}
+              sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
+            >
+              {orderOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
+        </StyledSection>
       </div>
       <div className="totalFilterLine" />
 
@@ -776,38 +833,42 @@ export default function productLists(data: data) {
           data.content.map((list: listData, index: number) => (
             <div className="productList" key={index}>
               <Link href={`/product-details/${list.id}`}>
-                <img src={list.thumbnail} alt="img" className="imgClick" />
-              </Link>
-              <span className="nation">{list.country}</span>
-              <div className="title">{list.productName}</div>
-              <div className="hashTags">
-                <div className="hashTag1">#{list.ages} &nbsp;</div>
-                <div className="hashTag2">#{list.theme} &nbsp;</div>
-              </div>
-              {list.basicPrice == 0 ? (
-                <div className="price">가격 문의</div>
-              ) : (
-                <div className="price">
-                  {list.basicPrice.toLocaleString('ko-KR')}원
+                <div className="clickProductDetail">
+                  <img src={list.thumbnail} alt="img" className="imgClick" />
+                  <span className="nation">{list.country}</span>
+                  <div className="title">{list.productName}</div>
+                  <div className="hashTags">
+                    <div className="hashTag1">#{list.ages} &nbsp;</div>
+                    <div className="hashTag2">#{list.theme} &nbsp;</div>
+                  </div>
+                  {list.basicPrice == 0 ? (
+                    <div className="price">가격 문의</div>
+                  ) : (
+                    <div className="price">
+                      {list.basicPrice.toLocaleString('ko-KR')}원
+                    </div>
+                  )}
                 </div>
-              )}
+              </Link>
             </div>
           ))}
       </div>
 
-      {data.totalElements ? (
-        <Pagination
-          activePage={page}
-          itemsCountPerPage={data.pageable.pageSize}
-          totalItemsCount={data.totalElements}
-          pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={handlePageChange}
-        />
-      ) : (
-        <>상품을 준비중입니다...</>
-      )}
+      <div className="paginationPosition">
+        {data.totalElements ? (
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={data.pageable.pageSize}
+            totalItemsCount={data.totalElements}
+            pageRangeDisplayed={5}
+            prevPageText={'‹'}
+            nextPageText={'›'}
+            onChange={handlePageChange}
+          />
+        ) : (
+          <>상품을 준비중입니다...</>
+        )}
+      </div>
     </>
   )
 }

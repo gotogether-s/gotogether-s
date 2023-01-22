@@ -1,18 +1,38 @@
 .category {
   display: flex;
-  margin-top: 2.1rem;
+  margin-top: 2rem;
+  justify-content: space-evenly;
   .bundle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 1.6rem;
     .categoryName {
       font-size: 1.2rem;
-      margin-top: 0.4rem;
+      margin-top: 0.8rem;
     }
   }
-  .img {
-    width: 5.3rem;
-    height: 5.3rem;
+}
+@media (min-width: 768px) {
+  .category {
+    .bundle {
+      .categoryName {
+        font-size: 1.9rem;
+        margin-top: 0.8rem;
+      }
+    }
+  }
+}
+@media (min-width: 900px) {
+  .category {
+    .bundle {
+      .categoryName {
+        font-size: 2.1rem;
+        margin-top: 0.8rem;
+      }
+    }
+    .iconSize {
+      width: 9.5rem;
+      height: 9.5rem;
+    }
   }
 }

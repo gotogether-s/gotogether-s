@@ -1,14 +1,26 @@
 .img {
   position: relative;
-  width: 20rem;
-  height: 13.2rem;
+  width: 40vw;
+  height: 26.4vw;
   border-radius: 0.8rem;
 }
 .title {
   position: absolute;
-  bottom: 1.6rem;
-  left: 1.6rem;
+  bottom: 3.2vw;
+  left: 3.2vw;
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 4vw;
   color: #fff;
+}
+@media (min-width: 900px) {
+  .img {
+    width: 35rem;
+    height: 23rem;
+  }
+  .title {
+    position: absolute;
+    bottom: 2.9rem;
+    left: 2.9rem;
+    font-size: 3.6rem;
+  }
 }

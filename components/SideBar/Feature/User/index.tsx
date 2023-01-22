@@ -83,10 +83,6 @@ const User = (props) => {
     }
   }, [sideBarStatus])
 
-  const isLogin = useSelector((state) => {
-    return state.isLogin.isLogin
-  })
-
   const goToMyBooking = () => {
     router.push(`${myBookingLink}`)
     dispatch(close())
@@ -156,7 +152,9 @@ const User = (props) => {
             {translate['예약한 상품']}
           </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
-            {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
+            {localStorage.getItem('accessToken')
+              ? bookingAndLikesNumber.theNumberOfBooking
+              : '-'}
           </Typography>
         </Box>
         <Box sx={{ borderRight: '1px solid #fff', width: '0.1rem' }}></Box>
@@ -180,7 +178,9 @@ const User = (props) => {
             {translate['찜한 상품']}
           </Typography>
           <Typography sx={{ fontSize: '2rem' }}>
-            {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
+            {localStorage.getItem('accessToken')
+              ? bookingAndLikesNumber.theNumberOfLikes
+              : '-'}
           </Typography>
         </Box>
       </Box>
