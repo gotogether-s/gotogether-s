@@ -64,7 +64,7 @@ const CompanionRecommend = () => {
       <Swiper spaceBetween={8} slidesPerView={3} className={style.group}>
         {companion &&
           companion.map((companion: string, index: number) => (
-            <SwiperSlide key={index} className={style.selectcompanion}>
+            <SwiperSlide key={index} className={style.selectCompanion}>
               {selectCompanionValue === companion ? (
                 <span
                   className={style.choice}
