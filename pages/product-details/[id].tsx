@@ -1,24 +1,26 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import CloseIcon from '@mui/icons-material/Close'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  TwitterShareButton,
-  LineShareButton,
-  LineIcon,
-} from 'react-share'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { useDispatch } from 'react-redux'
-import { reservation, reset } from '@store/reservationDetailSlice'
-import { useRouter } from 'next/router'
 import {
   useAddFavoriteMutation,
   useGetReservationMutation,
 } from '@api/requestApi'
+import CloseIcon from '@mui/icons-material/Close'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import en from '@public/locales/en/productDetails.json'
+import ko from '@public/locales/ko/productDetails.json'
+import { reservation, reset } from '@store/reservationDetailSlice'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useDispatch } from 'react-redux'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share'
 
 type data = {
   ages: string
@@ -54,8 +56,12 @@ type paramType = {
 }
 
 export default function productId(data: data) {
-  const departure = data.productOptionList.출발일
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
+  const departure = data.productOptionList.출발일
 
   const [selectDeperatureValue, setSelectDeperatureValue] = useState<string>('')
 
@@ -224,10 +230,10 @@ export default function productId(data: data) {
           <div className="hashTag">#{data.theme} &nbsp;</div>
         </div>
         {data.basicPrice == 0 ? (
-          <div className="price">가격 문의</div>
+          <div className="price">{translate['가격 문의']}</div>
         ) : (
           <div className="price">
-            {data.basicPrice.toLocaleString('ko-KR')}원
+            {data.basicPrice.toLocaleString('ko-KR')} {translate['원']}
           </div>
         )}
       </div>
@@ -240,7 +246,7 @@ export default function productId(data: data) {
             openFavorite()
           }}
         >
-          찜하기
+          {translate['찜하기']}
         </div>
         {favoriteModalIsOpen && (
           <div className="favoriteContainer" onClick={closeFavoriteModal}>
@@ -249,14 +255,14 @@ export default function productId(data: data) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="contents">
-                찜 성공! 상품 목록을 확인하시겠습니까?
+                {translate['찜 성공! 상품 목록을 확인하시겠습니까?']}
               </div>
               <div className="select">
                 <div className="goFavorite" onClick={moveFavorite}>
-                  찜 목록 보기
+                  {translate['찜 목록 보기']}
                 </div>
                 <div className="stay" onClick={closeFavoriteModal}>
-                  쇼핑 계속하기
+                  {translate['쇼핑 계속하기']}
                 </div>
               </div>
             </div>
@@ -271,13 +277,15 @@ export default function productId(data: data) {
               className="favoriteModalBody"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="contents">이미 찜한 상품입니다!</div>
+              <div className="contents">
+                {translate['이미 찜한 상품입니다!']}
+              </div>
               <div className="select">
                 <div className="goFavorite" onClick={moveFavorite}>
-                  찜 목록 보기
+                  {translate['찜 목록 보기']}
                 </div>
                 <div className="stay" onClick={closeDuplicateFavoriteModal}>
-                  쇼핑 계속하기
+                  {translate['쇼핑 계속하기']}
                 </div>
               </div>
             </div>
@@ -289,13 +297,15 @@ export default function productId(data: data) {
               className="needLoginModalBody"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="contents">로그인이 필요한 서비스입니다!</div>
+              <div className="contents">
+                {translate['로그인이 필요한 서비스입니다!']}
+              </div>
               <div className="select">
                 <div className="goLogin" onClick={moveLogin}>
-                  로그인
+                  {translate['로그인']}
                 </div>
                 <div className="stay" onClick={closeNeedLoginModal}>
-                  쇼핑 계속하기
+                  {translate['쇼핑 계속하기']}
                 </div>
               </div>
             </div>
@@ -310,10 +320,12 @@ export default function productId(data: data) {
               className="needDeperatureModalBody"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="contents">이미 예약된 상품입니다!</div>
+              <div className="contents">
+                {translate['이미 예약된 상품입니다!']}
+              </div>
               <div className="select">
                 <div className="ok" onClick={closeExistResevationModalIsOpen}>
-                  확인
+                  {translate['확인']}
                 </div>
               </div>
             </div>
@@ -328,10 +340,12 @@ export default function productId(data: data) {
               className="needDeperatureModalBody"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="contents">출발일을 선택해주세요!</div>
+              <div className="contents">
+                {translate['출발일을 선택해주세요!']}
+              </div>
               <div className="select">
                 <div className="ok" onClick={closeNeedDeperatureModal}>
-                  확인
+                  {translate['확인']}
                 </div>
               </div>
             </div>
@@ -343,19 +357,19 @@ export default function productId(data: data) {
             moveBook()
           }}
         >
-          예약하기
+          {translate['예약하기']}
         </div>
       </footer>
 
       <div className="departureDate">
-        <div className="departure">출발일 (필수)</div>
+        <div className="departure">{translate['출발일 (필수)']}</div>
         <div className="selectDepartureDate">
           <select
             name="departure"
             className="select"
             onChange={selectDeperature}
           >
-            <option value="">출발일 선택하기</option>
+            <option value="">{translate['출발일 선택하기']}</option>
             {departure &&
               departure.map((data: productOptionList, index: number) => (
                 <option key={index} value={data.value}>
@@ -367,28 +381,28 @@ export default function productId(data: data) {
       </div>
       <div className="nextArea" />
 
-      <div className="inforTitle">여행 정보</div>
+      <div className="inforTitle">{translate['여행 정보']}</div>
       <div className="line"></div>
       <div className="titleContent">
-        <div className="title">지역</div>
+        <div className="title">{translate['지역']}</div>
         <div className="content">{data.region}</div>
       </div>
       <div className="titleContent">
-        <div className="title">특징</div>
+        <div className="title">{translate['특징']}</div>
         <div className="content">{data.points}</div>
       </div>
       <div className="titleContent">
-        <div className="title">항공</div>
+        <div className="title">{translate['항공']}</div>
         <div className="content">{data.airport}</div>
       </div>
       <div className="share" onClick={() => setShareModalIsOpen(true)}>
-        공유하기
+        {translate['공유하기']}
       </div>
       {shareModalIsOpen && (
         <div className="shareContainer" onClick={closeShareModal}>
           <div className="shareModalBody" onClick={(e) => e.stopPropagation()}>
             <div className="top">
-              <div className="sharePhrases">공유하기</div>
+              <div className="sharePhrases">{translate['공유하기']}</div>
               <CloseIcon
                 fontSize="medium"
                 className="closeButton"
@@ -405,7 +419,7 @@ export default function productId(data: data) {
                       className="kakaoImg"
                       onClick={shareKakao}
                     />
-                    <div className="kakao">카카오톡</div>
+                    <div className="kakao">{translate['카카오톡']}</div>
                   </div>
                   <div className="site">
                     <img
@@ -414,13 +428,13 @@ export default function productId(data: data) {
                       className="kakaoImg"
                       onClick={shareKakaoStory}
                     />
-                    <div className="kakao">카카오스토리</div>
+                    <div className="kakao">{translate['카카오스토리']}</div>
                   </div>
                   <div className="site">
                     <LineShareButton url={currentUrl}>
                       <LineIcon size={48} round={true} borderRadius={24} />
                     </LineShareButton>
-                    <div className="siteName">라인</div>
+                    <div className="siteName">{translate['라인']}</div>
                   </div>
                   <div className="site">
                     <img
@@ -429,7 +443,7 @@ export default function productId(data: data) {
                       className="naverBandImg"
                       onClick={shareNaverBand}
                     />
-                    <div className="naverBand">밴드</div>
+                    <div className="naverBand">{translate['밴드']}</div>
                   </div>
                   <div className="site">
                     <img
@@ -438,14 +452,14 @@ export default function productId(data: data) {
                       className="naverImg"
                       onClick={shareNaver}
                     />
-                    <div className="naver">네이버</div>
+                    <div className="naver">{translate['네이버']}</div>
                   </div>
 
                   <div className="site">
                     <FacebookShareButton url={currentUrl}>
                       <FacebookIcon size={48} round={true} borderRadius={24} />
                     </FacebookShareButton>
-                    <div className="siteName">페이스북</div>
+                    <div className="siteName">{translate['페이스북']}</div>
                   </div>
                   <div className="site">
                     <TwitterShareButton url={currentUrl}>
@@ -455,7 +469,7 @@ export default function productId(data: data) {
                         borderRadius={24}
                       ></TwitterIcon>
                     </TwitterShareButton>
-                    <div className="siteName">트위터</div>
+                    <div className="siteName">{translate['트위터']}</div>
                   </div>
                 </div>
               </div>
@@ -463,7 +477,7 @@ export default function productId(data: data) {
             <div className="bottom">
               <input className="input" value={currentUrl} disabled />
               <CopyToClipboard text={currentUrl}>
-                <button className="button">복사</button>
+                <button className="button">{translate['복사']}</button>
               </CopyToClipboard>
             </div>
           </div>
@@ -471,7 +485,7 @@ export default function productId(data: data) {
       )}
       <div className="nextArea" />
 
-      <div className="inforTitle">여행 소개</div>
+      <div className="inforTitle">{translate['여행 소개']}</div>
       <div
         style={{
           overflow: `${visible}`,
@@ -495,12 +509,12 @@ export default function productId(data: data) {
       </div>
       {showMore ? (
         <div className="more" onClick={() => setShowMore(!showMore)}>
-          <div className="pharse">접기</div>
+          <div className="pharse">{translate['접기']}</div>
           <KeyboardArrowUpIcon fontSize="small" style={{ color: '#4581f8' }} />
         </div>
       ) : (
         <div className="more" onClick={() => setShowMore(!showMore)}>
-          <div className="pharse">더보기</div>
+          <div className="pharse">{translate['더보기']}</div>
           <KeyboardArrowDownIcon
             fontSize="small"
             style={{ color: '#4581f8' }}
