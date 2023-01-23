@@ -1,4 +1,7 @@
+import en from '@public/locales/en/main.json'
+import ko from '@public/locales/ko/main.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './TitleAndEtc.module.scss'
@@ -16,6 +19,11 @@ type Props = {
 }
 
 const TitleAndEtc = (props: titleProps) => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   return (
     <>
       <div className={style.mainAndMore}>
@@ -25,14 +33,14 @@ const TitleAndEtc = (props: titleProps) => {
             href={`/product-list/${props.apiAddress}?page=0&sort=`}
             className={style.more}
           >
-            <a>더보기</a>
+            <a>{translate['더보기']}</a>
           </Link>
         ) : (
           <Link
             href={`/product-list/${props.apiAddress}?category=&page=0&sort=`}
             className={style.more}
           >
-            <a>더보기</a>
+            <a>{translate['더보기']}</a>
           </Link>
         )}
       </div>
