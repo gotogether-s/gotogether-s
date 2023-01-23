@@ -2,6 +2,8 @@ import { useRequestMembersDetailMutation } from '@api/requestApi'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { Box, MenuItem, Select } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import en from '@public/locales/en/main.json'
+import ko from '@public/locales/ko/main.json'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -69,6 +71,10 @@ type orderOptions = {
 
 export default function productLists(data: data) {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const title: string | string[] | undefined = router.query.params
 
   const [username, setUsername] = useState<string>('')
@@ -842,10 +848,11 @@ export default function productLists(data: data) {
                     <div className="hashTag2">#{list.theme} &nbsp;</div>
                   </div>
                   {list.basicPrice == 0 ? (
-                    <div className="price">가격 문의</div>
+                    <div className="price">{translate['가격 문의']}</div>
                   ) : (
                     <div className="price">
-                      {list.basicPrice.toLocaleString('ko-KR')}원
+                      {list.basicPrice.toLocaleString('ko-KR')}
+                      {translate['원']}
                     </div>
                   )}
                 </div>
@@ -866,7 +873,7 @@ export default function productLists(data: data) {
             onChange={handlePageChange}
           />
         ) : (
-          <>상품을 준비중입니다...</>
+          <>{translate['상품을 준비중입니다...']}</>
         )}
       </div>
     </>

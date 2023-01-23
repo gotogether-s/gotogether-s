@@ -1,5 +1,8 @@
 import { useGolfRecommendMutation } from '@api/requestApi'
+import en from '@public/locales/en/main.json'
+import ko from '@public/locales/ko/main.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -18,6 +21,11 @@ type data = {
 }
 
 const GolfRecommend = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [golf, setGolf] = useState<[]>([])
   const [golfRecommend]: any = useGolfRecommendMutation()
 
@@ -33,7 +41,8 @@ const GolfRecommend = () => {
   useEffect(() => {
     golfRec()
   }, [])
-  if (!golf) return <>상품을 준비중입니다...</>
+
+  if (!golf) return <>{translate['상품을 준비중입니다...']}</>
   return (
     <>
       <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
@@ -52,10 +61,11 @@ const GolfRecommend = () => {
                     </div>
                   </div>
                   {golf.basicPrice == 0 ? (
-                    <div className={style.price}>가격 문의</div>
+                    <div className={style.price}>{translate['가격 문의']}</div>
                   ) : (
                     <div className={style.price}>
-                      {golf.basicPrice.toLocaleString('ko-KR')}원
+                      {golf.basicPrice.toLocaleString('ko-KR')}
+                      {translate['원']}
                     </div>
                   )}
                 </div>
