@@ -49,7 +49,7 @@ const Main = () => {
           <Recommend
             title={
               locale === 'ko'
-                ? username + '님을 위한 추천 상품'
+                ? username + translate['님을 위한 추천 상품']
                 : translate['님을 위한 추천 상품'] + username
             }
             name={username + '님을 위한 추천 상품'}
