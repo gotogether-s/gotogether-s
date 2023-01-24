@@ -1,8 +1,8 @@
 import { useCompanionRecommendMutation } from '@api/requestApi'
+import commonEn from '@public/locales/en/common.json'
 import mainEn from '@public/locales/en/main.json'
-import sideBarEn from '@public/locales/en/sideBar.json'
+import commonKo from '@public/locales/ko/common.json'
 import mainKo from '@public/locales/ko/main.json'
-import sideBarKo from '@public/locales/ko/sideBar.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -27,7 +27,7 @@ const CompanionRecommend = () => {
 
   const { locale } = router
   const translateMain = locale === 'en' ? mainEn : mainKo
-  const translateSideBar = locale === 'en' ? sideBarEn : sideBarKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
 
   const companion: string[] = [
     '전체',
@@ -81,14 +81,14 @@ const CompanionRecommend = () => {
                   className={style.choice}
                   onClick={() => searchCompanion(companion)}
                 >
-                  {translateSideBar[companion]}
+                  {translateCommon[companion]}
                 </span>
               ) : (
                 <span
                   className={style.selectGroup}
                   onClick={() => searchCompanion(companion)}
                 >
-                  {translateSideBar[companion]}
+                  {translateCommon[companion]}
                 </span>
               )}
             </SwiperSlide>

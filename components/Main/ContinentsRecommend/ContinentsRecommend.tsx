@@ -1,5 +1,5 @@
-import en from '@public/locales/en/sideBar.json'
-import ko from '@public/locales/ko/sideBar.json'
+import en from '@public/locales/en/common.json'
+import ko from '@public/locales/ko/common.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Swiper, SwiperSlide } from 'swiper/react'

@@ -1,8 +1,8 @@
 import { useAgeRecommendMutation } from '@api/requestApi'
+import commonEn from '@public/locales/en/common.json'
 import mainEn from '@public/locales/en/main.json'
-import sideBarEn from '@public/locales/en/sideBar.json'
+import commonKo from '@public/locales/ko/common.json'
 import mainKo from '@public/locales/ko/main.json'
-import sideBarKo from '@public/locales/ko/sideBar.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -27,7 +27,7 @@ const AgesRecommend = () => {
 
   const { locale } = router
   const translateMain = locale === 'en' ? mainEn : mainKo
-  const translateSideBar = locale === 'en' ? sideBarEn : sideBarKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
 
   const ages: string[] = [
     '전체',
@@ -78,14 +78,14 @@ const AgesRecommend = () => {
             <SwiperSlide key={index} className={style.selectAge}>
               {selectAgeValue === age ? (
                 <span className={style.choice} onClick={() => searchAge(age)}>
-                  {translateSideBar[age]}
+                  {translateCommon[age]}
                 </span>
               ) : (
                 <span
                   className={style.selectGroup}
                   onClick={() => searchAge(age)}
                 >
-                  {translateSideBar[age]}
+                  {translateCommon[age]}
                 </span>
               )}
             </SwiperSlide>
