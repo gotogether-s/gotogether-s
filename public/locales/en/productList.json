@@ -1,0 +1,20 @@
+{
+  "연령대": "Age Group",
+  "여행 유형": "Group Type",
+  "여행 테마": "Your Interest",
+  "여행 국가": "Destinations",
+
+  "전체": "All",
+  "국가 선택": "Select Destinations",
+  "연령대 선택": "Select Age Group",
+  "유형 선택": "Select Group Type",
+  "테마 선택": "Select Your Interest",
+  "결과보기": "See Result",
+
+  "총 상품": "Results:",
+  "개": " item(s)",
+
+  "기본순": "Featured",
+  "높은 가격순": "Price: High to Low",
+  "낮은 가격순": "Price: Low to High"
+}
