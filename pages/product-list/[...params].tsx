@@ -2,8 +2,12 @@ import { useRequestMembersDetailMutation } from '@api/requestApi'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { Box, MenuItem, Select } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import en from '@public/locales/en/main.json'
-import ko from '@public/locales/ko/main.json'
+import commonEn from '@public/locales/en/common.json'
+import mainEn from '@public/locales/en/main.json'
+import productListEn from '@public/locales/en/productList.json'
+import commonKo from '@public/locales/ko/common.json'
+import mainKo from '@public/locales/ko/main.json'
+import productListKo from '@public/locales/ko/productList.json'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -73,7 +77,9 @@ export default function productLists(data: data) {
   const router = useRouter()
 
   const { locale } = router
-  const translate = locale === 'en' ? en : ko
+  const translateMain = locale === 'en' ? mainEn : mainKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
+  const translateProductList = locale === 'en' ? productListEn : productListKo
 
   const title: string | string[] | undefined = router.query.params
 
@@ -378,29 +384,45 @@ export default function productLists(data: data) {
   return (
     <>
       {title == 'custom' && username ? (
-        <div className="category">{username}님을 위한 추천 상품</div>
+        <div className="category">
+          {locale === 'ko'
+            ? username + translateMain['님을 위한 추천 상품']
+            : translateMain['님을 위한 추천 상품'] + username}
+        </div>
       ) : (
         <>
           {title == 'custom' ? (
-            <div className="category">추천 상품</div>
+            <div className="category">{translateMain['오늘의 추천 상품']}</div>
           ) : (
             <></>
           )}
         </>
       )}
-      {title == 'all' ? <div className="category">전체</div> : <></>}
+      {title == 'all' ? (
+        <div className="category">{translateCommon['전체상품']}</div>
+      ) : (
+        <></>
+      )}
       {title == 'companion' ? (
-        <div className="category">유형별 여행</div>
+        <div className="category">{translateCommon['유형별 여행']}</div>
       ) : (
         <></>
       )}
       {title == 'continents' ? (
-        <div className="category">국가별 여행</div>
+        <div className="category">{translateCommon['국가별 여행']}</div>
       ) : (
         <></>
       )}
-      {title == 'ages' ? <div className="category">연령대별 여행</div> : <></>}
-      {title == 'themes' ? <div className="category">테마별 여행</div> : <></>}
+      {title == 'ages' ? (
+        <div className="category">{translateCommon['연령대별 여행']}</div>
+      ) : (
+        <></>
+      )}
+      {title == 'themes' ? (
+        <div className="category">{translateCommon['테마별 여행']}</div>
+      ) : (
+        <></>
+      )}
 
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
@@ -416,7 +438,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={continentChange}
+                        value={translateProductList[continentChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -430,7 +452,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category1}
+                        value={translateCommon[router.query.category1]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -448,7 +470,11 @@ export default function productLists(data: data) {
                       className="selectBoxArrow"
                       onClick={() => setModalIsOpen(!modalIsOpen)}
                     >
-                      <input className="selectBox" value={ageChange} disabled />
+                      <input
+                        className="selectBox"
+                        value={translateProductList[ageChange]}
+                        disabled
+                      />
                       <div className="arrowDown">
                         <KeyboardArrowDownIcon fontSize="small" />
                       </div>
@@ -460,7 +486,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category2}
+                        value={translateCommon[router.query.category2]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -480,7 +506,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={companionChange}
+                        value={translateProductList[companionChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -494,7 +520,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category3}
+                        value={translateCommon[router.query.category3]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -514,7 +540,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={themeChange}
+                        value={translateProductList[themeChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -528,7 +554,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category4}
+                        value={translateCommon[router.query.category4]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -551,7 +577,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={continentChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[continentChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -563,7 +593,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -583,7 +613,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={ageChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[ageChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -595,7 +629,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -615,7 +649,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={companionChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[companionChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -627,7 +665,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -647,7 +685,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={themeChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[themeChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -659,7 +701,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -677,7 +719,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'continents' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">국가 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['국가 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {continents &&
@@ -688,14 +732,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="selectName">{continent}</div>
+                              <div className="selectName">
+                                {translateCommon[continent]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="name">{continent}</div>
+                              <div className="name">
+                                {translateCommon[continent]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -708,7 +756,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'ages' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">연령대 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['연령대 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {ages &&
@@ -719,14 +769,16 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="selectName">{age}</div>
+                              <div className="selectName">
+                                {translateCommon[age]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="name">{age}</div>
+                              <div className="name">{translateCommon[age]}</div>
                             </span>
                           )}
                         </div>
@@ -739,7 +791,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'companion' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">유형 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['유형 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {companions &&
@@ -750,14 +804,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="selectName">{companion}</div>
+                              <div className="selectName">
+                                {translateCommon[companion]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="name">{companion}</div>
+                              <div className="name">
+                                {translateCommon[companion]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -770,7 +828,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'themes' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">테마 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['테마 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {themes &&
@@ -781,14 +841,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="selectName">{theme}</div>
+                              <div className="selectName">
+                                {translateCommon[theme]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="name">{theme}</div>
+                              <div className="name">
+                                {translateCommon[theme]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -800,7 +864,7 @@ export default function productLists(data: data) {
               )}
               <div className="bottom">
                 <div className="result" onClick={() => result(title)}>
-                  결과보기
+                  {translateProductList['결과보기']}
                 </div>
               </div>
             </div>
@@ -811,8 +875,9 @@ export default function productLists(data: data) {
 
       <div className="totalFilter">
         <div className="productTotal">
-          총 상품
-          <span className="productCount">&nbsp;{data.totalElements}</span>개
+          {translateProductList['총 상품']}
+          <span className="productCount">&nbsp;{data.totalElements}</span>
+          {translateProductList['개']}
         </div>
         <StyledSection className="selectBoxMui">
           <Box>
@@ -825,7 +890,7 @@ export default function productLists(data: data) {
             >
               {orderOptions.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
-                  {option.label}
+                  {translateProductList[option.label]}
                 </MenuItem>
               ))}
             </Select>
@@ -848,11 +913,11 @@ export default function productLists(data: data) {
                     <div className="hashTag2">#{list.theme} &nbsp;</div>
                   </div>
                   {list.basicPrice == 0 ? (
-                    <div className="price">{translate['가격 문의']}</div>
+                    <div className="price">{translateMain['가격 문의']}</div>
                   ) : (
                     <div className="price">
                       {list.basicPrice.toLocaleString('ko-KR')}
-                      {translate['원']}
+                      {translateMain['원']}
                     </div>
                   )}
                 </div>
@@ -873,7 +938,7 @@ export default function productLists(data: data) {
             onChange={handlePageChange}
           />
         ) : (
-          <>{translate['상품을 준비중입니다...']}</>
+          <>{translateMain['상품을 준비중입니다...']}</>
         )}
       </div>
     </>
