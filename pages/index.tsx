@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      <HeadInfo title={translate['홈페이지 제목']} />
+      <HeadInfo title={translate['페이지 제목']} />
       <Main />
     </>
   )
