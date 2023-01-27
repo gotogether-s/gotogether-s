@@ -39,13 +39,13 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
             borderRadius: '6px',
             bgcolor: 'background.paper',
             boxShadow: 24,
-            p: 3,
+            padding: '3.5rem 3rem',
             zIndex: 4,
           }}
         >
           <Typography
             id="modal-modal-description"
-            sx={{ mb: 2, textAlign: 'center' }}
+            sx={{ mb: 3, textAlign: 'center' }}
           >
             {text}
           </Typography>
@@ -55,7 +55,22 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
               justifyContent: 'center',
             }}
           >
-            <Button variant="contained" size="large" onClick={clickBtn}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={clickBtn}
+              sx={{
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+                paddingTop: '1rem',
+                paddingBottom: '1rem',
+                fontWeight: '500',
+                '&:hover': {
+                  backgroundColor: '#4581F8',
+                  boxShadow: 'none',
+                },
+              }}
+            >
               {primaryBtnText}
             </Button>
           </Box>
