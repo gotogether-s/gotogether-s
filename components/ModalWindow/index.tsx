@@ -1,9 +1,7 @@
-import * as React from 'react'
-import { Box, Button, Typography, Modal, Backdrop } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, Button, Modal, Typography } from '@mui/material'
 import { closeModal } from '@store/displayModalWindowSlice'
-import style from './ModalWindow.module.scss'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
   const router = useRouter()
@@ -21,7 +19,7 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
   }
 
   return (
-    <div>
+    <Box>
       <Modal
         open={isOpen}
         onClose={() => dispatch(closeModal)}
@@ -41,13 +39,13 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
             borderRadius: '6px',
             bgcolor: 'background.paper',
             boxShadow: 24,
-            p: 3,
+            padding: '3.5rem 3rem',
             zIndex: 4,
           }}
         >
           <Typography
             id="modal-modal-description"
-            sx={{ mb: 2, textAlign: 'center' }}
+            sx={{ mb: 3, textAlign: 'center' }}
           >
             {text}
           </Typography>
@@ -57,13 +55,28 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
               justifyContent: 'center',
             }}
           >
-            <Button variant="contained" size="large" onClick={clickBtn}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={clickBtn}
+              sx={{
+                backgroundColor: '#4581F8',
+                boxShadow: 'none',
+                paddingTop: '1rem',
+                paddingBottom: '1rem',
+                fontWeight: '500',
+                '&:hover': {
+                  backgroundColor: '#4581F8',
+                  boxShadow: 'none',
+                },
+              }}
+            >
               {primaryBtnText}
             </Button>
           </Box>
         </Box>
       </Modal>
-    </div>
+    </Box>
   )
 }
 
