@@ -3,6 +3,8 @@ import {
   useRequestLikedItemsMutation,
 } from '@api/requestApi'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import {
   Avatar,
   Box,
@@ -136,7 +138,7 @@ const User = (props) => {
           sx={{
             backgroundColor: '#F2F4FA',
             width: '50%',
-            height: '10rem',
+            height: '13rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -148,10 +150,11 @@ const User = (props) => {
           }}
           onClick={goToMyBooking}
         >
+          <WorkOutlineIcon sx={{ fontSize: '2.5rem' }} />
           <Typography sx={{ fontSize: '1.4rem' }}>
             {translate['예약한 상품']}
           </Typography>
-          <Typography sx={{ fontSize: '2rem' }}>
+          <Typography sx={{ fontSize: '2rem', fontWeight: '400' }}>
             {localStorage.getItem('accessToken')
               ? bookingAndLikesNumber.theNumberOfBooking
               : '-'}
@@ -162,7 +165,7 @@ const User = (props) => {
           sx={{
             backgroundColor: '#F2F4FA',
             width: '50%',
-            height: '10rem',
+            height: '13rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -174,10 +177,11 @@ const User = (props) => {
           }}
           onClick={goToLikes}
         >
+          <FavoriteBorderIcon sx={{ fontSize: '2.5rem' }} />
           <Typography sx={{ fontSize: '1.4rem' }}>
             {translate['찜한 상품']}
           </Typography>
-          <Typography sx={{ fontSize: '2rem' }}>
+          <Typography sx={{ fontSize: '2rem', fontWeight: '400' }}>
             {localStorage.getItem('accessToken')
               ? bookingAndLikesNumber.theNumberOfLikes
               : '-'}
