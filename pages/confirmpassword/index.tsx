@@ -1,4 +1,5 @@
 import { useConfirmPasswordMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import en from '@public/locales/en/confirmPassword.json'
@@ -68,7 +69,8 @@ const ConfirmPassword = () => {
 
   return (
     <>
-      <NavBar link="/" title={translate['비밀번호 수정']} />
+      <HeadInfo title={translate['페이지 제목']} />
+      <NavBar link="/" title={translate['기존 비밀번호 확인']} />
       <Box sx={{ marginBottom: '1rem' }}>
         <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
           {translate['기존 비밀번호']}
