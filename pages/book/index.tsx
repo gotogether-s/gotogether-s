@@ -248,7 +248,7 @@ const Book = () => {
       {isOpen && (
         <ModalWindow
           text={translate['예약자 정보를 먼저 입력해주세요']}
-          primaryBtnText="확인"
+          primaryBtnText={translate['확인']}
           primaryBtnLink=""
         />
       )}
