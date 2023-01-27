@@ -1,4 +1,5 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import {
   Button,
@@ -72,6 +73,7 @@ const MyAccount = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['내 계정']} />
       {userInfo.map((obj, index) => (
         <List
