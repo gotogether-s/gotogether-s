@@ -1,9 +1,7 @@
-import * as React from 'react'
-import { Box, Button, Typography, Modal, Backdrop } from '@mui/material'
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
+import { Box, Button, Modal, Typography } from '@mui/material'
 import { closeModal } from '@store/displayModalWindowSlice'
-import style from './ModalWindow.module.scss'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
   const router = useRouter()
@@ -21,7 +19,7 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
   }
 
   return (
-    <div>
+    <Box>
       <Modal
         open={isOpen}
         onClose={() => dispatch(closeModal)}
@@ -63,7 +61,7 @@ const ModalWindow = ({ text, primaryBtnText, primaryBtnLink }) => {
           </Box>
         </Box>
       </Modal>
-    </div>
+    </Box>
   )
 }
 
