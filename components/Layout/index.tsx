@@ -5,7 +5,6 @@ import { Box } from '@mui/material'
 import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import style from './Layout.module.scss'
 
 type ALLOWED_PATH =
   | '/product-search'
@@ -57,16 +56,6 @@ const Layout = ({ children }: any) => {
     }
   }
 
-  const ApplyPadding = () => {
-    if (
-      currentPath &&
-      !pageWithoutPadding.includes(currentPath) &&
-      !myBookingDetailExp.test(asPath)
-    ) {
-      return true
-    }
-  }
-
   const displayTopButton = () => {
     if (
       asPath &&
@@ -91,16 +80,11 @@ const Layout = ({ children }: any) => {
         maxWidth="md"
         sx={{
           minHeight: '100vh',
+          padding: 0,
         }}
       >
         {displayMainNav()}
-        <Box
-          className={
-            ApplyPadding()
-              ? style['children-container-with-padding']
-              : style['children-container-without-padding']
-          }
-        >
+        <Box>
           {children}
           {displayTopButton()}
           {displayFooter()}
