@@ -2,6 +2,7 @@ import {
   useDeleteLikedItemsMutation,
   useRequestLikedItemsMutation,
 } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import CloseIcon from '@mui/icons-material/Close'
 import {
@@ -138,6 +139,7 @@ const Saved = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link={`/`} title={translate['찜']} marginBottom="0" />
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         <StyledSection>
