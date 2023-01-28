@@ -2,6 +2,7 @@ import {
   useRequestSignUpMutation,
   useValidateEmailMutation,
 } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -178,6 +179,7 @@ const SignUp = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['회원가입']} />
       <Box>
         <Box sx={{ marginBottom: '1.6rem' }}>
