@@ -41,6 +41,10 @@ const Feature = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
+      if (!res) {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+      }
       const { name, email } = res.data.data
       setUserName(name)
       setUserEmail(email)
@@ -49,10 +53,11 @@ const Feature = () => {
     }
   }
 
+  const accessToken = localStorage.getItem('accessToken')
+
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken')
     accessToken && requestUserInfo(accessToken)
-  }, [])
+  }, [accessToken])
 
   return (
     <Box role="presentation">
