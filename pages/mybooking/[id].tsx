@@ -2,10 +2,13 @@ import {
   useGetReservationPeopleMutation,
   useGetReservationWithIdMutation,
 } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight'
 import { Box, Chip, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import en from '@public/locales/en/bookingDetail.json'
+import ko from '@public/locales/ko/bookingDetail.json'
 import { addMyBookingDetail } from '@store/myBookingDetailSlice'
 import { addMyBookingPeople } from '@store/myBookingPeopleSlice'
 import Image from 'next/image'
@@ -22,7 +25,10 @@ const StyledSection = styled('div')(() => ({
 const myBookingDetail = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
   const { id } = router.query
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [getReservationWithId] = useGetReservationWithIdMutation()
   const [getReservationPeople] = useGetReservationPeopleMutation()
@@ -127,6 +133,7 @@ const myBookingDetail = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link={'/mybooking'} title="예약 내역 상세" marginBottom="0" />
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         {pageIsReady && (

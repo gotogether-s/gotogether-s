@@ -3,6 +3,7 @@ import {
   useGetReservationMutation,
   useGetReservationWithDurationMutation,
 } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import {
   Box,
@@ -140,6 +141,7 @@ const MyBooking = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar
         link={`/`}
         title={translate['예약 확인 및 취소']}

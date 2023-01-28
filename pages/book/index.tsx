@@ -1,4 +1,5 @@
 import { useRequestReservationMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import ModalWindow from '@components/ModalWindow'
 import NavBar from '@components/NavBar'
 import TravellerInfoForm from '@components/TravellerInfoForm'
@@ -240,6 +241,7 @@ const Book = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar
         link={`/product-details/${productId}`}
         title={translate['예약']}

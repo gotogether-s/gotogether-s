@@ -1,4 +1,5 @@
 import { useSearchProductsMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CancelIcon from '@mui/icons-material/Cancel'
@@ -156,6 +157,7 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
+          <HeadInfo title={translate['페이지 제목1']} />
           <Typography sx={{ paddingBottom: '1rem' }}>
             {translate['최근 검색어']}
           </Typography>
@@ -206,6 +208,11 @@ const ProductSearch = () => {
         </>
       ) : (
         <>
+          <HeadInfo
+            title={
+              translate['페이지 제목2'] + keyword + translate['페이지 제목3']
+            }
+          />
           <Typography sx={{ paddingBottom: '1rem' }}>
             {translate['검색결과']} {productNumber}
           </Typography>

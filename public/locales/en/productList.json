@@ -1,4 +1,12 @@
 {
+  "페이지 제목": "Go Together: ",
+
+  "전체상품 페이지 제목": "View All Vacation Pacakges",
+  "유형별 페이지 제목": "View Vacation Packages By Group Type",
+  "국가별 페이지 제목": "View Vacation Packages By Destinations",
+  "연령대별 페이지 제목": "View Vacation Packages By Age Group",
+  "테마별 페이지 제목": "View Vacation Packages By Interest",
+
   "연령대": "Age Group",
   "여행 유형": "Group Type",
   "여행 테마": "Your Interest",
