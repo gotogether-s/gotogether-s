@@ -1,4 +1,5 @@
 import { useRequestMembersDetailMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { Box, MenuItem, Select } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -381,8 +382,37 @@ export default function productLists(data: data) {
     orderOptions[0].value,
   )
 
+  const getTitle = () => {
+    if (title == 'custom' && username) {
+      if (locale === 'ko') {
+        return username + translateMain['님을 위한 추천 상품']
+      } else if (locale === 'en') {
+        return translateMain['님을 위한 추천 상품'] + username
+      }
+    } else if (title == 'custom' && !username) {
+      return translateMain['오늘의 추천 상품']
+    } else if (title == 'all') {
+      return `View ${translateCommon['전체상품']} Vacation Packages`
+    } else if (title == 'companion') {
+      return `View Vacation Packages ${translateCommon['유형별 여행']}`
+    } else if (title == 'continents') {
+      return `View Vacation Packages ${translateCommon['국가별 여행']}`
+    } else if (title == 'ages') {
+      return `View Vacation Packages ${translateCommon['연령대별 여행']}`
+    } else if (title == 'themes') {
+      return `View Vacation Packages ${translateCommon['테마별 여행']}`
+    } else {
+      return translateMain['패키지 여행 상품 보기']
+    }
+  }
+
+  useEffect(() => {
+    getTitle()
+  }, [])
+
   return (
     <>
+      <HeadInfo title={translateProductList['페이지 제목'] + getTitle()} />
       {title == 'custom' && username ? (
         <div className="category">
           {locale === 'ko'
@@ -423,7 +453,6 @@ export default function productLists(data: data) {
       ) : (
         <></>
       )}
-
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
         <Swiper slidesPerView={4} spaceBetween={8}>
@@ -872,7 +901,6 @@ export default function productLists(data: data) {
         )}
         <div className="selectBoxLsine" />
       </div>
-
       <div className="totalFilter">
         <div className="productTotal">
           {translateProductList['총 상품']}
@@ -898,7 +926,6 @@ export default function productLists(data: data) {
         </StyledSection>
       </div>
       <div className="totalFilterLine" />
-
       <div className="productLists">
         {data &&
           data.content.map((list: listData, index: number) => (
@@ -925,7 +952,6 @@ export default function productLists(data: data) {
             </div>
           ))}
       </div>
-
       <div className="paginationPosition">
         {data.totalElements ? (
           <Pagination
