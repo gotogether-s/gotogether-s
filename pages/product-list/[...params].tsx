@@ -392,15 +392,15 @@ export default function productLists(data: data) {
     } else if (title == 'custom' && !username) {
       return translateMain['오늘의 추천 상품']
     } else if (title == 'all') {
-      return `View ${translateCommon['전체상품']} Vacation Packages`
+      return translateProductList['전체상품 페이지 제목']
     } else if (title == 'companion') {
-      return `View Vacation Packages ${translateCommon['유형별 여행']}`
+      return translateProductList['유형별 페이지 제목']
     } else if (title == 'continents') {
-      return `View Vacation Packages ${translateCommon['국가별 여행']}`
+      return translateProductList['국가별 페이지 제목']
     } else if (title == 'ages') {
-      return `View Vacation Packages ${translateCommon['연령대별 여행']}`
+      return translateProductList['연령대별 페이지 제목']
     } else if (title == 'themes') {
-      return `View Vacation Packages ${translateCommon['테마별 여행']}`
+      return translateProductList['테마별 페이지 제목']
     } else {
       return translateMain['패키지 여행 상품 보기']
     }
