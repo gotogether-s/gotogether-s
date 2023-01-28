@@ -1,4 +1,5 @@
 import { useRequestSignInMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import en from '@public/locales/en/signIn.json'
@@ -90,6 +91,7 @@ const SignIn = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['로그인']} />
       <Box>
         <Box sx={{ marginBottom: '1rem' }}>
