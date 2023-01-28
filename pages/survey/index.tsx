@@ -1,3 +1,4 @@
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import QnA from '@components/QnA'
 import { Box, List, ListItem, Typography } from '@mui/material'
@@ -13,6 +14,7 @@ const Survey = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['여행지 추천 받기']} />
       <Box sx={{ paddingBottom: '2rem' }}>
         <Typography
