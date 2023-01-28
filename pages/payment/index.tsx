@@ -1,3 +1,4 @@
+import HeadInfo from '@components/HeadInfo'
 import { Box, Button, Divider, Typography } from '@mui/material'
 import en from '@public/locales/en/payment.json'
 import ko from '@public/locales/ko/payment.json'
@@ -56,6 +57,7 @@ const Payment = () => {
 
   return (
     <Box>
+      <HeadInfo title={translate['페이지 제목']} />
       <Box sx={{ textAlign: 'center', margin: '5rem 0 2rem' }}>
         <Image
           src={payment}
