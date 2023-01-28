@@ -2,6 +2,7 @@ import {
   useAddFavoriteMutation,
   useGetReservationMutation,
 } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import CloseIcon from '@mui/icons-material/Close'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
@@ -15,6 +16,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useDispatch } from 'react-redux'
+
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -240,6 +242,13 @@ export default function productId(data: data) {
 
   return (
     <div className="productDetail">
+      <HeadInfo
+        title={
+          translate['페이지 제목1'] +
+          data.productName +
+          translate['페이지 제목2']
+        }
+      />
       <div className="thumbnail">
         <img src={data.thumbnail} alt="img" className="img" />
       </div>
