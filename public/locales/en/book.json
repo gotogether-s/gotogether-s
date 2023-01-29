@@ -11,14 +11,14 @@
   "1인": "each person",
   "원": "KRW",
 
-  "예약자 정보 (대표)": "Enter Your Details",
+  "예약자 정보 (대표)": "Representative Information (person who made a reservation)",
   "이름": "Name",
   "이름을 입력해주세요": "Enter your name",
   "전화번호": "Phone Number",
   "전화번호 11자리를 입력해주세요": "Enter 11 digits of phone number",
 
-  "인원": "Guests",
-  "인원수": "the number of guests",
+  "인원": "Traveller",
+  "인원수": "the number of traveller",
   "여행자 정보": "Guest Details",
   "예약자 정보와 동일": "I'm the main guest",
 
