@@ -1,3 +1,27 @@
 {
-  "페이지 제목": "Go Together: Booking Detail Page"
+  "페이지 제목": "Go Together: Booking Detail Page",
+
+  "예약 내역 상세": "Booking Detail",
+
+  "예약일": "You made a reservation",
+  "예약대기": "Waiting for Payment",
+
+  "출발": "Depart",
+  "도착": "Return",
+  "1인": "each person",
+  "원": "KRW",
+
+  "예약자 정보 (대표)": "Representative Information (person who made a reservation)",
+  "인원": "Traveller Information",
+  "이름": "Name",
+  "전화번호": "Phone Number",
+
+  "최종 요금": "Your Price Summary",
+  "성인": "Adult",
+  "합계": "Total",
+
+  "결제 방법": "Payment Method",
+  "입금자명": "depositor name",
+  "예약": "Made a reservation on ",
+  "입금 대기중": "Waiting for payment"
 }
