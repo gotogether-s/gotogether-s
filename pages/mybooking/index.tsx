@@ -90,6 +90,8 @@ const MyBooking = () => {
     myBookingList.duration.trim().replace(/\s/g, '').split('~'),
   )
 
+  const status = myBookingLists.map((myBookingList) => myBookingList.status)
+
   const getDayName = (dateStr) => {
     const date = new Date(dateStr)
     return date.toLocaleDateString('ko-KR', { weekday: 'long' })
@@ -201,7 +203,7 @@ const MyBooking = () => {
                         </Typography>
                       </Box>
                       <Chip
-                        label={translate['예약 완료']}
+                        label={translate[status[index]]}
                         sx={{
                           backgroundColor: '#4581F8',
                           padding: '0.5rem 0.6rem',
