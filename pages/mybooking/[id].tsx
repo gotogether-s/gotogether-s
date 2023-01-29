@@ -134,7 +134,11 @@ const myBookingDetail = () => {
   return (
     <>
       <HeadInfo title={translate['페이지 제목']} />
-      <NavBar link={'/mybooking'} title="예약 내역 상세" marginBottom="0" />
+      <NavBar
+        link={'/mybooking'}
+        title={translate['예약 내역 상세']}
+        marginBottom="0"
+      />
       <Box sx={{ backgroundColor: '#F2F4FA' }}>
         {pageIsReady && (
           <>
@@ -158,11 +162,12 @@ const myBookingDetail = () => {
                         color: '#939393',
                       }}
                     >
-                      예약일: {reservationDate} ({reservationDayOfWeek})
+                      {translate['예약일']}: {reservationDate} (
+                      {reservationDayOfWeek})
                     </Typography>
                   </Box>
                   <Chip
-                    label={status}
+                    label={translate[status]}
                     sx={{
                       backgroundColor: '#4581F8',
                       padding: '0.5rem 0.6rem',
@@ -218,7 +223,7 @@ const myBookingDetail = () => {
                         <Typography
                           sx={{ fontSize: '1.3rem', fontWeight: 500 }}
                         >
-                          출발
+                          {translate['출발']}
                         </Typography>
                         <Typography
                           sx={{ fontSize: '1.3rem', color: '#4581F8' }}
@@ -236,7 +241,7 @@ const myBookingDetail = () => {
                         <Typography
                           sx={{ fontSize: '1.3rem', fontWeight: 500 }}
                         >
-                          도착
+                          {translate['도착']}
                         </Typography>
                         <Typography
                           sx={{ fontSize: '1.3rem', color: '#4581F8' }}
@@ -250,11 +255,11 @@ const myBookingDetail = () => {
                         fontSize: '1.4rem',
                       }}
                     >
-                      1인 /{' '}
+                      {translate['1인']} /{' '}
                       <Box component="span" sx={{ fontWeight: 500 }}>
                         {pricePerEach}
                       </Box>{' '}
-                      원
+                      {translate['원']}
                     </Typography>
                   </Box>
                 </Box>
@@ -264,7 +269,9 @@ const myBookingDetail = () => {
               <StyledSection key={index}>
                 <Box>
                   <Typography sx={{ fontWeight: 600 }}>
-                    {list.role ? '예약자 정보 (대표)' : '인원 2'}
+                    {list.role
+                      ? translate['예약자 정보 (대표)']
+                      : translate['인원'] + ' ' + (index + 1)}
                   </Typography>
                   <Divider sx={{ margin: '1.6rem -1.6rem' }} />
                   <Box
@@ -280,7 +287,9 @@ const myBookingDetail = () => {
                         justifyContent: 'space-between',
                       }}
                     >
-                      <Typography sx={{ fontWeight: 500 }}>이름</Typography>
+                      <Typography sx={{ fontWeight: 500 }}>
+                        {translate['이름']}
+                      </Typography>
                       <Typography sx={{ color: '#4E4E4E' }}>
                         {bookingClient.name}
                       </Typography>
@@ -289,7 +298,7 @@ const myBookingDetail = () => {
                       sx={{ display: 'flex', justifyContent: 'space-between' }}
                     >
                       <Typography sx={{ fontWeight: 500 }}>
-                        휴대폰 번호
+                        {translate['전화번호']}
                       </Typography>
                       <Typography sx={{ color: '#4E4E4E' }}>
                         {bookingClient.phoneNumber}
@@ -312,7 +321,9 @@ const myBookingDetail = () => {
                             justifyContent: 'space-between',
                           }}
                         >
-                          <Typography sx={{ fontWeight: 500 }}>이름</Typography>
+                          <Typography sx={{ fontWeight: 500 }}>
+                            {translate['이름']}
+                          </Typography>
                           <Typography sx={{ color: '#4E4E4E' }}>
                             {list.name}
                           </Typography>
@@ -324,7 +335,7 @@ const myBookingDetail = () => {
                           }}
                         >
                           <Typography sx={{ fontWeight: 500 }}>
-                            휴대폰 번호
+                            {translate['전화번호']}
                           </Typography>
                           <Typography sx={{ color: '#4E4E4E' }}>
                             {list.phoneNumber}
@@ -338,7 +349,9 @@ const myBookingDetail = () => {
             ))}
             <StyledSection>
               <Box>
-                <Typography sx={{ fontWeight: 600 }}>최종 요금</Typography>
+                <Typography sx={{ fontWeight: 600 }}>
+                  {translate['최종 요금']}
+                </Typography>
                 <Divider sx={{ margin: '1.6rem -1.6rem' }} />
                 <Box
                   sx={{
@@ -350,8 +363,12 @@ const myBookingDetail = () => {
                   <Box
                     sx={{ display: 'flex', justifyContent: 'space-between' }}
                   >
-                    <Typography>성인 x {totalReservationPeople}</Typography>
-                    <Typography>{formattedTotalPrice} 원</Typography>
+                    <Typography>
+                      {translate['성인']} x {totalReservationPeople}
+                    </Typography>
+                    <Typography>
+                      {formattedTotalPrice} {translate['원']}
+                    </Typography>
                   </Box>
                   <Box
                     sx={{
@@ -359,9 +376,11 @@ const myBookingDetail = () => {
                       justifyContent: 'space-between',
                     }}
                   >
-                    <Typography sx={{ fontWeight: 600 }}>합계</Typography>
                     <Typography sx={{ fontWeight: 600 }}>
-                      {formattedTotalPrice} 원
+                      {translate['합계']}
+                    </Typography>
+                    <Typography sx={{ fontWeight: 600 }}>
+                      {formattedTotalPrice} {translate['원']}
                     </Typography>
                   </Box>
                 </Box>
@@ -369,11 +388,13 @@ const myBookingDetail = () => {
             </StyledSection>
             <StyledSection sx={{ marginBottom: 0 }}>
               <Box sx={{ paddingBottom: '5rem' }}>
-                <Typography sx={{ fontWeight: 600 }}>결제 방법</Typography>
+                <Typography sx={{ fontWeight: 600 }}>
+                  {translate['결제 방법']}
+                </Typography>
                 <Divider sx={{ margin: '1.6rem -1.6rem' }} />
                 <Box sx={{ display: 'flex', gap: '0.5rem' }}>
                   <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
-                    입금자명
+                    {translate['입금자명']}
                   </Typography>
                   <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
                     {bookingClient.name}
@@ -385,7 +406,17 @@ const myBookingDetail = () => {
                       sx={{ fontSize: '1.8rem', color: '#BEBEBE' }}
                     />
                     <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
-                      {reservationDate} ({reservationDayOfWeek}) 예약
+                      {locale === 'ko'
+                        ? reservationDate +
+                          ' (' +
+                          reservationDayOfWeek +
+                          ')' +
+                          translate['예약']
+                        : translate['예약'] +
+                          reservationDate +
+                          ' (' +
+                          reservationDayOfWeek +
+                          ')'}
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', gap: '0.5rem' }}>
@@ -393,7 +424,7 @@ const myBookingDetail = () => {
                       sx={{ fontSize: '1.8rem', color: '#BEBEBE' }}
                     />
                     <Typography sx={{ fontSize: '1.4rem', color: '#BEBEBE' }}>
-                      입금 대기중
+                      {translate['입금 대기중']}
                     </Typography>
                   </Box>
                 </Box>
