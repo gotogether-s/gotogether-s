@@ -7,12 +7,17 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/QnA.json'
+import ko from '@public/locales/ko/QnA.json'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const QnA = () => {
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [sendSurveyResult] = useSendSurveyResultMutation()
 
@@ -36,12 +41,12 @@ const QnA = () => {
     getQnaLists.slice(surveyNumber - 1, surveyNumber),
   )
 
-  const getUserAnswer = (e, userSurveyResultIndex, answerIndex) => {
+  const getUserAnswer = (e, userSurveyResultIndex, answer, answerIndex) => {
     const key = Object.keys(userSurveyResult)[userSurveyResultIndex]
-    const value = e.target.textContent
+
     setUserSurveyResult({
       ...userSurveyResult,
-      [key]: value,
+      [key]: answer,
     })
     setSelectedAnswer(answerIndex)
   }
@@ -49,7 +54,7 @@ const QnA = () => {
   const goToNextSurvey = () => {
     const key = Object.keys(userSurveyResult)[surveyNumber - 1]
     if (!userSurveyResult[key]) {
-      setDisplayMessage('문항 선택 후 다음 질문으로 넘어가주세요!')
+      setDisplayMessage(translate['문항 선택 후 다음 질문으로 넘어가주세요'])
       return
     }
     setSurveyNumber(surveyNumber + 1)
@@ -65,27 +70,33 @@ const QnA = () => {
   const submitSurvey = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken')
+
       const res = await sendSurveyResult({
         data: userSurveyResult,
         accessToken: accessToken,
       })
-      if (res.data.statusCode === 200) {
-        setDisplayMessage('설문조사에 응해주셔서 감사합니다!')
+
+      if ('data' in res && res.data.statusCode === 200) {
+        setDisplayMessage(translate['설문조사에 응해주셔서 감사합니다'])
         setTimeout(() => {
           router.push('/')
-        }, 1000)
-      } else if (res.data.statusCode === 400) {
-        setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+        }, 3000)
+      } else {
+        setDisplayMessage(
+          translate['설문조사 제출에 실패했습니다. 다시 시도해주세요.'],
+        )
         setTimeout(() => {
-          router.push('/survey')
-        }, 1000)
+          router.reload()
+        }, 2000)
       }
     } catch (e) {
       console.log('e: ', e)
-      setDisplayMessage('에러발생! 설문조사를 다시 시도해주세요!')
+      setDisplayMessage(
+        translate['설문조사 제출에 실패했습니다. 다시 시도해주세요.'],
+      )
       setTimeout(() => {
-        router.push('/survey')
-      }, 1000)
+        router.reload()
+      }, 2000)
     }
   }
 
@@ -115,7 +126,7 @@ const QnA = () => {
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Typography sx={{ fontSize: '1.8rem', width: '70%' }}>
-                {qnaList.question}
+                {translate[qnaList.question]}
               </Typography>
             </Box>
           </Box>
@@ -135,10 +146,13 @@ const QnA = () => {
                       answerIndex === selectedAnswer && '#F2F4FA',
                   }}
                   onClick={() =>
-                    getUserAnswer(event, surveyNumber - 1, answerIndex)
+                    getUserAnswer(event, surveyNumber - 1, answer, answerIndex)
                   }
                 >
-                  <ListItemText primary={answer} sx={{ textAlign: 'center' }} />
+                  <ListItemText
+                    primary={translate[answer]}
+                    sx={{ textAlign: 'center' }}
+                  />
                 </ListItemButton>
               ))}
             </List>
@@ -163,7 +177,7 @@ const QnA = () => {
         }}
         onClick={goToNextSurvey}
       >
-        다음
+        {translate['다음']}
       </Button>
       <Button
         variant="outlined"
@@ -186,7 +200,7 @@ const QnA = () => {
         }}
         onClick={skipSurvey}
       >
-        다음에 하기
+        {translate['다음에 하기']}
       </Button>
       <Button
         variant="contained"
@@ -206,13 +220,13 @@ const QnA = () => {
         }}
         onClick={submitSurvey}
       >
-        완료
+        {translate['완료']}
       </Button>
       <Typography
         sx={{
           visibility: displayMessage ? 'visible' : 'hidden',
           color:
-            displayMessage !== '설문조사에 응해주셔서 감사합니다!'
+            displayMessage !== translate['설문조사에 응해주셔서 감사합니다']
               ? 'tomato'
               : 'green',
           fontSize: '1.4rem',

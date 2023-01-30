@@ -1,5 +1,8 @@
 import { useCultureRecommendMutation } from '@api/requestApi'
+import en from '@public/locales/en/main.json'
+import ko from '@public/locales/ko/main.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -18,6 +21,11 @@ type data = {
 }
 
 const CultureRecommend = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [culture, setCulture] = useState<[]>([])
   const [cultureRecommend]: any = useCultureRecommendMutation()
 
@@ -33,7 +41,8 @@ const CultureRecommend = () => {
   useEffect(() => {
     cultureRec()
   }, [])
-  if (!culture) return <>상품을 준비중입니다...</>
+
+  if (!culture) return <>{translate['상품을 준비중입니다...']}</>
   return (
     <>
       <Swiper spaceBetween={26} slidesPerView={2.3} className="swiper-list">
@@ -56,10 +65,11 @@ const CultureRecommend = () => {
                     </div>
                   </div>
                   {culture.basicPrice == 0 ? (
-                    <div className={style.price}>가격 문의</div>
+                    <div className={style.price}>{translate['가격 문의']}</div>
                   ) : (
                     <div className={style.price}>
-                      {culture.basicPrice.toLocaleString('ko-KR')}원
+                      {culture.basicPrice.toLocaleString('ko-KR')}
+                      {translate['원']}
                     </div>
                   )}
                 </div>

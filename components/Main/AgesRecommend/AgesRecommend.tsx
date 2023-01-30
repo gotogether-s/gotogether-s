@@ -1,5 +1,10 @@
 import { useAgeRecommendMutation } from '@api/requestApi'
+import commonEn from '@public/locales/en/common.json'
+import mainEn from '@public/locales/en/main.json'
+import commonKo from '@public/locales/ko/common.json'
+import mainKo from '@public/locales/ko/main.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -18,6 +23,12 @@ type data = {
 }
 
 const AgesRecommend = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translateMain = locale === 'en' ? mainEn : mainKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
+
   const ages: string[] = [
     '전체',
     '10대',
@@ -58,7 +69,7 @@ const AgesRecommend = () => {
     searchAge
   }, [ageValue, selectAgeValue])
 
-  if (!age) return <>상품을 준비중입니다...</>
+  if (!age) return <>{translateMain['상품을 준비중입니다...']}</>
   return (
     <>
       <Swiper spaceBetween={8} slidesPerView={3} className={style.group}>
@@ -67,14 +78,14 @@ const AgesRecommend = () => {
             <SwiperSlide key={index} className={style.selectAge}>
               {selectAgeValue === age ? (
                 <span className={style.choice} onClick={() => searchAge(age)}>
-                  {age}
+                  {translateCommon[age]}
                 </span>
               ) : (
                 <span
                   className={style.selectGroup}
                   onClick={() => searchAge(age)}
                 >
-                  {age}
+                  {translateCommon[age]}
                 </span>
               )}
             </SwiperSlide>
@@ -93,10 +104,13 @@ const AgesRecommend = () => {
                   <div className={style.hashTag2}>#{ages.companion}&nbsp;</div>
                 </div>
                 {ages.basicPrice == 0 ? (
-                  <div className={style.price}>가격 문의</div>
+                  <div className={style.price}>
+                    {translateMain['가격 문의']}
+                  </div>
                 ) : (
                   <div className={style.price}>
-                    {ages.basicPrice.toLocaleString('ko-KR')}원
+                    {ages.basicPrice.toLocaleString('ko-KR')}
+                    {translateMain['원']}
                   </div>
                 )}
               </div>

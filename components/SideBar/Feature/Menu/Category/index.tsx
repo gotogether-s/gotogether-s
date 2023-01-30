@@ -7,11 +7,15 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText
+  ListItemText,
 } from '@mui/material'
+import commonEn from '@public/locales/en/common.json'
+import sideBarEn from '@public/locales/en/sideBar.json'
+import commonKo from '@public/locales/ko/common.json'
+import sideBarKo from '@public/locales/ko/sideBar.json'
 import {
   closeCategorySubMenu,
-  toggleCategorySubMenu
+  toggleCategorySubMenu,
 } from '@store/categoryMenuSlice'
 import { close } from '@store/sideBarStatusSlice'
 import { useRouter } from 'next/router'
@@ -21,6 +25,10 @@ import { useDispatch, useSelector } from 'react-redux'
 const Category = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translateSideBar = locale === 'en' ? sideBarEn : sideBarKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
 
   const [categoryOpen, setCategoryOpen] = useState(false)
 
@@ -51,7 +59,7 @@ const Category = () => {
     <List disablePadding>
       <ListItem disablePadding>
         <ListItemButton onClick={toggleCategoryMenu}>
-          <ListItemText primary="카테고리" />
+          <ListItemText primary={translateSideBar['카테고리']} />
           {categoryOpen ? (
             <ExpandLess sx={{ fontSize: 25 }} />
           ) : (
@@ -70,7 +78,7 @@ const Category = () => {
                     dispatch(toggleCategorySubMenu(index))
                   }}
                 >
-                  <ListItemText primary={categoryMenu.label} />
+                  <ListItemText primary={translateCommon[categoryMenu.label]} />
                   {categoryMenu.open ? (
                     <RemoveIcon sx={{ fontSize: 15 }} />
                   ) : (
@@ -90,7 +98,7 @@ const Category = () => {
                     sx={{ pl: 6 }}
                     onClick={() => dispatch(close())}
                   >
-                    <ListItemText primary={subMenu.label} />
+                    <ListItemText primary={translateCommon[subMenu.label]} />
                   </ListItemButton>
                 </Collapse>
               ))}

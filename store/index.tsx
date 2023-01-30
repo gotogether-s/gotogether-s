@@ -1,20 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { requestApi } from '@api/requestApi'
-import categoryMenu from './categoryMenuSlice'
-import searchHistory from './searchHistorySlice'
-import surveyQnaLists from './surveyQnaListsSlice'
-import sideBarStatus from './sideBarStatusSlice'
-import isLogin from './isLoginSlice'
-import reservationDetail from './reservationDetailSlice'
+import { configureStore } from '@reduxjs/toolkit'
+import bookingAndLikesNumber from './bookingAndLikesNumberSlice'
 import bookingClientInfo from './bookingClientInfoSlice'
-import makeReservation from './makeReservationSlice'
+import categoryMenu from './categoryMenuSlice'
 import displayModalWindow from './displayModalWindowSlice'
 import likedItems from './likedItemsSlice'
-import wishIdsToDelete from './wishIdsToDeleteSlice'
-import myBookingLists from './myBookingListsSlice'
+import makeReservation from './makeReservationSlice'
 import myBookingDetail from './myBookingDetailSlice'
+import myBookingLists from './myBookingListsSlice'
 import myBookingPeople from './myBookingPeopleSlice'
-import bookingAndLikesNumber from './bookingAndLikesNumberSlice'
+import reservationDetail from './reservationDetailSlice'
+import searchHistory from './searchHistorySlice'
+import sideBarStatus from './sideBarStatusSlice'
+import surveyQnaLists from './surveyQnaListsSlice'
+import wishIdsToDelete from './wishIdsToDeleteSlice'
 
 const store = configureStore({
   reducer: {
@@ -22,7 +21,6 @@ const store = configureStore({
     searchHistory: searchHistory.reducer,
     surveyQnaLists: surveyQnaLists.reducer,
     sideBarStatus: sideBarStatus.reducer,
-    isLogin: isLogin.reducer,
     [requestApi.reducerPath]: requestApi.reducer,
     reservationDetail: reservationDetail.reducer,
     bookingClientInfo: bookingClientInfo.reducer,

@@ -1,4 +1,5 @@
 import { useRequestReservationMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import ModalWindow from '@components/ModalWindow'
 import NavBar from '@components/NavBar'
 import TravellerInfoForm from '@components/TravellerInfoForm'
@@ -17,6 +18,8 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import en from '@public/locales/en/book.json'
+import ko from '@public/locales/ko/book.json'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
   createReservationPersonList,
@@ -36,6 +39,9 @@ const StyledSection = styled('div')(() => ({
 const Book = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [requestReservation] = useRequestReservationMutation()
 
@@ -140,18 +146,18 @@ const Book = () => {
   const validateValues = (values) => {
     const errors = {}
     if (!values.name) {
-      errors.name = '이름을 입력해주세요!'
+      errors.name = translate['에러: 이름을 입력해주세요']
     }
     if (!values.phoneNumber) {
-      errors.phoneNumber = '전화번호를 입력해주세요!'
+      errors.phoneNumber = translate['전화번호를 입력해주세요']
     } else if (values.phoneNumber.length !== 13) {
-      errors.phoneNumber = '전화번호는 11자리여야 합니다!'
+      errors.phoneNumber = translate['전화번호는 11자리여야 합니다']
     }
     if (!values.depositor) {
-      errors.depositor = '입금자명을 입력해주세요!'
+      errors.depositor = translate['에러: 입금자명을 입력해주세요']
     }
     if (!values.agreement) {
-      errors.agreement = '예약조건 확인 및 결제진행에 동의해주세요!'
+      errors.agreement = translate['예약조건 확인 및 결제진행에 동의해주세요']
     }
     return errors
   }
@@ -166,12 +172,12 @@ const Book = () => {
       if (values[i].name && values[i].phoneNumber) return
       errors.push(newObj)
       if (!values[i].name) {
-        errors[i].name = '이름을 입력해주세요!'
+        errors[i].name = translate['에러: 이름을 입력해주세요']
       }
       if (!values[i].phoneNumber) {
-        errors[i].phoneNumber = '전화번호를 입력해주세요!'
+        errors[i].phoneNumber = translate['전화번호를 입력해주세요']
       } else if (values[i].phoneNumber.length !== 13) {
-        errors[i].phoneNumber = '전화번호는 11자리여야 합니다!'
+        errors[i].phoneNumber = translate['전화번호는 11자리여야 합니다']
       }
     }
     return errors
@@ -235,15 +241,16 @@ const Book = () => {
 
   return (
     <>
+      <HeadInfo title={translate['페이지 제목']} />
       <NavBar
         link={`/product-details/${productId}`}
-        title="예약"
+        title={translate['예약']}
         marginBottom="0"
       />
       {isOpen && (
         <ModalWindow
-          text="예약자 정보를 먼저 입력해주세요"
-          primaryBtnText="확인"
+          text={translate['예약자 정보를 먼저 입력해주세요']}
+          primaryBtnText={translate['확인']}
           primaryBtnLink=""
         />
       )}
@@ -274,7 +281,7 @@ const Book = () => {
                   }}
                 >
                   <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                    출발
+                    {translate['출발']}
                   </Typography>
                   <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
                     {bookingDurationDate[0]} ({bookingDurationDay[0]})
@@ -288,7 +295,7 @@ const Book = () => {
                   }}
                 >
                   <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                    도착
+                    {translate['도착']}
                   </Typography>
                   <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
                     {bookingDurationDate[1]} ({bookingDurationDay[1]})
@@ -296,9 +303,9 @@ const Book = () => {
                 </Box>
               </Box>
               <Typography sx={{ fontSize: '1.3rem' }}>
-                1인 /{' '}
+                {translate['1인']} /{' '}
                 <Box sx={{ display: 'inline', fontWeight: 500 }}>
-                  {basicPrice.toLocaleString('ko-KR')} 원
+                  {basicPrice.toLocaleString('ko-KR')} {translate['원']}
                 </Box>
               </Typography>
             </CardContent>
@@ -308,17 +315,17 @@ const Book = () => {
           <Typography
             sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
           >
-            예약자 정보 (대표)
+            {translate['예약자 정보 (대표)']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box sx={{ marginBottom: '1rem' }}>
             <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-              이름
+              {translate['이름']}
             </Typography>
             <TextField
               name="name"
               size="small"
-              placeholder="이름을 입력해주세요"
+              placeholder={translate['이름을 입력해주세요']}
               sx={{ width: '100%' }}
               value={getBookingClientInfo.name}
               onChange={inputChangeHandler}
@@ -341,12 +348,12 @@ const Book = () => {
           </Box>
           <Box sx={{ marginBottom: '1rem' }}>
             <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-              전화번호
+              {translate['전화번호']}
             </Typography>
             <TextField
               name="phoneNumber"
               size="small"
-              placeholder="전화번호 11자리를 입력해주세요"
+              placeholder={translate['전화번호 11자리를 입력해주세요']}
               sx={{ width: '100%' }}
               value={getBookingClientInfo.phoneNumber}
               onChange={inputChangeHandler}
@@ -372,11 +379,11 @@ const Book = () => {
           <Typography
             sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
           >
-            인원
+            {translate['인원']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>인원수</Typography>
+            <Typography>{translate['인원수']}</Typography>
             <Box sx={{ display: 'flex', gap: '1.6rem' }}>
               <Button
                 aria-label="reduce"
@@ -419,7 +426,7 @@ const Book = () => {
           <Typography
             sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
           >
-            최종 요금
+            {translate['최종 요금']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
           <Box
@@ -442,7 +449,7 @@ const Book = () => {
                 }}
               >
                 <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                  출발
+                  {translate['출발']}
                 </Typography>
                 <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
                   {bookingDurationDate[0]} ({bookingDurationDay[0]})
@@ -456,7 +463,7 @@ const Book = () => {
                 }}
               >
                 <Typography sx={{ fontSize: '1.3rem', fontWeight: 500 }}>
-                  도착
+                  {translate['도착']}
                 </Typography>
                 <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
                   {bookingDurationDate[1]} ({bookingDurationDay[1]})
@@ -471,8 +478,12 @@ const Book = () => {
               padding: '0.5rem 0',
             }}
           >
-            <Typography>성인 x{numberOfTravellers}</Typography>
-            <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
+            <Typography>
+              {translate['성인']} x{numberOfTravellers}
+            </Typography>
+            <Typography>
+              {translate['￦']} {totalFee.toLocaleString('ko-KR')}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -481,25 +492,29 @@ const Book = () => {
               padding: '0.5rem 0 0',
             }}
           >
-            <Typography sx={{ fontWeight: 500 }}>합계</Typography>
-            <Typography>￦ {totalFee.toLocaleString('ko-KR')}</Typography>
+            <Typography sx={{ fontWeight: 500 }}>
+              {translate['합계']}
+            </Typography>
+            <Typography>
+              {translate['￦']} {totalFee.toLocaleString('ko-KR')}
+            </Typography>
           </Box>
         </StyledSection>
         <StyledSection>
           <Typography
             sx={{ fontWeight: 600, fontSize: '1.7rem', marginBottom: '1rem' }}
           >
-            결제
+            {translate['결제']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem 1.6rem' }} />
 
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-            입금자명
+            {translate['입금자명']}
           </Typography>
           <TextField
             name="depositor"
             size="small"
-            placeholder="입금자명을 입력해주세요"
+            placeholder={translate['입금자명을 입력해주세요']}
             value={depositor}
             onChange={inputChangeHandler}
             onBlur={removeInputSpaces}
@@ -521,7 +536,7 @@ const Book = () => {
             {bookingClientValuesErrors.depositor}
           </Typography>
           <Typography sx={{ fontSize: '1.3rem', color: '#B9B9B9' }}>
-            *KEB하나은행 267-910020-36604 (주)더샤이니
+            *{translate['KEB하나은행 267-910020-36604 (주)더샤이니']}
           </Typography>
         </StyledSection>
         <StyledSection
@@ -538,7 +553,7 @@ const Book = () => {
                 onChange={inputChangeHandler}
               />
             }
-            label="예약조건 확인 및 결제진행에 동의"
+            label={translate['예약조건 확인 및 결제진행에 동의']}
             sx={{ margin: 0 }}
           />
           <Typography
@@ -572,7 +587,7 @@ const Book = () => {
             }}
             onClick={clickReservationRequest}
           >
-            예약 완료
+            {translate['예약 완료']}
           </Button>
         </StyledSection>
       </Box>

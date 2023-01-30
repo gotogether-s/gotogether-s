@@ -1,4 +1,7 @@
+import HeadInfo from '@components/HeadInfo'
 import { Box, Button, Divider, Typography } from '@mui/material'
+import en from '@public/locales/en/payment.json'
+import ko from '@public/locales/ko/payment.json'
 import payment from '@public/payment.png'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
@@ -9,21 +12,24 @@ import { useEffect, useState } from 'react'
 const Payment = () => {
   const router = useRouter()
 
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   const [paymentSummary, setPaymentSummary] = useState([
     {
-      title: '계좌번호 : ',
+      title: translate['계좌번호'],
       content: '267-910020-36604',
     },
     {
-      title: '은행명 : ',
-      content: 'KEB하나은행',
+      title: translate['은행명'],
+      content: translate['KEB하나은행'],
     },
     {
-      title: '예금주 : ',
-      content: '(주)더샤이니',
+      title: translate['예금주'],
+      content: translate['주더샤이니'],
     },
     {
-      title: '입금기한 : ',
+      title: translate['입금기한'],
       content: '',
     },
   ])
@@ -36,7 +42,7 @@ const Payment = () => {
       .format(`YYYY.MM.DD (ddd) H:mm`)
 
     const newPaymentSummary = paymentSummary.map((list) => {
-      if (list.title === '입금기한 : ') {
+      if (list.title === translate['입금기한']) {
         return {
           ...list,
           content: `~ ${getPaymentDueDate}`,
@@ -51,6 +57,7 @@ const Payment = () => {
 
   return (
     <Box>
+      <HeadInfo title={translate['페이지 제목']} />
       <Box sx={{ textAlign: 'center', margin: '5rem 0 2rem' }}>
         <Image
           src={payment}
@@ -66,7 +73,7 @@ const Payment = () => {
             padding: '1rem 0',
           }}
         >
-          무통장입금 계좌번호 안내
+          {translate['무통장입금 계좌번호 안내']}
         </Typography>
         <Typography
           sx={{
@@ -74,8 +81,19 @@ const Payment = () => {
             color: '#8D8D8D',
           }}
         >
-          고투게더를 이용해주셔서 감사합니다. <br /> 예약일로부터 3일 이내에
-          아래 계좌로 <br /> 입금해주시면 예약이 완료됩니다.
+          {translate['고투게더를 이용해주셔서 감사합니다.']}
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: '1.4rem',
+            color: '#8D8D8D',
+          }}
+        >
+          {
+            translate[
+              '예약일로부터 3일 이내에 아래 계좌로 입금해주시면 예약이 완료됩니다.'
+            ]
+          }
         </Typography>
       </Box>
       <Divider sx={{ margin: '0 -1.6rem' }} />
@@ -97,7 +115,8 @@ const Payment = () => {
             <Typography
               sx={{
                 fontSize: '1.5rem',
-                color: list.title !== '입금기한 : ' ? '#4E4E4E' : '#4581F8',
+                color:
+                  list.title !== translate['입금기한'] ? '#4E4E4E' : '#4581F8',
               }}
             >
               {list.content}
@@ -123,7 +142,7 @@ const Payment = () => {
         }}
         onClick={() => router.push('mybooking')}
       >
-        예약 확인하기
+        {translate['예약 확인하기']}
       </Button>
     </Box>
   )
