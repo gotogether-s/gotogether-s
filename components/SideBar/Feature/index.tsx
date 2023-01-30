@@ -41,9 +41,11 @@ const Feature = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
-      if (!res) {
+      const { status } = res.error
+      if (status === 401) {
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
+        return
       }
       const { name, email } = res.data.data
       setUserName(name)
@@ -61,7 +63,9 @@ const Feature = () => {
 
   return (
     <Box role="presentation">
-      {localStorage.getItem('accessToken') ? (
+      {localStorage.getItem('accessToken') &&
+      userName !== '' &&
+      userEmail !== '' ? (
         <User {...loginUserProps} />
       ) : (
         <User {...logoutUserProps} />
