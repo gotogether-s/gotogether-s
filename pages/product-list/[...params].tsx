@@ -121,7 +121,7 @@ export default function productLists(data: data) {
     '나홀로 참가',
     '친구나 동료',
     '연인이나 부부',
-    '자녀를 동반 가족',
+    '자녀를 동반하는 가족',
   ]
   const themes: string[] = [
     '전체상품',

@@ -168,9 +168,9 @@ const initialState: categoryMenuState = [
         ),
       },
       {
-        label: '자녀를 동반 가족',
+        label: '자녀를 동반하는 가족',
         link: encodeURI(
-          `/product-list/companion?category=자녀를 동반 가족&page=0&sort=`,
+          `/product-list/companion?category=자녀를 동반하는 가족&page=0&sort=`,
         ),
       },
     ],
