@@ -9,7 +9,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { Box, MenuItem, Select } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import en from '@public/locales/en/productDetails.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/productDetails.json'
+import productsKorean from '@public/locales/ko/products.json'
 import { reservation, reset } from '@store/reservationDetailSlice'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -64,6 +66,7 @@ export default function productId(data: data) {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const departure = data.productOptionList.출발일
 
@@ -245,7 +248,7 @@ export default function productId(data: data) {
       <HeadInfo
         title={
           translate['페이지 제목1'] +
-          data.productName +
+          translateProducts[data.productName] +
           translate['페이지 제목2']
         }
       />
@@ -254,11 +257,14 @@ export default function productId(data: data) {
       </div>
 
       <div className="basicInformation">
-        <span className="nation">{data.country}</span>
-        <div className="title">{data.productName}</div>
+        <span className="nation">{translateProducts[data.country]}</span>
+        <div className="title">{translateProducts[data.productName]}</div>
         <div className="hashTags">
-          <div className="hashTag">#{data.ages} &nbsp;</div>
-          <div className="hashTag">#{data.theme} &nbsp;</div>
+          <div className="hashTag">#{translateProducts[data.ages]} &nbsp;</div>
+          <div className="hashTag">
+            {data.theme !== '상관 없음' && '#' + translateProducts[data.theme]}
+            &nbsp;
+          </div>
         </div>
         {data.basicPrice == 0 ? (
           <div className="price">{translate['가격 문의']}</div>

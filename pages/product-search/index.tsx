@@ -16,7 +16,9 @@ import {
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import productsEnglish from '@public/locales/en/products.json'
 import en from '@public/locales/en/productSearch.json'
+import productsKorean from '@public/locales/ko/products.json'
 import ko from '@public/locales/ko/productSearch.json'
 import { add, remove } from '@store/searchHistorySlice'
 import Link from 'next/link'
@@ -33,6 +35,7 @@ const ProductSearch = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [searchProducts] = useSearchProductsMutation()
 
@@ -229,11 +232,20 @@ const ProductSearch = () => {
                         className="imgClick"
                       />
                     </Link>
-                    <span className="nation">{list.country}</span>
-                    <div className="title">{list.productName}</div>
+                    <span className="nation">
+                      {translateProducts[list.country]}
+                    </span>
+                    <div className="title">
+                      {translateProducts[list.productName]}
+                    </div>
                     <div className="hashTags">
-                      <div className="hashTag1">#{list.ages} &nbsp;</div>
-                      <div className="hashTag2">#{list.theme} &nbsp;</div>
+                      <div className="hashTag1">
+                        {list.theme !== '상관 없음' &&
+                          '#' + translateProducts[list.theme]}
+                      </div>
+                      <div className="hashTag2">
+                        #{translateProducts[list.ages]}
+                      </div>
                     </div>
                     {list.basicPrice == 0 ? (
                       <div className="price">{translate['가격 문의']}</div>
@@ -256,15 +268,17 @@ const ProductSearch = () => {
                   bottom: '3rem',
                 }}
               >
-                <Pagination
-                  activePage={page}
-                  itemsCountPerPage={pageSize}
-                  totalItemsCount={totalElements}
-                  pageRangeDisplayed={5}
-                  prevPageText={'‹'}
-                  nextPageText={'›'}
-                  onChange={handlePageChange}
-                />
+                <div className="paginationPosition">
+                  <Pagination
+                    activePage={page}
+                    itemsCountPerPage={pageSize}
+                    totalItemsCount={totalElements}
+                    pageRangeDisplayed={5}
+                    prevPageText={'‹'}
+                    nextPageText={'›'}
+                    onChange={handlePageChange}
+                  />
+                </div>
               </Box>
             </>
           ) : (
