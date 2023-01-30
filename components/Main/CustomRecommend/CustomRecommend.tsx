@@ -3,7 +3,9 @@ import {
   useCustomRecommendUserMutation,
 } from '@api/requestApi'
 import en from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -28,6 +30,7 @@ const CustomRecommend = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [customs, setCustoms] = useState<[]>([])
   const [customRecommendUser]: any = useCustomRecommendUserMutation()
@@ -62,11 +65,21 @@ const CustomRecommend = () => {
               <Link href={`/product-details/${custom.id}`}>
                 <div className={style.click}>
                   <img src={custom.thumbnail} alt="img" className={style.img} />
-                  <span className={style.nation}>{custom.country}</span>
-                  <div className={style.title}>{custom.productName}</div>
+                  <span className={style.nation}>
+                    {translateProducts[custom.country]}
+                  </span>
+                  <div className={style.title}>
+                    {translateProducts[custom.productName]}
+                  </div>
                   <div className={style.hashTags}>
-                    <div className={style.hashTag1}>#{custom.ages} &nbsp;</div>
-                    <div className={style.hashTag2}>#{custom.theme}&nbsp;</div>
+                    <div className={style.hashTag1}>
+                      #{translateProducts[custom.ages]} &nbsp;
+                    </div>
+                    <div className={style.hashTag2}>
+                      {custom.theme !== '상관 없음' &&
+                        '#' + translateProducts[custom.theme]}
+                      &nbsp;
+                    </div>
                   </div>
                   {custom.basicPrice == 0 ? (
                     <div className={style.price}>{translate['가격 문의']}</div>
