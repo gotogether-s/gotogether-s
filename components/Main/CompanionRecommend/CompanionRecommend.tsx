@@ -1,8 +1,10 @@
 import { useCompanionRecommendMutation } from '@api/requestApi'
 import commonEn from '@public/locales/en/common.json'
 import mainEn from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
 import commonKo from '@public/locales/ko/common.json'
 import mainKo from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -28,6 +30,7 @@ const CompanionRecommend = () => {
   const { locale } = router
   const translateMain = locale === 'en' ? mainEn : mainKo
   const translateCommon = locale === 'en' ? commonEn : commonKo
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const companion: string[] = [
     '전체',
@@ -36,7 +39,7 @@ const CompanionRecommend = () => {
     '나홀로 참가',
     '친구나 동료',
     '연인이나 부부',
-    '자녀를 동반 가족',
+    '자녀를 동반하는 가족',
   ]
 
   const [companionValue, setCompanionValue] = useState<String>('')
@@ -105,14 +108,20 @@ const CompanionRecommend = () => {
                     alt="img"
                     className={style.img}
                   />
-                  <span className={style.nation}>{companion.country}</span>
-                  <div className={style.title}>{companion.productName}</div>
+                  <span className={style.nation}>
+                    {translateProducts[companion.country]}
+                  </span>
+                  <div className={style.title}>
+                    {translateProducts[companion.productName]}
+                  </div>
                   <div className={style.hashTags}>
                     <div className={style.hashTag1}>
-                      #{companion.ages} &nbsp;
+                      #{translateProducts[companion.ages]}&nbsp;
                     </div>
                     <div className={style.hashTag2}>
-                      #{companion.companion}&nbsp;
+                      {companion.companion !== '상관 없음' &&
+                        '#' + translateProducts[companion.companion]}
+                      &nbsp;
                     </div>
                   </div>
                   {companion.basicPrice == 0 ? (

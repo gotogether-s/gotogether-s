@@ -1,6 +1,8 @@
 import { useGolfRecommendMutation } from '@api/requestApi'
 import en from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -25,6 +27,7 @@ const GolfRecommend = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [golf, setGolf] = useState<[]>([])
   const [golfRecommend]: any = useGolfRecommendMutation()
@@ -52,12 +55,20 @@ const GolfRecommend = () => {
               <Link href={`/product-details/${golf.id}`}>
                 <div className={style.click}>
                   <img src={golf.thumbnail} alt="img" className={style.img} />
-                  <span className={style.nation}>{golf.country}</span>
-                  <div className={style.title}>{golf.productName}</div>
+                  <span className={style.nation}>
+                    {translateProducts[golf.country]}
+                  </span>
+                  <div className={style.title}>
+                    {translateProducts[golf.productName]}
+                  </div>
                   <div className={style.hashTags}>
-                    <div className={style.hashTag1}>#{golf.ages} &nbsp;</div>
+                    <div className={style.hashTag1}>
+                      #{translateProducts[golf.ages]} &nbsp;
+                    </div>
                     <div className={style.hashTag2}>
-                      #{golf.companion}&nbsp;
+                      {golf.companion !== '상관 없음' &&
+                        '#' + translateProducts[golf.companion]}
+                      &nbsp;
                     </div>
                   </div>
                   {golf.basicPrice == 0 ? (

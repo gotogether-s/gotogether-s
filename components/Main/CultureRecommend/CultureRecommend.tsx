@@ -1,6 +1,8 @@
 import { useCultureRecommendMutation } from '@api/requestApi'
 import en from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -25,6 +27,7 @@ const CultureRecommend = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [culture, setCulture] = useState<[]>([])
   const [cultureRecommend]: any = useCultureRecommendMutation()
@@ -56,12 +59,20 @@ const CultureRecommend = () => {
                     alt="img"
                     className={style.img}
                   />
-                  <span className={style.nation}>{culture.country}</span>
-                  <div className={style.title}>{culture.productName}</div>
+                  <span className={style.nation}>
+                    {translateProducts[culture.country]}
+                  </span>
+                  <div className={style.title}>
+                    {translateProducts[culture.productName]}
+                  </div>
                   <div className={style.hashTags}>
-                    <div className={style.hashTag1}>#{culture.ages} &nbsp;</div>
+                    <div className={style.hashTag1}>
+                      #{translateProducts[culture.ages]} &nbsp;
+                    </div>
                     <div className={style.hashTag2}>
-                      #{culture.companion}&nbsp;
+                      {culture.companion !== '상관 없음' &&
+                        '#' + translateProducts[culture.companion]}
+                      &nbsp;
                     </div>
                   </div>
                   {culture.basicPrice == 0 ? (

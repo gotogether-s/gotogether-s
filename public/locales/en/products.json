@@ -7,6 +7,7 @@
   "중남미": "Latin America",
   "유럽": "Europe",
   "맥시코,쿠바": "Mexico, Cuba",
+  "스페인,프랑스": "Spain, France",
   "라오스": "Laos",
   "크로아티아,슬로베니아": "Croatia, Slovenia",
   "그리스": "Greece",
@@ -70,6 +71,13 @@
   "50대,60대,70대 이상": "50s,60s,Over70",
 
   "60대,50대,40대,30대": "30s,40s,50s,60s",
+
+  "남자끼리": "Men Only",
+  "여자끼리": "Women Only",
+  "나홀로 참가": "Solo",
+  "친구나 동료": "With Friends",
+  "연인이나 부부": "Couples",
+  "자녀를 동반하는 가족": "Family",
 
   "문화탐방": "Culture & History",
   "골프여행": "Golf Holidays",
