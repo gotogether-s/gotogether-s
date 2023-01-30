@@ -1,8 +1,10 @@
 import { useAgeRecommendMutation } from '@api/requestApi'
 import commonEn from '@public/locales/en/common.json'
 import mainEn from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
 import commonKo from '@public/locales/ko/common.json'
 import mainKo from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -28,6 +30,7 @@ const AgesRecommend = () => {
   const { locale } = router
   const translateMain = locale === 'en' ? mainEn : mainKo
   const translateCommon = locale === 'en' ? commonEn : commonKo
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const ages: string[] = [
     '전체',
@@ -97,11 +100,21 @@ const AgesRecommend = () => {
             <Link href={`/product-details/${ages.id}`}>
               <div className={style.click}>
                 <img src={ages.thumbnail} alt="img" className={style.img} />
-                <span className={style.nation}>{ages.country}</span>
-                <div className={style.title}>{ages.productName}</div>
+                <span className={style.nation}>
+                  {translateProducts[ages.country]}
+                </span>
+                <div className={style.title}>
+                  {translateProducts[ages.productName]}
+                </div>
                 <div className={style.hashTags}>
-                  <div className={style.hashTag1}>#{ages.ages} &nbsp;</div>
-                  <div className={style.hashTag2}>#{ages.companion}&nbsp;</div>
+                  <div className={style.hashTag1}>
+                    #{translateProducts[ages.ages]}&nbsp;
+                  </div>
+                  <div className={style.hashTag2}>
+                    {ages.companion !== '상관 없음' &&
+                      '#' + translateProducts[ages.companion]}
+                    &nbsp;
+                  </div>
                 </div>
                 {ages.basicPrice == 0 ? (
                   <div className={style.price}>
