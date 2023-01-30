@@ -6,9 +6,11 @@ import { styled } from '@mui/material/styles'
 import commonEn from '@public/locales/en/common.json'
 import mainEn from '@public/locales/en/main.json'
 import productListEn from '@public/locales/en/productList.json'
+import productsEnglish from '@public/locales/en/products.json'
 import commonKo from '@public/locales/ko/common.json'
 import mainKo from '@public/locales/ko/main.json'
 import productListKo from '@public/locales/ko/productList.json'
+import productsKorean from '@public/locales/ko/products.json'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -81,6 +83,7 @@ export default function productLists(data: data) {
   const translateMain = locale === 'en' ? mainEn : mainKo
   const translateCommon = locale === 'en' ? commonEn : commonKo
   const translateProductList = locale === 'en' ? productListEn : productListKo
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const title: string | string[] | undefined = router.query.params
 
@@ -933,11 +936,21 @@ export default function productLists(data: data) {
               <Link href={`/product-details/${list.id}`}>
                 <div className="clickProductDetail">
                   <img src={list.thumbnail} alt="img" className="imgClick" />
-                  <span className="nation">{list.country}</span>
-                  <div className="title">{list.productName}</div>
+                  <span className="nation">
+                    {translateProducts[list.country]}
+                  </span>
+                  <div className="title">
+                    {translateProducts[list.productName]}
+                  </div>
                   <div className="hashTags">
-                    <div className="hashTag1">#{list.ages} &nbsp;</div>
-                    <div className="hashTag2">#{list.theme} &nbsp;</div>
+                    <div className="hashTag1">
+                      #{translateProducts[list.ages]} &nbsp;
+                    </div>
+                    <div className="hashTag2">
+                      {list.theme !== '상관 없음' &&
+                        '#' + translateProducts[list.theme]}{' '}
+                      &nbsp;
+                    </div>
                   </div>
                   {list.basicPrice == 0 ? (
                     <div className="price">{translateMain['가격 문의']}</div>
