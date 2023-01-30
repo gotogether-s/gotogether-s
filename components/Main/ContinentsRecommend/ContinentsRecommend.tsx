@@ -62,7 +62,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.explanation}>아름다운 섬</div>
+              <div className={style.title}>호주,뉴질랜드</div>
               <div className={style.title}>{translate['호주/뉴질랜드']}</div>
             </a>
           </Link>

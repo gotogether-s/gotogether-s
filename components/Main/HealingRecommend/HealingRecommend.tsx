@@ -54,10 +54,8 @@ const HealingRecommend = () => {
                   <span className={style.nation}>{heal.country}</span>
                   <div className={style.title}>{heal.productName}</div>
                   <div className={style.hashTags}>
-                    <div className={style.hashTag1}>#{heal.ages} &nbsp;</div>
-                    <div className={style.hashTag2}>
-                      #{heal.companion}&nbsp;
-                    </div>
+                    <div className={style.hashTag1}>#{heal.companion}</div>
+                    <div className={style.hashTag2}>#{heal.ages}</div>
                   </div>
                   {heal.basicPrice == 0 ? (
                     <div className={style.price}>{translate['가격 문의']}</div>
