@@ -217,7 +217,11 @@ const ProductSearch = () => {
             }
           />
           <Typography sx={{ paddingBottom: '1rem' }}>
-            {translate['검색결과']} {productNumber}
+            {translate['검색결과']}
+            <Box component="span" sx={{ color: '#4581f8' }}>
+              {productNumber}
+            </Box>
+            {translate['개']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem' }} />
           {productNumber ? (
