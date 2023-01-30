@@ -15,10 +15,10 @@
   width: 100% !important;
 }
 .swiper-list {
-  margin-left: 3.2vw !important;
+  margin-left: 1.6rem !important;
 }
 .swiper-continent-all {
-  margin-left: 3.2vw !important;
+  margin-left: 1.6rem !important;
 }
 .swiper-continent {
   width: auto !important;
@@ -27,35 +27,7 @@
 .selectBoxSwiper {
   margin-right: 3rem !important;
 }
-@media all and (min-width: 200px) and (max-width: 320px) {
-  .swiper-list {
-    height: 20rem !important;
-  }
-}
-@media all and (min-width: 320px) and (max-width: 360px) {
-  .swiper-list {
-    height: 63vw !important;
-  }
-}
-@media all and (min-width: 360px) and (max-width: 425px) {
-  .swiper-list {
-    height: 61vw !important;
-  }
-}
-@media (min-width: 640px) {
-  .swiper-list {
-    height: 53vw !important;
-  }
-}
-@media (min-width: 768px) {
-  .swiper-list {
-    height: 54vw !important;
-  }
-}
 @media (min-width: 900px) {
-  .swiper-list {
-    height: 46.8rem !important;
-  }
   .swiper-pagination {
     width: 9rem !important;
     height: 4.5rem !important;

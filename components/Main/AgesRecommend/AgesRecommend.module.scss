@@ -1,59 +1,61 @@
 .click {
+  width: 95%;
   cursor: pointer;
-}
-.img {
-  border-radius: 0.8rem;
-}
-.nation {
-  width: 100%;
-  background-color: #466ff5;
-  color: #fff;
-  border-radius: 2.7rem;
-  padding: 0.2rem 0.7rem;
-}
-.title {
-  margin-top: 0.8rem;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.hashTags {
-  display: flex;
-  width: 100%;
-  .hashTag1 {
-    width: 40%;
-    color: #4581f8;
+  .img {
+    border-radius: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+  .nation {
+    width: 100%;
+    background-color: #466ff5;
+    color: #fff;
+    border-radius: 2.7rem;
+    padding: 0.2rem 0.7rem;
+  }
+  .title {
+    margin-top: 0.8rem;
+    font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
-  .hashTag2 {
-    width: 60%;
-    color: #4581f8;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  .hashTags {
+    display: flex;
+    width: 100%;
+    .hashTag1 {
+      width: 40%;
+      color: #4581f8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .hashTag2 {
+      width: 60%;
+      color: #4581f8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
-}
-.price {
-  font-weight: 700;
-  margin-top: 0.6rem;
+  .price {
+    font-weight: 700;
+    margin-top: 0.6rem;
+  }
 }
 .group {
   margin-top: -1.6rem;
   margin-bottom: 2rem;
-  margin-left: 3.2vw;
+  margin-left: 1.6rem;
   .selectAge {
     width: auto !important;
     .selectGroup {
       text-align: center;
-      line-height: 7vw;
+      line-height: 4rem;
       background-color: #fff;
       color: #8a8a8a;
       cursor: pointer;
-      font-size: 2.8vw;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 400;
       border: solid 0.1rem #cbcbcb;
       border-radius: 3.2vw;
       padding-top: 1.2vw;
@@ -61,12 +63,12 @@
       padding-right: 3.2vw;
       padding-bottom: 1.2vw;
       &:hover {
-        line-height: 7vw;
+        line-height: 4rem;
         text-align: center;
         background-color: #4581f8;
         color: #fff;
-        font-size: 2.8vw;
-        font-weight: 700;
+        font-size: 1.6rem;
+        font-weight: 400;
         border-radius: 3.2vw;
         padding-top: 1.2vw;
         padding-left: 3.2vw;
@@ -75,13 +77,13 @@
       }
     }
     .choice {
-      line-height: 7vw;
+      line-height: 4rem;
       text-align: center;
       background-color: #4581f8;
       border: solid 0.1rem #4581f8;
       color: #fff;
-      font-size: 2.8vw;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 400;
       border-radius: 3.2vw;
       padding-top: 1.2vw;
       padding-left: 3.2vw;
@@ -91,55 +93,39 @@
     }
   }
 }
-@media all and (min-width: 200px) and (max-width: 360px) {
+@media (max-width: 576px) {
   .img {
-    width: 35vw;
-    height: 35vw;
+    width: 42vw;
+    height: 42vw;
   }
-}
-@media all and (min-width: 360px) and (max-width: 425px) {
-  .img {
-    width: 36vw;
-    height: 36vw;
-  }
-}
-@media all and (min-width: 425px) and (max-width: 768px) {
-  .img {
-    width: 37vw;
-    height: 37vw;
-    margin-bottom: 0.9rem;
-  }
-}
-@media (max-width: 768px) {
   .nation {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
   .title {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
   .hashTags {
     .hashTag1 {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
     .hashTag2 {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
   }
   .price {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 }
-@media (min-width: 768px) {
+@media all and (min-width: 576px) and (max-width: 768px) {
   .img {
-    width: 37vw;
-    height: 37vw;
-    margin-bottom: 0.9rem;
+    width: 42vw;
+    height: 42vw;
   }
   .nation {
     font-size: 1.5rem;
   }
   .title {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
   }
   .hashTags {
     .hashTag1 {
@@ -150,38 +136,83 @@
     }
   }
   .price {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
+  }
+  .group {
+    .selectAge {
+      .selectGroup {
+        font-size: 1.7rem;
+        line-height: 5rem;
+        &:hover {
+          font-size: 1.7rem;
+          line-height: 5rem;
+        }
+      }
+      .choice {
+        font-size: 1.7rem;
+        line-height: 5rem;
+      }
+    }
+  }
+}
+@media all and (min-width: 600px) and (max-width: 768px) {
+  .img {
+    width: 38.5vw;
+    height: 38.5vw;
+  }
+}
+@media (min-width: 768px) {
+  .img {
+    width: 39vw;
+    height: 39vw;
+  }
+  .nation {
+    font-size: 1.6rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .hashTags {
+    .hashTag1 {
+      font-size: 1.6rem;
+    }
+    .hashTag2 {
+      font-size: 1.6rem;
+    }
+  }
+  .price {
+    font-size: 1.8rem;
+  }
+  .group {
+    .selectAge {
+      .selectGroup {
+        font-size: 1.8rem;
+
+        line-height: 5rem;
+        &:hover {
+          font-size: 1.8rem;
+
+          line-height: 5.5rem;
+        }
+      }
+      .choice {
+        font-size: 1.8rem;
+
+        line-height: 5.5rem;
+      }
+    }
   }
 }
 @media (min-width: 900px) {
   .img {
-    width: 33.3rem;
-    height: 33.3rem;
-  }
-  .nation {
-    font-size: 1.7rem;
-  }
-  .title {
-    font-size: 2.1rem;
-  }
-  .hashTags {
-    .hashTag1 {
-      font-size: 1.7rem;
-    }
-    .hashTag2 {
-      font-size: 1.7rem;
-    }
-  }
-  .price {
-    font-size: 2.1rem;
+    width: 35.3rem;
+    height: 35.3rem;
   }
   .group {
-    margin-bottom: 4rem;
-    margin-left: 3.2vw;
     .selectAge {
       .selectGroup {
         line-height: 6.2rem;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         border-radius: 2.9rem;
         padding-top: 1.2rem;
         padding-left: 2.9rem;
@@ -189,7 +220,7 @@
         padding-bottom: 1.2rem;
         &:hover {
           line-height: 6.2rem;
-          font-size: 2.5rem;
+          font-size: 1.8rem;
           border-radius: 2.9rem;
           padding-top: 1.2rem;
           padding-left: 2.9rem;
@@ -199,7 +230,7 @@
       }
       .choice {
         line-height: 6.2rem;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         border-radius: 2.9rem;
         padding-top: 1.2rem;
         padding-left: 2.9rem;
