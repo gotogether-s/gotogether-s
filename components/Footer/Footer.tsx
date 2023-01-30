@@ -25,7 +25,8 @@ const Footer = () => {
       <div className={style.number}>
         <CallIcon fontSize="large" className={style.CallIcon} />
         02-6105-7711
-        <br />
+      </div>
+      <div className={style.holiday}>
         09:00 ~ 18:00 {translate['(토요일/일요일 및 공휴일 휴무)']}
       </div>
       <div className={style.line}></div>
