@@ -1,11 +1,22 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useRequestMembersDetailMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import { Box, MenuItem, Select } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import commonEn from '@public/locales/en/common.json'
+import mainEn from '@public/locales/en/main.json'
+import productListEn from '@public/locales/en/productList.json'
+import productsEnglish from '@public/locales/en/products.json'
+import commonKo from '@public/locales/ko/common.json'
+import mainKo from '@public/locales/ko/main.json'
+import productListKo from '@public/locales/ko/productList.json'
+import productsKorean from '@public/locales/ko/products.json'
+import axios from 'axios'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -60,8 +71,20 @@ type query = {
   }
 }
 
+type orderOptions = {
+  label: string
+  value: string
+}[]
+
 export default function productLists(data: data) {
   const router = useRouter()
+
+  const { locale } = router
+  const translateMain = locale === 'en' ? mainEn : mainKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
+  const translateProductList = locale === 'en' ? productListEn : productListKo
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
+
   const title: string | string[] | undefined = router.query.params
 
   const [username, setUsername] = useState<string>('')
@@ -98,7 +121,7 @@ export default function productLists(data: data) {
     '나홀로 참가',
     '친구나 동료',
     '연인이나 부부',
-    '자녀를 동반 가족',
+    '자녀를 동반하는 가족',
   ]
   const themes: string[] = [
     '전체상품',
@@ -168,16 +191,29 @@ export default function productLists(data: data) {
     }
   }
 
-  const changeSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortChange(e.target.value)
+  const changeSort = (e: any) => {
+    setOrderOptionDuration(e.target.value)
     if (router.query.params == 'all') {
-      router.push(
-        `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=${page}&sort=${e.target.value}`,
-      )
-    } else
-      router.push(
-        `/product-list/${router.query.params}?category=${router.query.category}&page=${page}&sort=${e.target.value}`,
-      )
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category1=${router.query.category1}&category2=${router.query.category2}&category3=${router.query.category3}&category4=${router.query.category4}&page=0&sort=${e.target.value}`,
+        )
+      }
+    } else {
+      if (e.target.value === 'all') {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=`,
+        )
+      } else {
+        router.push(
+          `/product-list/${router.query.params}?category=${router.query.category}&page=0&sort=${e.target.value}`,
+        )
+      }
+    }
   }
   const prevChangeContinent = (e: string) => {
     setPrevContinentChange(e)
@@ -324,39 +360,108 @@ export default function productLists(data: data) {
     setModalIsOpen(!modalIsOpen)
   }
 
+  const StyledSection = styled('div')(() => ({
+    backgroundColor: '#fff',
+    padding: '1.6rem',
+    marginBottom: '1.6rem',
+  }))
+
+  const orderOptions: orderOptions = [
+    {
+      label: '기본순',
+      value: 'all',
+    },
+    {
+      label: '높은 가격순',
+      value: 'basicPrice,desc',
+    },
+    {
+      label: '낮은 가격순',
+      value: 'basicPrice',
+    },
+  ]
+
+  const [orderOptionDuration, setOrderOptionDuration] = useState(
+    orderOptions[0].value,
+  )
+
+  const getTitle = () => {
+    if (title == 'custom' && username) {
+      if (locale === 'ko') {
+        return username + translateMain['님을 위한 추천 상품']
+      } else if (locale === 'en') {
+        return translateMain['님을 위한 추천 상품'] + username
+      }
+    } else if (title == 'custom' && !username) {
+      return translateMain['오늘의 추천 상품']
+    } else if (title == 'all') {
+      return translateProductList['전체상품 페이지 제목']
+    } else if (title == 'companion') {
+      return translateProductList['유형별 페이지 제목']
+    } else if (title == 'continents') {
+      return translateProductList['국가별 페이지 제목']
+    } else if (title == 'ages') {
+      return translateProductList['연령대별 페이지 제목']
+    } else if (title == 'themes') {
+      return translateProductList['테마별 페이지 제목']
+    } else {
+      return translateMain['패키지 여행 상품 보기']
+    }
+  }
+
+  useEffect(() => {
+    getTitle()
+  }, [])
+
   return (
     <>
+      <HeadInfo title={translateProductList['페이지 제목'] + getTitle()} />
       {title == 'custom' && username ? (
-        <div className="category">{username}님을 위한 추천 상품</div>
+        <div className="category">
+          {locale === 'ko'
+            ? username + translateMain['님을 위한 추천 상품']
+            : translateMain['님을 위한 추천 상품'] + username}
+        </div>
       ) : (
         <>
           {title == 'custom' ? (
-            <div className="category">추천 상품</div>
+            <div className="category">{translateMain['오늘의 추천 상품']}</div>
           ) : (
             <></>
           )}
         </>
       )}
-      {title == 'all' ? <div className="category">전체</div> : <></>}
+      {title == 'all' ? (
+        <div className="category">{translateCommon['전체상품']}</div>
+      ) : (
+        <></>
+      )}
       {title == 'companion' ? (
-        <div className="category">유형별 여행</div>
+        <div className="category">{translateCommon['유형별 여행']}</div>
       ) : (
         <></>
       )}
       {title == 'continents' ? (
-        <div className="category">국가별 여행</div>
+        <div className="category">{translateCommon['국가별 여행']}</div>
       ) : (
         <></>
       )}
-      {title == 'ages' ? <div className="category">연령대별 여행</div> : <></>}
-      {title == 'themes' ? <div className="category">테마별 여행</div> : <></>}
-
+      {title == 'ages' ? (
+        <div className="category">{translateCommon['연령대별 여행']}</div>
+      ) : (
+        <></>
+      )}
+      {title == 'themes' ? (
+        <div className="category">{translateCommon['테마별 여행']}</div>
+      ) : (
+        <></>
+      )}
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={3.1}>
+        <Swiper slidesPerView={4} spaceBetween={8}>
           {title == 'all' ? (
             <>
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category1 == '' ? (
                     <div
@@ -365,7 +470,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={continentChange}
+                        value={translateProductList[continentChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -379,7 +484,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category1}
+                        value={translateCommon[router.query.category1]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -390,14 +495,18 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category2 == '' ? (
                     <div
                       className="selectBoxArrow"
                       onClick={() => setModalIsOpen(!modalIsOpen)}
                     >
-                      <input className="selectBox" value={ageChange} disabled />
+                      <input
+                        className="selectBox"
+                        value={translateProductList[ageChange]}
+                        disabled
+                      />
                       <div className="arrowDown">
                         <KeyboardArrowDownIcon fontSize="small" />
                       </div>
@@ -409,7 +518,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category2}
+                        value={translateCommon[router.query.category2]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -420,7 +529,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category3 == '' ? (
                     <div
@@ -429,7 +538,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={companionChange}
+                        value={translateProductList[companionChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -443,7 +552,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category3}
+                        value={translateCommon[router.query.category3]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -454,7 +563,7 @@ export default function productLists(data: data) {
                 </div>
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="selectBoxSwiper">
                 <div>
                   {router.query.category4 == '' ? (
                     <div
@@ -463,7 +572,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectBox"
-                        value={themeChange}
+                        value={translateProductList[themeChange]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -477,7 +586,7 @@ export default function productLists(data: data) {
                     >
                       <input
                         className="selectedBox"
-                        value={router.query.category4}
+                        value={translateCommon[router.query.category4]}
                         disabled
                       />
                       <div className="arrowDown">
@@ -500,7 +609,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={continentChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[continentChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -512,7 +625,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -532,7 +645,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={ageChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[ageChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -544,7 +661,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -564,7 +681,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={companionChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[companionChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -576,7 +697,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -596,7 +717,11 @@ export default function productLists(data: data) {
                 className="selectBoxArrow"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
               >
-                <input className="selectBox" value={themeChange} disabled />
+                <input
+                  className="selectBox"
+                  value={translateProductList[themeChange]}
+                  disabled
+                />
                 <div className="arrowDown">
                   <KeyboardArrowDownIcon fontSize="small" />
                 </div>
@@ -608,7 +733,7 @@ export default function productLists(data: data) {
               >
                 <input
                   className="selectedBox"
-                  value={router.query.category}
+                  value={translateCommon[router.query.category]}
                   disabled
                 />
                 <div className="arrowDown">
@@ -626,7 +751,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'continents' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">국가 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['국가 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {continents &&
@@ -637,14 +764,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="selectName">{continent}</div>
+                              <div className="selectName">
+                                {translateCommon[continent]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="name">{continent}</div>
+                              <div className="name">
+                                {translateCommon[continent]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -657,7 +788,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'ages' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrasesA">연령대 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['연령대 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {ages &&
@@ -668,14 +801,16 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="selectName">{age}</div>
+                              <div className="selectName">
+                                {translateCommon[age]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="name">{age}</div>
+                              <div className="name">{translateCommon[age]}</div>
                             </span>
                           )}
                         </div>
@@ -688,7 +823,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'companion' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">유형 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['유형 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {companions &&
@@ -699,14 +836,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="selectName">{companion}</div>
+                              <div className="selectName">
+                                {translateCommon[companion]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="name">{companion}</div>
+                              <div className="name">
+                                {translateCommon[companion]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -719,7 +860,9 @@ export default function productLists(data: data) {
               {title == 'all' || title == 'themes' ? (
                 <>
                   <div className="top">
-                    <div className="sharePhrases">테마 선택</div>
+                    <div className="sharePhrases">
+                      {translateProductList['테마 선택']}
+                    </div>
                   </div>
                   <div className="middle">
                     {themes &&
@@ -730,14 +873,18 @@ export default function productLists(data: data) {
                               className="selected"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="selectName">{theme}</div>
+                              <div className="selectName">
+                                {translateCommon[theme]}
+                              </div>
                             </span>
                           ) : (
                             <span
                               className="select"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="name">{theme}</div>
+                              <div className="name">
+                                {translateCommon[theme]}
+                              </div>
                             </span>
                           )}
                         </div>
@@ -749,7 +896,7 @@ export default function productLists(data: data) {
               )}
               <div className="bottom">
                 <div className="result" onClick={() => result(title)}>
-                  결과보기
+                  {translateProductList['결과보기']}
                 </div>
               </div>
             </div>
@@ -757,57 +904,82 @@ export default function productLists(data: data) {
         )}
         <div className="selectBoxLsine" />
       </div>
-
       <div className="totalFilter">
         <div className="productTotal">
-          총 상품
-          <span className="productCount">&nbsp;{data.totalElements}</span>개
+          {translateProductList['총 상품']}
+          <span className="productCount">&nbsp;{data.totalElements}</span>
+          {translateProductList['개']}
         </div>
-        <select className="selectBox" onChange={changeSort} value={sortChange}>
-          <option value="">기본순</option>
-          <option value="basicPrice,desc">높은 가격순</option>
-          <option value="basicPrice">낮은 가격순</option>
-        </select>
+        <StyledSection className="selectBoxMui">
+          <Box>
+            <Select
+              fullWidth
+              size="small"
+              value={orderOptionDuration}
+              onChange={changeSort}
+              sx={{ '& legend': { display: 'none' }, '& fieldset': { top: 0 } }}
+            >
+              {orderOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {translateProductList[option.label]}
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
+        </StyledSection>
       </div>
       <div className="totalFilterLine" />
-
       <div className="productLists">
         {data &&
           data.content.map((list: listData, index: number) => (
             <div className="productList" key={index}>
               <Link href={`/product-details/${list.id}`}>
-                <img src={list.thumbnail} alt="img" className="imgClick" />
-              </Link>
-              <span className="nation">{list.country}</span>
-              <div className="title">{list.productName}</div>
-              <div className="hashTags">
-                <div className="hashTag1">#{list.ages} &nbsp;</div>
-                <div className="hashTag2">#{list.theme} &nbsp;</div>
-              </div>
-              {list.basicPrice == 0 ? (
-                <div className="price">가격 문의</div>
-              ) : (
-                <div className="price">
-                  {list.basicPrice.toLocaleString('ko-KR')}원
+                <div className="clickProductDetail">
+                  <img src={list.thumbnail} alt="img" className="imgClick" />
+                  <span className="nation">
+                    {translateProducts[list.country]}
+                  </span>
+                  <div className="title">
+                    {translateProducts[list.productName]}
+                  </div>
+                  <div className="hashTags">
+                    <div className="hashTag1">
+                      #{translateProducts[list.ages]} &nbsp;
+                    </div>
+                    <div className="hashTag2">
+                      {list.theme !== '상관 없음' &&
+                        '#' + translateProducts[list.theme]}{' '}
+                      &nbsp;
+                    </div>
+                  </div>
+                  {list.basicPrice == 0 ? (
+                    <div className="price">{translateMain['가격 문의']}</div>
+                  ) : (
+                    <div className="price">
+                      {list.basicPrice.toLocaleString('ko-KR')}
+                      {translateMain['원']}
+                    </div>
+                  )}
                 </div>
-              )}
+              </Link>
             </div>
           ))}
       </div>
-
-      {data.totalElements ? (
-        <Pagination
-          activePage={page}
-          itemsCountPerPage={data.pageable.pageSize}
-          totalItemsCount={data.totalElements}
-          pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
-          onChange={handlePageChange}
-        />
-      ) : (
-        <>상품을 준비중입니다...</>
-      )}
+      <div className="paginationPosition">
+        {data.totalElements ? (
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={data.pageable.pageSize}
+            totalItemsCount={data.totalElements}
+            pageRangeDisplayed={5}
+            prevPageText={'‹'}
+            nextPageText={'›'}
+            onChange={handlePageChange}
+          />
+        ) : (
+          <>{translateMain['상품을 준비중입니다...']}</>
+        )}
+      </div>
     </>
   )
 }

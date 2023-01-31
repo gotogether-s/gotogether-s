@@ -1,4 +1,5 @@
 import { useSearchProductsMutation } from '@api/requestApi'
+import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import CancelIcon from '@mui/icons-material/Cancel'
@@ -15,6 +16,10 @@ import {
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import productsEnglish from '@public/locales/en/products.json'
+import en from '@public/locales/en/productSearch.json'
+import productsKorean from '@public/locales/ko/products.json'
+import ko from '@public/locales/ko/productSearch.json'
 import { add, remove } from '@store/searchHistorySlice'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -27,6 +32,10 @@ import 'swiper/css/pagination'
 const ProductSearch = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [searchProducts] = useSearchProductsMutation()
 
@@ -112,10 +121,10 @@ const ProductSearch = () => {
 
   return (
     <>
-      <NavBar link="/" title="상품검색" marginBottom="1rem" />
+      <NavBar link="/" title={translate['상품검색']} marginBottom="1rem" />
       <FormControl sx={{ width: '100%', marginBottom: '3rem' }} size="small">
         <OutlinedInput
-          placeholder="상품을 검색해주세요"
+          placeholder={translate['상품을 검색해주세요']}
           value={keyword}
           autoFocus={true}
           onChange={getInputValue}
@@ -151,7 +160,10 @@ const ProductSearch = () => {
       </FormControl>
       {!displaySearchResult ? (
         <>
-          <Typography sx={{ paddingBottom: '1rem' }}>최근 검색어</Typography>
+          <HeadInfo title={translate['페이지 제목1']} />
+          <Typography sx={{ paddingBottom: '1rem' }}>
+            {translate['최근 검색어']}
+          </Typography>
           <Divider sx={{ margin: '0 -1.6rem' }} />
           <List
             sx={{
@@ -199,8 +211,17 @@ const ProductSearch = () => {
         </>
       ) : (
         <>
+          <HeadInfo
+            title={
+              translate['페이지 제목2'] + keyword + translate['페이지 제목3']
+            }
+          />
           <Typography sx={{ paddingBottom: '1rem' }}>
-            검색결과 {productNumber}
+            {translate['검색결과']}
+            <Box component="span" sx={{ color: '#4581f8' }}>
+              {productNumber}
+            </Box>
+            {translate['개']}
           </Typography>
           <Divider sx={{ margin: '0 -1.6rem' }} />
           {productNumber ? (
@@ -215,17 +236,27 @@ const ProductSearch = () => {
                         className="imgClick"
                       />
                     </Link>
-                    <span className="nation">{list.country}</span>
-                    <div className="title">{list.productName}</div>
+                    <span className="nation">
+                      {translateProducts[list.country]}
+                    </span>
+                    <div className="title">
+                      {translateProducts[list.productName]}
+                    </div>
                     <div className="hashTags">
-                      <div className="hashTag1">#{list.ages} &nbsp;</div>
-                      <div className="hashTag2">#{list.theme} &nbsp;</div>
+                      <div className="hashTag1">
+                        {list.theme !== '상관 없음' &&
+                          '#' + translateProducts[list.theme]}
+                      </div>
+                      <div className="hashTag2">
+                        #{translateProducts[list.ages]}
+                      </div>
                     </div>
                     {list.basicPrice == 0 ? (
-                      <div className="price">가격 문의</div>
+                      <div className="price">{translate['가격 문의']}</div>
                     ) : (
                       <div className="price">
-                        {list.basicPrice.toLocaleString('ko-KR')}원
+                        {list.basicPrice.toLocaleString('ko-KR')}{' '}
+                        {translate['원']}
                       </div>
                     )}
                   </div>
@@ -241,22 +272,24 @@ const ProductSearch = () => {
                   bottom: '3rem',
                 }}
               >
-                <Pagination
-                  activePage={page}
-                  itemsCountPerPage={pageSize}
-                  totalItemsCount={totalElements}
-                  pageRangeDisplayed={5}
-                  prevPageText={'‹'}
-                  nextPageText={'›'}
-                  onChange={handlePageChange}
-                />
+                <div className="paginationPosition">
+                  <Pagination
+                    activePage={page}
+                    itemsCountPerPage={pageSize}
+                    totalItemsCount={totalElements}
+                    pageRangeDisplayed={5}
+                    prevPageText={'‹'}
+                    nextPageText={'›'}
+                    onChange={handlePageChange}
+                  />
+                </div>
               </Box>
             </>
           ) : (
             <Typography
               sx={{ marginTop: '2rem', color: '#5F5F5F', fontSize: '1.4rem' }}
             >
-              상품 검색 결과가 없습니다.
+              {translate['상품 검색 결과가 없습니다.']}
             </Typography>
           )}
         </>

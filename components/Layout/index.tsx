@@ -5,18 +5,17 @@ import { Box } from '@mui/material'
 import { Container } from '@mui/system'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import style from './Layout.module.scss'
 
 type ALLOWED_PATH =
   | '/product-search'
   | '/signin'
   | '/signup'
   | '/survey'
-  | '/myinfo'
+  | '/myaccount'
   | '/confirmpassword'
   | '/newpassword'
   | '/book'
-  | '/likes'
+  | '/saved'
   | '/mybooking'
 
 const pageWithNavbar: ALLOWED_PATH[] = [
@@ -24,15 +23,15 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/signin',
   '/signup',
   '/survey',
-  '/myinfo',
+  '/myaccount',
   '/confirmpassword',
   '/newpassword',
   '/book',
-  '/likes',
+  '/saved',
   '/mybooking',
 ]
 
-const pageWithoutPadding = ['/book', '/likes', '/mybooking']
+const pageWithoutPadding = ['/book', '/saved', '/mybooking']
 
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
@@ -54,16 +53,6 @@ const Layout = ({ children }: any) => {
       !myBookingDetailExp.test(asPath)
     ) {
       return <MainNav />
-    }
-  }
-
-  const ApplyPadding = () => {
-    if (
-      currentPath &&
-      !pageWithoutPadding.includes(currentPath) &&
-      !myBookingDetailExp.test(asPath)
-    ) {
-      return true
     }
   }
 
@@ -91,20 +80,15 @@ const Layout = ({ children }: any) => {
         maxWidth="md"
         sx={{
           minHeight: '100vh',
+          padding: 0,
         }}
       >
         {displayMainNav()}
-        {displayTopButton()}
-        <Box
-          className={
-            ApplyPadding()
-              ? style['children-container-with-padding']
-              : style['children-container-without-padding']
-          }
-        >
+        <Box>
           {children}
+          {displayTopButton()}
+          {displayFooter()}
         </Box>
-        {displayFooter()}
       </Container>
     </>
   )

@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useAgeRecommendMutation } from '@api/requestApi'
+import commonEn from '@public/locales/en/common.json'
+import mainEn from '@public/locales/en/main.json'
+import productsEnglish from '@public/locales/en/products.json'
+import commonKo from '@public/locales/ko/common.json'
+import mainKo from '@public/locales/ko/main.json'
+import productsKorean from '@public/locales/ko/products.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -18,6 +25,13 @@ type data = {
 }
 
 const AgesRecommend = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translateMain = locale === 'en' ? mainEn : mainKo
+  const translateCommon = locale === 'en' ? commonEn : commonKo
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
+
   const ages: string[] = [
     '전체',
     '10대',
@@ -58,7 +72,7 @@ const AgesRecommend = () => {
     searchAge
   }, [ageValue, selectAgeValue])
 
-  if (!age) return <>상품을 준비중입니다...</>
+  if (!age) return <>{translateMain['상품을 준비중입니다...']}</>
   return (
     <>
       <Swiper spaceBetween={8} slidesPerView={3} className={style.group}>
@@ -67,14 +81,14 @@ const AgesRecommend = () => {
             <SwiperSlide key={index} className={style.selectAge}>
               {selectAgeValue === age ? (
                 <span className={style.choice} onClick={() => searchAge(age)}>
-                  {age}
+                  {translateCommon[age]}
                 </span>
               ) : (
                 <span
                   className={style.selectGroup}
                   onClick={() => searchAge(age)}
                 >
-                  {age}
+                  {translateCommon[age]}
                 </span>
               )}
             </SwiperSlide>
@@ -84,21 +98,36 @@ const AgesRecommend = () => {
         {age.map(({ ...ages }: data, index: number) => (
           <SwiperSlide key={index}>
             <Link href={`/product-details/${ages.id}`}>
-              <img src={ages.thumbnail} alt="img" className={style.img} />
-            </Link>
-            <span className={style.nation}>{ages.country}</span>
-            <div className={style.title}>{ages.productName}</div>
-            <div className={style.hashTags}>
-              <div className={style.hashTag1}>#{ages.ages} &nbsp;</div>
-              <div className={style.hashTag2}>#{ages.companion}&nbsp;</div>
-            </div>
-            {ages.basicPrice == 0 ? (
-              <div className={style.price}>가격 문의</div>
-            ) : (
-              <div className={style.price}>
-                {ages.basicPrice.toLocaleString('ko-KR')}원
+              <div className={style.click}>
+                <img src={ages.thumbnail} alt="img" className={style.img} />
+                <span className={style.nation}>
+                  {translateProducts[ages.country]}
+                </span>
+                <div className={style.title}>
+                  {translateProducts[ages.productName]}
+                </div>
+                <div className={style.hashTags}>
+                  <div className={style.hashTag1}>
+                    #{translateProducts[ages.ages]}&nbsp;
+                  </div>
+                  <div className={style.hashTag2}>
+                    {ages.companion !== '상관 없음' &&
+                      '#' + translateProducts[ages.companion]}
+                    &nbsp;
+                  </div>
+                </div>
+                {ages.basicPrice == 0 ? (
+                  <div className={style.price}>
+                    {translateMain['가격 문의']}
+                  </div>
+                ) : (
+                  <div className={style.price}>
+                    {ages.basicPrice.toLocaleString('ko-KR')}
+                    {translateMain['원']}
+                  </div>
+                )}
               </div>
-            )}
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

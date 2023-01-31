@@ -1,0 +1,42 @@
+{
+  "페이지 제목1": "Go Together: ",
+  "페이지 제목2": " Detailed Info",
+
+  "가격 문의": "Please contact us to get price quotation",
+  "원": "KRW",
+
+  "찜하기": "Save",
+  "찜 성공! 상품 목록을 확인하시겠습니까?": "Saved! Go to saved page?",
+  "이미 찜한 상품입니다!": "You already saved it!",
+  "찜 목록 보기": "View saved items",
+  "쇼핑 계속하기": "Later",
+  "로그인이 필요한 서비스입니다!": "Please sign in first to save this item",
+  "로그인": "Sign in",
+
+  "예약하기": "Reserve",
+  "이미 예약된 상품입니다!": "You already reserved it!",
+  "출발일을 선택해주세요!": "Please select",
+  "확인": "Okay",
+
+  "출발일 (필수)": "Leaving on (required)",
+  "출발일 선택하기": "Select departure date",
+
+  "여행 정보": "Overview",
+  "지역": "Location",
+  "특징": "Included",
+  "항공": "Flight",
+
+  "공유하기": "Share",
+  "카카오톡": "KakaoTalk",
+  "카카오스토리": "KakaoStory",
+  "라인": "Line",
+  "밴드": "Band",
+  "네이버": "Naver",
+  "페이스북": "Facebook",
+  "트위터": "Twitter",
+  "복사": "Copy",
+
+  "여행 소개": "Vacation Details",
+  "접기": "View Less",
+  "더보기": "View More"
+}

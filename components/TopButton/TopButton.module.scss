@@ -1,18 +1,60 @@
-.fix {
-  position: fixed;
-  bottom: 17%;
-  margin-left: 28.8rem;
-  z-index: 2;
-  .buttonBackground {
-    width: 4rem;
-    height: 4rem;
-    background-color: #fff;
-    position: absolute;
-    cursor: pointer;
-    .button {
+@media (max-width: 576px) {
+  .fix {
+    position: fixed;
+    bottom: 17%;
+    left: 80%;
+    z-index: 2;
+    .buttonBackground {
       width: 4rem;
       height: 4rem;
-      color: #878788;
+      background-color: #fff;
+      position: absolute;
+      cursor: pointer;
+      .button {
+        width: 4rem;
+        height: 4rem;
+        color: #878788;
+      }
+    }
+  }
+}
+@media all and (min-width: 576px) and (max-width: 768px) {
+  .fix {
+    position: fixed;
+    bottom: 17%;
+    left: 80%;
+    z-index: 2;
+    .buttonBackground {
+      width: 6rem;
+      height: 6rem;
+      background-color: #fff;
+      position: absolute;
+      cursor: pointer;
+      .button {
+        width: 6rem;
+        height: 6rem;
+        color: #878788;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .fix {
+    position: fixed;
+    bottom: 17%;
+    left: 80%;
+    z-index: 2;
+    .buttonBackground {
+      width: 8rem;
+      height: 8rem;
+      background-color: #fff;
+      position: absolute;
+      cursor: pointer;
+      .button {
+        width: 8rem;
+        height: 8rem;
+        color: #878788;
+      }
     }
   }
 }

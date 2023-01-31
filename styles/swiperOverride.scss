@@ -1,27 +1,47 @@
 .swiper-pagination {
-  width: 5rem !important;
-  height: 2.5rem !important;
-  bottom: 2.1rem !important;
+  width: 10vw !important;
+  height: 5vw !important;
+  bottom: 4.2vw !important;
   left: auto !important;
-  right: 1.7rem !important;
+  right: 3.4vw !important;
   background-color: #000000 !important;
-  border-radius: 100px;
+  border-radius: 20vw;
   opacity: 0.5;
   color: #fff;
-  font-size: 1.2rem;
-  line-height: 2.5rem;
+  font-size: 2.4vw;
+  line-height: 5vw;
 }
 .swiper-banner {
-  margin: 0 -1.6rem !important;
+  width: 100% !important;
 }
 .swiper-list {
-  height: 24rem !important;
-  margin-right: -1.6rem !important;
+  margin-left: 1.6rem !important;
 }
 .swiper-continent-all {
-  margin-right: -1.6rem !important;
+  margin-left: 1.6rem !important;
 }
 .swiper-continent {
-  width: 20rem !important;
-  height: 13.2rem !important;
+  width: auto !important;
+  height: 26.4vw !important;
+}
+.selectBoxSwiper {
+  margin-right: 3rem !important;
+}
+@media (min-width: 900px) {
+  .swiper-pagination {
+    width: 9rem !important;
+    height: 4.5rem !important;
+    bottom: 3.8rem !important;
+    left: auto !important;
+    right: 3.2rem !important;
+    border-radius: 3rem;
+    font-size: 2.1rem;
+    line-height: 4.5rem;
+  }
+  .swiper-continent-all {
+    height: 23.7rem !important;
+  }
+  .swiper-continent {
+    height: 23.7rem !important;
+  }
 }

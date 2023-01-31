@@ -1,65 +1,151 @@
 .footer {
-  margin-top: 3rem;
-  padding-bottom: 4.4rem;
+  margin-top: 6rem;
+  padding-bottom: 10rem;
   .selectMenu {
-    width: 35.8rem;
-    height: 4rem;
-    margin-bottom: 0.8rem;
+    width: 100%;
     background-color: #f5f5f5;
-    font-size: 1.1rem;
     display: flex;
     align-items: center;
+    font-weight: 400;
     .menu_start {
       width: auto;
-      margin-left: 1.6rem;
-      margin-right: 1rem;
+      margin-left: 3.2rem;
+      margin-right: 2.2rem;
     }
     .menu {
       width: auto;
-      margin-left: 1rem;
-      margin-right: 1rem;
+      margin-left: 2.2rem;
+      margin-right: 2.2rem;
     }
     .menu_end {
       width: auto;
-      margin-left: 1rem;
-      margin-right: 3.8rem;
+      margin-left: 2.2rem;
+      margin-right: 7.8rem;
     }
   }
   .infoSummary {
     color: #3c3c3c;
-    font-size: 1.2rem;
     font-weight: 500;
-    margin-left: 1.6rem;
+    margin-left: 3.2rem;
+    font-weight: 500;
   }
   .line {
-    width: 36rem;
-    height: 0.01rem;
-    margin: 0.8rem 0;
+    width: 100%;
+    height: 0.02rem;
+    margin: 1.6rem 0;
     background-color: #e7e8ed;
   }
   .number {
     color: #3c3c3c;
-    font-size: 1.2rem;
-    margin-left: 1.6rem;
+    margin-left: 3.2rem;
+    font-weight: 500;
     .CallIcon {
-      width: 1.1rem;
-      height: 1.2rem;
-      margin-right: 0.4rem;
+      font-weight: 500;
+      margin-right: 0.8rem;
     }
   }
+  .holiday {
+    margin-left: 3.2rem;
+    font-weight: 400;
+  }
   .infoAll {
-    margin-left: 1.6rem;
+    margin-left: 3.2rem;
     .icon {
       background-image: url('../../public/TheShiny_footer.png');
       background-repeat: no-repeat;
       background-size: contain;
-      width: 9.7rem;
-      height: 2.4rem;
       margin-bottom: 1.2rem;
     }
     text-align: left;
-    font-size: 1rem;
     font-weight: 400;
     color: #3c3c3c;
+  }
+}
+@media (max-width: 576px) {
+  .selectMenu {
+    height: 4rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+  }
+  .footer {
+    .selectMenu {
+      font-size: 1.4rem;
+    }
+    .infoSummary {
+      font-size: 1.4rem;
+    }
+    .number {
+      font-size: 1.4rem;
+      .CallIcon {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+    .infoAll {
+      font-size: 1.2rem;
+      .icon {
+        width: 9.7rem;
+        height: 2.4rem;
+      }
+    }
+  }
+}
+@media all and (min-width: 576px) and (max-width: 768px) {
+  .selectMenu {
+    height: 7rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.5rem;
+  }
+  .footer {
+    .selectMenu {
+      font-size: 1.5rem;
+    }
+    .infoSummary {
+      font-size: 1.5rem;
+    }
+    .number {
+      font-size: 1.5rem;
+      .CallIcon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    .infoAll {
+      font-size: 1.3rem;
+      .icon {
+        width: 17.4rem;
+        height: 4.3rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .selectMenu {
+    height: 7rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.6rem;
+  }
+  .footer {
+    .selectMenu {
+      font-size: 1.6rem;
+    }
+    .infoSummary {
+      font-size: 1.6rem;
+    }
+    .number {
+      font-size: 1.6rem;
+      .CallIcon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    .infoAll {
+      font-size: 1.4rem;
+      .icon {
+        width: 17.4rem;
+        height: 4.3rem;
+      }
+    }
   }
 }

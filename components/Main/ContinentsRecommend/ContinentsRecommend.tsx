@@ -1,11 +1,19 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
+import en from '@public/locales/en/common.json'
+import ko from '@public/locales/ko/common.json'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
 import style from './ContinentsRecommend.module.scss'
 
 const ContinentsRecommend = () => {
+  const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
+
   return (
     <>
       <Swiper
@@ -24,7 +32,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>동남아시아</div>
+              <div className={style.title}>{translate['동남아시아']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -39,7 +47,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>괌,사이판,하와이</div>
+              <div className={style.title}>{translate['괌/사이판/하와이']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -54,8 +62,8 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.explanation}>아름다운 섬</div>
               <div className={style.title}>호주,뉴질랜드</div>
+              <div className={style.title}>{translate['호주/뉴질랜드']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -70,7 +78,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>인도,주변국</div>
+              <div className={style.title}>{translate['인도/주변국']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -85,7 +93,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>중앙아시아</div>
+              <div className={style.title}>{translate['중앙아시아']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -100,7 +108,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>동남아프리카</div>
+              <div className={style.title}>{translate['동남아프리카']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -115,7 +123,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>북아프리카,중동</div>
+              <div className={style.title}>{translate['북아프리카/중동']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -130,7 +138,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>코카서스</div>
+              <div className={style.title}>{translate['코카서스']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -145,7 +153,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>유럽</div>
+              <div className={style.title}>{translate['유럽']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -160,7 +168,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>중남미</div>
+              <div className={style.title}>{translate['중남미']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -175,7 +183,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>북미</div>
+              <div className={style.title}>{translate['북미']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -190,7 +198,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>대만</div>
+              <div className={style.title}>{translate['대만']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -205,7 +213,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>중국</div>
+              <div className={style.title}>{translate['중국']}</div>
             </a>
           </Link>
         </SwiperSlide>
@@ -220,7 +228,7 @@ const ContinentsRecommend = () => {
                 alt="img"
                 className={style.img}
               />
-              <div className={style.title}>일본</div>
+              <div className={style.title}>{translate['일본']}</div>
             </a>
           </Link>
         </SwiperSlide>

@@ -1,7 +1,7 @@
 .img {
   position: relative;
-  width: 20rem;
-  height: 13.2rem;
+  width: 40vw;
+  height: 26.4vw;
   border-radius: 0.8rem;
 }
 .title {
@@ -9,6 +9,27 @@
   bottom: 1.6rem;
   left: 1.6rem;
   font-weight: 500;
-  font-size: 2rem;
   color: #fff;
+  text-shadow: 0.1rem 0.1rem black;
+}
+@media (max-width: 576px) {
+  .title {
+    font-size: 1.8rem;
+  }
+}
+@media all and (min-width: 576px) and (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .img {
+    width: 35rem;
+    height: 23rem;
+  }
+  .title {
+    bottom: 2.9rem;
+    left: 2.9rem;
+    font-size: 2.2rem;
+  }
 }

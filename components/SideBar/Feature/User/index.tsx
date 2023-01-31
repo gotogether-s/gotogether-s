@@ -3,6 +3,8 @@ import {
   useRequestLikedItemsMutation,
 } from '@api/requestApi'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import {
   Avatar,
   Box,
@@ -12,6 +14,8 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import en from '@public/locales/en/sideBar.json'
+import ko from '@public/locales/ko/sideBar.json'
 import {
   updateTheNumberOfBooking,
   updateTheNumberOfLikes,
@@ -24,7 +28,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const User = (props) => {
   const {
-    myInfoLink,
+    myAccountLink,
     backgroundColor,
     primary,
     secondary,
@@ -34,6 +38,9 @@ const User = (props) => {
 
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const { locale } = router
+  const translate = locale === 'en' ? en : ko
 
   const [getReservation] = useGetReservationMutation()
   const [requestLikedItems] = useRequestLikedItemsMutation()
@@ -78,10 +85,6 @@ const User = (props) => {
     }
   }, [sideBarStatus])
 
-  const isLogin = useSelector((state) => {
-    return state.isLogin.isLogin
-  })
-
   const goToMyBooking = () => {
     router.push(`${myBookingLink}`)
     dispatch(close())
@@ -94,7 +97,7 @@ const User = (props) => {
 
   return (
     <>
-      <Link href={myInfoLink}>
+      <Link href={myAccountLink}>
         <List
           sx={{
             padding: '1.6rem 0',
@@ -135,7 +138,7 @@ const User = (props) => {
           sx={{
             backgroundColor: '#F2F4FA',
             width: '50%',
-            height: '10rem',
+            height: '13rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -147,9 +150,14 @@ const User = (props) => {
           }}
           onClick={goToMyBooking}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>예약한 상품</Typography>
-          <Typography sx={{ fontSize: '2rem' }}>
-            {isLogin ? bookingAndLikesNumber.theNumberOfBooking : '-'}
+          <WorkOutlineIcon sx={{ fontSize: '2.5rem' }} />
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['예약한 상품']}
+          </Typography>
+          <Typography sx={{ fontSize: '2rem', fontWeight: '400' }}>
+            {localStorage.getItem('accessToken')
+              ? bookingAndLikesNumber.theNumberOfBooking
+              : '-'}
           </Typography>
         </Box>
         <Box sx={{ borderRight: '1px solid #fff', width: '0.1rem' }}></Box>
@@ -157,7 +165,7 @@ const User = (props) => {
           sx={{
             backgroundColor: '#F2F4FA',
             width: '50%',
-            height: '10rem',
+            height: '13rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -169,9 +177,14 @@ const User = (props) => {
           }}
           onClick={goToLikes}
         >
-          <Typography sx={{ fontSize: '1.4rem' }}>찜한 상품</Typography>
-          <Typography sx={{ fontSize: '2rem' }}>
-            {isLogin ? bookingAndLikesNumber.theNumberOfLikes : '-'}
+          <FavoriteBorderIcon sx={{ fontSize: '2.5rem' }} />
+          <Typography sx={{ fontSize: '1.4rem' }}>
+            {translate['찜한 상품']}
+          </Typography>
+          <Typography sx={{ fontSize: '2rem', fontWeight: '400' }}>
+            {localStorage.getItem('accessToken')
+              ? bookingAndLikesNumber.theNumberOfLikes
+              : '-'}
           </Typography>
         </Box>
       </Box>
