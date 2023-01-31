@@ -257,7 +257,18 @@ export default function productId(data: data) {
       </div>
 
       <div className="basicInformation">
-        <span className="nation">{translateProducts[data.country]}</span>
+        {data.country.split(',')[1] ? (
+          <div className="nations">
+            <span className="nation1">
+              {translateProducts[data.country].split(',')[0]}
+            </span>
+            <span className="nation2">
+              {translateProducts[data.country].split(', ')[1]}
+            </span>
+          </div>
+        ) : (
+          <span className="nation">{translateProducts[data.country]}</span>
+        )}
         <div className="title">{translateProducts[data.productName]}</div>
         <div className="hashTags">
           <div className="hashTag">#{translateProducts[data.ages]} &nbsp;</div>

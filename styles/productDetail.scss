@@ -1,21 +1,5 @@
 .productDetail {
   @media all and (min-width: 200px) and (max-width: 320px) {
-    .basicInformation {
-      .nation {
-        font-size: 1.2rem;
-      }
-      .title {
-        font-size: 1.8rem;
-      }
-      .hashTags {
-        .hashTag {
-          font-size: 1.4rem;
-        }
-      }
-      .price {
-        font-size: 1.8rem;
-      }
-    }
     .favoriteContainer {
       .favoriteModalBody {
         width: 32.8rem;
@@ -157,13 +141,21 @@
       }
     }
   }
-  @media all and (min-width: 320px) and (max-width: 768px) {
+  @media (max-width: 576px) {
     .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.6rem;
+        }
+        .nation2 {
+          font-size: 1.6rem;
+        }
+      }
       .nation {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
       .title {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       .hashTags {
         .hashTag {
@@ -171,16 +163,22 @@
         }
       }
       .price {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
+    }
+    .wish_reser {
+      font-size: 1.6rem;
+    }
+    .departureDate {
+      font-size: 1.6rem;
     }
     .departureDate {
       .departure {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
     }
     .inforTitle {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     .titleContent {
       font-size: 1.6rem;
@@ -193,6 +191,59 @@
         font-size: 1.6rem;
       }
     }
+  }
+  @media all and (min-width: 576px) and (max-width: 768px) {
+    .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.7rem;
+        }
+        .nation2 {
+          font-size: 1.7rem;
+        }
+      }
+      .nation {
+        font-size: 1.7rem;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.7rem;
+        }
+      }
+      .price {
+        font-size: 2rem;
+      }
+    }
+    .wish_reser {
+      font-size: 1.7rem;
+    }
+    .departureDate {
+      .departure {
+        font-size: 1.7rem;
+      }
+    }
+    .departureDate {
+      font-size: 1.7rem;
+    }
+    .inforTitle {
+      font-size: 2rem;
+    }
+    .titleContent {
+      font-size: 1.7rem;
+    }
+    .share {
+      font-size: 1.7rem;
+    }
+    .more {
+      .pharse {
+        font-size: 1.7rem;
+      }
+    }
+  }
+  @media all and (min-width: 320px) and (max-width: 768px) {
     .favoriteContainer {
       .favoriteModalBody {
         width: 32.8rem;
@@ -336,46 +387,47 @@
   }
   @media (min-width: 768px) {
     .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.8rem;
+        }
+        .nation2 {
+          font-size: 1.8rem;
+        }
+      }
       .nation {
-        font-size: 2.1rem;
+        font-size: 1.8rem;
       }
       .title {
-        font-size: 3rem;
+        font-size: 2.2rem;
       }
       .hashTags {
         .hashTag {
-          font-size: 2.4rem;
+          font-size: 1.8rem;
         }
       }
       .price {
-        font-size: 3rem;
+        font-size: 2.2rem;
       }
     }
     .wish_reser {
-      .wish {
-        font-size: 2.2rem;
-      }
-      .reservation {
-        font-size: 2.2rem;
-      }
+      font-size: 1.8rem;
     }
     .departureDate {
-      .departure {
-        font-size: 1.9rem;
-      }
+      font-size: 1.8rem;
     }
     .inforTitle {
-      font-size: 3rem;
+      font-size: 2.2rem;
     }
     .titleContent {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
     }
     .share {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
     }
     .more {
       .pharse {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
       }
     }
     .favoriteContainer {
@@ -544,15 +596,40 @@
       color: #fff;
       text-align: center;
       border-radius: 2.7rem;
-      padding: 0.5rem 0.9rem;
+      padding: 0.5rem 1rem;
+      font-weight: 400;
+    }
+    .nations {
+      width: auto;
+      height: auto;
+      .nation1 {
+        background-color: #466ff5;
+        color: #fff;
+        border-radius: 2.7rem;
+        padding: 0.5rem 1rem;
+        font-weight: 400;
+        margin-right: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .nation2 {
+        background-color: #466ff5;
+        color: #fff;
+        border-radius: 2.7rem;
+        padding: 0.5rem 1rem;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
     .title {
-      margin-top: 0.8rem;
+      margin-top: 1.2rem;
       font-weight: 700;
     }
     .hashTags {
       display: flex;
       margin-top: 0.8rem;
+      font-weight: 400;
       .hashTag {
         color: #919191;
       }
@@ -580,10 +657,10 @@
     display: flex;
     align-items: center;
     margin: 1.6rem 1.6rem 0 1.6rem;
+    font-weight: 500;
     .wish {
       width: 28vw;
       height: 4.8rem;
-      font-weight: 500;
       color: #ffffff;
       background-color: #4581f8;
       border-radius: 0.6rem;
@@ -599,7 +676,6 @@
       background-color: #fff;
       border: 0.1rem solid #4581f8;
       border-radius: 0.6rem;
-      font-weight: 700;
       line-height: 5rem;
       text-align: center;
       cursor: pointer;
@@ -608,6 +684,7 @@
 
   .departureDate {
     margin: 3.1rem 1.6rem 0 1.6rem;
+    font-weight: 400;
     .departure {
       color: #242424;
     }
@@ -620,10 +697,13 @@
         border-color: #d2d2d2;
       }
     }
+    .selectBoxMui {
+      margin-left: -1.6rem;
+    }
   }
   .inforTitle {
-    font-weight: 700;
     margin: 2rem 1.6rem 1.6rem 1.6rem;
+    font-weight: 700;
   }
   .titleContent {
     display: flex;
@@ -631,11 +711,11 @@
     .title {
       width: 15%;
       color: #878787;
-      font-weight: 700;
+      font-weight: 400;
     }
     .content {
       width: 70%;
-      font-weight: 700;
+      font-weight: 500;
     }
   }
   .favoriteContainer {
@@ -875,6 +955,7 @@
     background-color: #fff;
     border: 0.1rem solid #4581f8;
     border-radius: 0.8rem;
+    font-weight: 500;
     &:before {
       content: '';
       position: absolute;
@@ -892,7 +973,6 @@
       );
     }
     .pharse {
-      font-weight: 500;
       color: #4581f8;
       margin-right: 0.5rem;
     }
