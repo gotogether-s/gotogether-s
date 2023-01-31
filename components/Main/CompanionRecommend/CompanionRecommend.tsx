@@ -108,21 +108,38 @@ const CompanionRecommend = () => {
                     alt="img"
                     className={style.img}
                   />
-                  <span className={style.nation}>
-                    {translateProducts[companion.country]}
-                  </span>
+                  {companion.country.split(',')[1] ? (
+                    <div className={style.nations}>
+                      <span className={style.nation1}>
+                        {translateProducts[companion.country].split(',')[0]}
+                      </span>
+                      <span className={style.nation2}>
+                        {translateProducts[companion.country].split(', ')[1]}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className={style.nation}>
+                      {translateProducts[companion.country]}
+                    </span>
+                  )}
                   <div className={style.title}>
                     {translateProducts[companion.productName]}
                   </div>
                   <div className={style.hashTags}>
                     <div className={style.hashTag1}>
-                      #{translateProducts[companion.ages]}&nbsp;
+                      #{translateProducts[companion.ages]}
                     </div>
-                    <div className={style.hashTag2}>
-                      {companion.companion !== '상관 없음' &&
-                        '#' + translateProducts[companion.companion]}
-                      &nbsp;
-                    </div>
+                    {companionValue === '남자끼리' ||
+                    companionValue === '여자끼리' ? (
+                      <div className={style.hashTag2}>
+                        #{translateProducts[companion.genderGroup]}
+                      </div>
+                    ) : (
+                      <div className={style.hashTag2}>
+                        {companion.companion !== '상관 없음' &&
+                          '#' + translateProducts[companion.companion]}
+                      </div>
+                    )}
                   </div>
                   {companion.basicPrice == 0 ? (
                     <div className={style.price}>

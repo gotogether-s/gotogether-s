@@ -55,9 +55,20 @@ const GolfRecommend = () => {
               <Link href={`/product-details/${golf.id}`}>
                 <div className={style.click}>
                   <img src={golf.thumbnail} alt="img" className={style.img} />
-                  <span className={style.nation}>
-                    {translateProducts[golf.country]}
-                  </span>
+                  {golf.country.split(',')[1] ? (
+                    <div className={style.nations}>
+                      <span className={style.nation1}>
+                        {translateProducts[golf.country].split(',')[0]}
+                      </span>
+                      <span className={style.nation2}>
+                        {translateProducts[golf.country].split(', ')[1]}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className={style.nation}>
+                      {translateProducts[golf.country]}
+                    </span>
+                  )}
                   <div className={style.title}>
                     {translateProducts[golf.productName]}
                   </div>
