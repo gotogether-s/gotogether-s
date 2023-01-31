@@ -54,9 +54,20 @@ const HealingRecommend = () => {
               <Link href={`/product-details/${heal.id}`}>
                 <div className={style.click}>
                   <img src={heal.thumbnail} alt="img" className={style.img} />
-                  <span className={style.nation}>
-                    {translateProducts[heal.country]}
-                  </span>
+                  {heal.country.split(',')[1] ? (
+                    <div className={style.nations}>
+                      <span className={style.nation1}>
+                        {translateProducts[heal.country].split(',')[0]}
+                      </span>
+                      <span className={style.nation2}>
+                        {translateProducts[heal.country].split(', ')[1]}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className={style.nation}>
+                      {translateProducts[heal.country]}
+                    </span>
+                  )}
                   <div className={style.title}>
                     {translateProducts[heal.productName]}
                   </div>

@@ -7,6 +7,29 @@
     height: 42vw;
     margin-bottom: 0.9rem;
   }
+  .nations {
+    width: auto;
+    height: auto;
+    .nation1 {
+      background-color: #466ff5;
+      color: #fff;
+      border-radius: 2.7rem;
+      padding: 0.2rem 0.7rem;
+      font-weight: 400;
+      margin-right: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .nation2 {
+      background-color: #466ff5;
+      color: #fff;
+      border-radius: 2.7rem;
+      padding: 0.2rem 0.7rem;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
   .nation {
     width: 100%;
     background-color: #466ff5;
@@ -45,6 +68,14 @@
     margin-top: 0.6rem;
   }
   @media (max-width: 576px) {
+    .nations {
+      .nation1 {
+        font-size: 1.4rem;
+      }
+      .nation2 {
+        font-size: 1.4rem;
+      }
+    }
     .nation {
       font-size: 1.4rem;
     }
@@ -67,6 +98,14 @@
     .img {
       width: 42vw;
       height: 42vw;
+    }
+    .nations {
+      .nation1 {
+        font-size: 1.5rem;
+      }
+      .nation2 {
+        font-size: 1.5rem;
+      }
     }
     .nation {
       font-size: 1.5rem;
@@ -96,6 +135,14 @@
     .img {
       width: 39vw;
       height: 39vw;
+    }
+    .nations {
+      .nation1 {
+        font-size: 1.6rem;
+      }
+      .nation2 {
+        font-size: 1.6rem;
+      }
     }
     .nation {
       font-size: 1.6rem;
