@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 import { useRouter } from 'next/router'
 import { Autoplay, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -10,7 +9,6 @@ import style from './Banner.module.scss'
 
 const Banner = () => {
   const router = useRouter()
-
   const { locale } = router
 
   return (
