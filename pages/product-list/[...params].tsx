@@ -458,7 +458,7 @@ export default function productLists(data: data) {
       )}
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={4} spaceBetween={8}>
+        <Swiper slidesPerView={3.5} spaceBetween={30}>
           {title == 'all' ? (
             <>
               <SwiperSlide className="selectBoxSwiper">
@@ -936,9 +936,20 @@ export default function productLists(data: data) {
               <Link href={`/product-details/${list.id}`}>
                 <div className="clickProductDetail">
                   <img src={list.thumbnail} alt="img" className="imgClick" />
-                  <span className="nation">
-                    {translateProducts[list.country]}
-                  </span>
+                  {list.country.split(',')[1] ? (
+                    <div className="nations">
+                      <span className="nation1">
+                        {translateProducts[list.country].split(',')[0]}
+                      </span>
+                      <span className="nation2">
+                        {translateProducts[list.country].split(', ')[1]}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="nation">
+                      {translateProducts[list.country]}
+                    </span>
+                  )}
                   <div className="title">
                     {translateProducts[list.productName]}
                   </div>
