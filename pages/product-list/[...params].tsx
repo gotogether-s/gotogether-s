@@ -458,7 +458,7 @@ export default function productLists(data: data) {
       )}
       {title == 'custom' ? <></> : <div className="categoryLine" />}
       <div className="selectBox_group">
-        <Swiper slidesPerView={4} spaceBetween={8}>
+        <Swiper slidesPerView={3.5} spaceBetween={30}>
           {title == 'all' ? (
             <>
               <SwiperSlide className="selectBoxSwiper">
