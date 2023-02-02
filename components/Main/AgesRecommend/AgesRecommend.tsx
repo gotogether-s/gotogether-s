@@ -100,9 +100,20 @@ const AgesRecommend = () => {
             <Link href={`/product-details/${ages.id}`}>
               <div className={style.click}>
                 <img src={ages.thumbnail} alt="img" className={style.img} />
-                <span className={style.nation}>
-                  {translateProducts[ages.country]}
-                </span>
+                {ages.country.split(',')[1] ? (
+                  <div className={style.nations}>
+                    <span className={style.nation1}>
+                      {translateProducts[ages.country].split(',')[0]}
+                    </span>
+                    <span className={style.nation2}>
+                      {translateProducts[ages.country].split(', ')[1]}
+                    </span>
+                  </div>
+                ) : (
+                  <span className={style.nation}>
+                    {translateProducts[ages.country]}
+                  </span>
+                )}
                 <div className={style.title}>
                   {translateProducts[ages.productName]}
                 </div>

@@ -65,9 +65,20 @@ const CustomRecommend = () => {
               <Link href={`/product-details/${custom.id}`}>
                 <div className={style.click}>
                   <img src={custom.thumbnail} alt="img" className={style.img} />
-                  <span className={style.nation}>
-                    {translateProducts[custom.country]}
-                  </span>
+                  {custom.country.split(',')[1] ? (
+                    <div className={style.nations}>
+                      <span className={style.nation1}>
+                        {translateProducts[custom.country].split(',')[0]}
+                      </span>
+                      <span className={style.nation2}>
+                        {translateProducts[custom.country].split(', ')[1]}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className={style.nation}>
+                      {translateProducts[custom.country]}
+                    </span>
+                  )}
                   <div className={style.title}>
                     {translateProducts[custom.productName]}
                   </div>
