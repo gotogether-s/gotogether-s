@@ -760,23 +760,19 @@ export default function productLists(data: data) {
                       continents.map((continent: string, index: number) => (
                         <div key={index}>
                           {prevContinentChange == continent ? (
-                            <span
+                            <div
                               className="selected"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="selectName">
-                                {translateCommon[continent]}
-                              </div>
-                            </span>
+                              {translateCommon[continent]}
+                            </div>
                           ) : (
-                            <span
+                            <div
                               className="select"
                               onClick={() => prevChangeContinent(continent)}
                             >
-                              <div className="name">
-                                {translateCommon[continent]}
-                              </div>
-                            </span>
+                              {translateCommon[continent]}
+                            </div>
                           )}
                         </div>
                       ))}
@@ -797,21 +793,19 @@ export default function productLists(data: data) {
                       ages.map((age: string, index: number) => (
                         <div key={index}>
                           {prevAgeChange == age ? (
-                            <span
+                            <div
                               className="selected"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="selectName">
-                                {translateCommon[age]}
-                              </div>
-                            </span>
+                              {translateCommon[age]}
+                            </div>
                           ) : (
-                            <span
+                            <div
                               className="select"
                               onClick={() => prevChangeAge(age)}
                             >
-                              <div className="name">{translateCommon[age]}</div>
-                            </span>
+                              {translateCommon[age]}
+                            </div>
                           )}
                         </div>
                       ))}
@@ -832,23 +826,19 @@ export default function productLists(data: data) {
                       companions.map((companion: string, index: number) => (
                         <div key={index}>
                           {prevCompanionChange == companion ? (
-                            <span
+                            <div
                               className="selected"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="selectName">
-                                {translateCommon[companion]}
-                              </div>
-                            </span>
+                              {translateCommon[companion]}
+                            </div>
                           ) : (
-                            <span
+                            <div
                               className="select"
                               onClick={() => prevChangeCompanion(companion)}
                             >
-                              <div className="name">
-                                {translateCommon[companion]}
-                              </div>
-                            </span>
+                              {translateCommon[companion]}
+                            </div>
                           )}
                         </div>
                       ))}
@@ -869,23 +859,19 @@ export default function productLists(data: data) {
                       themes.map((theme: string, index: number) => (
                         <div key={index}>
                           {prevThemeChange == theme ? (
-                            <span
+                            <div
                               className="selected"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="selectName">
-                                {translateCommon[theme]}
-                              </div>
-                            </span>
+                              {translateCommon[theme]}
+                            </div>
                           ) : (
-                            <span
+                            <div
                               className="select"
                               onClick={() => prevChangeTheme(theme)}
                             >
-                              <div className="name">
-                                {translateCommon[theme]}
-                              </div>
-                            </span>
+                              {translateCommon[theme]}
+                            </div>
                           )}
                         </div>
                       ))}

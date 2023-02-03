@@ -3,6 +3,7 @@
   margin-top: 2rem;
   justify-content: space-evenly;
   font-weight: 400;
+  text-align: center;
   .bundle {
     display: flex;
     flex-direction: column;
@@ -20,6 +21,14 @@
         margin-top: 0.8rem;
       }
     }
+    .iconSize {
+      width: 14.7vw;
+      height: 14.7vw;
+    }
+  }
+}
+@media all and (min-width: 360px) and (max-width: 576px) {
+  .category {
     .iconSize {
       width: 5.3rem;
       height: 5.3rem;
