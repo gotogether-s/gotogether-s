@@ -8,25 +8,19 @@
     align-items: center;
     font-weight: 400;
     .menu_start {
-      width: auto;
-      margin-left: 3.2rem;
-      margin-right: 2.2rem;
+      margin-left: 1.6rem;
     }
     .menu {
-      width: auto;
-      margin-left: 2.2rem;
-      margin-right: 2.2rem;
+      margin-left: 3.2vw;
     }
     .menu_end {
-      width: auto;
-      margin-left: 2.2rem;
-      margin-right: 7.8rem;
+      margin-left: 3.2vw;
     }
   }
   .infoSummary {
     color: #3c3c3c;
     font-weight: 500;
-    margin-left: 3.2rem;
+    margin-left: 1.6rem;
     font-weight: 500;
   }
   .line {
@@ -37,7 +31,7 @@
   }
   .number {
     color: #3c3c3c;
-    margin-left: 3.2rem;
+    margin-left: 1.6rem;
     font-weight: 500;
     .CallIcon {
       font-weight: 500;
@@ -45,11 +39,11 @@
     }
   }
   .holiday {
-    margin-left: 3.2rem;
+    margin-left: 1.6rem;
     font-weight: 400;
   }
   .infoAll {
-    margin-left: 3.2rem;
+    margin-left: 1.6rem;
     .icon {
       background-image: url('../../public/TheShiny_footer.png');
       background-repeat: no-repeat;
