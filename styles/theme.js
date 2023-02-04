@@ -2,7 +2,10 @@ import { createTheme } from '@mui/material/styles'
 
 const typography = {
   fontFamily: 'Noto Sans KR',
-  htmlFontSize: 10,
+  html: {
+    fontSize: '62.5%', // 1rem = 10px
+  },
+  fontSize: '1.6rem',
 }
 
 const breakpoints = {
