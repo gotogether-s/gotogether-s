@@ -31,8 +31,6 @@ const pageWithNavbar: ALLOWED_PATH[] = [
   '/mybooking',
 ]
 
-const pageWithoutPadding = ['/book', '/saved', '/mybooking']
-
 const Layout = ({ children }: any) => {
   const { asPath } = useRouter()
   const [currentPath, setCurrentPath] = useState<ALLOWED_PATH | null>(null)
