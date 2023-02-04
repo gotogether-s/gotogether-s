@@ -61,18 +61,26 @@ const MainNav = () => {
         }}
       >
         <SideBar />
-        <Link href="/" passHref>
-          <a>
-            <Image
-              src={mainLogo}
-              alt="gotogether logo"
-              width="120%"
-              height="30%"
-              objectFit="contain"
-              style={{ borderRadius: '0.75rem' }}
-            />
-          </a>
-        </Link>
+        <Box
+          sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <Link href="/" passHref>
+            <a>
+              <Image
+                src={mainLogo}
+                alt="gotogether logo"
+                width="120%"
+                height="30%"
+                objectFit="contain"
+                style={{ borderRadius: '0.75rem' }}
+              />
+            </a>
+          </Link>
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Box
             sx={{
