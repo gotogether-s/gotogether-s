@@ -41,8 +41,7 @@ const Feature = () => {
       const res = await requestMembersDetail({
         accessToken: accessToken,
       })
-      const { status } = res.error
-      if (status === 401) {
+      if ('error' in res && 'status' in res.error && res.error.status === 401) {
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
         return
