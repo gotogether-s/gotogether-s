@@ -75,7 +75,6 @@ const Menu = () => {
         router.push('/')
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
-        dispatch(getLoginStatus())
       }
     } catch (e) {
       console.log('e: ', e)
