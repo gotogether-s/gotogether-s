@@ -11,7 +11,7 @@ const NotFound = () => {
   const translate = locale === 'en' ? en : ko
 
   return (
-    <>
+    <Box sx={{ padding: '0 1.6rem' }}>
       <HeadInfo title={translate['페이지 제목']} />
 
       <Box sx={{ paddingTop: '5rem' }}>
@@ -94,7 +94,7 @@ const NotFound = () => {
           </Button>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 

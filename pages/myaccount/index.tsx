@@ -2,6 +2,7 @@ import { useRequestMembersDetailMutation } from '@api/requestApi'
 import HeadInfo from '@components/HeadInfo'
 import NavBar from '@components/NavBar'
 import {
+  Box,
   Button,
   Divider,
   List,
@@ -75,54 +76,56 @@ const MyAccount = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['내 계정']} />
-      {userInfo.map((obj, index) => (
-        <List
-          key={index}
+      <Box sx={{ padding: '0 1.6rem' }}>
+        {userInfo.map((obj, index) => (
+          <List
+            key={index}
+            sx={{
+              padding: '0',
+              margin: '3rem 0',
+            }}
+          >
+            <ListItem disablePadding>
+              <ListItemText
+                sx={{ margin: 0 }}
+                primary={
+                  <Typography sx={{ fontSize: '1.5rem', color: '#4E4E4E' }}>
+                    {obj.label}
+                  </Typography>
+                }
+                secondary={
+                  <Typography
+                    variant="p"
+                    component="p"
+                    sx={{ padding: '1rem 0' }}
+                  >
+                    {obj.value}
+                  </Typography>
+                }
+              />
+            </ListItem>
+            <Divider sx={{ margin: '0 -1.6rem' }} />
+          </List>
+        ))}
+        <Button
+          variant="contained"
           sx={{
-            padding: '0',
-            margin: '3rem 0',
-          }}
-        >
-          <ListItem disablePadding>
-            <ListItemText
-              sx={{ margin: 0 }}
-              primary={
-                <Typography sx={{ fontSize: '1.5rem', color: '#4E4E4E' }}>
-                  {obj.label}
-                </Typography>
-              }
-              secondary={
-                <Typography
-                  variant="p"
-                  component="p"
-                  sx={{ padding: '1rem 0' }}
-                >
-                  {obj.value}
-                </Typography>
-              }
-            />
-          </ListItem>
-          <Divider sx={{ margin: '0 -1.6rem' }} />
-        </List>
-      ))}
-      <Button
-        variant="contained"
-        sx={{
-          width: '100%',
-          backgroundColor: '#4581F8',
-          boxShadow: 'none',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-          fontWeight: '500',
-          '&:hover': {
+            width: '100%',
             backgroundColor: '#4581F8',
             boxShadow: 'none',
-          },
-        }}
-        onClick={changePassword}
-      >
-        {translate['비밀번호 변경']}
-      </Button>
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            fontWeight: '500',
+            '&:hover': {
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+            },
+          }}
+          onClick={changePassword}
+        >
+          {translate['비밀번호 변경']}
+        </Button>
+      </Box>
     </>
   )
 }

@@ -56,7 +56,7 @@ const Payment = () => {
   }, [])
 
   return (
-    <Box>
+    <Box sx={{ padding: '0 1.6rem' }}>
       <HeadInfo title={translate['페이지 제목']} />
       <Box sx={{ textAlign: 'center', margin: '5rem 0 2rem' }}>
         <Image

@@ -122,44 +122,46 @@ const ProductSearch = () => {
   return (
     <>
       <NavBar link="/" title={translate['상품검색']} marginBottom="1rem" />
-      <FormControl sx={{ width: '100%', marginBottom: '3rem' }} size="small">
-        <OutlinedInput
-          placeholder={translate['상품을 검색해주세요']}
-          value={keyword}
-          autoFocus={true}
-          onChange={getInputValue}
-          onKeyPress={searchProductOrclearInput}
-          endAdornment={
-            <InputAdornment position="end">
-              {!displaySearchResult ? (
-                <SearchIcon
-                  sx={{
-                    color: '#B9B9B9',
-                    fontSize: 25,
-                    '&:hover': {
-                      cursor: 'pointer',
-                    },
-                  }}
-                  onClick={searchProductOrclearInput}
-                />
-              ) : (
-                <CancelIcon
-                  sx={{
-                    color: '#B9B9B9',
-                    fontSize: 20,
-                    '&:hover': {
-                      cursor: 'pointer',
-                    },
-                  }}
-                  onClick={clearInput}
-                />
-              )}
-            </InputAdornment>
-          }
-        />
-      </FormControl>
+      <Box sx={{ padding: '0 1.6rem' }}>
+        <FormControl sx={{ width: '100%', marginBottom: '3rem' }} size="small">
+          <OutlinedInput
+            placeholder={translate['상품을 검색해주세요']}
+            value={keyword}
+            autoFocus={true}
+            onChange={getInputValue}
+            onKeyPress={searchProductOrclearInput}
+            endAdornment={
+              <InputAdornment position="end">
+                {!displaySearchResult ? (
+                  <SearchIcon
+                    sx={{
+                      color: '#B9B9B9',
+                      fontSize: 25,
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={searchProductOrclearInput}
+                  />
+                ) : (
+                  <CancelIcon
+                    sx={{
+                      color: '#B9B9B9',
+                      fontSize: 20,
+                      '&:hover': {
+                        cursor: 'pointer',
+                      },
+                    }}
+                    onClick={clearInput}
+                  />
+                )}
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </Box>
       {!displaySearchResult ? (
-        <>
+        <Box sx={{ padding: '0 1.6rem' }}>
           <HeadInfo title={translate['페이지 제목1']} />
           <Typography sx={{ paddingBottom: '1rem' }}>
             {translate['최근 검색어']}
@@ -208,9 +210,9 @@ const ProductSearch = () => {
               </ListItem>
             ))}
           </List>
-        </>
+        </Box>
       ) : (
-        <>
+        <Box sx={{ padding: '0 1.6rem' }}>
           <HeadInfo
             title={
               translate['페이지 제목2'] + keyword + translate['페이지 제목3']
@@ -292,7 +294,7 @@ const ProductSearch = () => {
               {translate['상품 검색 결과가 없습니다.']}
             </Typography>
           )}
-        </>
+        </Box>
       )}
     </>
   )
