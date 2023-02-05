@@ -65,11 +65,11 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 
 고투게더는 시니어층을 주요 대상으로 패키지 여행 상품을 예약할 수 있는 여행 서비스 플랫폼입니다.
 
-- Client: Go Together Travel Agency
-- Service: Website Design & Development
-- Duration: Sep 2022 – Present
-- Team Members: 8
-- My Role: Front-End Development
+> Client: Go Together Travel Agency
+> Service: Website Design & Development
+> Duration: Sep 2022 – Present
+> Team Members: 8
+> My Role: Front-End Development
 
 ### 문제점 & 기업측 요구사항 (영어)
 
