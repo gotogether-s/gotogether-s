@@ -62,9 +62,7 @@ const Feature = () => {
 
   return (
     <Box role="presentation">
-      {localStorage.getItem('accessToken') &&
-      userName !== '' &&
-      userEmail !== '' ? (
+      {localStorage.getItem('accessToken') ? (
         <User {...loginUserProps} />
       ) : (
         <User {...logoutUserProps} />
