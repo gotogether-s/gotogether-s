@@ -194,6 +194,7 @@ const SignUp = () => {
             value={signUpValues.name}
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
+            autoComplete="off"
           />
           <Typography
             sx={{
@@ -255,6 +256,7 @@ const SignUp = () => {
               value={signUpValues.email}
               onChange={handleSignUpValuesChange}
               onBlur={removeInputSpaces}
+              autoComplete="off"
             />
             <Button
               variant="contained"
