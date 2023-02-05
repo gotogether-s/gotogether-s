@@ -83,69 +83,66 @@ const MainNav = () => {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Box
+            onClick={() => dispatch(openModal())}
             sx={{
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <Box onClick={() => dispatch(openModal())}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <LanguageIcon sx={{ fontSize: 20 }} />
-                <Typography sx={{ fontSize: '1.2rem' }}>
-                  {translate['선택언어']}
-                </Typography>
-              </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <LanguageIcon sx={{ fontSize: 20 }} />
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                {translate['선택언어']}
+              </Typography>
             </Box>
           </Box>
           <Box
+            onClick={goToLikesPage}
             sx={{
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <Box onClick={goToLikesPage}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <FavoriteBorderIcon sx={{ fontSize: 20 }} />
-                <Typography sx={{ fontSize: '1.2rem' }}>
-                  {translate['찜 목록']}
-                </Typography>
-              </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <FavoriteBorderIcon sx={{ fontSize: 20 }} />
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                {translate['찜 목록']}
+              </Typography>
             </Box>
           </Box>
           <Box
+            onClick={() => router.push('/product-search')}
             sx={{
               '&:hover': {
                 cursor: 'pointer',
               },
             }}
           >
-            <Box onClick={() => router.push('/product-search')}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <SearchIcon sx={{ fontSize: 25 }} />
-                <Typography sx={{ fontSize: '1.2rem' }}>
-                  {translate['검색']}
-                </Typography>
-              </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <SearchIcon sx={{ fontSize: 25 }} />
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                {translate['검색']}
+              </Typography>
             </Box>
           </Box>
         </Box>
