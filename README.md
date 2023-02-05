@@ -29,12 +29,12 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
   - [Short Video Demo](#-Short-Video-Demo)
 - [🪄 Tech Stack & Tools](#-Tech-Stack-&-Tools)
   - [Design Tools](#-Design-Tools)
-  - [Front-End Tech Stack](#-Front-End-Tech-Stack)
-  - [Back-End Tech Stack](#-Back-End-Tech-Stack)
+  - [Front-End Tech Stack](#-Front---End-Tech-Stack)
+  - [Back-End Tech Stack](#-Back---End-Tech-Stack)
   - [Other Tools](#-Other-Tools)
-- [✂️ Roles & Responsibilities](#-Role-&-Responsibilities)
-  - [Front-End Roles & Responsibilities](#-Front-End-Roles-&-Responsibilities)
-  - [Back-End Roles & Responsibilities](#-Back-End-Roles-&-Responsibilities)
+- [✂️ Roles & Responsibilities](#-Roles-&-Responsibilities)
+  - [Front-End Roles & Responsibilities](#-Front---End-Roles-&-Responsibilities)
+  - [Back-End Roles & Responsibilities](#-Back---End-Roles-&-Responsibilities)
 - [⚙️ 주요 기능과 로직](#-주요-기능과-로직)
 
 <br />
