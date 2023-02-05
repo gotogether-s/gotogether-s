@@ -22,7 +22,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
 - [🚀 Quick Start](#-Quick-Start)
 - [🗓 Project Duration](#-Project-Duration)
 - [✨ Project Summary](#-Project-Summary)
-  - [문제점 & 기업측 요구사항](#-문제점-&-기업측-요구사항)
+  - [문제점 & 기업측 요구사항 (영어)](<#-문제점-&-기업측-요구사항-(영어)>)
 - [👀 Demo](#-Demo)
   - [Mockup](#-Mockup)
   - [Live Website](#-Live-Website)
@@ -35,7 +35,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
 - [✂️ Roles & Responsibilities](#-Roles-&-Responsibilities)
   - [Front-End Roles & Responsibilities](#-Front---End-Roles-&-Responsibilities)
   - [Back-End Roles & Responsibilities](#-Back---End-Roles-&-Responsibilities)
-- [⚙️ 주요 기능과 로직](#-주요-기능과-로직)
+- [주요 기능과 로직 (영어)](<#-주요-기능과-로직-(영어)>)
 
 <br />
 
@@ -71,7 +71,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
 - Team Members: 8
 - My Role: Front-End Development
 
-### 문제점 & 기업측 요구사항
+### 문제점 & 기업측 요구사항 (영어)
 
 기존 [고투게더 웹사이트](https://www.gotogether-s.com/)는 아임웹이라는 CMS(Content Management System)로 웹사이트가 만들어져 있어 한정된 기능만 사용이 가능하였습니다. 고투게더 서비스를 운영하는 회사 더샤이니에서 아래 3가지 요구사항을 반영한 새로운 웹사이트 제작을 요청하였습니다:
 
@@ -165,7 +165,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
 
 <br />
 
-## ⚙️ 주요 기능과 로직
+## ⚙️ 주요 기능과 로직 (영어)
 
 1. 사용자 설문을 통한 여행상품 추천 기능
    - 사용자 특성에 맞는 패키지 여행상품을 추천하기 위한 설문 기능
