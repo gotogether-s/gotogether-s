@@ -81,7 +81,16 @@ const MainNav = () => {
             </a>
           </Link>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: {
+              xs: '0.5rem',
+              sm: '1rem',
+            },
+          }}
+        >
           <Box
             onClick={() => dispatch(openModal())}
             sx={{
@@ -113,7 +122,10 @@ const MainNav = () => {
           >
             <Box
               sx={{
-                display: 'flex',
+                display: {
+                  xs: 'none',
+                  sm: 'flex',
+                },
                 flexDirection: 'column',
                 alignItems: 'center',
               }}
