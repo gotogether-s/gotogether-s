@@ -147,7 +147,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](<#-�
 
 <br />
 
-## ✂️ Role
+## ✂️ Roles & Responsibilities
 
 ### Front-End Roles & Responsibilities
 
