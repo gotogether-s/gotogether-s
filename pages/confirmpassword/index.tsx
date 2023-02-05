@@ -71,67 +71,69 @@ const ConfirmPassword = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['기존 비밀번호 확인']} />
-      <Box sx={{ marginBottom: '1rem' }}>
-        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-          {translate['기존 비밀번호']}
-        </Typography>
-        <TextField
-          name="password"
-          type="password"
-          size="small"
-          placeholder={translate['기존 비밀번호를 입력해주세요']}
-          sx={{ width: '100%' }}
-          value={passwordValue}
-          onChange={handlePasswordValueChange}
-        />
+      <Box sx={{ padding: '0 1.6rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            {translate['기존 비밀번호']}
+          </Typography>
+          <TextField
+            name="password"
+            type="password"
+            size="small"
+            placeholder={translate['기존 비밀번호를 입력해주세요']}
+            sx={{ width: '100%' }}
+            value={passwordValue}
+            onChange={handlePasswordValueChange}
+          />
+          <Typography
+            sx={{
+              visibility: passwordValueError.password ? 'visible' : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
+            }}
+          >
+            {passwordValueError.password}
+          </Typography>
+        </Box>
+        <Button
+          onClick={goToNext}
+          variant="contained"
+          sx={{
+            width: '100%',
+            backgroundColor: '#4581F8',
+            boxShadow: 'none',
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            fontWeight: '500',
+            '&:hover': {
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+            },
+          }}
+        >
+          {translate['다음']}
+        </Button>
         <Typography
           sx={{
-            visibility: passwordValueError.password ? 'visible' : 'hidden',
-            color: 'tomato',
+            visibility:
+              passwordConfirmResponseMessage !== '' ? 'visible' : 'hidden',
+            color:
+              passwordConfirmResponseMessage !==
+              translate['비밀번호가 일치합니다']
+                ? 'tomato'
+                : 'green',
             fontSize: '1.4rem',
             height: '1.6rem',
             paddingTop: '0.3rem',
             lineHeight: 'normal',
           }}
         >
-          {passwordValueError.password}
+          {passwordConfirmResponseMessage}
         </Typography>
       </Box>
-      <Button
-        onClick={goToNext}
-        variant="contained"
-        sx={{
-          width: '100%',
-          backgroundColor: '#4581F8',
-          boxShadow: 'none',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-          fontWeight: '500',
-          '&:hover': {
-            backgroundColor: '#4581F8',
-            boxShadow: 'none',
-          },
-        }}
-      >
-        {translate['다음']}
-      </Button>
-      <Typography
-        sx={{
-          visibility:
-            passwordConfirmResponseMessage !== '' ? 'visible' : 'hidden',
-          color:
-            passwordConfirmResponseMessage !==
-            translate['비밀번호가 일치합니다']
-              ? 'tomato'
-              : 'green',
-          fontSize: '1.4rem',
-          height: '1.6rem',
-          paddingTop: '0.3rem',
-          lineHeight: 'normal',
-        }}
-      >
-        {passwordConfirmResponseMessage}
-      </Typography>
     </>
   )
 }

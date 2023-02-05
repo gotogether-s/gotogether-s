@@ -84,95 +84,97 @@ const NewPassword = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['비밀번호 변경']} />
-      <Box sx={{ marginBottom: '1rem' }}>
-        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-          {translate['새 비밀번호']}
-        </Typography>
-        <TextField
-          name="password"
-          type="password"
-          size="small"
-          placeholder={translate['새 비밀번호를 입력해주세요']}
-          value={newPasswordValues.password}
-          sx={{ width: '100%' }}
-          onChange={handleNewPasswordValuesChange}
-        />
-        <Typography
+      <Box sx={{ padding: '0 1.6rem' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            {translate['새 비밀번호']}
+          </Typography>
+          <TextField
+            name="password"
+            type="password"
+            size="small"
+            placeholder={translate['새 비밀번호를 입력해주세요']}
+            value={newPasswordValues.password}
+            sx={{ width: '100%' }}
+            onChange={handleNewPasswordValuesChange}
+          />
+          <Typography
+            sx={{
+              visibility: passwordValuesErrors.password ? 'visible' : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
+            }}
+          >
+            {passwordValuesErrors.password}
+          </Typography>
+        </Box>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
+            {translate['새 비밀번호 확인']}
+          </Typography>
+          <TextField
+            name="passwordConfirm"
+            type="password"
+            size="small"
+            placeholder={translate['새 비밀번호를 다시 입력해주세요']}
+            value={newPasswordValues.passwordConfirm}
+            sx={{ width: '100%' }}
+            onChange={handleNewPasswordValuesChange}
+          />
+          <Typography
+            sx={{
+              visibility: passwordValuesErrors.passwordConfirm
+                ? 'visible'
+                : 'hidden',
+              color: 'tomato',
+              fontSize: '1.4rem',
+              height: '1.6rem',
+              paddingTop: '0.3rem',
+              lineHeight: 'normal',
+            }}
+          >
+            {passwordValuesErrors.passwordConfirm}
+          </Typography>
+        </Box>
+        <Button
+          onClick={requestPasswordChange}
+          variant="contained"
           sx={{
-            visibility: passwordValuesErrors.password ? 'visible' : 'hidden',
-            color: 'tomato',
-            fontSize: '1.4rem',
-            height: '1.6rem',
-            paddingTop: '0.3rem',
-            lineHeight: 'normal',
-          }}
-        >
-          {passwordValuesErrors.password}
-        </Typography>
-      </Box>
-      <Box sx={{ marginBottom: '1rem' }}>
-        <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
-          {translate['새 비밀번호 확인']}
-        </Typography>
-        <TextField
-          name="passwordConfirm"
-          type="password"
-          size="small"
-          placeholder={translate['새 비밀번호를 다시 입력해주세요']}
-          value={newPasswordValues.passwordConfirm}
-          sx={{ width: '100%' }}
-          onChange={handleNewPasswordValuesChange}
-        />
-        <Typography
-          sx={{
-            visibility: passwordValuesErrors.passwordConfirm
-              ? 'visible'
-              : 'hidden',
-            color: 'tomato',
-            fontSize: '1.4rem',
-            height: '1.6rem',
-            paddingTop: '0.3rem',
-            lineHeight: 'normal',
-          }}
-        >
-          {passwordValuesErrors.passwordConfirm}
-        </Typography>
-      </Box>
-      <Button
-        onClick={requestPasswordChange}
-        variant="contained"
-        sx={{
-          width: '100%',
-          backgroundColor: '#4581F8',
-          boxShadow: 'none',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-          fontWeight: '500',
-          '&:hover': {
+            width: '100%',
             backgroundColor: '#4581F8',
             boxShadow: 'none',
-          },
-        }}
-      >
-        {translate['확인']}
-      </Button>
-      <Typography
-        sx={{
-          visibility:
-            passwordUpdateResponseMessage !== '' ? 'visible' : 'hidden',
-          color:
-            passwordUpdateResponseMessage !==
-            translate['비밀번호 변경에 성공했습니다']
-              ? 'tomato'
-              : 'green',
-          fontSize: '1.4rem',
-          height: '1.6rem',
-          paddingTop: '0.3rem',
-          lineHeight: 'normal',
-        }}
-      >
-        {passwordUpdateResponseMessage}
-      </Typography>
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            fontWeight: '500',
+            '&:hover': {
+              backgroundColor: '#4581F8',
+              boxShadow: 'none',
+            },
+          }}
+        >
+          {translate['확인']}
+        </Button>
+        <Typography
+          sx={{
+            visibility:
+              passwordUpdateResponseMessage !== '' ? 'visible' : 'hidden',
+            color:
+              passwordUpdateResponseMessage !==
+              translate['비밀번호 변경에 성공했습니다']
+                ? 'tomato'
+                : 'green',
+            fontSize: '1.4rem',
+            height: '1.6rem',
+            paddingTop: '0.3rem',
+            lineHeight: 'normal',
+          }}
+        >
+          {passwordUpdateResponseMessage}
+        </Typography>
+      </Box>
     </>
   )
 }

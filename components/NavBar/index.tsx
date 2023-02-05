@@ -20,8 +20,7 @@ const NavBar = ({ link, title, marginBottom }) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingTop: '2rem',
-        paddingBottom: '2rem',
+        padding: '2rem 1.6rem',
       }}
       style={{ marginBottom: marginBottom ? marginBottom : '2rem' }}
     >

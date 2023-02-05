@@ -131,31 +131,26 @@ const QnA = () => {
             </Box>
           </Box>
           <Box sx={{ margin: '4rem -1.6rem' }}>
-            <List
-              sx={{
-                padding: 0,
-                borderTop: '1px solid #ddd',
-              }}
-            >
-              {qnaList.answers.map((answer, answerIndex) => (
-                <ListItemButton
-                  key={answerIndex}
-                  sx={{
-                    borderBottom: '1px solid #ddd',
-                    backgroundColor:
-                      answerIndex === selectedAnswer && '#F2F4FA',
-                  }}
-                  onClick={() =>
-                    getUserAnswer(event, surveyNumber - 1, answer, answerIndex)
-                  }
-                >
+            {qnaList.answers.map((answer, answerIndex) => (
+              <List
+                sx={{
+                  padding: 0,
+                  borderTop: answerIndex === 0 && '1px solid #ddd',
+                  borderBottom: '0.5px solid #ddd',
+                  backgroundColor: answerIndex === selectedAnswer && '#F2F4FA',
+                }}
+                onClick={() =>
+                  getUserAnswer(event, surveyNumber - 1, answer, answerIndex)
+                }
+              >
+                <ListItemButton key={answerIndex}>
                   <ListItemText
                     primary={translate[answer]}
                     sx={{ textAlign: 'center' }}
                   />
                 </ListItemButton>
-              ))}
-            </List>
+              </List>
+            ))}
           </Box>
         </Box>
       ))}

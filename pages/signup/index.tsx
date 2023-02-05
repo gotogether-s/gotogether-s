@@ -181,7 +181,7 @@ const SignUp = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['회원가입']} />
-      <Box>
+      <Box sx={{ padding: '0 1.6rem' }}>
         <Box sx={{ marginBottom: '1.6rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             {translate['이름']}
@@ -194,6 +194,7 @@ const SignUp = () => {
             value={signUpValues.name}
             onChange={handleSignUpValuesChange}
             onBlur={removeInputSpaces}
+            autoComplete="off"
           />
           <Typography
             sx={{
@@ -255,6 +256,7 @@ const SignUp = () => {
               value={signUpValues.email}
               onChange={handleSignUpValuesChange}
               onBlur={removeInputSpaces}
+              autoComplete="off"
             />
             <Button
               variant="contained"

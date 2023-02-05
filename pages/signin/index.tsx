@@ -93,7 +93,7 @@ const SignIn = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['로그인']} />
-      <Box>
+      <Box sx={{ padding: '0 1.6rem' }}>
         <Box sx={{ marginBottom: '1rem' }}>
           <Typography sx={{ fontWeight: 500, paddingBottom: '0.5rem' }}>
             {translate['이메일']}
@@ -106,6 +106,7 @@ const SignIn = () => {
             sx={{ width: '100%' }}
             onChange={handleSignInValuesChange}
             onBlur={removeInputSpaces}
+            autoComplete="off"
           />
           <Typography
             sx={{

@@ -16,7 +16,7 @@ const Survey = () => {
     <>
       <HeadInfo title={translate['페이지 제목']} />
       <NavBar link="/" title={translate['여행지 추천 받기']} />
-      <Box sx={{ paddingBottom: '2rem' }}>
+      <Box sx={{ padding: '0 1.6rem 2rem' }}>
         <Typography
           sx={{
             fontSize: '1.8rem',

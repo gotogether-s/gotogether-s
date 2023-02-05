@@ -1,5 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Backdrop, Drawer } from '@mui/material'
+import { Backdrop, Box, Drawer } from '@mui/material'
 import { click } from '@store/sideBarStatusSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Feature from './Feature'
@@ -12,7 +12,7 @@ const SideBar = () => {
   })
 
   return (
-    <>
+    <Box>
       <MenuIcon
         sx={{
           fontSize: 30,
@@ -43,7 +43,7 @@ const SideBar = () => {
         sx={{ position: 'absolute', zIndex: 3 }}
         transitionDuration={{ enter: 500, exit: 400 }}
       />
-    </>
+    </Box>
   )
 }
 
