@@ -47,8 +47,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 4. Start project
    - Localhost: `yarn run dev`
    - After build: `yarn build` then `yarn run dev`
-5. Please contact the email address below if you need an env key to run the project
-   - Hyeonah: [hyeonah.hello@gmail.com](hyeonah.hello@gmail.com)
+5. Please contact [hyeonah.hello@gmail.com](hyeonah.hello@gmail.com) if you need an env key to run the project
 6. Reference
    - Visit the live website: [https://gotogether-s.vercel.app/](https://gotogether-s.vercel.app/)
    - View project code with GitHub: [https://github.com/gotogether-s/gotogether-s](https://github.com/gotogether-s/gotogether-s)
