@@ -96,6 +96,7 @@
       font-size: 1.6rem;
     }
   }
+
   @media all and (min-width: 576px) and (max-width: 768px) {
     .img {
       width: 42vw;
@@ -125,6 +126,12 @@
     }
     .price {
       font-size: 1.7rem;
+    }
+  }
+  @media all and (min-width: 576px) and (max-width: 600px) {
+    .img {
+      width: 38.5vw;
+      height: 38.5vw;
     }
   }
   @media all and (min-width: 600px) and (max-width: 768px) {
