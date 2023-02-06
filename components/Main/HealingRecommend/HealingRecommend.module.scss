@@ -99,8 +99,8 @@
 
   @media all and (min-width: 576px) and (max-width: 768px) {
     .img {
-      width: 42vw;
-      height: 42vw;
+      width: 38.5vw;
+      height: 38.5vw;
     }
     .nations {
       .nation1 {
@@ -128,22 +128,10 @@
       font-size: 1.7rem;
     }
   }
-  @media all and (min-width: 576px) and (max-width: 600px) {
-    .img {
-      width: 38.5vw;
-      height: 38.5vw;
-    }
-  }
-  @media all and (min-width: 600px) and (max-width: 768px) {
-    .img {
-      width: 38.5vw;
-      height: 38.5vw;
-    }
-  }
   @media (min-width: 768px) {
     .img {
-      width: 39vw;
-      height: 39vw;
+      width: 30rem;
+      height: 30rem;
     }
     .nations {
       .nation1 {
@@ -169,12 +157,6 @@
     }
     .price {
       font-size: 1.8rem;
-    }
-  }
-  @media (min-width: 900px) {
-    .img {
-      width: 35.3rem;
-      height: 35.3rem;
     }
   }
 }

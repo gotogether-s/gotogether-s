@@ -24,6 +24,11 @@
   width: auto !important;
   height: 26.4vw !important;
 }
+@media (min-width: 768px) {
+  .swiper-continent {
+    height: 23.7rem !important;
+  }
+}
 @media (min-width: 900px) {
   .swiper-pagination {
     width: 9rem !important;
