@@ -294,10 +294,10 @@
   .productLists {
     .productList {
       margin-right: 0.8rem;
-      width: 43vw;
+      width: 42vw;
       .imgClick {
-        width: 44.5vw;
-        height: 44.5vw;
+        width: 42vw;
+        height: 42vw;
         margin-bottom: 0.5rem;
       }
       .nations {
@@ -312,11 +312,11 @@
         font-size: 1.5rem;
       }
       .title {
-        width: 46vw;
+        width: 42vw;
         font-size: 1.7rem;
       }
       .hashTags {
-        width: 43vw;
+        width: 42vw;
         .hashTag1 {
           font-size: 1.5rem;
         }
@@ -391,24 +391,7 @@
     height: 6.8rem;
   }
 }
-@media all and (min-width: 600px) and (max-width: 768px) {
-  .productLists {
-    .productList {
-      width: 42vw;
-      .imgClick {
-        width: 42vw;
-        height: 42vw;
-        margin-bottom: 0.5rem;
-      }
-      .title {
-        width: 42vw;
-      }
-      .hashTags {
-        width: 42vw;
-      }
-    }
-  }
-}
+
 @media (min-width: 768px) {
   .category {
     font-size: 2.2rem;
@@ -453,10 +436,10 @@
   .productLists {
     .productList {
       margin-right: 0.8rem;
-      width: 42vw;
+      width: 32.3rem;
       .imgClick {
-        width: 42vw;
-        height: 42vw;
+        width: 32.3rem;
+        height: 32.3rem;
         margin-bottom: 0.5rem;
       }
       .nations {
@@ -471,11 +454,11 @@
         font-size: 1.6rem;
       }
       .title {
-        width: 42vw;
+        width: 32.3rem;
         font-size: 1.8rem;
       }
       .hashTags {
-        width: 42vw;
+        width: 32.3rem;
         .hashTag1 {
           font-size: 1.6rem;
         }
@@ -550,23 +533,23 @@
   }
 }
 @media (min-width: 900px) {
-  .productLists {
-    .productList {
-      margin-right: 0.8rem;
-      width: 37.8rem;
-      .imgClick {
-        width: 37.8rem;
-        height: 37.8rem;
-        margin-bottom: 0.5rem;
-      }
-      .title {
-        width: 37.8rem;
-      }
-      .hashTags {
-        width: 37.8rem;
-      }
-    }
-  }
+  // .productLists {
+  //   .productList {
+  //     margin-right: 0.8rem;
+  //     width: 37.8rem;
+  //     .imgClick {
+  //       width: 37.8rem;
+  //       height: 37.8rem;
+  //       margin-bottom: 0.5rem;
+  //     }
+  //     .title {
+  //       width: 37.8rem;
+  //     }
+  //     .hashTags {
+  //       width: 37.8rem;
+  //     }
+  //   }
+  // }
   .container {
     .modalBody {
       width: 83rem;
