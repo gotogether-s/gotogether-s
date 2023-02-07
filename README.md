@@ -22,7 +22,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 - [🚀 Quick Start](#-quick-start)
 - [🗓 Project Duration](#-project-duration)
 - [✨ Project Summary](#-project-summary)
-  - [Problems & Company's Requirements](#problems--Company's-Requirements)
+  - [Problems & Company's Requirements](#problems--companys-requirements)
 - [👀 Demo](#demo)
   - [Mockup](#mockup)
   - [Live Website](#live-website)
@@ -35,7 +35,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 - [✂️ Roles & Responsibilities](#%EF%B8%8F-roles--responsibilities)
   - [Front-End Roles & Responsibilities](#front-end-roles--responsibilities)
   - [Back-End Roles & Responsibilities](#back-end-roles--responsibilities)
-- [⚙️ Key Features and Logic](#%EF%B8%8key-features-and-logic)
+- [⚙️ Key Features and Logic](#%EF%B8%8Fkey-features-and-logic)
 
 <br />
 
