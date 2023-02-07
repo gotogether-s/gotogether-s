@@ -133,6 +133,7 @@ const QnA = () => {
           <Box sx={{ margin: '4rem -1.6rem' }}>
             {qnaList.answers.map((answer, answerIndex) => (
               <List
+                key={answerIndex}
                 sx={{
                   padding: 0,
                   borderTop: answerIndex === 0 && '1px solid #ddd',
