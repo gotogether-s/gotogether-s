@@ -68,7 +68,6 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 - Service: Website Design & Development
 - Duration: Sep 2022 – Present
 - Team Members: 8
-- My Role: Front-End Development
 
 ### 문제점 & 기업측 요구사항 (영어)
 
