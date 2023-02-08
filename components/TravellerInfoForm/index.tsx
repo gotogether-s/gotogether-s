@@ -12,7 +12,10 @@ import {
 import en from '@public/locales/en/book.json'
 import ko from '@public/locales/ko/book.json'
 import { openModal } from '@store/displayModalWindowSlice'
-import { updateReservationPersonInfo } from '@store/makeReservationSlice'
+import {
+  resetReservation,
+  updateReservationPersonInfo,
+} from '@store/makeReservationSlice'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -108,6 +111,12 @@ const TravellerInfoForm = ({ travellerValuesErrors, number }) => {
   useEffect(() => {
     getClientInfo(duplicateClientInfo)
   }, [duplicateClientInfo])
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetReservation())
+    }
+  }, [])
 
   return (
     <Accordion

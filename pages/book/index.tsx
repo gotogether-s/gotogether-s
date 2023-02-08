@@ -24,7 +24,10 @@ import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/book.json'
 import DayOfTheWeekKorean from '@public/locales/ko/DayOfTheWeek.json'
 import productsKorean from '@public/locales/ko/products.json'
-import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
+import {
+  resetBookingClientInfo,
+  updateBookingClientInfo,
+} from '@store/bookingClientInfoSlice'
 import {
   createReservationPersonList,
   deleteReservationPersonList,
@@ -245,6 +248,12 @@ const Book = () => {
     }
     dispatch(updateReservationDetail(reservationDetail))
   }, [productId, numberOfTravellers, totalFee, productOptionList])
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetBookingClientInfo())
+    }
+  }, [])
 
   return (
     <>

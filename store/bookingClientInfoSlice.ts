@@ -1,11 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+type bookingClientInfoState = {
+  name: string
+  phoneNumber: string
+}
+
+const initialState: bookingClientInfoState = {
+  name: '',
+  phoneNumber: '',
+}
+
 const bookingClientInfoSlice = createSlice({
   name: 'bookingClientInfoSlice',
-  initialState: {
-    name: '',
-    phoneNumber: '',
-  },
+  initialState: initialState,
   reducers: {
     updateBookingClientInfo: (state, action) => {
       const { name, phoneNumber } = action.payload
@@ -16,9 +23,11 @@ const bookingClientInfoSlice = createSlice({
         state.phoneNumber = phoneNumber
       }
     },
+    resetBookingClientInfo: () => initialState,
   },
 })
 
 export default bookingClientInfoSlice
 
-export const { updateBookingClientInfo } = bookingClientInfoSlice.actions
+export const { updateBookingClientInfo, resetBookingClientInfo } =
+  bookingClientInfoSlice.actions
