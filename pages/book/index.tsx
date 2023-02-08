@@ -19,7 +19,11 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import en from '@public/locales/en/book.json'
+import DayOfTheWeekEnglish from '@public/locales/en/DayOfTheWeek.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/book.json'
+import DayOfTheWeekKorean from '@public/locales/ko/DayOfTheWeek.json'
+import productsKorean from '@public/locales/ko/products.json'
 import { updateBookingClientInfo } from '@store/bookingClientInfoSlice'
 import {
   createReservationPersonList,
@@ -42,6 +46,9 @@ const Book = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
+  const translateDayOfTheWeek =
+    locale === 'en' ? DayOfTheWeekEnglish : DayOfTheWeekKorean
 
   const [requestReservation] = useRequestReservationMutation()
 
@@ -271,7 +278,9 @@ const Book = () => {
               }}
             >
               <Box>
-                <Typography sx={{ fontWeight: 500 }}>{productName}</Typography>
+                <Typography sx={{ fontWeight: 500 }}>
+                  {translateProducts[productName]}
+                </Typography>
                 <Typography sx={{ fontSize: '1.3rem' }}>{airport}</Typography>
                 <Box
                   sx={{
@@ -284,7 +293,8 @@ const Book = () => {
                     {translate['출발']}
                   </Typography>
                   <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                    {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                    {bookingDurationDate[0]} (
+                    {translateDayOfTheWeek[bookingDurationDay[0]]})
                   </Typography>
                 </Box>
                 <Box
@@ -298,7 +308,8 @@ const Book = () => {
                     {translate['도착']}
                   </Typography>
                   <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                    {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                    {bookingDurationDate[1]} (
+                    {translateDayOfTheWeek[bookingDurationDay[1]]})
                   </Box>
                 </Box>
               </Box>
@@ -434,7 +445,7 @@ const Book = () => {
               padding: '1rem 0',
             }}
           >
-            <Typography>{productName}</Typography>
+            <Typography>{translateProducts[productName]}</Typography>
             <Box
               sx={{
                 display: 'flex',
@@ -452,7 +463,8 @@ const Book = () => {
                   {translate['출발']}
                 </Typography>
                 <Typography sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                  {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                  {bookingDurationDate[0]} (
+                  {translateDayOfTheWeek[bookingDurationDay[0]]})
                 </Typography>
               </Box>
               <Box
@@ -466,7 +478,8 @@ const Book = () => {
                   {translate['도착']}
                 </Typography>
                 <Box sx={{ fontSize: '1.3rem', color: '#4581F8' }}>
-                  {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                  {bookingDurationDate[1]} (
+                  {translateDayOfTheWeek[bookingDurationDay[1]]})
                 </Box>
               </Box>
             </Box>
