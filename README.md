@@ -71,10 +71,10 @@ Go Together is a travel service platform where people can book vacation packages
 
 ### Problems & Company's Requirements
 
-The existing website of Go Together was created with a CMS (Content Management System) called I'm Web, allowing limited functions. The Shiny, which operates the Go Together service, requested the creation of a new website that reflects the following three requirements:
+[The existing website of Go Together](https://www.gotogether-s.com/) was created with a CMS (Content Management System) called I'm Web, allowing limited functions. The Shiny, which operates the Go Together service, requested the creation of a new website that reflects the following three requirements:
 
-1. Web page renewal based on the mobile layout
-2. Vacation packages recommendation function tailored to users' characteristics
+1. Web page renewal based on the mobile layout ✅
+2. Vacation packages recommendation function tailored to users' interest ✅
 3. Create an admin page that allows product registration [(Click here to see Go Together admin Github repo)](https://github.com/gotogether-s/gotogether-s-admin)
 
 <br />
@@ -275,13 +275,19 @@ The existing website of Go Together was created with a CMS (Content Management S
 | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | ![메인](https://user-images.githubusercontent.com/65530775/217529992-ca91fdad-eff9-4f2d-a402-16443619ea83.gif) | ![모든 카테고리](https://user-images.githubusercontent.com/65530775/217530037-56b88e8e-6cc8-403d-a86b-ac16d013d7d8.gif) | ![연령대별여행추천](https://user-images.githubusercontent.com/65530775/217530105-683a0d88-1038-42e0-b54b-443d3fedb4c7.gif) |
 
+<br/>
+
 | 회원가입                                                                                                           | 로그인 & 로그아웃                                                                                                         | 설문조사                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | ![회원가입](https://user-images.githubusercontent.com/65530775/217530130-088e0326-96eb-42b9-a660-044c739ecea1.gif) | ![로그인 로그아웃](https://user-images.githubusercontent.com/65530775/217530221-080b547c-14a9-40fd-969f-dc5377bd832c.gif) | ![설문조사](https://user-images.githubusercontent.com/65530775/217530240-ea83e06d-21d6-4e1d-843b-44d796fdab9b.gif) |
 
+<br/>
+
 | 상품 검색                                                                                                      | 상품 상세                                                                                                          | 예약 및 결제                                                                                                         |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | ![검색](https://user-images.githubusercontent.com/65530775/217530444-98a08fc7-cba7-430e-b9b6-ac3c5d114f4a.gif) | ![제품상세](https://user-images.githubusercontent.com/65530775/217531615-cc850e3d-762e-4e9b-bf9b-54b36c02d91e.gif) | ![예약, 결제](https://user-images.githubusercontent.com/65530775/217530656-47973cdd-f9e2-431b-9e76-e5b3df090bfd.gif) |
+
+<br/>
 
 | 예약                                                                                                             | 찜하기 & 찜한 상품                                                                                               | 언어 바꾸기                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
