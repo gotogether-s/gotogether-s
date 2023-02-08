@@ -1,6 +1,8 @@
 import HeadInfo from '@components/HeadInfo'
 import { Box, Button, Divider, Typography } from '@mui/material'
+import DayOfTheWeekEnglish from '@public/locales/en/DayOfTheWeek.json'
 import en from '@public/locales/en/payment.json'
+import DayOfTheWeekKorean from '@public/locales/ko/DayOfTheWeek.json'
 import ko from '@public/locales/ko/payment.json'
 import payment from '@public/payment.png'
 import dayjs from 'dayjs'
@@ -11,9 +13,10 @@ import { useEffect, useState } from 'react'
 
 const Payment = () => {
   const router = useRouter()
-
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateDayOfTheWeek =
+    locale === 'en' ? DayOfTheWeekEnglish : DayOfTheWeekKorean
 
   const [paymentSummary, setPaymentSummary] = useState([
     {
@@ -35,7 +38,7 @@ const Payment = () => {
   ])
 
   useEffect(() => {
-    dayjs.locale('ko')
+    locale === 'en' ? dayjs.locale('en') : dayjs.locale('ko')
 
     const getPaymentDueDate = dayjs()
       .add(3, 'day')
