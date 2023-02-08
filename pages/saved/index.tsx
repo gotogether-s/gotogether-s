@@ -14,7 +14,9 @@ import {
   Typography,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import productsEnglish from '@public/locales/en/products.json'
 import en from '@public/locales/en/saved.json'
+import productsKorean from '@public/locales/ko/products.json'
 import ko from '@public/locales/ko/saved.json'
 import {
   addLikedItems,
@@ -42,6 +44,7 @@ const Saved = () => {
 
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
 
   const [requestLikedItems] = useRequestLikedItemsMutation()
   const [deleteLikedItems] = useDeleteLikedItemsMutation()
@@ -230,7 +233,7 @@ const Saved = () => {
                         <Typography
                           sx={{ fontWeight: 500, lineHeight: 'normal' }}
                         >
-                          {likedItem.productName}
+                          {translateProducts[likedItem.productName]}
                         </Typography>
                         <Typography
                           sx={{

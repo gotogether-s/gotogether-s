@@ -8,7 +8,11 @@ import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRig
 import { Box, Chip, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import en from '@public/locales/en/bookingDetail.json'
+import DayOfTheWeekEnglish from '@public/locales/en/DayOfTheWeek.json'
+import productsEnglish from '@public/locales/en/products.json'
 import ko from '@public/locales/ko/bookingDetail.json'
+import DayOfTheWeekKorean from '@public/locales/ko/DayOfTheWeek.json'
+import productsKorean from '@public/locales/ko/products.json'
 import { addMyBookingDetail } from '@store/myBookingDetailSlice'
 import { addMyBookingPeople } from '@store/myBookingPeopleSlice'
 import Image from 'next/image'
@@ -29,6 +33,9 @@ const myBookingDetail = () => {
   const { id } = router.query
   const { locale } = router
   const translate = locale === 'en' ? en : ko
+  const translateProducts = locale === 'en' ? productsEnglish : productsKorean
+  const translateDayOfTheWeek =
+    locale === 'en' ? DayOfTheWeekEnglish : DayOfTheWeekKorean
 
   const [getReservationWithId] = useGetReservationWithIdMutation()
   const [getReservationPeople] = useGetReservationPeopleMutation()
@@ -153,7 +160,7 @@ const myBookingDetail = () => {
                 >
                   <Box>
                     <Typography sx={{ fontSize: '1.8rem', fontWeight: 500 }}>
-                      {productName}
+                      {translateProducts[productName]}
                     </Typography>
                     <Typography
                       sx={{
@@ -163,7 +170,7 @@ const myBookingDetail = () => {
                       }}
                     >
                       {translate['예약일']}: {reservationDate} (
-                      {reservationDayOfWeek})
+                      {translateDayOfTheWeek[reservationDayOfWeek]})
                     </Typography>
                   </Box>
                   <Chip
@@ -228,7 +235,8 @@ const myBookingDetail = () => {
                         <Typography
                           sx={{ fontSize: '1.3rem', color: '#4581F8' }}
                         >
-                          {bookingDurationDate[0]} ({bookingDurationDay[0]})
+                          {bookingDurationDate[0]} (
+                          {translateDayOfTheWeek[bookingDurationDay[0]]})
                         </Typography>
                       </Box>
                       <Box
@@ -246,7 +254,8 @@ const myBookingDetail = () => {
                         <Typography
                           sx={{ fontSize: '1.3rem', color: '#4581F8' }}
                         >
-                          {bookingDurationDate[1]} ({bookingDurationDay[1]})
+                          {bookingDurationDate[1]} (
+                          {translateDayOfTheWeek[bookingDurationDay[1]]})
                         </Typography>
                       </Box>
                     </Box>
