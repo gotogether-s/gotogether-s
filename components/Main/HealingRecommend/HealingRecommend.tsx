@@ -72,12 +72,12 @@ const HealingRecommend = () => {
                     {translateProducts[heal.productName]}
                   </div>
                   <div className={style.hashTags}>
+                    <div className={style.hashTag2}>
+                      #{translateProducts[heal.ages]}
+                    </div>
                     <div className={style.hashTag1}>
                       {heal.companion !== '상관 없음' &&
                         '#' + translateProducts[heal.companion]}
-                    </div>
-                    <div className={style.hashTag2}>
-                      #{translateProducts[heal.ages]}
                     </div>
                   </div>
                   {heal.basicPrice == 0 ? (
