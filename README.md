@@ -56,7 +56,11 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 
 ## 🗓 Project Duration
 
-**Version 0.1.0 Released**: Sep 6, 2022 - Feb 08, 2023
+Sep 6, 2022 - Present
+
+### **Timeline**
+
+- Version 0.1.0 released: Feb 8, 2023
 
 <br />
 
@@ -241,7 +245,11 @@ Go Together is a travel service platform where people can book vacation packages
 
 ## 🗓 프로젝트 제작기간
 
-**버전 0.1.0** : 2022년 9월 6일 - 진행중
+2022년 9월 6일 - 진행중
+
+### **타임라인**
+
+- 버전 0.1.0: 2023년 2월 8일
 
 <br />
 
