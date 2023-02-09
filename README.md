@@ -70,7 +70,6 @@ Go Together is a travel service platform where people can book vacation packages
 
 - Client: Go Together Travel Agency (The Shiny)
 - Service: Website Design & Development
-- Duration: Sep 2022 – Present
 - Team Members: 8
 
 ### Problems & Company's Requirements
