@@ -1,0 +1,161 @@
+.click {
+  width: 95%;
+  cursor: pointer;
+  .img {
+    border-radius: 0.8rem;
+    width: 42vw;
+    height: 42vw;
+    margin-bottom: 0.9rem;
+  }
+  .nations {
+    width: auto;
+    height: auto;
+    .nation1 {
+      background-color: #466ff5;
+      color: #fff;
+      border-radius: 2.7rem;
+      padding: 0.4rem 1.2rem;
+      font-weight: 400;
+      margin-right: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .nation2 {
+      background-color: #466ff5;
+      color: #fff;
+      border-radius: 2.7rem;
+      padding: 0.4rem 1.2rem;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .nation {
+    width: 100%;
+    background-color: #466ff5;
+    color: #fff;
+    border-radius: 2.7rem;
+    padding: 0.4rem 1.2rem;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .title {
+    margin-top: 0.8rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .hashTags {
+    display: flex;
+    .hashTag1 {
+      color: #4581f8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-weight: 400;
+      margin-right: 0.8rem;
+    }
+    .hashTag2 {
+      color: #4581f8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-weight: 400;
+    }
+  }
+  .price {
+    font-weight: 700;
+    margin-top: 0.6rem;
+  }
+  @media (max-width: 576px) {
+    .nations {
+      .nation1 {
+        font-size: 1.4rem;
+      }
+      .nation2 {
+        font-size: 1.4rem;
+      }
+    }
+    .nation {
+      font-size: 1.4rem;
+    }
+    .title {
+      font-size: 1.6rem;
+    }
+    .hashTags {
+      .hashTag1 {
+        font-size: 1.4rem;
+      }
+      .hashTag2 {
+        font-size: 1.4rem;
+      }
+    }
+    .price {
+      font-size: 1.6rem;
+    }
+  }
+  @media all and (min-width: 576px) and (max-width: 768px) {
+    .img {
+      width: 38.5vw;
+      height: 38.5vw;
+    }
+    .nations {
+      .nation1 {
+        font-size: 1.5rem;
+      }
+      .nation2 {
+        font-size: 1.5rem;
+      }
+    }
+    .nation {
+      font-size: 1.5rem;
+    }
+    .title {
+      font-size: 1.7rem;
+    }
+    .hashTags {
+      .hashTag1 {
+        font-size: 1.5rem;
+      }
+      .hashTag2 {
+        font-size: 1.5rem;
+      }
+    }
+    .price {
+      font-size: 1.7rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .img {
+      width: 30rem;
+      height: 30rem;
+    }
+    .nations {
+      .nation1 {
+        font-size: 1.6rem;
+      }
+      .nation2 {
+        font-size: 1.6rem;
+      }
+    }
+    .nation {
+      font-size: 1.6rem;
+    }
+    .title {
+      font-size: 1.8rem;
+    }
+    .hashTags {
+      .hashTag1 {
+        font-size: 1.6rem;
+      }
+      .hashTag2 {
+        font-size: 1.6rem;
+      }
+    }
+    .price {
+      font-size: 1.8rem;
+    }
+  }
+}

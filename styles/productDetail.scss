@@ -1,0 +1,988 @@
+.productDetail {
+  @media all and (min-width: 200px) and (max-width: 320px) {
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goFavorite {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goLogin {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .ok {
+            width: 10.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 18rem;
+        height: 15rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 14rem;
+        }
+        .bottom {
+          width: 22rem;
+          height: 3rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 1.6rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 1rem;
+        margin-bottom: 1.6rem;
+      }
+      .site {
+        height: 6.56rem;
+        .siteName {
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+        .iconSize {
+          width: 4rem;
+          height: 4rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 4rem;
+          height: 4rem;
+        }
+        .kakao {
+          width: 6rem;
+          font-size: 1rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 4rem;
+          height: 4rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 4rem;
+          height: 4rem;
+        }
+        .naverBand {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.6rem;
+        }
+        .nation2 {
+          font-size: 1.6rem;
+        }
+      }
+      .nation {
+        font-size: 1.6rem;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.6rem;
+        }
+      }
+      .price {
+        font-size: 1.8rem;
+      }
+    }
+    .wish_reser {
+      font-size: 1.6rem;
+    }
+    .departureDate {
+      font-size: 1.6rem;
+    }
+    .departureDate {
+      .departure {
+        font-size: 1.6rem;
+      }
+    }
+    .inforTitle {
+      font-size: 1.8rem;
+    }
+    .titleContent {
+      font-size: 1.6rem;
+    }
+    .share {
+      font-size: 1.6rem;
+    }
+    .more {
+      .pharse {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  @media all and (min-width: 576px) and (max-width: 768px) {
+    .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.7rem;
+        }
+        .nation2 {
+          font-size: 1.7rem;
+        }
+      }
+      .nation {
+        font-size: 1.7rem;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.7rem;
+        }
+      }
+      .price {
+        font-size: 2rem;
+      }
+    }
+    .wish_reser {
+      font-size: 1.7rem;
+    }
+    .departureDate {
+      .departure {
+        font-size: 1.7rem;
+      }
+    }
+    .departureDate {
+      font-size: 1.7rem;
+    }
+    .inforTitle {
+      font-size: 2rem;
+    }
+    .titleContent {
+      font-size: 1.7rem;
+    }
+    .share {
+      font-size: 1.7rem;
+    }
+    .more {
+      .pharse {
+        font-size: 1.7rem;
+      }
+    }
+  }
+  @media all and (min-width: 320px) and (max-width: 768px) {
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goFavorite {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .goLogin {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+          }
+          .stay {
+            width: 14.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 32.8rem;
+        height: 14.8rem;
+        .contents {
+          font-size: 1.6rem;
+        }
+        .select {
+          .ok {
+            width: 10.4rem;
+            height: 2.4rem;
+            font-size: 1.6rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 20rem;
+        height: 16rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 14rem;
+        }
+        .bottom {
+          width: 24rem;
+          height: 3.5rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 1.6rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 1.2rem;
+        margin-bottom: 1.6rem;
+      }
+      .site {
+        height: 6.56rem;
+        .siteName {
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+        .icon {
+          width: 4.8rem;
+          height: 4.8rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .kakao {
+          width: 6rem;
+          font-size: 1rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 4.65rem;
+          height: 4.65rem;
+        }
+        .naverBand {
+          margin-top: 0rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .basicInformation {
+      .nations {
+        .nation1 {
+          font-size: 1.8rem;
+        }
+        .nation2 {
+          font-size: 1.8rem;
+        }
+      }
+      .nation {
+        font-size: 1.8rem;
+      }
+      .title {
+        font-size: 2.2rem;
+      }
+      .hashTags {
+        .hashTag {
+          font-size: 1.8rem;
+        }
+      }
+      .price {
+        font-size: 2.2rem;
+      }
+    }
+    .wish_reser {
+      font-size: 1.8rem;
+    }
+    .departureDate {
+      font-size: 1.8rem;
+    }
+    .inforTitle {
+      font-size: 2.2rem;
+    }
+    .titleContent {
+      font-size: 1.8rem;
+    }
+    .share {
+      font-size: 1.8rem;
+    }
+    .more {
+      .pharse {
+        font-size: 1.8rem;
+      }
+    }
+    .favoriteContainer {
+      .favoriteModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .goFavorite {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+          .stay {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .needLoginContainer {
+      .needLoginModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .goLogin {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+          .stay {
+            width: 20rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .needDeperatureContainer {
+      .needDeperatureModalBody {
+        width: 45rem;
+        height: 17rem;
+        .contents {
+          font-size: 2rem;
+        }
+        .select {
+          .ok {
+            width: 14rem;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            font-size: 2rem;
+            padding: 1.2rem 0;
+          }
+        }
+      }
+    }
+    .shareContainer {
+      .shareModalBody {
+        margin-bottom: 10rem;
+        width: 30rem;
+        height: 22rem;
+        padding: 4rem;
+        .top {
+          .sharePhrases {
+            top: 1.5rem;
+            left: 1.5rem;
+            margin-bottom: 10rem;
+            font-size: 2rem;
+          }
+          .closeButton {
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+        }
+        .middle {
+          height: 19rem;
+        }
+        .bottom {
+          width: 34rem;
+          height: 3.5rem;
+          margin-left: -2rem;
+          .input {
+            width: 80%;
+            font-size: 2rem;
+          }
+          .button {
+            width: 25%;
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+    .FlexContainer {
+      .GridContainer {
+        grid-column-gap: 3rem;
+        margin-top: 1.6rem;
+      }
+      .site {
+        height: 8.5rem;
+        .iconSize {
+          width: 6rem;
+          height: 6rem;
+        }
+        .siteName {
+          width: 6rem;
+          margin-top: -0.4rem;
+          margin-bottom: 0.5rem;
+          font-size: 1.4rem;
+        }
+        .icon {
+          width: 6rem;
+          height: 6rem;
+        }
+        .kakaoImg {
+          margin-top: 0.1rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .kakao {
+          width: 8rem;
+          font-size: 1.4rem;
+        }
+        .naverImg {
+          margin-top: 0.15rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .naver {
+          margin-top: -0.02rem;
+          font-size: 1.4rem;
+        }
+        .naverBandImg {
+          margin-top: 0.1rem;
+          width: 6rem;
+          height: 6rem;
+        }
+        .naverBand {
+          margin-top: 0rem;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+  .thumbnail {
+    .img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+  .basicInformation {
+    margin: 1.977rem 0 0 1.6rem;
+    .nation {
+      width: auto;
+      background-color: #4581f8;
+      color: #fff;
+      text-align: center;
+      border-radius: 2.7rem;
+      padding: 0.4rem 1.2rem;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .nations {
+      width: auto;
+      height: auto;
+      .nation1 {
+        background-color: #466ff5;
+        color: #fff;
+        border-radius: 2.7rem;
+        padding: 0.4rem 1.2rem;
+        font-weight: 400;
+        margin-right: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .nation2 {
+        background-color: #466ff5;
+        color: #fff;
+        border-radius: 2.7rem;
+        padding: 0.4rem 1.2rem;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+    .title {
+      margin-top: 1.2rem;
+      font-weight: 700;
+    }
+    .hashTags {
+      display: flex;
+      margin-top: 0.8rem;
+      font-weight: 400;
+      .hashTag {
+        color: #919191;
+      }
+    }
+    .price {
+      color: #466ff5;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+  }
+  .line {
+    width: 100%;
+    height: 0.2rem;
+    margin: 1.8rem 0 1rem 0;
+    background-color: #eaeaea;
+  }
+  .nextArea {
+    width: 100%;
+    height: 1.6rem;
+    margin: 2rem 0;
+    background-color: #f2f4fa;
+  }
+
+  .wish_reser {
+    display: flex;
+    align-items: center;
+    margin: 1.6rem 1.6rem 0 1.6rem;
+    font-weight: 500;
+    .wish {
+      width: 28vw;
+      height: 4.8rem;
+      color: #ffffff;
+      background-color: #4581f8;
+      border-radius: 0.6rem;
+      line-height: 4.8rem;
+      text-align: center;
+      margin-right: 0.8rem;
+      cursor: pointer;
+    }
+    .reservation {
+      width: 62vw;
+      height: 4.8rem;
+      color: #4581f8;
+      background-color: #fff;
+      border: 0.1rem solid #4581f8;
+      border-radius: 0.6rem;
+      line-height: 5rem;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  .departureDate {
+    margin: 3.1rem 1.6rem 0 1.6rem;
+    font-weight: 400;
+    .departure {
+      color: #242424;
+    }
+    .selectDepartureDate {
+      margin-top: 1.2rem;
+      .select {
+        width: 100%;
+        height: 4.8rem;
+        border-radius: 0.6rem;
+        border-color: #d2d2d2;
+      }
+    }
+    .selectBoxMui {
+      margin-left: -1.6rem;
+    }
+  }
+  .inforTitle {
+    margin: 2rem 1.6rem 1.6rem 1.6rem;
+    font-weight: 700;
+  }
+  .titleContent {
+    display: flex;
+    margin: 1rem 1.6rem 0 1.6rem;
+    gap: 2rem;
+    .title {
+      width: 15%;
+      color: #878787;
+      font-weight: 400;
+    }
+    .content {
+      width: 70%;
+      font-weight: 500;
+    }
+  }
+  .favoriteContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    .favoriteModalBody {
+      position: absolute;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
+      .contents {
+        color: #222;
+        margin: 3rem 0;
+      }
+      .select {
+        display: flex;
+        justify-content: center;
+        .goFavorite {
+          color: #4581f8;
+          background-color: #fff;
+          border: 0.1rem solid #4581f8;
+          border-radius: 0.6rem;
+          padding: 1.2rem 0;
+          margin-right: 0.8rem;
+        }
+        .stay {
+          color: #fff;
+          background-color: #4581f8;
+          border: 0.1rem solid #4581f8;
+          border-radius: 0.6rem;
+          padding: 1.2rem 0;
+        }
+      }
+    }
+  }
+  .needLoginContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    .needLoginModalBody {
+      position: absolute;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
+      .contents {
+        color: #222;
+        margin: 3rem 0;
+      }
+      .select {
+        display: flex;
+        justify-content: center;
+        .goLogin {
+          color: #4581f8;
+          background-color: #fff;
+          border: 0.1rem solid #4581f8;
+          border-radius: 0.6rem;
+          padding: 1.2rem 0;
+          margin-right: 0.8rem;
+        }
+        .stay {
+          color: #fff;
+          background-color: #4581f8;
+          border: 0.1rem solid #4581f8;
+          border-radius: 0.6rem;
+          padding: 1.2rem 0;
+        }
+      }
+    }
+  }
+  .needDeperatureContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    .needDeperatureModalBody {
+      position: absolute;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0.6rem 0.6rem 1.6rem #a9a9a980;
+      .contents {
+        color: #222;
+        margin: 3rem 0;
+      }
+      .select {
+        display: flex;
+        justify-content: center;
+        .ok {
+          color: #fff;
+          background-color: #4581f8;
+          border: 0.1rem solid #4581f8;
+          border-radius: 0.6rem;
+          padding: 1.2rem 0;
+        }
+      }
+    }
+  }
+  .share {
+    color: #4581f8;
+    height: 4.8rem;
+    margin: 2rem 1.6rem 0 1.6rem;
+    border: 0.1rem solid #4581f8;
+    border-radius: 0.6rem;
+    font-weight: 500;
+    line-height: 4.8rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .shareContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    .shareModalBody {
+      position: absolute;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.2rem 0.3rem 0 #22242626;
+      .top {
+        margin-bottom: 1rem;
+        .sharePhrases {
+          position: absolute;
+          font-weight: 700;
+        }
+        .closeButton {
+          position: absolute;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .bottom {
+        display: flex;
+        .input {
+          font-weight: 400;
+        }
+        .button {
+          background-color: #fff;
+          border: 0.1rem solid #22242626;
+          cursor: pointer;
+          font-weight: 700;
+          &:hover {
+            background-color: #ebe9e9;
+          }
+        }
+      }
+    }
+  }
+
+  .FlexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .GridContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 4.8rem);
+      justify-content: center;
+      align-items: center;
+    }
+    .site {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .siteName {
+        font-weight: 400;
+      }
+      .icon {
+        border-radius: 100%;
+        cursor: pointer;
+      }
+      .kakaoImg {
+        border-radius: 100%;
+        cursor: pointer;
+      }
+      .kakao {
+        font-weight: 400;
+      }
+      .naverImg {
+        cursor: pointer;
+      }
+      .naver {
+        font-weight: 400;
+      }
+      .naverBandImg {
+        border-radius: 100%;
+        cursor: pointer;
+      }
+      .naverBand {
+        font-weight: 400;
+      }
+    }
+  }
+  .explicate {
+    padding-bottom: 2rem;
+    width: 100%;
+    height: auto;
+  }
+  .more {
+    position: relative;
+    bottom: 7.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 4.8rem;
+    background-color: #fff;
+    border: 0.1rem solid #4581f8;
+    border-radius: 0.8rem;
+    font-weight: 500;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: block;
+      width: 100%;
+      top: 3.6rem;
+      height: 3rem;
+      background: linear-gradient(
+        rgba(255, 255, 255, 0.01),
+        rgba(255, 255, 255, 0.8) 66%,
+        rgba(255, 255, 255, 0.9) 83%,
+        rgba(255, 255, 255, 0.98) 98%,
+        #fff
+      );
+    }
+    .pharse {
+      color: #4581f8;
+      margin-right: 0.5rem;
+    }
+  }
+  .introNextArea {
+    width: 100%;
+    height: 1.6rem;
+    margin-top: -6rem;
+    background-color: #f2f4fa;
+  }
+}

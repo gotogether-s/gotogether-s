@@ -1,12 +1,33 @@
+import Layout from '@components/Layout'
+import { ThemeProvider } from '@mui/material/styles'
+import '@styles/global.scss'
+import '@styles/muiOverride.scss'
+import '@styles/productDetail.scss'
+import '@styles/productLists.scss'
+import '@styles/reset.css'
+import '@styles/swiperOverride.scss'
+import theme from '@styles/theme'
+import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+import { Provider } from 'react-redux'
+import store from 'store'
 
-function MyApp({ Component, pageProps }: AppProps) {
+declare global {
+  interface Window {
+    Kakao: any
+  }
+}
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </ThemeProvider>
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

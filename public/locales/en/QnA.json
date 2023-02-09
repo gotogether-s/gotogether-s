@@ -1,0 +1,42 @@
+{
+  "함께 여행하고 싶은 연령대 그룹은?": "Which age range do you fall into?",
+  "10대": "Teen",
+  "20대": "20s",
+  "30대": "30s",
+  "40대": "40s",
+  "50대": "50s",
+  "60대": "60s",
+  "70대 이상": "Over 70",
+
+  "여행을 함께 하고 싶은 그룹 유형은?": "Which gender group do you want to travel with?",
+  "남자끼리": "Men Only",
+  "여자끼리": "Women Only",
+  "상관 없음": "Other / Not Applicable",
+
+  "여행에 함께 참가하는 동행자의 유형은?": "Who do you travel with?",
+  "나홀로 참가": "Solo",
+  "친구나 동료": "With Friends",
+  "연인이나 부부": "Couples",
+  "자녀를 동반하는 가족": "Family",
+
+  "함께 여행하고 싶은 종교적 성향의 그룹은?": "Which pilgrimage tour are you interested?",
+  "하나님과 함께하는 여행": "Catholic Pilgrimage Tour Package",
+  "부처님의 발자취를 찾아": "Buddhist Pilgrimage Tour Package",
+
+  "가고싶은 여행의 테마는?": "What kind of vacation experience are you looking for?",
+  "문화탐방": "Cultural Travel",
+  "골프여행": "Golf Holidays",
+  "리조트 휴양 및 힐링": "Resort Vacation",
+  "오지탐험": "Adventure Travel",
+  "트레킹여행": "Hiking & Trekking",
+  "봉사활동": "Volunteer Abroad",
+  "성지순례": "Pilgrimage",
+
+  "다음": "Next",
+  "다음에 하기": "Do survey next time",
+  "완료": "Get vacation package recommendations",
+
+  "문항 선택 후 다음 질문으로 넘어가주세요": "Please make sure you select the list",
+  "설문조사에 응해주셔서 감사합니다": "Your survey has been successfully submitted. The recommended vacation packages will be displayed in homepage",
+  "설문조사 제출에 실패했습니다. 다시 시도해주세요.": "Sorry, something went wrong. Please try again."
+}

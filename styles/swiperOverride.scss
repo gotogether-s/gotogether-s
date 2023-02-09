@@ -1,0 +1,49 @@
+.swiper-pagination {
+  width: 10vw !important;
+  height: 5vw !important;
+  bottom: 4.2vw !important;
+  left: auto !important;
+  right: 3.4vw !important;
+  background-color: #000000 !important;
+  border-radius: 20vw;
+  opacity: 0.5;
+  color: #fff;
+  font-size: 2.4vw;
+  line-height: 5vw;
+}
+.swiper-banner {
+  width: 100% !important;
+}
+.swiper-list {
+  margin-left: 1.6rem !important;
+}
+.swiper-continent-all {
+  margin-left: 1.6rem !important;
+}
+.swiper-continent {
+  width: auto !important;
+  height: 26.4vw !important;
+}
+@media (min-width: 768px) {
+  .swiper-continent {
+    height: 23.7rem !important;
+  }
+}
+@media (min-width: 900px) {
+  .swiper-pagination {
+    width: 9rem !important;
+    height: 4.5rem !important;
+    bottom: 3.8rem !important;
+    left: auto !important;
+    right: 3.2rem !important;
+    border-radius: 3rem;
+    font-size: 2.1rem;
+    line-height: 4.5rem;
+  }
+  .swiper-continent-all {
+    height: 23.7rem !important;
+  }
+  .swiper-continent {
+    height: 23.7rem !important;
+  }
+}

@@ -4,22 +4,36 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "DISABLE_ESLINT_PLUGIN=true next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
+    "@mui/x-date-pickers": "^5.0.3",
     "@reduxjs/toolkit": "^1.8.5",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "@types/react-js-pagination": "^3.0.4",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.5",
+    "i18next": "^22.4.9",
     "next": "12.3.0",
+    "next-i18next": "^13.0.3",
     "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.1.4",
+    "react-js-pagination": "^3.0.3",
     "react-redux": "^8.0.2",
-    "sass": "^1.54.9"
+    "react-share": "^4.4.0",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.54.9",
+    "swiper": "^8.4.2"
   },
   "devDependencies": {
     "@types/node": "18.7.17",
