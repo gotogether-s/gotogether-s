@@ -1,13 +1,12 @@
 <br/>
 
-<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank"><img src="./public/main_logo.svg" width="300px"><p align="center">좋은 사람들과의 잊을 수 없는
-여행</p></a></div>
+<div align="center"><a href="https://gotogether-s.vercel.app/" target="_blank"><img src="./public/main_logo.svg" width="300px"><p align="center">좋은 사람들과의 잊을 수 없는 여행</p></a></div>
 
 <div align="center">
 
 ![last commit](https://img.shields.io/github/last-commit/gotogether-s/gotogether-s?color=green)
 ![most language](https://img.shields.io/github/languages/top/gotogether-s/gotogether-s)
-[![release](https://img.shields.io/badge/release-v0.0.0-yellow)](https://github.com/gotogether-s/gotogether-s/tree/main)
+[![release](https://img.shields.io/badge/release-v0.1.0-yellow)](https://github.com/gotogether-s/gotogether-s/tree/main)
 
 </div>
 
