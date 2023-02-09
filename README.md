@@ -31,7 +31,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
   - [Front-End Tech Stack](#front-end-tech-stack)
   - [Back-End Tech Stack](#back-end-tech-stack)
   - [Other Tools](#other-tools)
-- [✂️ Roles & Responsibilities](#%EF%B8%8F-roles--responsibilities)
+- [🧑‍🤝‍🧑 Roles & Responsibilities](#%EF%B8%8F-roles--responsibilities)
   - [Front-End Roles & Responsibilities](#front-end-roles--responsibilities)
   - [Back-End Roles & Responsibilities](#back-end-roles--responsibilities)
 - [⚙️ Key Features and Logic](#%EF%B8%8Fkey-features-and-logic)
@@ -153,7 +153,7 @@ Go Together is a travel service platform where people can book vacation packages
 
 <br />
 
-## ✂️ Roles & Responsibilities
+## 🧑‍🤝‍🧑 Roles & Responsibilities
 
 ### Front-End Roles & Responsibilities
 
@@ -217,7 +217,7 @@ Go Together is a travel service platform where people can book vacation packages
   - [프론트앤드 기술 스택](#프론트앤드-기술-스택)
   - [백앤드 기술 스택](#백앤드-기술-스택)
   - [기타 사용 툴](#기타-사용-툴)
-- [✂️ 업무 분배](#%EF%B8%8F-업무-분배)
+- [🧑‍🤝‍🧑 업무 분배](#%EF%B8%8F-업무-분배)
   - [프론트앤드 업무 분배](#프론트앤드-업무-분배)
   - [백앤드 업무 분배](#백앤드-업무-분배)
 - [⚙️ 주요 기능과 로직](#%EF%B8%8F주요-기능과-로직)
@@ -281,7 +281,7 @@ Go Together is a travel service platform where people can book vacation packages
 
 ### 주요 페이지 목업
 
-| 메인 페이지                                                                                                    | 카테고리 : 전체                                                                                                         | 연령대별 여행 추천                                                                                                         |
+| 메인 페이지                                                                                                    | 카테고리: 전체                                                                                                          | 연령대별 여행 추천                                                                                                         |
 | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | ![메인](https://user-images.githubusercontent.com/65530775/217529992-ca91fdad-eff9-4f2d-a402-16443619ea83.gif) | ![모든 카테고리](https://user-images.githubusercontent.com/65530775/217530037-56b88e8e-6cc8-403d-a86b-ac16d013d7d8.gif) | ![연령대별여행추천](https://user-images.githubusercontent.com/65530775/217530105-683a0d88-1038-42e0-b54b-443d3fedb4c7.gif) |
 
@@ -315,12 +315,12 @@ Go Together is a travel service platform where people can book vacation packages
 
 🔗 프론트엔드 리포: [gotogether-s 보러가기](https://github.com/gotogether-s/gotogether-s)
 
-- **프레임워크** : Next.js
-- **언어** : TypeScript
-- **라우터** : next/router
-- **상태관리 라이브러리** : Redux toolkit
-- **API 요청** : getServerSideProps, axios
-- **스타일 적용** : MUI, Scss, CSS Module
+- **프레임워크**: Next.js
+- **언어**: TypeScript
+- **라우터**: next/router
+- **상태관리 라이브러리**: Redux toolkit
+- **API 요청**: getServerSideProps, axios
+- **스타일 적용**: MUI, Scss, CSS Module
 
 ### 백앤드 기술 스택
 
@@ -328,20 +328,20 @@ Go Together is a travel service platform where people can book vacation packages
 
 🔗 ERD Cloud 링크: [ERD Cloud 보러가기](https://www.erdcloud.com/d/bdPHHqeiiKZ6GC9rP)
 
-- **언어** : Java
-- **프레임워크 & DB** : IntelliJ, Gradle, Spring, Spring Boot, Data JPA, Security, JWT, MySQL
-- **CI/CD & INFRASTRUCTURE** : Jenkins, Docker, EC2, RDS, S3
-- **기타** : POSTMAN, ERD Cloud
+- **언어**: Java
+- **프레임워크 & DB**: IntelliJ, Gradle, Spring, Spring Boot, Data JPA, Security, JWT, MySQL
+- **CI/CD & INFRASTRUCTURE**: Jenkins, Docker, EC2, RDS, S3
+- **기타**: POSTMAN, ERD Cloud
 
 ### 기타 사용 툴
 
-- **이슈관리** : Github Issue
-- **문서화** : Notion
-- **커뮤니케이션** : Slack, Discord, Zoom
+- **이슈관리**: Github Issue
+- **문서화**: Notion
+- **커뮤니케이션**: Slack, Discord, Zoom
 
 <br />
 
-## ✂️ 업무 분배
+## 🧑‍🤝‍🧑 업무 분배
 
 ### 프론트앤드 업무 분배
 
