@@ -256,6 +256,10 @@ Go Together is a travel service platform where people can book vacation packages
 
 고투게더는 시니어층을 주요 대상으로 패키지 여행 상품을 예약할 수 있는 여행 서비스 플랫폼입니다.
 
+- 클라이언트: 고투게더 (더 샤이니)
+- 서비스: 웹 디자인 및 개발
+- 프로젝트 참여 인원: 8명
+
 ### 문제점 & 기업측 요구사항
 
 기존 [고투게더 웹사이트](https://www.gotogether-s.com/)는 아임웹이라는 CMS(Content Management System)로 웹사이트가 만들어져 있어 한정된 기능만 사용이 가능하였습니다. 고투게더 서비스를 운영하는 회사 더샤이니에서 아래 3가지 요구사항을 반영한 새로운 웹사이트 제작을 요청하였습니다:
