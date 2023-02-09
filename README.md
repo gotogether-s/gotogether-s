@@ -56,7 +56,7 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 
 ## 🗓 Project Duration
 
-**Version 0.1.0**: Sep.6.2022 - Present
+**Version 0.1.0 Released**: Sep 6, 2022 - Feb 08, 2023
 
 <br />
 
