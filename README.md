@@ -56,7 +56,11 @@ _🇰🇷 For Korean User: 한국어로 된 프로젝트 설명은 [여기](#고
 
 ## 🗓 Project Duration
 
-**Version 0.1.0**: Sep.6.2022 - Present
+Sep 6, 2022 - Present
+
+### **Timeline**
+
+- Version 0.1.0 released: Feb 8, 2023
 
 <br />
 
@@ -66,7 +70,6 @@ Go Together is a travel service platform where people can book vacation packages
 
 - Client: Go Together Travel Agency (The Shiny)
 - Service: Website Design & Development
-- Duration: Sep 2022 – Present
 - Team Members: 8
 
 ### Problems & Company's Requirements
@@ -171,25 +174,25 @@ Go Together is a travel service platform where people can book vacation packages
 
 ## ⚙️ Key Features and Logic
 
-1. Vacation packages recommendation function through a user survey
+1. **Vacation packages recommendation function through a user survey**
    - The homepage shows a list of recommended vacation packages that match to user's interest when a user completes a travel preferences survey
    - Travel Preferences Survey is available for both login and non-login users, surveys are saved permanently for login user and 30 minutes for non-login users, and shows a list of recommended vacation packages on the homepage
-2. Implement Server-Side Rendering (SSR)
+2. **Implement Server-Side Rendering (SSR)**
    - Improve the rendering speed of product detail and product list pages with large amounts of data by implementing server-side rendering
-3. Token-based authentication logins using JWT
+3. **Token-based authentication logins using JWT**
    - Issue access tokens to login users
    - Validate client requests to the server by sending tokens along with the header
-4. Central state management using the Redux toolkit
+4. **Central state management using the Redux toolkit**
    - Easy to manage the state centrally because of no boilerplate code and the inclusion of immer feature in Redux toolkit
-5. Data Patching with RTK Query
+5. **Data Patching with RTK Query**
    - Use RTK Query to prepare a template for API requests
-6. Improve web accessibility and SEO
+6. **Improve web accessibility and SEO**
    - Use semantic tags
    - Use rem
    - Put alt tags in images
    - Customized titles by a web page
    - Use server-side rendering
-7. Apply responsive design
+7. **Apply responsive design**
    - Implement responsive design for a mobile device size (320px to 900px)
 
 <br />
@@ -241,13 +244,21 @@ Go Together is a travel service platform where people can book vacation packages
 
 ## 🗓 프로젝트 제작기간
 
-**버전 0.1.0** : 2022년 9월 6일 - 진행중
+2022년 9월 6일 - 진행중
+
+### **타임라인**
+
+- 버전 0.1.0: 2023년 2월 8일
 
 <br />
 
 ## ✨ 서비스 소개
 
 고투게더는 시니어층을 주요 대상으로 패키지 여행 상품을 예약할 수 있는 여행 서비스 플랫폼입니다.
+
+- 클라이언트: 고투게더 (더 샤이니)
+- 서비스: 웹 디자인 및 개발
+- 프로젝트 참여 인원: 8명
 
 ### 문제점 & 기업측 요구사항
 
@@ -351,23 +362,23 @@ Go Together is a travel service platform where people can book vacation packages
 
 ## ⚙️ 주요 기능과 로직
 
-1. 사용자 설문을 통한 여행상품 추천 기능
+1. **사용자 설문을 통한 여행상품 추천 기능**
    - 사용자 특성에 맞는 패키지 여행상품을 추천하기 위한 설문 기능
    - 사용자가 설문조사를 완료하면 홈페이지에 있는 *사용자 이름*님을 위한 추천 상품 섹션에 고투게더에서 해당 사용자에게 추천하는 여행상품 목록이 출력
    - 회원과 비회원 모두 이용 가능하며 회원의 설문은 영구적으로, 비회원 사용자의 설문은 30분간 저장되어 추천하는 여행상품 목록이 출력
-2. 서버 사이드 렌더링(SSR) 구현
+2. **서버 사이드 렌더링(SSR) 구현**
    - 상품 상세페이지, 상품 리스트 페이지를 서버 사이드 렌더링으로 구현하여 용량이 큰 데이터를 불러오는 페이지의 렌더링 속도를 향상
-3. JWT 사용한 토큰 기반 인증 로그인
+3. **JWT 사용한 토큰 기반 인증 로그인**
    - 로그인한 사용자들에게 액세스 토큰을 발급하고, 클라이언트가 서버에 요청을 할 때마다 헤더에 토큰을 함께 보내 요청에 대한 유효성 검사를 진행
-4. Redux toolkit을 사용한 전역상태관리
+4. **Redux toolkit을 사용한 전역상태관리**
    - 보일러플레이트 코드가 없고 immer 라이브러리가 포함되어 있기 때문에 불변성을 지키지 않고 간편하게 상태 관리가 용이하였음
-5. RTK Query를 사용한 데이터 패칭
+5. **RTK Query를 사용한 데이터 패칭**
    - API 요청의 템플릿을 마련하기 위해 RTK Query를 사용
-6. 웹 접근성 및 SEO 개선
+6. **웹 접근성 및 SEO 개선**
    - 시멘틱한 태그 사용
    - rem 사용
    - 이미지에 alt 태그 넣기
    - 웹페이지별로 제목 커스텀 작업
    - 서버사이드 렌더링 사용
-7. 반응형 디자인 적용
+7. **반응형 디자인 적용**
    - 모바일 디바이스 크기(320px ~ 900px)에 한정하여 반응형 디자인을 구현
